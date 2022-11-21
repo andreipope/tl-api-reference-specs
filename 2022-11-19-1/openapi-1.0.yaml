@@ -52,6 +52,7 @@ paths:
 ###################
 
   '/v1/engines':
+    summary: Search Engines
     description: |
       Use the engines endpoint to retrieve details about the available search engines. The engine object has the following elements:
       - `_id`: A string representing the identifier of the search engine.
