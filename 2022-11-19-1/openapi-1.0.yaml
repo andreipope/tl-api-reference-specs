@@ -165,7 +165,7 @@ paths:
           $ref: '#/components/responses/genericError'
   '/v1/indexes/{index-id}':
     get:
-      summary: Retrieve an Index.
+      summary: Retrieve an Index
       description: Retrieve details about the specified index.
       operationId: retrieveIndex
       tags:
