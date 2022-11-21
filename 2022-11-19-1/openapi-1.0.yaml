@@ -52,7 +52,6 @@ paths:
 ###################
 
   '/v1/engines':
-    summary: Search Engines
     description: |
       Use the engines endpoint to retrieve details about the available search engines. The engine object has the following elements:
       - `_id`: A string representing the identifier of the search engine.
@@ -375,7 +374,7 @@ paths:
       description: |
         This action cannot be undone.
         Note the following about deleting a video indexing task:
-        - You can only delete video indexing tasks for which the status is ready or failed.
+        - You can only delete video indexing tasks for which the status is `ready` or `failed`.
         - If the status of your video indexing task is ready, you must first delete the video vector associated with your video indexing task by calling the GET method of the `indexes/videos` endpoint.
       operationId: deleveVideoIndexingTask
       tags:
