@@ -24,7 +24,7 @@ info:
     - **Resource**: The name of the resource you want to interact with.
     - **Path Parameters**: Allow you to indicate a specific object. For example, you can retrieve details about an engine or index. 
     - **Query Parameters**: Any parameters that an endpoint accepts. For example, you can filter or sort a response using query parameters.
-    Note that the API requires you to pass a header parameter containing your API key to authenticate each request. For details, see the [Authentication](/guides/authentication) page.
+    Note that the API requires you to pass a header parameter containing your API key to authenticate each request. For details, see the [Authentication](/docs/guides-authentication) page.
 
 
     ## Responses
@@ -38,16 +38,16 @@ info:
     The following list is a summary of the HTTP status codes returned by the API:
     - `200`: The request was successful.
     - `201`: The request was successful and a new resource was created.
-    - `401`: The API key you provided is not valid. Note that, for security reasons, your API key automatically expires every two months. When your key has expired, you must generate a new one to continue using the API. For details, see the [Authentication](/guides/authentication) page.
+    - `401`: The API key you provided is not valid. Note that, for security reasons, your API key automatically expires every two months. When your key has expired, you must generate a new one to continue using the API. For details, see the [Authentication](/docs/guides-authentication) page.
     - `404`: The requested resource was not found.
 
     ### Errors
 
-    HTTP status codes in the `4xx` range indicate an error caused by the parameters you provided in the request. For more details, see the [Error Codes](/error-codes) page. For each error, the API service returns the following fields in the body of the response:
+    HTTP status codes in the `4xx` range indicate an error caused by the parameters you provided in the request. For more details, see the [Error Codes](/reference/error-codes) page. For each error, the API service returns the following fields in the body of the response:
     - `code`: A string representing the error code.
     - `message`: A human-readable string describing the error, intended to be suitable for display in a user interface.
     - `docs_url`: The URL of the relevant documentation page.
-    For more details, see [TBC](/) page.
+    For more details, see [Error Codes](/reference/error-codes) page.
 
   contact:
     name: Twelve Labs Support
@@ -67,10 +67,10 @@ tags:
     description: |
       Use the engines endpoint to retrieve details about the available search engines. The engine object has the following elements:
       - `_id`: A string representing the identifier of the search engine.
-      - `allowed_index_options`: An array of strings representing the supported indexing options. For details, see the [Indexing Options](/concepts/indexing-options) page.
+      - `allowed_index_options`: An array of strings representing the supported indexing options. For details, see the [Indexing Options](/docs/concepts-indexing-options) page.
       - `author`: Indicates who created the index.
       - `created_at`: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the engine was created.
-      - `finetune`: A boolean indicating whether this engine supports fine-tunning. This feature is on the [roadmap](/roadmap).
+      - `finetune`: A boolean indicating whether this engine supports fine-tunning. This feature is on the [roadmap](/docs/roadmap).
       - `ready`: A boolean specifying whether this engine is ready to be used.
       - `updated_at`: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the engine was updated.
   - name: Tasks
@@ -84,7 +84,7 @@ tags:
       - **Pending**: The API is spawning a new worker server to process your video.
       - **Indexing**: The API is transforming the video you uploaded into vectors. A vector is like a compressed version of the video and contains all the information that Twelve Labs' deep-learning models need to perform fast, semantic, accurate, and scalable searches.
       - **Ready**: Your video is ready to be searched.
-      Additionally, you may receive one of the error messages listed on the [Error Codes](/v1.1/error_codes) page.
+      Additionally, you may receive one of the error messages listed on the [Error Codes](/reference/error-codes) page.
       - **Failed**:  If an error occurs, the status is set to **Failed**.
 
       The task object has the following elements:
@@ -100,7 +100,7 @@ tags:
       - `status`: A string indicating the status of the video indexing task.
       - `updated_at`: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the task object was last updated. The API service updates this field every time the video indexing task transitions to a different state.
 
-      **NOTE**: When using this endpoint, you can set up webhooks to receive notifications. For details, see the [Webhooks](/guides/webhooks) section.
+      **NOTE**: When using this endpoint, you can set up webhooks to receive notifications. For details, see the [Using Webhooks](/docs/guides-using-webhooks) section.
     
   - name: Tasks/Transfers
     description: |
@@ -114,7 +114,7 @@ tags:
       An index groups one or more videos stored as vectors and is the most granular level at which you can perform a search. The `index` object has the following elements:
       - `_id`: A string representing the unique identifier of the index. It is assigned by the API when an index is created.
       - `index_name`: A string representing the name of the index.
-      - `index_options`: An array of strings that determines how the engine processes your videos. Twelve Labs currently offers three different indexing options: visual, conversation, text_in_video. For more details, see the [Indexing Options](/v1.1/concepts/indexing-options) page.
+      - `index_options`: An array of strings that determines how the engine processes your videos. Twelve Labs currently offers three different indexing options: visual, conversation, text_in_video. For more details, see the [Indexing Options](/docs/concepts-indexing-options) page.
       - `created_at`: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was created.
       - `updated_at`: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was updated.
       - `engine_id`: A string representing the unique identifier of the engine that the API will use to index the videos in this index.
@@ -183,7 +183,7 @@ paths:
             The following search engines are available:
             - `marengo2`
             - `marengo`
-            For details about the features of each search engine, see the [Search Engines](/concepts/search-engines) page.
+            For details about the features of each search engine, see the [Search Engines](/docs/concepts-search-engines) page.
           required: true
           schema:
             type: string
@@ -768,7 +768,7 @@ paths:
   '/v1.1/indexes/{index_id}/videos/{video_id}/thumbnail':
     get:
       summary: Retrieve a Thumbnail
-      description: To use this feature, you must enable thumbnail generation for the index with which the video vector is associated. For details, see the [Create an Index](/v1.1/api-reference/create-index) section.
+      description: To use this feature, you must enable thumbnail generation for the index with which the video vector is associated. For details, see the [Create an Index](/reference/createindex) section.
       operationId: retrieveThumbnail
       tags:
         - Indexes/Videos
@@ -858,7 +858,7 @@ components:
         allowed_index_options:
           type: array
           description: |
-            An array of strings representing the supported indexing options. For details, see the [Indexing Options](/concepts/indexing-options) page.
+            An array of strings representing the supported indexing options. For details, see the [Indexing Options](/docs/concepts-indexing-options) page.
           items:
             type: string
         author:
@@ -876,7 +876,7 @@ components:
         finetune:
           type: boolean
           description: |
-            A boolean indicating whether this engine supports fine-tunning. This feature is on the [roadmap](/roadmap).
+            A boolean indicating whether this engine supports fine-tunning. This feature is on the [roadmap](/docs/roadmap).
         ready:
           type: boolean
           description: A boolean specifying whether this engine is ready to be used.
@@ -910,7 +910,7 @@ components:
           description: |
             An array of strings that determines how the engine processes your videos.
             
-            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/concepts/indexing-options) page.
+            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/concepts-indexing-options) page.
 
             **NOTES**:
             - The indexing options cannot be changed once the index has been created.
@@ -1975,7 +1975,7 @@ components:
               code:
                 type: string
                 description: |
-                  A string representing the code associated with the error. See the [Error Codes](/api-reference/error-codes) page for details.
+                  A string representing the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
               message: 
                 type: string
                 description: |
@@ -1994,7 +1994,7 @@ components:
               error_code:
                 type: string
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/api-reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2079,7 +2079,7 @@ components:
                     
                     - `and`: The API returns only the results for which all search options match.
 
-                    For details and examples, see the [Multiple Search Options](/guides/performing-searches/multiple-search-options) page.
+                    For details and examples, see the [Multiple Search Options](/docs/guides-multiple-search-options) page.
 
                     
                     **Default**: `or`.
@@ -2107,7 +2107,7 @@ components:
                   For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                  For more details and examples, see the [Filter Search Results Based on Metadata](/concepts/filtering/metadata) page.
+                  For more details and examples, see the [Filter Search Results Based on Metadata](/docs/concepts-filtering-search-results) page.
                 properties:
                   id:
                     type: array

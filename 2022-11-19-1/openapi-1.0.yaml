@@ -23,7 +23,7 @@ info:
     - **Resource**: The name of the resource you want to interact with.
     - **Path Parameters**: Allow you to indicate a specific object. For example, you can retrieve details about an engine or index. 
     - **Query Parameters**: Any parameters that an endpoint accepts. For example, you can filter or sort a response using query parameters.
-    Note that the API requires you to pass a header parameter containing your API key to authenticate each request. For details, see the [Authentication](/guides/authentication) page.
+    Note that the API requires you to pass a header parameter containing your API key to authenticate each request. For details, see the [Authentication](/docs/guides-authentication) page.
   contact:
     name: Twelve Labs Support
     email: support@twelvelabs.io
@@ -55,7 +55,7 @@ paths:
     description: |
       Use the engines endpoint to retrieve details about the available search engines. The engine object has the following elements:
       - `_id`: A string representing the identifier of the search engine.
-      - `allowed_index_options`: An array of strings representing the supported indexing options. For details, see the [Indexing Options](/concepts/indexing-options) page.
+      - `allowed_index_options`: An array of strings representing the supported indexing options. For details, see the [Indexing Options](/docs/concepts-indexing-options) page.
       - `author`: Indicates who created the index.
       - `created_at`: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the engine was created.
       - `finetune`: A boolean indicating whether this engine supports fine-tunning. This feature is on the [roadmap](/roadmap).
@@ -94,7 +94,7 @@ paths:
             - `marengo2`
             - `marengo`
             
-            For details about the features of each search engine, see the [Search Engines](/concepts/search-engines) page.
+            For details about the features of each search engine, see the [Search Engines](/docs/concepts-search-engines) page.
           required: true
           schema:
             type: string
@@ -721,7 +721,7 @@ paths:
   '/v1/indexes/{index-id}/videos/{video-id}/thumbnail':
     get:
       summary: Retrieve a Thumbnail
-      description: To use this feature, you must enable thumbnail generation for the index with which the video vector is associated. For details, see the [Create an Index](/v1.1/api-reference/create-index) section.
+      description: To use this feature, you must enable thumbnail generation for the index with which the video vector is associated. For details, see the [Create an Index](/reference/createindex) section.
       operationId: retrieveThumbnail
       tags:
         - Indexes/Videos
@@ -804,7 +804,7 @@ components:
         allowed_index_options:
           type: array
           description: |
-            An array of strings representing the supported indexing options. For details, see the [Indexing Options](/concepts/indexing-options) page.
+            An array of strings representing the supported indexing options. For details, see the [Indexing Options](/docs/concepts-indexing-options) page.
           items:
             type: string
         author:
@@ -822,7 +822,7 @@ components:
         finetune:
           type: boolean
           description: |
-            A boolean indicating whether this engine supports fine-tunning. This feature is on the [roadmap](/roadmap).
+            A boolean indicating whether this engine supports fine-tunning. This feature is on the [roadmap](/docs/roadmap).
         ready:
           type: boolean
           description: A boolean specifying whether this engine is ready to be used.
@@ -860,7 +860,7 @@ components:
           description: |
             An array of strings that determines how the engine processes your videos.
             
-            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/concepts/indexing-options) page.
+            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/concepts-indexing-options) page.
 
             **NOTES**:
             - The indexing options cannot be changed once the index has been created.
@@ -988,7 +988,7 @@ components:
         _id:
           type: string
           description: |
-            A string representing the unique identifier of a video vector. The API service creates a new video_vector object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video vector IDs are different from task IDs. To map a task ID to a video vector ID, see the Retrieve a [Video Vector ID Based on a Task ID](/operations/retrieveVideoIdTaskId) section.
+            A string representing the unique identifier of a video vector. The API service creates a new video_vector object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video vector IDs are different from task IDs. To map a task ID to a video vector ID, see the Retrieve a [Video Vector ID Based on a Task ID](/reference/retrievevideoidtaskid) section.
         created_at:
           type: string
           description: |
@@ -1971,7 +1971,7 @@ components:
               error_code:
                 type: string
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/api-reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2027,7 +2027,7 @@ components:
                     
                     - `and`: The API returns only the results for which all search options match.
 
-                    For details and examples, see the [Multiple Search Options](/guides/performing-searches/multiple-search-options) page.
+                    For details and examples, see the [Multiple Search Options](/docs/guides-multiple-search-options) page.
 
                     
                     **Default**: `or`.
@@ -2056,7 +2056,7 @@ components:
                   For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                  For more details and examples, see the [Filter Search Results Based on Metadata](/concepts/filtering/metadata) page.
+                  For more details and examples, see the [Filter Search Results Based on Metadata](/docs/concepts-filtering-search-results) page.
                 properties:
                   id:
                     type: array
