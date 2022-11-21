@@ -431,7 +431,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     delete:
-      summary: Delete a video indexing task.
+      summary: Delete a Video Indexing Task
       description: |
         This action cannot be undone.
         Note the following about deleting a video indexing task:
@@ -662,7 +662,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     delete:
-      summary: Delete a video vector.
+      summary: Delete a Video Vector
       operationId: deleteVideoVector
       tags:
         - Indexes/Videos

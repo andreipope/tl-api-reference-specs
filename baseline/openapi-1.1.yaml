@@ -647,7 +647,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     delete:
-      summary: Delete a video vector.
+      summary: Delete a Video Vector
       operationId: deleteVideoVector
       tags:
         - Indexes/Videos
