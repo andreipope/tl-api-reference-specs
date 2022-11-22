@@ -1132,7 +1132,7 @@ components:
       description: |
         The number of items to return on each page.
 
-        **Max**: `100`.
+        **Max**: `50`.
       schema:
         type: integer
         default: 10
@@ -2099,7 +2099,7 @@ components:
                 description: |
                   The number of items to return on each page.
 
-                  **Max**: `100`.
+                  **Max**: `50`.
                 default: 10
               filter:
                 type: object

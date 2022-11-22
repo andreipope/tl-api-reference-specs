@@ -1132,7 +1132,7 @@ components:
       description: |
         The number of items to return on each page.
 
-        **Max**: `100`.
+        **Max**: `50`.
       schema:
         type: integer
         default: 10
@@ -1818,7 +1818,7 @@ components:
                 properties:
                   percentage:
                     description: |
-                      A value between 0 and 100 that indicates the percentage complete.
+                      A value between 0 and 50 that indicates the percentage complete.
                     type: number
                   remain_seconds:
                     description: |
@@ -2099,7 +2099,7 @@ components:
                 description: |
                   The number of items to return on each page.
 
-                  **Max**: `100`.
+                  **Max**: `50`.
                 default: 10
               filter:
                 type: object
