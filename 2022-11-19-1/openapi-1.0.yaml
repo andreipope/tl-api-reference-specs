@@ -2014,6 +2014,11 @@ components:
                 example:
                   - visual
                   - conversation
+                  - text_in_video
+                default:
+                  - visual
+                  - conversation
+                  - text_in_video
                 description: |
                   Search options specify the source of information the API service uses when performing a search. The following values are supported:
                   - `visual`: Allows you to search by objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
@@ -2024,6 +2029,8 @@ components:
                   You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
               operator:
                 type: string
+                example: or
+                default: or
                 description: |
                   When you specify more than one search option, you can use this parameter to indicate the logical operation that the API service should perform.
                     
@@ -2042,6 +2049,7 @@ components:
                 enum:
                   - semantic
                   - transcription
+                default: semantic
                 description: |
                   Specifies the type of search the API service will perform. The following values are supported:
                   - `semantic`: The API service returns results that are semantically similar to the search query even if the results don't exactly match the search query.
