@@ -2247,12 +2247,4 @@ components:
                     - You cannot disable thumbnails once the index has been created.
                   items:
                     type: string
-            example:
-              engine_id: marengo2
-              index_options:
-                - visual
-                - conversation
-                - text_in_video
-              index_name: myIndex
-              addons:
-                - thumbnail
+
