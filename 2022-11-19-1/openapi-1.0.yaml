@@ -2112,10 +2112,12 @@ components:
                   The unique identifier of the index to which the video is being uploaded.
               provide_transcription:
                 type: boolean
+                default: false
                 description: |
                   A boolean value specifying whether or not you provide a transcription for this video.
               language:
                 type: string
+                default: en
                 description: Must be set to `en`.
               video_file:
                 type: string
