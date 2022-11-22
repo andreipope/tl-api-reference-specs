@@ -2187,6 +2187,7 @@ components:
                   type: string
                   description: |
                     The name of the index. Make sure you use a succinct and descriptive name.
+                  example: myIndex
                 addons:
                   type: array
                   description: |
@@ -2196,6 +2197,8 @@ components:
                     - You cannot disable thumbnails once the index has been created.
                   items:
                     type: string
+                  example:
+                    - thumbnail
             example:
               engine_id: marengo2
               index_options:
