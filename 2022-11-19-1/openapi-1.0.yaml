@@ -3,7 +3,7 @@ x-readme:
     - "python"
     - "javascript"
     - "curl"
-    - "golang"
+    - "go"
 openapi: 3.0.0
 info:
   title: Twelve Labs Video Understanding API
