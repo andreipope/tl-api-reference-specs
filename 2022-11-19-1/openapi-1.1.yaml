@@ -2220,6 +2220,7 @@ components:
                       - Twelve Labs strongly recommends you use `marengo2`.
 
                       - You cannot change the engine once the index has been created.
+                  default: marengo2
                 index_options:
                   type: array
                   description: |
@@ -2232,6 +2233,10 @@ components:
                     type: string
                   minItems: 1
                   maxItems: 3
+                  default:
+                    - visual
+                    - conversation
+                    - text_in_video
                 index_name:
                   type: string
                   description: |
