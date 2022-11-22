@@ -2185,11 +2185,13 @@ components:
                     - text_in_video
                 index_name:
                   type: string
+                  default: myIndex
                   description: |
                     The name of the index. Make sure you use a succinct and descriptive name.
-                  default: myIndex
                 addons:
                   type: array
+                  default:
+                    - thumbnail
                   description: |
                     The list of add-ons that are enabled for this index. To enable thumbnail generation for an index, set this parameter to `["thumbnail"]`.
 
@@ -2197,8 +2199,6 @@ components:
                     - You cannot disable thumbnails once the index has been created.
                   items:
                     type: string
-                  default:
-                    - thumbnail
             example:
               engine_id: marengo2
               index_options:
