@@ -756,7 +756,7 @@ paths:
             Specifies the time, in seconds, at which the API service must retrieve the thumbnail. If you don't specify this parameter, the API service retrieves a thumbnail from the middle of the video.
           required: false
           schema:
-            type: string
+            type: number
       responses:
         '200':
           $ref: '#/components/responses/retrieveThumbnailResponse'
