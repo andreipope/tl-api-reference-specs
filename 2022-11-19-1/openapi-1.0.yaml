@@ -1,9 +1,10 @@
 x-readme:
   samples-languages:
-    - "python"
-    - "javascript"
+    - "http"
     - "curl"
+    - "python"
     - "go"
+    - "node"
 openapi: 3.0.0
 info:
   title: Twelve Labs Video Understanding API
