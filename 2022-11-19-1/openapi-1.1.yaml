@@ -1658,7 +1658,6 @@ components:
                   The list of add-ons that are enabled for this index.
                 items:
                   type: string
-
           example:
             _id: 62d9bafa90077fc60af827a0
             index_name: myIndex
@@ -2230,6 +2229,7 @@ components:
                   type: string
                   description: |
                     The name of the index. Make sure you use a succinct and descriptive name.
+                  default: myIndex
                 addons:
                   type: array
                   description: |
@@ -2239,6 +2239,8 @@ components:
                     - You cannot disable thumbnails once the index has been created.
                   items:
                     type: string
+                  default:
+                    - thumbnail
             example:
               engine_id: marengo2
               index_options:
