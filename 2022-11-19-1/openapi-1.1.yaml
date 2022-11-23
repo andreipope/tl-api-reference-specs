@@ -146,7 +146,7 @@ tags:
       - `updated_at`: A string indicating the date and time, in the updated_at: A string indicating the date and time, in the RFC 3339 format, that the video indexing task object was last updated. The API service updates this field every time the video indexing task transitions to a different state. format, that the video indexing task object was last updated. The API service updates this field every time the video indexing task transitions to a different state.
   - name: Search
     description: |
-      Use the `/indexes/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
+      Use the `/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
         
       **NOTE:** When you use pagination, you will not be charged for retrieving subsequent pages of results.
 paths:
@@ -820,7 +820,7 @@ paths:
       tags:
         - Search
       description: |
-        Use the `/indexes/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
+        Use the `/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: search
