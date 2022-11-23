@@ -651,7 +651,7 @@ paths:
 
       responses:
         '200':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/updateVideoVectorResponse'
         '400':
           $ref: '#/components/responses/genericError'
     delete:
@@ -1892,7 +1892,8 @@ components:
                 page: 1
                 total_page: 1
                 total_results: 2
-
+    updateVideoVectorResponse:
+      description: If successful, this method returns `204 No Content` response code. It does not return anything in the response body.
     deleteVideoVectorResponse:
       description: If successful, this method returns `204 No Content` response code. It does not return anything in the response body.
     deleteIndexResponse:
