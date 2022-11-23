@@ -213,8 +213,8 @@ paths:
         - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a `string`.
         - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
         - To provide a transcription file, you must set the `provide_transcription` parameter to `true` and specify at least one of the `transcription_file` and `transcription_url` parameters:
-          - Use the `transcription_file`` parameter to provide a transcription from the local file system. It must be a stream of bytes encoded as `multipart/form-data`.
-          - Use the `transcription_url`` parameter to provide a transcription file from a publicly accessible URL. It must be a `string`.
+          - Use the `transcription_file` parameter to provide a transcription from the local file system. It must be a stream of bytes encoded as `multipart/form-data`.
+          - Use the `transcription_url` parameter to provide a transcription file from a publicly accessible URL. It must be a `string`.
       operationId: createVideoIndexingTask
       tags:
         - Tasks
