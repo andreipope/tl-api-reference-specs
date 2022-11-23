@@ -500,7 +500,7 @@ paths:
 
   '/v1.1/indexes/{index-id}/videos':
     get:
-      summary: List Video Vectors.
+      summary: List Video Vectors
       operationId: listVideoVectors
       description: |
         Returns a list of the video vectors in the specified index. If no parameters are specified, the API returns your video vectors sorted by creation date, with the newest at the top of the list.
