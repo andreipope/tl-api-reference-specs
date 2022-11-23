@@ -104,6 +104,7 @@ paths:
           required: true
           schema:
             type: string
+            default: marengo2
       responses:
         '200':
           $ref: '#/components/responses/getEngineResponse'
