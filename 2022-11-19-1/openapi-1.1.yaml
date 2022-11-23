@@ -292,7 +292,7 @@ paths:
         This action cannot be undone.
         Note the following about deleting a video indexing task:
         - You can only delete video indexing tasks for which the status is `ready` or `failed`.
-        - If the status of your video indexing task is ready, you must first delete the video vector associated with your video indexing task by calling the `GET` method of the `/indexes/videos` endpoint.
+        - If the status of your video indexing task is `ready`, you must first delete the video vector associated with your video indexing task by calling the `GET` method of the `/indexes/videos` endpoint.
       operationId: deleteVideoIndexingTask
       tags:
         - Tasks
@@ -313,7 +313,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1./tasks/status':
+  '/v1.1/tasks/status':
     get:
       summary: Retrieve Tasks by Status
       description: Retrieves the number video indexing tasks in each status for the specified index.
