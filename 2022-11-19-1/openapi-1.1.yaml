@@ -1247,21 +1247,7 @@ components:
 
   responses:
     cloudToCloudTransferResponse:
-      description: One or more video indexing tasks index has successfully been created.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: A human-readable string describing the result.
-              type:
-                type: string
-                description: A human-readable string describing the type of operation.
-          example:
-            message: Succesfully requested indexing task
-            type: index_task_create
+      description: If successful, this method returns `204 No Content` response code. It does not return anything in the response body.
     updateIndexResponse:
       description: If successful, this method returns `204 No Content` response code. It does not return anything in the response body.
 
