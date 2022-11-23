@@ -1998,7 +1998,7 @@ components:
           schema:
             type: object
             properties:
-              error_code:
+              code:
                 type: string
                 description: |
                   Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
