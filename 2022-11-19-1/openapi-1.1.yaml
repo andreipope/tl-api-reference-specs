@@ -144,7 +144,7 @@ tags:
         - `size`
         - `width`
       - `updated_at`: A string indicating the date and time, in the updated_at: A string indicating the date and time, in the RFC 3339 format, that the video indexing task object was last updated. The API service updates this field every time the video indexing task transitions to a different state. format, that the video indexing task object was last updated. The API service updates this field every time the video indexing task transitions to a different state.
-  - name: Indexes/Search
+  - name: Search
     description: |
       Use the `/indexes/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
         
@@ -814,11 +814,11 @@ paths:
 ###   Search   ###
 ##################
 
-  '/v1.1/indexes/{index-id}/search':
+  '/v1.1/search':
     post:
-      summary: Make a Search Request.
+      summary: Make a Search Request
       tags:
-        - Indexes/Search
+        - Search
       description: |
         Use the `/indexes/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
 
@@ -829,13 +829,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
-        - name: index-id
-          in: path
-          required: true
-          description: |
-            The unique identifier of the index you want to search.
-          schema:
-            type: string
         - name: next-page-token
           in: query
           description: |
@@ -2026,9 +2019,6 @@ components:
 
 
     search:
-      description: |
-        Your search results.
-
       content:
         application/json:
           schema:
@@ -2054,6 +2044,11 @@ components:
                 example:
                   - visual
                   - conversation
+                  - text_in_video
+                default:
+                  - visual
+                  - conversation
+                  - text_in_video
                 description: |
                   Search options specify the source of information the API service uses when performing a search. The following values are supported:
                   - `visual`: Allows you to search by objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
@@ -2077,6 +2072,8 @@ components:
 
                     
                     **Default**: `or`.
+                example: or
+                default: or
               conversation_option:
                 type: string
                 enum:
@@ -2087,7 +2084,8 @@ components:
                   - `semantic`: The API service returns results that are semantically similar to the search query even if the results don't exactly match the search query.
                   - `transcription`: The API service returns only the exact matches. Note that `transcription` can only be used with a single search option. For example, you cannot set the `search_option parameter` to equal `["visual", "conversation", "text_in_video"]` and the `conversation_option` parameter to equal `transcription`.
 
-                  **Default**: `semantic`. 
+                  **Default**: `semantic`.
+                default: semantic
               page_limit:
                 type: integer
                 description: |
