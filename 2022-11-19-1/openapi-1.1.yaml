@@ -588,6 +588,14 @@ paths:
           required: false
           schema:
             type: string
+        - name: metadata # Arbitrary name that won't be included in the request URL.
+          description: |
+            You can filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` method.
+          in: query
+          schema:
+            type: object
+            additionalProperties: {}
+
       responses:
         '200':
           $ref: '#/components/responses/getVideoVectorsResponse'
@@ -2012,7 +2020,6 @@ components:
                   -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
                   - You cannot override any of the predefined metadata (example: duration, width, 
                 additionalProperties: {}
-
 
     search:
       content:
