@@ -588,6 +588,7 @@ paths:
           required: false
           schema:
             type: string
+
         - name: metadata # Arbitrary name that won't be included in the request URL.
           in: query
           description: |
@@ -598,7 +599,6 @@ paths:
             - To filter on an integer: `?batchNumber=5`
             - To filter on a float: `?rating=9.3`
             - To filter on a boolean: `?needsReview=true`
-
           schema:
             type: object
             propertyNames:
@@ -2115,7 +2115,7 @@ components:
                   
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                  You can also filter by any of the custom fields specified by invoking the `PUT`` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the video vectors for which a custom field named `needsReview` of type `boolean` is set to true: `"needs_review": true`.
+                  You can also filter by any of the custom fields specified by invoking the `PUT`` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the video vectors for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
 
                   For more details and examples, see the [Filter Search Results Based on Metadata](/docs/concepts-filtering-search-results) page.
                 properties:
