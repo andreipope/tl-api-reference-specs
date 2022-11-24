@@ -2137,7 +2137,7 @@ components:
                     type: string
                     description: A string field that restricts your search results based on the title of the video.
 
-                additionalProperties: {}
+                  additionalProperties: {}
 
                       
     cloud-to-cloud-transfer:
