@@ -2011,7 +2011,7 @@ components:
                   **NOTES:**
                   -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
                   - You cannot override any of the predefined metadata (example: duration, width, 
-                additionalProperties: true
+                additionalProperties: {}
 
 
     search:
