@@ -1095,6 +1095,7 @@ components:
           height: 360
           size: 65749715
 
+
 ######################
 ###   Parameters   ###
 ######################
@@ -2005,17 +2006,12 @@ components:
               metadata:
                 type: object
                 description: |
-                  Metadata that helps you categorize your video vectors. You can specify a list of keys and values. Keys must be of type `string`, and values can be of the following types: `string`, `integer`, or `boolean`.
-                properties:
-                  key:
-                    type: string
-                    description: |
-                      A key.
-                  value:
-                    type: string
-                    description: |
-                      A value.
+                  Metadata that helps you categorize your video vectors. You can specify a list of keys and values. Keys must be of type `string`, and values can be of the following types: `string`, `integer`, `float` or `boolean`.
 
+                  **NOTES:**
+                  -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
+                  - You cannot override any of the predefined metadata (example: duration, width, 
+                additionalProperties: true
 
 
     search:
