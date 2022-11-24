@@ -592,6 +592,13 @@ paths:
           in: query
           description: |
             You can filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` method.
+
+            Examples:
+            - To filter on a string: `?category=recently_added`
+            - To filter on an integer: `?batch_number=5``
+            - To filter on a float: `?rating=9.3``
+            - To filter on a boolean: `?needs_review=true``
+
           schema:
             type: object
             propertyNames:
