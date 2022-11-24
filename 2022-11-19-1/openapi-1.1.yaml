@@ -2136,6 +2136,17 @@ components:
                   title:
                     type: string
                     description: A string field that restricts your search results based on the title of the video.
+                  metadata:
+                    type: object
+                    description: |
+                      Some metadata
+                    propertyNames:
+                      pattern: '^[A-Za-z][A-Za-z0-9]*$'  # Parameter names
+                    additionalProperties:
+                      pattern: '^[A-Za-z][A-Za-z0-9]*$'
+                  style: form
+                  explode: true
+                  
     cloud-to-cloud-transfer:
       content:
         multipart/form-data:
