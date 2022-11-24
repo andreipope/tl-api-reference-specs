@@ -595,6 +595,8 @@ paths:
           schema:
             type: object
             additionalProperties: {}
+          style: form
+          explode: true
 
       responses:
         '200':
