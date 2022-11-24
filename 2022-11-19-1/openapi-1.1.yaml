@@ -605,10 +605,6 @@ paths:
               pattern: '^[A-Za-z][A-Za-z0-9]*$'  # Parameter names
             additionalProperties:
               pattern: '^[A-Za-z][A-Za-z0-9]*$'
-          example:
-            category: recentlyAdded
-            needsReview: true
-
           style: form
           explode: true
 
