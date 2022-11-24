@@ -597,7 +597,6 @@ paths:
             propertyNames:
               pattern: '^[A-Za-z][A-Za-z0-9]*$'  # Parameter names
             additionalProperties:
-              type: string
               pattern: '^[A-Za-z][A-Za-z0-9]*$'
           style: form
           explode: true
