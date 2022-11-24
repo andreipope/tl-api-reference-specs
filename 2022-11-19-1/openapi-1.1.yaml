@@ -2031,7 +2031,11 @@ components:
                   **NOTES:**
                   -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
                   - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video vector.
-                additionalProperties: {}
+                additionalProperties:
+                  description: |
+                    You can filter by any of the custom fields specified by invoking the PUT method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the video vectors for which a custom field named `needsReview` of type `boolean`` is set to `true``: `"needsReview": true`
+
+                  pattern: '^[A-Za-z][A-Za-z0-9]*$'
 
     search:
       content:
