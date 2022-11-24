@@ -2030,7 +2030,7 @@ components:
 
                   **NOTES:**
                   -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
-                  - You cannot override any of the predefined metadata (example: duration, width, 
+                  - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video vector.
                 additionalProperties: {}
 
     search:
@@ -2136,8 +2136,9 @@ components:
                   title:
                     type: string
                     description: A string field that restricts your search results based on the title of the video.
-                additionalProperties: {}
-                  
+
+              additionalProperties: {}
+                      
     cloud-to-cloud-transfer:
       content:
         multipart/form-data:
