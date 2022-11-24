@@ -5,7 +5,7 @@ x-readme:
     - "python"
     - "go"
     - "node"
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Twelve Labs Video Understanding API
   description: |
@@ -485,7 +485,7 @@ paths:
 
   '/v1/indexes/{index-id}/videos':
     get:
-      summary: List Video Vectors.
+      summary: List Video Vectors
       operationId: listVideoVectors
       description: |
         Returns a list of the video vectors in the specified index. If no parameters are specified, the API returns your video vectors sorted by creation date, with the newest at the top of the list.
@@ -573,6 +573,24 @@ paths:
           required: false
           schema:
             type: string
+        - name: metadata # Arbitrary name that won't be included in the request URL.
+          in: query
+          description: |
+            You can filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` method.
+
+            Examples:
+            - To filter on a string: `?category=recentlyAdded`
+            - To filter on an integer: `?batchNumber=5`
+            - To filter on a float: `?rating=9.3`
+            - To filter on a boolean: `?needsReview=true`
+          schema:
+            type: object
+            propertyNames:
+              pattern: '^[A-Za-z][A-Za-z0-9]*$'  # Parameter names
+            additionalProperties:
+              pattern: '^[A-Za-z][A-Za-z0-9]*$'
+          style: form
+          explode: true
       responses:
         '200':
           $ref: '#/components/responses/getVideoVectorsResponse'
