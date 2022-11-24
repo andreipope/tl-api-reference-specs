@@ -594,10 +594,10 @@ paths:
             You can filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` method.
 
             Examples:
-            - To filter on a string: `?category=recently_added`
-            - To filter on an integer: `?batch_number=5``
-            - To filter on a float: `?rating=9.3``
-            - To filter on a boolean: `?needs_review=true``
+            - To filter on a string: `?category=recentlyAdded`
+            - To filter on an integer: `?batchNumber=5`
+            - To filter on a float: `?rating=9.3`
+            - To filter on a boolean: `?needsReview=true`
 
           schema:
             type: object
@@ -605,6 +605,10 @@ paths:
               pattern: '^[A-Za-z][A-Za-z0-9]*$'  # Parameter names
             additionalProperties:
               pattern: '^[A-Za-z][A-Za-z0-9]*$'
+          example:
+            category: recentlyAdded
+            needsReview: true
+
           style: form
           explode: true
 
