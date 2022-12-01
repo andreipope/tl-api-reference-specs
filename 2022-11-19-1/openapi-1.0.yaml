@@ -625,7 +625,7 @@ paths:
         '200':
           $ref: '#/components/responses/getVideoVectorResponse'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/getVideoVectorError'
     put:
       summary: Update a Video Vector
       description: Use this endpoint to update the metadata of a video vector.
@@ -2026,6 +2026,24 @@ components:
 ###   Errors   ###
 ##################
 
+    getVideoVectorError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                type: integer
+                description: |
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: A human-readable string describing the error.
+          example:
+            error_code: 201
+            message: ID 637f21e98f7a293c9d4f62541 does not exist
+    
     getVideoVectorsError:
       description: The request has failed.
       content:
