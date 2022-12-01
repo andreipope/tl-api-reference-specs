@@ -840,7 +840,7 @@ paths:
         '200':
           $ref: '#/components/responses/searchResultsResponse'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/searchResultsError'
 
 components:
 
@@ -2025,6 +2025,24 @@ components:
 ##################
 ###   Errors   ###
 ##################
+
+    searchResultsError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                type: integer
+                description: |
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: A human-readable string describing the error.
+          example:
+            error_code: 104
+            message: The conversation option of transcription is not allowed with multiple search options. You should use semantic instead.
 
     retrieveThumbnailError:
       description: The request has failed.
