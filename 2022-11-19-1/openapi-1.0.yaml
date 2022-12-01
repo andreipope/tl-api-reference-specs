@@ -1995,7 +1995,7 @@ components:
               indexing: 1
               failed: 0
               total_result: 10
-            type: 635be12062c8def3b96b2616
+            type: index_task_get_status
     retrieveThumbnailResponse:
       description: A thumbnail has successfully been retrieved.
       content:
