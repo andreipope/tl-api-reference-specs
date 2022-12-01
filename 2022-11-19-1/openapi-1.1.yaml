@@ -645,7 +645,7 @@ paths:
           $ref: '#/components/responses/genericError'
     put:
       summary: Update a Video Vector
-      description: Use this endpoint to update the metadata of a video vector.
+      description: Use this endpoint to update the title and the metadata of a video vector.
       operationId: updateVideoVector
       tags:
         - Indexes/Videos
