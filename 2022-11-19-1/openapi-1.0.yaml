@@ -132,7 +132,7 @@ paths:
         '200':
           $ref: '#/components/responses/createIndexResponse'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/createIndexError'
     get:
       summary: List indexes
       description: 'This method returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.'
@@ -2025,6 +2025,24 @@ components:
 ##################
 ###   Errors   ###
 ##################
+
+    createIndexError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                type: integer
+                description: |
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: A human-readable string describing the error.
+          example:
+            error_code: 104
+            message: Invalid parameter values for index options. Allowed values for index options are [text_in_video, conversation, visual]}
 
     getEngineError:
       description: The request has failed.
