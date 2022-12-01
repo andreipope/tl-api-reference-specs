@@ -133,6 +133,22 @@ paths:
         '404':
           $ref: '#/components/responses/notFound'
 
+  '/v1.1/engines/example':
+    get:
+      summary: Example summary
+      description: Example description
+      operationId: retrieveSearchEngineExample
+      tags:
+        - Engines
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+      responses:
+        '200':
+          $ref: '#/components/responses/getEngineResponse'
+        '404':
+          $ref: '#/components/responses/notFound'
+
 
 #######################
 ###   Components   ####
