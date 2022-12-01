@@ -1544,7 +1544,7 @@ components:
             properties:
               data:
                 type: array
-                description: An array that contains up to page_limit video vectors.
+                description: An array that contains up to `page_limit` video vectors.
                 items:
                   $ref: '#/components/schemas/videoVector'
               page_info:
