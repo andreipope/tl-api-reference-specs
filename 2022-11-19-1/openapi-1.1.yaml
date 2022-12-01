@@ -390,7 +390,7 @@ paths:
           $ref: '#/components/responses/genericError'
     get:
       summary: List indexes
-      description: 'Returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.'
+      description: 'This method returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.'
       operationId: listIndexes
       tags:
         - Indexes
@@ -503,7 +503,7 @@ paths:
       summary: List Video Vectors
       operationId: listVideoVectors
       description: |
-        Returns a list of the video vectors in the specified index. If no parameters are specified, the API returns your video vectors sorted by creation date, with the newest at the top of the list.
+        This method returns a list of the video vectors in the specified index. If no parameters are specified, the API returns your video vectors sorted by creation date, with the newest at the top of the list.
       tags:
         - Indexes/Videos
       parameters:
