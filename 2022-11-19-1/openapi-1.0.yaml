@@ -1269,7 +1269,7 @@ components:
                 description: An object that contains details about the index you queried.
               type: 
                 type: string
-                description: Describes the type of operation (`search_create`).
+                description: Describes the type of operation.
           example:
             conversation_option: semantic
             data:
@@ -1398,7 +1398,7 @@ components:
                 description: The unique identifier of the index with which the video is associated.
               type:
                 type: string
-                description: Describes the type of operation (`video_index_meta_transcription`).
+                description: Describes the type of operation.
           example:
             _id: 61e17c1c777e6caec646fa08
             data:
@@ -1579,7 +1579,7 @@ components:
                     type: integer
               type:
                 type: string
-                description: Describes the type of operation (`video_index_info`).
+                description: Describes the type of operation.
             example:
               _id: 61e17be5777e6caec646fa07
               created_at: 2022-01-14T13:34:29Z
@@ -1638,7 +1638,7 @@ components:
                       type: string
               type:
                 type: string
-                description: Describes the type of operation (`get_index`).
+                description: Describes the type of operation.
           example:
             data:
               _id: 62d9bafa90077fc60af827a0
@@ -1755,7 +1755,7 @@ components:
                 description: A string indicating the status of the video indexing task.
               type:
                 type: string
-                description: Describes the type of operation (`index_task_item`).
+                description: Describes the type of operation.
           example:
             _id: 61e1789761c43d6d9b7362f3
             created_at: 2022-01-14T13:20:22.986Z
@@ -1801,7 +1801,7 @@ components:
                     type: integer
               type:
                 type: string
-                description: Describes the type of operation (`index_list`).
+                description: Describes the type of operation.
             example:
               data:
                 - _id: 62d85fe7340fa665f1fda5dd
@@ -1882,7 +1882,7 @@ components:
                 description: A human-readable string describing the result.
               type:
                 type: string
-                description: Describes the type of operation (`index_task_create`).
+                description: Describes the type of operation.
           example:
             _id: 62a1ec6d9ea24f052b971a0f
             message: Succesfully requested indexing tasks.
@@ -1985,7 +1985,7 @@ components:
               type:
                 type: string
                 description: |
-                  Describes the type of operation (`index_task_get_status`).
+                  Describes the type of operation.
           example:
             data:
               index_id: 635be12062c8def3b96b2616
@@ -2015,7 +2015,7 @@ components:
               type:
                 type: string
                 description: |
-                  Describes the type of operation (`get_video_thumbnail`).
+                  Describes the type of operation.
           example:
             thumbnail: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6320748774fed2f3511f2a92/10.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20220914%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220914T075213Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=46b3bac13fb8b022313244780c238cb6bfc53eddcbee3be23a8d2dd22d99543e
 
