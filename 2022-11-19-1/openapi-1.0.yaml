@@ -215,7 +215,7 @@ paths:
         '200':
           $ref: '#/components/responses/updateIndexResponse'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/updateIndexError'
     delete:
       summary: Delete an index
       description: Delete the specified index and all the video indexes within it. This action cannot be undone.
@@ -2025,7 +2025,25 @@ components:
 ##################
 ###   Errors   ###
 ##################
-    
+
+    updateIndexError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                type: integer
+                description: |
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: A human-readable string describing the error.
+          example:
+            error_code: 201
+            message: ID 6283aa51f18e21febd160bc01 does not exit
+
     getIndexError:
       description: The request has failed.
       content:
