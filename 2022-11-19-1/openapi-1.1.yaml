@@ -451,7 +451,7 @@ paths:
           $ref: '#/components/responses/genericError'
     put:
       summary: Update an Index
-      description: Update an index.
+      description: This method updates the name of the specified index.
       operationId: updateIndex
       tags:
         - Indexes
