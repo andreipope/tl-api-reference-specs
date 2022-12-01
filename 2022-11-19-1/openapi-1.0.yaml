@@ -424,7 +424,7 @@ paths:
         '200':
           $ref: '#/components/responses/getVideoVectorIdResponse'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/getVideoVectorIdError'
 
   '/v1/indexes/{index-id}/tasks/status':
     get:
@@ -2025,6 +2025,20 @@ components:
 ##################
 ###   Errors   ###
 ##################
+
+    getVideoVectorIdError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: A human-readable string describing the error.
+          example:
+            error_code: 201
+            message: ID 629dea939ea24f052b971991a does not exist
 
     deleteVideoIndexingTaskError:
       description: The request has failed.
