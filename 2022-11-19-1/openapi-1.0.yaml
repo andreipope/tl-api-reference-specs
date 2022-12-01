@@ -353,7 +353,7 @@ paths:
         '200':
           $ref: '#/components/responses/getVideoIndexingTasksResponse'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/getVideoIndexingTasksError'
   
   '/v1/indexes/tasks/{task-id}':
     get:
@@ -2025,6 +2025,25 @@ components:
 ##################
 ###   Errors   ###
 ##################
+
+    getVideoIndexingTasksError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                type: integer
+                description: |
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: A human-readable string describing the error.
+          example:
+            error_code: 104
+            message: page_limit must be greater than 0 and less than or equal to 50
+
 
     createVideoIndexingTaskError:
       description: The request has failed.
