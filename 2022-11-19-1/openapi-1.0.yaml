@@ -2033,6 +2033,10 @@ components:
           schema:
             type: object
             properties:
+              error_code:
+                type: integer
+                description: |
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
