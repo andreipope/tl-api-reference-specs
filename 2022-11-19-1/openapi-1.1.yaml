@@ -1072,6 +1072,8 @@ components:
       in: query
       description: |
         A number that identifies the page to retrieve.
+
+        **Default**: `1`.
       schema:
         type: integer
         default: 1
@@ -1081,7 +1083,8 @@ components:
       in: query
       description: |
         The number of items to return on each page.
-
+        
+        **Default**: `10`.
         **Max**: `50`.
       schema:
         type: integer
@@ -1094,6 +1097,8 @@ components:
         The field to sort on. The following options are available:
         - `updated_at`: Sorts by the time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, when the item was updated.
         - `created_at`: Sorts by the time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, when the item was created.
+
+        **Default**: `created_at`.
       schema:
         type: string
         default: created_at
@@ -1105,6 +1110,8 @@ components:
         The sorting direction. The following options are available:
         - `asc` 
         - `desc`
+
+        **Default**: `desc`.
       schema:
         type: string
         default: desc
