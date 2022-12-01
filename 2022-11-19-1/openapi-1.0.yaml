@@ -447,7 +447,7 @@ paths:
         '200':
           $ref: '#/components/responses/retrieveTasksInEachStatus'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/retrieveTasksInEachStatusError'
         
 
 ###########################
@@ -2025,6 +2025,24 @@ components:
 ##################
 ###   Errors   ###
 ##################
+
+    retrieveTasksInEachStatusError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                type: integer
+                description: |
+                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: A human-readable string describing the error.
+          example:
+            error_code": 201
+            message: ID 16349136f327fbb9c801754c2 does not exist
 
     getVideoVectorIdError:
       description: The request has failed.
