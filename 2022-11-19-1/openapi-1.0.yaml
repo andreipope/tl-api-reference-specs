@@ -401,7 +401,7 @@ paths:
         '200':
           $ref: '#/components/responses/deleteVideoIndexingTask'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/deleteVideoIndexingTaskError'
 
   '/v1/indexes/tasks/{task-id}/video-id':
     get:
@@ -2025,6 +2025,20 @@ components:
 ##################
 ###   Errors   ###
 ##################
+
+    deleteVideoIndexingTaskError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: A human-readable string describing the error.
+          example:
+            message: status 3 task cannot be deleted
+
 
     getVideoIndexingTaskError:
       description: The request has failed.
