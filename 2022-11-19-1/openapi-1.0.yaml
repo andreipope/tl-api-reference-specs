@@ -237,7 +237,7 @@ paths:
     post:
       summary: Create a Video Indexing Task
       description: |
-        Use this method to create a new video indexing task to upload a video to the API service and make it searchable. Note the following about creating a new video indexing task:
+        Use this method to create a new video indexing task that uploads a video to the API service and make it searchable. Note the following about creating a new video indexing task:
         - To upload a file that resides on the local file system, pass the `video_file` parameter. It must be a stream of bytes encoded as `multipart/form-data`.
         - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a `string`.
         - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
