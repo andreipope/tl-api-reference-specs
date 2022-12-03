@@ -2597,7 +2597,7 @@ components:
                 type: string
                 format: binary
                 description: |
-                  When the provide_transcription parameter is set to `true`, and you want to provide a transcription from the local file system, use the `transcription_file` parameter to pass your transcription file to the API service. It must be a stream of bytes encoded as `multipart/form-data`. The transcription must be in the SRT or VTT format.
+                  When the `provide_transcription` parameter is set to `true`, and you want to provide a transcription from the local file system, use the `transcription_file` parameter to pass your transcription file to the API service. It must be a stream of bytes encoded as `multipart/form-data`. The transcription must be in the SRT or VTT format.
               video_url:
                 type: string
                 description: |
