@@ -1947,7 +1947,7 @@ components:
             example:
               _id: 62d85fe7340fa665f1fda5dd
               message: Succesfully created index 'myIndex' index.
-              example: index_create
+              type: index_create
     
     retrieveTasksInEachStatus:
       description: |
