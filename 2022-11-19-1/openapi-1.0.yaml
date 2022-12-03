@@ -1619,11 +1619,13 @@ components:
                   index_options:
                     type: array
                     description: |
-                      Must be a subset of `["visual", "conversation", "text_in_video"]`.
+                      An array of strings that determines how the engine processes your videos.
+                      
+                      Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/concepts-indexing-options) page.
 
                       **NOTES**:
-                      - Twelve Labs strongly recommends you use marengo2.
-                      - You cannot change the engine once the index has been created.
+                      - The indexing options cannot be changed once the index has been created.
+                      - The types of searches you can perform on this index are a subset of the indexing options.
                   total_duration:
                     type: number
                     description: A number representing the total duration, in seconds, of the videos in the index.
