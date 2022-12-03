@@ -1251,7 +1251,7 @@ components:
                         - `extremely low`: for scores greater than 70 and less than 80
               page_info:
                 type: object
-                description: An object that provides information about pagination. It has the following fields.
+                description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
                     type: integer
@@ -1484,6 +1484,7 @@ components:
                   $ref: '#/components/schemas/videoVector'
               page_info:
                 type: object
+                description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
                     type: integer
