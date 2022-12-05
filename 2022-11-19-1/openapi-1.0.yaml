@@ -476,7 +476,7 @@ paths:
 
   '/v1/indexes/{index-id}/videos':
     get:
-      summary: List Video Information
+      summary: List Videos
       operationId: listVideoInformation
       description: |
         This method returns a list of the videos in the specified index. If no parameters are specified, the API returns your videos sorted by creation date, with the newest at the top of the list.
