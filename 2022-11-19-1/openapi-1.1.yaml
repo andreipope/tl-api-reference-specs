@@ -982,7 +982,7 @@ components:
       description: |
         When the API service indexes a video, it doesn't store it. Instead, the API service saves all the required information needed to perform fast, semantic, accurate, and scalable searches as lists of floating numbers. These lists are named video vectors.
 
-        The video_vector object has the following elements:
+        The `video_vector` object has the following elements:
         - `_id`: A string representing the unique identifier of a video. The API service creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
         - `created_at`: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was created.
         - `indexed_at`: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video has finished indexing.
@@ -999,7 +999,7 @@ components:
         _id:
           type: string
           description: |
-            A string representing the unique identifier of a video. The API service creates a new video_vector object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
+            A string representing the unique identifier of a video. The API service creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
         created_at:
           type: string
           description: |
