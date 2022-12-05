@@ -209,7 +209,7 @@ paths:
           $ref: '#/components/responses/updateIndexError'
     delete:
       summary: Delete an index
-      description: This method deletes the specified index and all the video vectors within it. This action cannot be undone.
+      description: This method deletes the specified index and all the videos within it. This action cannot be undone.
       operationId: deleteIndex
       tags:
         - Indexes
@@ -476,10 +476,10 @@ paths:
 
   '/v1/indexes/{index-id}/videos':
     get:
-      summary: List Video Vectors
-      operationId: listVideoVectors
+      summary: List Video Information
+      operationId: listVideoInformation
       description: |
-        This method returns a list of the video vectors in the specified index. If no parameters are specified, the API returns your video vectors sorted by creation date, with the newest at the top of the list.
+        This method returns a list of the videos in the specified index. If no parameters are specified, the API returns your videos sorted by creation date, with the newest at the top of the list.
       tags:
         - Indexes/Videos
       parameters:
@@ -491,7 +491,7 @@ paths:
         - $ref: '#/components/parameters/sort_option'
         - name: index-id
           in: path
-          description: The unique identifier of the index for which the API will retrieve the video vectors.
+          description: The unique identifier of the index for which the API will retrieve the videos.
           schema:
             type: string
           required: true
@@ -590,9 +590,9 @@ paths:
   
   '/v1/indexes/{index-id}/videos/{video-id}':
     get:
-      summary: Retrieve a Video Vector
-      description: This method retrieves a video vector.
-      operationId: retrieveVideoVector
+      summary: Retrieve Video Information
+      description: This method retrieves information about the specified video.
+      operationId: retrieveVideoInformation
       tags:
         - Indexes/Videos
       parameters:
@@ -601,14 +601,14 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video vector is associated.
+            The unique identifier of the index with which the video is associated.
           required: true
           schema:
             type: string
         - name: video-id
           in: path
           description: |
-            The unique identifier of the video vector to retrieve.
+            The unique identifier of the video to retrieve.
           required: true
           schema:
             type: string
@@ -618,9 +618,9 @@ paths:
         '400':
           $ref: '#/components/responses/getVideoVectorError'
     put:
-      summary: Update a Video Vector
-      description: Use this method to update the title and the metadata of a video vector.
-      operationId: updateVideoVector
+      summary: Update Video Information
+      description: Use this method to update the title and the metadata of a video.
+      operationId: updateVideoInformation
       tags:
         - Indexes/Videos
       parameters:
@@ -629,14 +629,14 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video vector is associated.
+            The unique identifier of the index with which the video is associated.
           required: true
           schema:
             type: string
         - name: video-id
           in: path
           description: |
-            The unique identifier of the video vector to update.
+            The unique identifier of the video to update.
           required: true
           schema:
             type: string
@@ -649,26 +649,26 @@ paths:
           $ref: '#/components/responses/updateVideoVectorError'
 
     delete:
-      summary: Delete a Video Vector
-      operationId: deleteVideoVector
+      summary: Delete a Video Information
+      operationId: deleteVideoInformation
       tags:
         - Indexes/Videos
       description: |
-        This method deletes the specified video vector. This action cannot be undone.
+        This method deletes all the information about the specified video This action cannot be undone.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video vector is associated.
+            The unique identifier of the index with which the video is associated.
           required: true
           schema:
             type: string
         - name: video-id
           in: path
           description: |
-            The unique identifier of the video vector to delete.
+            The unique identifier of the video to delete.
           required: true
           schema:
             type: string
@@ -691,14 +691,14 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video vector is associated.
+            The unique identifier of the index with which the video is associated.
           required: true
           schema:
             type: string
         - name: video-id
           in: path
           description: |
-            The unique identifier of the video vector for which you want to retrieve a transcription.
+            The unique identifier of the video for which you want to retrieve a transcription.
           required: true
           schema:
             type: string
@@ -735,14 +735,14 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video vector is associated.
+            The unique identifier of the index with which the video is associated.
           required: true
           schema:
             type: string
         - name: video-id
           in: path
           description: |
-            The unique identifier of the video vector.
+            The unique identifier of the video.
           required: true
           schema:
             type: string
@@ -769,7 +769,7 @@ paths:
   '/v1/indexes/{index-id}/videos/{video-id}/thumbnail':
     get:
       summary: Retrieve a Thumbnail
-      description: To use this feature, you must enable thumbnail generation for the index with which the video vector is associated. For details, see the [Create an Index](/reference/createindex) section.
+      description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an Index](/reference/createindex) section.
       operationId: retrieveThumbnail
       tags:
         - Indexes/Videos
@@ -779,14 +779,14 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video vector is associated.
+            The unique identifier of the index with which the video is associated.
           required: true
           schema:
             type: string
         - name: video-id
           in: path
           description: |
-            The unique identifier of the video vector from which you want to retrieve a thumbnail.
+            The unique identifier of the video from which you want to retrieve a thumbnail.
           required: true
           schema:
             type: string
@@ -934,7 +934,7 @@ components:
         video_count:
           type: integer
           description: |
-            An integer representing the number of video vectors in the index.
+            An integer representing the number of videos in the index.
         total_duration:
           type: number
           description: |
@@ -1031,12 +1031,12 @@ components:
       description: |
         When the API service indexes a video, it doesn't store it. Instead, the API service saves all the required information needed to perform fast, semantic, accurate, and scalable searches as lists of floating numbers. These lists are named video vectors.
 
-        The video_vector object has the following elements:
+        The `video_vector` object has the following elements:
       properties:
         _id:
           type: string
           description: |
-            A string representing the unique identifier of a video vector. The API service creates a new video_vector object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video vector IDs are different from task IDs. To map a task ID to a video vector ID, see the Retrieve a [Video Vector ID Based on a Task ID](/reference/retrievevideoidtaskid) section.
+            A string representing the unique identifier of a video. The API service creates a new video_vector object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs. To map a task ID to a video ID, see the Retrieve a [Video ID Based on a Task ID](/reference/retrievevideoidtaskid) section.
         created_at:
           type: string
           description: |
@@ -1218,7 +1218,7 @@ components:
                       description: End time of the matching video fragment, expressed in seconds.
                     video_id:
                       type: string
-                      description: A string representing the unique identifier of the video vector. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task. To map the identifier of a video indexing task to the identifier of a video vector, you can use the `/indexes/tasks/:task-id/video-idendpoint`. For details, see the Retrieve a Video Vector ID Based on a Task ID section.
+                      description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task. To map the identifier of a video indexing task to the identifier of a video, you can use the `/indexes/tasks/:task-id/video-idendpoint`. For details, see the Retrieve a Video ID Based on a Task ID section.
                     metadata:
                       type: array
                       description: An array that contains details about each result. It has the following fields.
@@ -1374,7 +1374,7 @@ components:
             properties:
               _id:
                 type: string
-                description: The unique identifier of the video vector.
+                description: The unique identifier of the video.
               data:
                 type: array
                 description: An array of objects that contains the transcription. For each time range for which the API service finds spoken words, it returns an object that contains the fields below. If the API service doesn't find any spoken words, the data field is set to `None`.
@@ -1416,7 +1416,7 @@ components:
             properties:
               _id:
                 type: string
-                description: The unique identifier of the video vector.
+                description: The unique identifier of the video.
               data:
                 type: array
                 description: |
@@ -1459,14 +1459,14 @@ components:
             type: video_index_meta_text_in_video
 
     getVideoVectorsResponse:
-      description: The video vectors associated with the specified index have successfully been retrieved.
+      description: The video information associated with the specified index have successfully been retrieved.
       content:
         application/json:
           schema:
             properties:
               data:
                 type: array
-                description: An array that contains up to `page_limit` video vectors.
+                description: An array that contains up to `page_limit` videos.
                 items:
                   $ref: '#/components/schemas/videoVector'
               page_info:
@@ -1532,7 +1532,7 @@ components:
             properties:
               _id:
                 type: string
-                description: A string representing the ID of the video vector. The API returns this field only when the value of the `status` field is `ready`.
+                description: A string representing the ID of the video. The API returns this field only when the value of the `status` field is `ready`.
               exist:
                 type: boolean
                 description: A boolean specifying whether the video is ready to be searched. The API service returns `true` when the value of the status field is `ready` and `false` otherwise.
@@ -1544,14 +1544,14 @@ components:
               exist: true
               type: index_task_video_id
     getVideoVectorResponse:
-      description: The specified video vector has successfully been retrieved.
+      description: The specified video information has successfully been retrieved.
       content:
         application/json:
           schema:
             properties:
               _id: 
                 type: string
-                description: The unique identifier of the video vector.
+                description: The unique identifier of the video.
               created_at:
                 type: string
                 description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was created.
@@ -1839,7 +1839,7 @@ components:
               type: index_list
 
     deleteVideoVectorResponse:
-      description: The specified video vector has successfully been deleted.
+      description: The specified video information has successfully been deleted.
       content:
         application/json:
           schema:
@@ -2436,15 +2436,15 @@ components:
               video_title:
                 type: string
                 description: |
-                  Specifies the new name of the video vector
+                  Specifies the new name of the video
               metadata:
                 type: object
                 description: |
-                  Metadata that helps you categorize your video vectors. You can specify a list of keys and values. Keys must be of type `string`, and values can be of the following types: `string`, `integer`, `float` or `boolean`.
+                  Metadata that helps you categorize your videos. You can specify a list of keys and values. Keys must be of type `string`, and values can be of the following types: `string`, `integer`, `float` or `boolean`.
 
                   **NOTES:**
                   -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
-                  - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video vector.
+                  - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video.
                 additionalProperties: {}
 
     search:
@@ -2529,7 +2529,7 @@ components:
                   For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                  You can also filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the video vectors for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
+                  You can also filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
 
                   For more details and examples, see the [Filter Search Results Based on Metadata](/docs/concepts-filtering-search-results) page.
                 properties:
