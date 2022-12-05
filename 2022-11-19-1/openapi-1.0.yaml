@@ -649,7 +649,7 @@ paths:
           $ref: '#/components/responses/updateVideoVectorError'
 
     delete:
-      summary: Delete a Video Information
+      summary: Delete Video Information
       operationId: deleteVideoInformation
       tags:
         - Indexes/Videos
