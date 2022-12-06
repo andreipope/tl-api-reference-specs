@@ -634,7 +634,7 @@ paths:
 
   '/v1.1/indexes/{index-id}/videos/{video-id}/transcription':
     get:
-      summary: Retrieve a Transcription
+      summary: Retrieve a Transcription of the Spoken Words
       description: This method retrieves a transcription of the spoken words.
       operationId: retrieveTranscription
       tags:
