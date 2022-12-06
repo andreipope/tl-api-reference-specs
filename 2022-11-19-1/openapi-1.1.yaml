@@ -1420,7 +1420,7 @@ components:
         application/json:
           schema:
             properties:
-              _id:
+              id:
                 type: string
                 description: The unique identifier of the video.
               data:
@@ -1446,7 +1446,7 @@ components:
                 description: The unique identifier of the index with which the video is associated.
                 example: 61e165b061c43d6d9b73627b
           example:
-            _id: 61e17c1c777e6caec646fa08
+            id: 61e17c1c777e6caec646fa08
             data:
               - start: 22
                 end: 42
