@@ -851,7 +851,7 @@ paths:
             type: string
       responses:
         '200':
-          $ref: '#/components/responses/searchResultsResponse'
+          $ref: '#/components/responses/searchResultsResponsePageId'
         '400':
           $ref: '#/components/responses/searchResultsError'
 
@@ -1387,6 +1387,188 @@ components:
               total_count: 2
               total_duration: 1163
             type: search_create
+
+    searchResultsResponsePageId:
+      description: Successfully retrived the specified page of search results.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              conversation_option:
+                type: string
+                description: |
+                  Indicates the type of search the API performed.
+              data:
+                type: array
+                description: An array that contains your search results. For each match found, the search engine returns the following fields.
+                items:
+                  type: object
+                  properties:
+                    score:
+                      type: number
+                      description: A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
+                    start:
+                      type: number
+                      description: Start time of the matching video fragment, expressed in seconds.
+                    end:
+                      type: number
+                      description: End time of the matching video fragment, expressed in seconds.
+                    video_id:
+                      type: string
+                      description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task. To map the identifier of a video indexing task to the identifier of a video, you can use the `/indexes/tasks/:task-id/video-idendpoint`. For details, see the Retrieve a Video ID Based on a Task ID section.
+                    metadata:
+                      type: array
+                      description: An array that contains details about each result. It has the following fields.
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: A string that indicates the type of match (`visual`, `conversation`, `text_in_video`).
+                          text:
+                            type: string
+                            description: For `conversation` and `text_in_video`, the API returns a transcription of the spoken words or the text that matches your search query.
+                    confidence:
+                      type: string
+                      description: |
+                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        - `high`: For scores greater than 90 and less than 100
+                        - `medium`: For scores greater than 80 and less than 90
+                        - `low`: For scores greater than 70 and less than 80
+                        - `extremely low`: for scores greater than 70 and less than 80
+              page_info:
+                type: object
+                description: An object that provides information about pagination.
+                properties:
+                  limit_per_page:
+                    type: integer
+                    description: The maximum number of items on each page.
+                  page_expired_at:
+                    type: string
+                    description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
+                  total_results:
+                    type: integer
+                    description: The total number of results.
+                  next_page_id:
+                    type: string
+                    description: The unique identifier of the next page.
+                  prev_page_id:
+                    type: string
+                    description: The unique identifier of the previous page.
+              query:
+                type: string
+                description: The search query you specified.
+              search_options:
+                type: array
+                description: The search options you used.
+              search_pool:
+                type: object
+                description: An object that contains details about the index you queried.
+              type: 
+                type: string
+                description: Describes the type of operation.
+          example:
+            conversation_option: semantic
+            data:
+              - score: 92.49
+                start: 312
+                end: 344
+                metadata:
+                  - type: visual
+                  - type: conversation
+                    text:  Now on this old pit straight can Hamilton's try and get back ahead of max Verstappen and he's trying to get a slipstream as well. Hamilton's going to try and dance around the outside for staff and stays ahead british crowd roaring their approval for this duel on the first lap of 17, trying to go around the outside of cops.
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 91.45
+                start: 36
+                end: 42
+                metadata:
+                  - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 91.45
+                start: 36
+                end: 42
+                metadata:
+                  - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 91.38
+                start: 220
+                end: 260
+                metadata:
+                - type: visual
+                - type: conversation
+                  text: Then in second place Perez is trying to fight back Hamilton and Bottas getting involved as well on the inside there goes Lando Norris has to pull out before he hit Sergio Perez and the two Mercedes well swapping places there has got himself into a bit of a pickle but he has come out on top and ahead of his teammate Sergio Perez now turn four, trying to go the long way round the outside, his jewel continues with Lando Norris as he now goes onto the gravel and he loses six or seven places as a result of that Norris is not a man to back out, he will get his elbows out whenever he can.
+                video-id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 91.02
+                start: 364
+                end: 376
+                metadata:
+                - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 90.47
+                start: 444
+                end: 454
+                metadata:
+                - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 90.29
+                start: 386
+                end: 430
+                metadata:
+                - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 89.64
+                start: 174
+                end: 194
+                metadata:
+                - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 89.52
+                start: 300
+                end: 312
+                metadata:
+                - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 89.2
+                start: 550
+                end: 568
+                metadata:
+                - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+              - score: 89.16
+                start: 128
+                end: 142
+                metadata:
+                - type: visual
+                video_id: 62d860deb0a389f9f568cde9
+                confidence: high
+            page_info:
+              limit_per_page: 10
+              next_page_id: 59c25df9-3657-4480-870c-6263434d5bb3-2
+              prev_page_id: 59c25df9-3657-4480-870c-6263434d5bb3-0
+              page_expired_at: 2022-07-20T20:35:47Z
+              total_results: 140
+            query: winning the race
+            search_options:
+              - conversation
+              - visual
+            search_pool:
+              index_id: 62d85fe7340fa665f1fda5dd
+              total_count: 2
+              total_duration: 1163
+            type: search_create
+
+
 
     retrieveTranscriptionResponse:
       description: Transcription has successfully been retrieved.
