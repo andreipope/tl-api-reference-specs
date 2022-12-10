@@ -812,7 +812,7 @@ paths:
       tags:
         - Search
       description: |
-        Use the `/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
+        Use this endpoint to search for relevant matches in an index. This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the POST method of the `/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: search
@@ -821,10 +821,32 @@ paths:
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
-        - name: next-page-id
-          in: query
+      responses:
+        '200':
+          $ref: '#/components/responses/searchResultsResponse'
+        '400':
+          $ref: '#/components/responses/searchResultsError'
+
+  '/v1/search/{page-id}':
+    post:
+      summary: Retrieve a Specific Page of Search Results
+      tags:
+        - Search
+      description: |
+        Use this endpoint to retrieve a specific page of search results.
+
+        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+      operationId: search-page-id
+      requestBody:
+        $ref: '#/components/requestBodies/search'
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+        - name: page-id
+          in: path
+          required: true
           description: |
-            A token that identifies the page to retrieve. If not specified, the API returns the first page.
+            A token that identifies the page to retrieve.
           schema:
             type: string
       responses:

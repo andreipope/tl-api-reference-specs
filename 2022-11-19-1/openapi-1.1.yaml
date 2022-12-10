@@ -5,7 +5,7 @@ x-readme:
     - "python"
     - "go"
     - "node"
-openapi: 3.1.0
+openapi: 3.0.2
 info:
   title: Twelve Labs Video Understanding API
   description: |
@@ -76,6 +76,7 @@ tags:
   - name: Indexes
   - name: Indexes/Videos
   - name: Search
+  - name: Classification
 
 paths:
 
@@ -291,6 +292,37 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/cloudToCloudTransferResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+
+  '/v1.1/classify/{page_token}':
+    post:
+      summary: Classify a video
+      description: I'm a description.
+      parameters:
+        - name: page_token
+          description: Page token
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/x-api-key'
+        - name: Content-Type
+          in: header
+          description: Must be set to `multipart/form-data`.
+          required: true
+          schema:
+            type: string
+            enum:
+              - multipart/form-data
+      operationId: classify
+      tags:
+        - Classify
+      requestBody:
+        $ref: '#/components/requestBodies/classify'
+      responses:
+        '200':
+          $ref: '#/components/responses/classifyResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -795,6 +827,60 @@ paths:
 
 components:
   schemas:
+
+    classifyLabel:
+      description: Classify Label
+      title: Classify label
+      type: object
+      required:
+      - name
+      - prompts
+      properties:
+        name:
+          example: car
+          type: string
+        prompts:
+          example:
+          - truck
+          - sedan
+          - suv
+          - convertible
+          items:
+            type: string
+          minItems: 1
+          type: array
+
+    classifyLabelResult:
+      properties:
+        confidence:
+          type: string
+        duration:
+          type: number
+        matches:
+          items:
+            $ref: '#/components/schemas/classifyModuleMatch'
+          type: array
+        name:
+          type: string
+        score:
+          type: number
+      type: object
+
+    classifyModuleMatch:
+      properties:
+        end:
+          type: number
+        segment_confidence:
+          type: string
+        segment_score:
+          type: number
+        start:
+          type: number
+        thumbnail_url:
+          type: string
+      type: object
+
+
     engine:
       description: 'Search engine object'
       title: Engine
@@ -1949,12 +2035,72 @@ components:
               message:
                 type: string
                 description: A human-readable string describing the error.
+    
+    classifyResponse:
+      description: I'm a description
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              labels:
+                items:
+                  $ref: '#/components/schemas/classifyLabelResult'
+                type: array
+              video_id:
+                type: string
+
 
 ##########################
 ###   Request Bodies   ###
 ##########################
 
   requestBodies:
+
+    classify:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - labels
+            - options
+            - video_id
+            properties:
+              conversation_option:
+                default: semantic
+                enum:
+                - semantic
+                - transcription
+                type: string
+              include_matches:
+                default: false
+                type: boolean
+              labels:
+                items:
+                  $ref: '#/components/schemas/classifyLabel'
+                minItems: 1
+                type: array
+              options:
+                items:
+                  enum:
+                  - visual
+                  - conversation
+                  - text_in_video
+                  type: string
+                minItems: 1
+                type: array
+              threshold:
+                default: low
+                enum:
+                - high
+                - medium
+                - low
+                - none
+                type: string
+              video_id:
+                type: string
+
 
     update-video-vector:
       content:
