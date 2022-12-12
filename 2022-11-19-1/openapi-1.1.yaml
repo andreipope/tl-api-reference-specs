@@ -76,7 +76,7 @@ tags:
   - name: Indexes
   - name: Indexes/Videos
   - name: Search
-  - name: Classification
+  - name: Classify
 
 paths:
 
@@ -295,26 +295,17 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/classify/{page_token}':
+####################
+###   Classify   ###
+####################
+
+  '/v1.1/classify':
     post:
-      summary: Classify a video
-      description: I'm a description.
+      summary: Classify a Video
+      description: Use this method to classify a video based on the entities or actions shown in that video.
       parameters:
-        - name: page_token
-          description: Page token
-          in: path
-          required: true
-          schema:
-            type: string
         - $ref: '#/components/parameters/x-api-key'
-        - name: Content-Type
-          in: header
-          description: Must be set to `multipart/form-data`.
-          required: true
-          schema:
-            type: string
-            enum:
-              - multipart/form-data
+        - $ref: '#/components/parameters/Content-Type'
       operationId: classify
       tags:
         - Classify
@@ -325,6 +316,49 @@ paths:
           $ref: '#/components/responses/classifyResponse'
         '400':
           $ref: '#/components/responses/genericError'
+
+  '/v1.1/classify/bulk':
+    post:
+      summary: Classify All the Videos in an Index
+      description: Use this method to classify a list of videos based on the entities or actions shown in that video.
+      operationId: classifyBulk
+      tags:
+        - Classify
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+      requestBody:
+        $ref: '#/components/requestBodies/classifyBulk'
+      responses:
+        '200':
+          $ref: '#/components/responses/classifyBulkResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+
+  '/v1.1/classify/{page_token}':
+    get:
+      summary: Retrieve a Specific Page of Results
+      description: Use this endpoint to retrieve a specific page of results.
+      operationId: classifyPageId
+      tags:
+        - Classify
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+        - name: page_token
+          description: A token that identifies the page to retrieve.
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/classifyResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+
+
+
 
 
 ###################
@@ -828,23 +862,37 @@ paths:
 components:
   schemas:
 
+    classifyPageInfo:
+      properties:
+        expired_at:
+          type: string
+        limit:
+          type: integer
+        next_token:
+          type: string
+        prev_token:
+          type: string
+        total_count:
+          type: integer
+      type: object
+
     classifyLabel:
-      description: Classify Label
-      title: Classify label
       type: object
       required:
       - name
       - prompts
       properties:
         name:
+          description: A string representing the name you want to give this entity or action.
           example: car
           type: string
         prompts:
+          description: An array containing the prompts (queries) that define an entity or action.
           example:
-          - truck
-          - sedan
-          - suv
-          - convertible
+          - Truck
+          - Sedan
+          - SUV
+          - Convertible
           items:
             type: string
           minItems: 1
@@ -854,30 +902,50 @@ components:
       properties:
         confidence:
           type: string
+          description: |
+            A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+            - `high`
+            - `medium`
+            - `low`
+            - `extremely low`
         duration:
+          description: The total duration of the matching video fragments.
           type: number
         matches:
           items:
             $ref: '#/components/schemas/classifyModuleMatch'
           type: array
         name:
+          description: The name of the matching label
           type: string
         score:
           type: number
+          description: |
+            A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
       type: object
 
     classifyModuleMatch:
       properties:
         end:
           type: number
+          description: End time of the matching video fragment, expressed in seconds.
         segment_confidence:
           type: string
+          description: |
+            A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+            - `high`
+            - `medium`
+            - `low`
+            - `extremely low`
         segment_score:
+          description: A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video segment.
           type: number
         start:
           type: number
+          description: Start time of the matching video fragment, expressed in seconds.
         thumbnail_url:
           type: string
+          description: A string representing the URL of the thumbnail.
       type: object
 
 
@@ -2037,7 +2105,7 @@ components:
                 description: A human-readable string describing the error.
     
     classifyResponse:
-      description: I'm a description
+      description: The specified video has succesfully been classified.
       content:
         application/json:
           schema:
@@ -2049,13 +2117,105 @@ components:
                 type: array
               video_id:
                 type: string
+    classifyBulkResponse:
+      description: I'm a description
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                description: I'm a description
+                items:
+                  $ref: '#/components/schemas/classifyLabelResult'
+              page_info:
+                $ref: '#/components/schemas/classifyPageInfo'
 
+
+
+
+
+
+              
 
 ##########################
 ###   Request Bodies   ###
 ##########################
 
   requestBodies:
+
+    classifyBulk:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - index_id
+            - labels
+            - options
+            properties:
+              conversation_option:
+                description: |
+                  Specifies the type of search the API service will perform. The following values are supported:
+                  - `semantic`: The API service returns results that are semantically similar to the labels you've specified even if the results don't exactly match those labels.
+                  - `transcription`: The API service returns only the exact matches.
+                default: semantic
+                enum:
+                - semantic
+                - transcription
+                type: string
+              include_clips:
+                default: false
+                description: When this parameter is set to `true`, the API service will return a thumbnail for each matching video fragment.
+                type: boolean
+              index_id:
+                type: string
+                description: |
+                  The unique identifier of the index containing the videos you want to classify.
+              labels:
+                description: |
+                  An array containing the names and the definitions of entities or actions that the API service should identify.
+                items:
+                  $ref: '#/components/schemas/classifyLabel'
+                minItems: 1
+                type: array
+              options:
+                description: |
+                  This parameter specifies the source of information the API service uses when it categorizes a video. The following values are supported:
+                  - `visual`: Use this value to find objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
+                  - `conversation`: Use this value to find the exact point in your video where the specified word or phrase is mentioned.
+                  - `text_in_video`: Use this value to search for text that appears in your videos (OCR).
+                items:
+                  enum:
+                  - conversation
+                  - text_in_video
+                  - visual
+                  type: string
+                minItems: 1
+                type: array
+              page_limit:
+                description: The number of items to return on each page.
+                default: 10
+                maximum: 50
+                minimum: 1
+                type: integer
+              threshold:
+                description: This parameter represents the miniumum similarity score between your search terms and the matching video fragment.
+                default: low
+                enum:
+                - high
+                - medium
+                - low
+                - none
+                type: string
+              video_ids:
+                description: An array containing the unique identifiers of the videos you want to classify.
+                items:
+                  type: string
+                minItems: 1
+                type: array
+
 
     classify:
       content:
@@ -2068,20 +2228,33 @@ components:
             - video_id
             properties:
               conversation_option:
+                description: |
+                  Specifies the type of search the API service will perform. The following values are supported:
+                  - `semantic`: The API service returns results that are semantically similar to the labels you've specified even if the results don't exactly match those labels.
+                  - `transcription`: The API service returns only the exact matches.
                 default: semantic
                 enum:
                 - semantic
                 - transcription
                 type: string
-              include_matches:
+              include_clips:
+                description: |
+                  When this parameter is set to `true`, the API service will return a thumbnail for each matching video fragment.
                 default: false
                 type: boolean
               labels:
+                description: |
+                  An array containing the names and the definitions of entities or actions that the API service should identify.
                 items:
                   $ref: '#/components/schemas/classifyLabel'
                 minItems: 1
                 type: array
               options:
+                description: |
+                  This parameter specifies the source of information the API service uses when it categorizes a video. The following values are supported:
+                  - `visual`: Use this value to find objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
+                  - `conversation`: Use this value to find the exact point in your video where the specified word or phrase is mentioned.
+                  - `text_in_video`: Use this value to search for text that appears in your videos (OCR).
                 items:
                   enum:
                   - visual
@@ -2091,6 +2264,8 @@ components:
                 minItems: 1
                 type: array
               threshold:
+                description: |
+                  This parameter represents the miniumum similarity score between your search terms and the matching video fragment.
                 default: low
                 enum:
                 - high
