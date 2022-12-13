@@ -843,7 +843,7 @@ paths:
   '/v1.1/classify/bulk':
     post:
       summary: Classify All the Videos in an Index
-      description: Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos.
+      description: Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
       operationId: classifyBulk
       tags:
         - Classify
@@ -861,7 +861,7 @@ paths:
   '/v1.1/classify/{page_token}':
     get:
       summary: Retrieve a Specific Page of Results
-      description: Use this endpoint to retrieve a specific page of results.
+      description: The `/classify/bulk` endpoint returns the first page or results. You can use this endpoint to retrieve the rest of the pages.
       operationId: classifyPageId
       tags:
         - Classify
