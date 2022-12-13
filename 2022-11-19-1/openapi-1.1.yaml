@@ -5,7 +5,7 @@ x-readme:
     - "python"
     - "go"
     - "node"
-openapi: 3.1.0
+openapi: 3.0.0
 info:
   title: Twelve Labs Video Understanding API
   description: |
@@ -887,7 +887,7 @@ components:
           example: car
           type: string
         prompts:
-          description: An array containing the prompts (queries) that define an entity or action.
+          description: An array that defines the entity or action.
           example:
           - Truck
           - Sedan
@@ -900,6 +900,11 @@ components:
 
     classifyLabelResult:
       properties:
+        clips: 
+          items:
+            $ref: "#/components/schemas/classifyClip"
+          type: array
+
         confidence:
           type: string
           description: |
@@ -922,6 +927,38 @@ components:
           type: number
           description: |
             A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
+      type: object
+
+    classifyClip:
+      properties:
+        confidence:
+          type: string
+          description: |
+            A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+            - `high`
+            - `medium`
+            - `low`
+            - `extremely low`
+        end:
+          type: number
+          description: |
+            End time of the matching video fragment, expressed in seconds.
+        max_score:
+          type: number
+          description: TODO
+        option:
+          type: string
+          description: TODO
+        prompt:
+          type: string
+          description: TODO
+        start:
+          type: number
+          description: |
+            Start time of the matching video fragment, expressed in seconds.
+        thumbnail_url:
+          type: string
+          description: TODO
       type: object
 
     classifyModuleMatch:
@@ -2117,6 +2154,7 @@ components:
                 type: array
               video_id:
                 type: string
+                description: The unique identifier of the video that has been classified.
     classifyBulkResponse:
       description: I'm a description
       content:
@@ -2275,6 +2313,8 @@ components:
                 type: string
               video_id:
                 type: string
+                description: |
+                  The unique identifier of the video you want to classify.
 
 
     update-video-vector:
