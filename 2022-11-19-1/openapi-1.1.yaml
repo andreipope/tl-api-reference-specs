@@ -784,7 +784,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1,1/search/{page-id}':
+  '/v1.1/search/{page-token}':
     post:
       summary: Retrieve a Specific Page of Search Results
       tags:
@@ -793,13 +793,13 @@ paths:
         Use this endpoint to retrieve a specific page of search results.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
-      operationId: search-page-id
+      operationId: search-page-token
       requestBody:
         $ref: '#/components/requestBodies/search'
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
-        - name: page-id
+        - name: page-token
           in: path
           required: true
           description: |
