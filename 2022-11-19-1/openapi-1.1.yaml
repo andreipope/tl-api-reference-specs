@@ -981,46 +981,23 @@ components:
             End time of the matching video fragment, expressed in seconds.
         score:
           type: number
-          description: TODO
+          description: |
+            A quantitative value determined by the AI engine representing the similarity score between your label and the matching video fragment.
         option:
           type: string
-          description: TODO
+          description: Indicates the type of search the API service performed.
         prompt:
           type: string
-          description: TODO
+          description: Indicates the prompt that the API service used.
         start:
           type: number
           description: |
             Start time of the matching video fragment, expressed in seconds.
         thumbnail_url:
           type: string
-          description: TODO
-      type: object
-
-    classifyModuleMatch:
-      properties:
-        end:
-          type: number
-          description: End time of the matching video fragment, expressed in seconds.
-        segment_confidence:
-          type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
-            - `high`
-            - `medium`
-            - `low`
-            - `extremely low`
-        segment_score:
-          description: A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video segment.
-          type: number
-        start:
-          type: number
-          description: Start time of the matching video fragment, expressed in seconds.
-        thumbnail_url:
-          type: string
-          description: A string representing the URL of the thumbnail.
+            A string representing the URL of the thumbnail. Note that the URL expires in one hour..
       type: object
-
 
     engine:
       description: 'Search engine object'
