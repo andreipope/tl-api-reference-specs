@@ -922,17 +922,12 @@ components:
       properties:
         name:
           description: A string representing the name you want to give this label.
-          example: car
+          example: Car Shapes
           type: string
         prompts:
           description: |
             An array of strings that specifies what the label contains.
           example:
-          - Truck
-            Sedan
-            SUV
-            Convertible
-          default:
           - Truck
             Sedan
             SUV
