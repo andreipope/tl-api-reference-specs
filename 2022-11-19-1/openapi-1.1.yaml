@@ -295,71 +295,6 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-####################
-###   Classify   ###
-####################
-
-  '/v1.1/classify':
-    post:
-      summary: Classify a Video
-      description: Use this method to classify a video based on the entities or actions shown in that video.
-      parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-      operationId: classify
-      tags:
-        - Classify
-      requestBody:
-        $ref: '#/components/requestBodies/classify'
-      responses:
-        '200':
-          $ref: '#/components/responses/classifyResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-
-  '/v1.1/classify/bulk':
-    post:
-      summary: Classify All the Videos in an Index
-      description: Use this method to classify a list of videos based on the entities or actions shown in that video.
-      operationId: classifyBulk
-      tags:
-        - Classify
-      parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-      requestBody:
-        $ref: '#/components/requestBodies/classifyBulk'
-      responses:
-        '200':
-          $ref: '#/components/responses/classifyBulkResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-
-  '/v1.1/classify/{page_token}':
-    get:
-      summary: Retrieve a Specific Page of Results
-      description: Use this endpoint to retrieve a specific page of results.
-      operationId: classifyPageId
-      tags:
-        - Classify
-      parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-        - name: page_token
-          description: A token that identifies the page to retrieve.
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          $ref: '#/components/responses/classifyResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-
-
-
-
 
 ###################
 ###   Indexes   ###
@@ -854,6 +789,71 @@ paths:
           $ref: '#/components/responses/searchResultsResponse'
         '400':
           $ref: '#/components/responses/genericError'
+
+####################
+###   Classify   ###
+####################
+
+  '/v1.1/classify':
+    post:
+      summary: Classify a Video
+      description: Use this method to classify a video based on the entities or actions shown in that video.
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+      operationId: classify
+      tags:
+        - Classify
+      requestBody:
+        $ref: '#/components/requestBodies/classify'
+      responses:
+        '200':
+          $ref: '#/components/responses/classifyResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+
+  '/v1.1/classify/bulk':
+    post:
+      summary: Classify All the Videos in an Index
+      description: Use this method to classify a list of videos based on the entities or actions shown in that video.
+      operationId: classifyBulk
+      tags:
+        - Classify
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+      requestBody:
+        $ref: '#/components/requestBodies/classifyBulk'
+      responses:
+        '200':
+          $ref: '#/components/responses/classifyBulkResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+
+  '/v1.1/classify/{page_token}':
+    get:
+      summary: Retrieve a Specific Page of Results
+      description: Use this endpoint to retrieve a specific page of results.
+      operationId: classifyPageId
+      tags:
+        - Classify
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+        - name: page_token
+          description: A token that identifies the page to retrieve.
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/classifyResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+
+
+
 
 #######################
 ###   Components   ####
