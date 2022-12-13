@@ -938,6 +938,8 @@ components:
           type: array
 
     classifyLabelResult:
+      description: |
+        An array containing the matching video fragments that the API service has identified.
       properties:
         clips: 
           items:
@@ -965,6 +967,7 @@ components:
 
 
     classifyClip:
+      name: clasifyClip
       description: An array containing the video fragments that matched your label.
       properties:
         confidence:
