@@ -883,11 +883,12 @@ components:
       - prompts
       properties:
         name:
-          description: A string representing the name you want to give this entity or action.
+          description: A string representing the name you want to give this label.
           example: car
           type: string
         prompts:
-          description: An array that defines the entity or action.
+          description: |
+            An array of strings that specifies what the label contains.
           example:
           - Truck
           - Sedan
@@ -916,20 +917,17 @@ components:
         duration:
           description: The total duration of the matching video fragments.
           type: number
-        matches:
-          items:
-            $ref: '#/components/schemas/classifyModuleMatch'
-          type: array
-        name:
-          description: The name of the matching label
-          type: string
-        score:
+        max_score:
+          description: The maximum value for the `score` property of each individual clip.
           type: number
-          description: |
-            A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
-      type: object
+        name:
+          description: The name of the label.
+          type: string
+
+
 
     classifyClip:
+      description: An array containing the video fragments that matched your label.
       properties:
         confidence:
           type: string
@@ -943,7 +941,7 @@ components:
           type: number
           description: |
             End time of the matching video fragment, expressed in seconds.
-        max_score:
+        score:
           type: number
           description: TODO
         option:
@@ -2155,6 +2153,37 @@ components:
               video_id:
                 type: string
                 description: The unique identifier of the video that has been classified.
+            example:
+              video_id: 636b932fe9521f7108f5a30e
+              labels:
+                - name: Dangerous animals
+                  score: 85.48
+                  duration: 120
+                  confidence: high
+                  clips:
+                    - start: 40
+                      end: 46
+                      score: 83.45
+                      confidence: high
+                      option: visual
+                      prompt: Hippo
+                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/636b932fe9521f7108f5a30e/41.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221213%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221213T064305Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=836c44fd8d4ff4524b3987b77ac97d032eb6a1bbf6252a0ed8ea5cddca5c583c
+                    - start: 56
+                      end: 74
+                      score: 84.59
+                      confidence: high
+                      option: visual
+                      prompt: Bear
+                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/636b932fe9521f7108f5a30e/57.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221213%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221213T064305Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=b5aa71735987631ef8cfebbf40d737622e5e6390740a100e7094eb769b2350ca
+                    - start: 128
+                      end: 134
+                      score: 83.1
+                      confidence: high
+                      option: visual
+                      prompt: Lion
+                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/636b932fe9521f7108f5a30e/129.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221213%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221213T064305Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a12488cb8c2da05445f1b3d90ef17f16ac2ced05fc1fc239c75b9eaad3466136
+
+
     classifyBulkResponse:
       description: I'm a description
       content:
@@ -2239,7 +2268,7 @@ components:
                 minimum: 1
                 type: integer
               threshold:
-                description: This parameter represents the miniumum similarity score between your search terms and the matching video fragment.
+                description: This parameter represents the miniumum similarity score between your label and the matching video fragment.
                 default: low
                 enum:
                 - high
@@ -2303,7 +2332,7 @@ components:
                 type: array
               threshold:
                 description: |
-                  This parameter represents the miniumum similarity score between your search terms and the matching video fragment.
+                  This parameter represents the miniumum similarity score between your label and the matching video fragment.
                 default: low
                 enum:
                 - high
