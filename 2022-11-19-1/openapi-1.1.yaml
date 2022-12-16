@@ -842,7 +842,7 @@ paths:
     get:
       summary: Retrieve a Specific Page of Search Results
       tags:
-        - Search
+        - Experimental/Search
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
