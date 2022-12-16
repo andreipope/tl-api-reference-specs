@@ -2644,6 +2644,15 @@ components:
                   - low
                   - none
                 default: low
+              query-testing:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                    text:
+                      type: string
               query:
                 type: object
                 description: |
@@ -2666,15 +2675,6 @@ components:
                   - The API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
                   - Search operator $not is valid only when wrapped with $and operator and has more than one query in a same block.
                 properties:
-                  testing:
-                    type: object
-                    additionalProperties:
-                      type: object
-                      properties:
-                        code:
-                          type: integer
-                        text:
-                          type: string
                   adjacency_threshold:
                     type: number
                     description: |
