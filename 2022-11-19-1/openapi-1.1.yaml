@@ -2648,10 +2648,26 @@ components:
                 type: object
                 description: |
                   
-                  The query object is composed of your actual search query and several optional parameters.
+                  Use the `query` parameter to build simple and combined queries. Note that this is an experimental feature and the definition of the `/experimental/search` is subject to change .
 
-                  ## Search Query
-                  Your search query, represented as an array of key-value pairs, where key name is the operator that you want to use.
+                  ## Simple Queries
+
+                  In its simplest form, a query is an object composed of the following key-value pairs:
+                  - `text`: A string representing your search query.
+                  - `option`: A string specifying the source of information the API service uses when performing a search. The following values are supported:
+                    - `visual`: Allows you to search by objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
+                    - `conversation`: Allows you to find the exact point in your video where the specified word or phrase is mentioned.
+                    - `text_in_video`: Allows you to search for text that appears in your videos (OCR).
+                    **NOTES**:
+                    The search options you specify must be a subset of the indexing options used when you created the index.
+                    You can specify multiple search options in conjunction with the operator parameter to broaden or narrow your search.
+
+                  ## Combined Queries
+                  
+                  In its simplest form, a search query is composed  of
+                  The search query is represented as an array of key-value pairs.
+                  
+                  where key name is the operator that you want to use.
 
                   The operator can take one of the following values:
 
