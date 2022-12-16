@@ -2665,8 +2665,7 @@ components:
                   **NOTES**: 
                   - The API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
                   - Search operator $not is valid only when wrapped with $and operator and has more than one query in a same block.
-                properties:
-                  anyOf:
+                  properties:
                     adjacency_threshold:
                       type: number
                       description: |
@@ -2690,8 +2689,20 @@ components:
 
                         (1) query A and query B is in order so it will aggregated into single response but (2) query A and query B is not in order so it will not included.
                         For now, we support order_strict only for the $or operator. But $and will be supported as well in few weeks 
-
-
+                examples:
+                  # Example 1
+                  - transactionId: '77812783001'
+                  # Example 2
+                  - doors:
+                      frontLeftClosed: false
+                      frontRightClosed: true
+                      rearLeftClosed: true
+                      rearRightClosed: true
+                      trunkClosed: true
+                    windows:
+                      frontLeftClosed: false
+                      rearLeftClosed: true
+                      trunkClosed: false
     
     classify:
       content:
