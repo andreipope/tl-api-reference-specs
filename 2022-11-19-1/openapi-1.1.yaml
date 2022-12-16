@@ -787,7 +787,7 @@ paths:
           $ref: '#/components/responses/genericError'
 
   '/v1.1/search/{page-token}':
-    post:
+    get:
       summary: Retrieve a Specific Page of Search Results
       tags:
         - Search
@@ -796,8 +796,6 @@ paths:
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: search-page-token
-      requestBody:
-        $ref: '#/components/requestBodies/search'
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -825,7 +823,7 @@ paths:
       tags:
         - Experimental/Search
       description: |
-        Use the `/experimental/search` endpoint to construct complex queries.
+        Use the `/experimental/search` endpoint to build simple or combined queries.
         This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the POST method of the `/experimental/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
@@ -834,7 +832,37 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
       requestBody:
         $ref: '#/components/requestBodies/experimentalSearch'
+      responses:
+        '200':
+          $ref: '#/components/responses/searchResultsResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
 
+  '/v1.1/experimental/search/{page-token}':
+    get:
+      summary: Retrieve a Specific Page of Search Results
+      tags:
+        - Search
+      description: |
+        Use this endpoint to retrieve a specific page of search results.
+
+        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+      operationId: experimentalSearch-page-token
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+        - name: page-token
+          in: path
+          required: true
+          description: |
+            A token that identifies the page to retrieve.
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/searchResultsResponsePageId'
+        '400':
+          $ref: '#/components/responses/searchResultsError'
 
 ####################
 ###   Classify   ###
@@ -1599,7 +1627,6 @@ components:
               index_id: 62d85fe7340fa665f1fda5dd
               total_count: 2
               total_duration: 1163
-            type: search_create
 
 
     cloudToCloudTransferResponse:
@@ -2658,32 +2685,93 @@ components:
                     - `visual`: Allows you to search by objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
                     - `conversation`: Allows you to find the exact point in your video where the specified word or phrase is mentioned.
                     - `text_in_video`: Allows you to search for text that appears in your videos (OCR).
+                  - `conversation_option`: A `string` that specifies the type of search the API service will perform. The following values are supported:
+                    - `semantic`: The API service returns results that are semantically similar to the search query even if the results don't exactly match the search query.
+                    - `transcription`: The API service returns only the exact matches. Note that transcription can only be used with a single search option. For example, you cannot set the `search_option` parameter to equal `["visual", "conversation", "text_in_video"]` and the `conversation_option` parameter to equal `transcription`.
+                  The default value is `semantic`.
+                  
+                  This parameter is required when the `option` parameter is set to `conversation`, but otherwise it's optional. The default value is `semantic`.
+                    
                     **NOTES**:
-                    The search options you specify must be a subset of the indexing options used when you created the index.
-                    You can specify multiple search options in conjunction with the operator parameter to broaden or narrow your search.
+                    - The search options you specify must be a subset of the indexing options used when you created the index.
+                    - You can specify multiple search options in conjunction with the operator parameter to broaden or narrow your search.
+                  
+                  ### Example
+
+                  The following is an example of a simple query that finds the points in your videos where the "bear chasing man" phrase is mentioned:
+
+                  ```
+                  {
+                    "text": "bear chasing man",
+                    "option": "conversation"
+                  }
+                  ```
+
 
                   ## Combined Queries
-                  
-                  In its simplest form, a search query is composed  of
-                  The search query is represented as an array of key-value pairs.
-                  
-                  where key name is the operator that you want to use.
 
-                  The operator can take one of the following values:
+                  You can combine multiple simple queries together to build more targeted queries. When combining multiple queries, the API service supports the following operators:
 
                   - `$and`: Represents the logical `AND` operator. The API service will return the video fragments for which all the queries match.
-                  - `$or`:Represents the logical `AND` operator. The API service will return the video fragments for which all the queries match.
-                  - `$not`: TODO
+                  - `$or`:Represents the logical `AND` operator. The API service will return the video fragments for which at least one of the queries match.
+                  - `$not`: Represents the logial `NOT` operator. Note that the `$not` operator is valid only when wrapped with the `$and` operator and has more than one query in a same block.
                   - `$strict_or`: TODO
 
-                  The value is an object that has the following fields:
+                  ### Examples
+                  
+                  The following is an example of a combined query that finds the points in your videos where a blue or a red car appears:
 
-                  - `text` - A string containing your search query
-                  - `option` - See `query.option`. Not sure where to place this. TODO
+                  ```
+                  {
+                    "$or": [
+                      {
+                        "text": "red car",
+                        "option": "visual"
+                      },
+                      {
+                        "text": "blue car",
+                        "option": "visual"
+                      }
+                    ]
+                  }
+                  ```
 
-                  **NOTES**: 
-                  - The API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
-                  - Search operator $not is valid only when wrapped with $and operator and has more than one query in a same block.
+                  The following is an example of a combined query that finds the points in your video where:
+                  - Someone is cooking
+                  - Italian food is mentioned in conversation
+                  - Neither spaghetti appears on screen nor lasagna is mentioned in conversation.
+
+                  ```
+                  {
+                    "$and": [
+                      {
+                        "text": "Cooking",
+                        "option": "visual"
+                      },
+                      {
+                        "text": "Italian food",
+                        "option": "conversation"
+                      },
+                      {
+                        "$not": {
+                          "$or": [
+                            {
+                              "text": "spaghetti",
+                              "option": "visual"
+                            },
+                            {
+                              "text": "lasagna",
+                              "option": "conversation",
+                              "conversation_option": "transcription"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                  
+                  ```
+
                 additionalProperties: {}
                 properties:
                   adjacency_threshold:
