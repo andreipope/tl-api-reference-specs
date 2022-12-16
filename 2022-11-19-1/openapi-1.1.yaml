@@ -2647,7 +2647,10 @@ components:
               query:
                 type: object
                 description: |
-                  TODO
+                  
+                  The query object is composed of your actual search query and several optional parameters.
+
+                  ## Search Query
                   Your search query, represented as an array of key-value pairs, where key name is the operator that you want to use.
 
                   The operator can take one of the following values:
