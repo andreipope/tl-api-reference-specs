@@ -772,6 +772,7 @@ paths:
         - Search
       description: |
         Use the `/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
+        
         This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
