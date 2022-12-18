@@ -838,7 +838,7 @@ paths:
         $ref: '#/components/requestBodies/experimentalSearch'
       responses:
         '200':
-          $ref: '#/components/responses/searchResultsResponse'
+          $ref: '#/components/responses/experimentalSearchResultsResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -1051,7 +1051,7 @@ components:
         thumbnail_url:
           type: string
           description: |
-            A string representing the URL of the thumbnail. Note that the URL expires in one hour..
+            A string representing the URL of the thumbnail. Note that the URL expires in one hour.
       type: object
 
     engine:
@@ -1640,6 +1640,95 @@ components:
     updateIndexResponse:
       description: If successful, this method returns `204 No Content` response code. It does not return anything in the response body.
 
+    experimentalSearchResultsResponse:
+      description: Successfully performed a search request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                description: |
+                  An array of objects that contains your search results.
+                items:
+                  type: object
+                  properties:
+                    score:
+                      description: |
+                        A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
+                    start:
+                      description: |
+                        Start time of the matching video fragment, expressed in seconds.
+                      type: number
+                    end:
+                      description: |
+                        End time of the matching video fragment, expressed in seconds.
+                    video_id:
+                      type: string
+                      description: |
+                        A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
+                    confidence:
+                      type: string
+                      description: |
+                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        - `high`: For scores greater than 90 and less than 100
+                        - `medium`: For scores greater than 80 and less than 90
+                        - `low`: For scores greater than 70 and less than 80
+                        - `extremely low`: for scores greater than 70 and less than 80
+                    thumbnail_url:
+                      type: string
+                      description: |
+                        A string representing the URL of the thumbnail. Note that the URL expires in one hour.
+              page_info:
+                type: object
+                description: An object that provides information about pagination.
+                properties:
+                  limit_per_page:
+                    type: integer
+                    description: The maximum number of items on each page.
+                  page_expired_at:
+                    type: string
+                    description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
+                  total_results:
+                    type: integer
+                    description: The total number of results.
+                  next_page_token:
+                    type: string
+                    description: The unique identifier of the next page.
+              search_pool:
+                type: object
+                description: An object that contains details about the index you queried.
+          example:
+            search_pool:
+              total_count: 11
+              total_duration: 7519
+              index_id: 639961c9e219c90227c371a2
+            data:
+              - score: 86.69
+                start: 139
+                end: 160
+                video_id: 63996260ce36463e0199c8c5
+                confidence: high
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/63996260ce36463e0199c8c5/140.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221218%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221218T072553Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=e0e7e498b28837c94acc44404ebe7c050efde38e26c66d00e8db33182b37ab76
+              - score: 86.17
+                start: 173
+                end: 190
+                video_id: 63996260ce36463e0199c8c5
+                confidence: high
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/63996260ce36463e0199c8c5/174.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221218%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221218T072553Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=340e1e908070cafd12c0f63d09dcecb3bf6caebbf0753829a2da820219f56c12
+              - score: 86.14
+                start: 520
+                end: 667
+                video_id: 63996246ce36463e0199c8c4
+                confidence: high
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/63996246ce36463e0199c8c4/521.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221218%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221218T072553Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=8ca5247b030f403068762f959d0c9ca55d24cbab927d27217d21c708d44f4c25
+            page_info:
+              limit_per_page: 5
+              total_results: 859
+              page_expired_at: 2022-12-18T07:25:53Z
+              next_page_token: 4849bbc1-0f10-4ab1-9f10-9cfaf6e62311-1
+
     searchResultsResponse:
       description: Successfully performed a search request.
       content:
@@ -1715,9 +1804,6 @@ components:
               search_pool:
                 type: object
                 description: An object that contains details about the index you queried.
-              type: 
-                type: string
-                description: Describes the type of operation (`search_create`).
           example:
             conversation_option: semantic
             data:
