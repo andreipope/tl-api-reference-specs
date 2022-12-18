@@ -838,7 +838,7 @@ paths:
         $ref: '#/components/requestBodies/experimentalSearch'
       responses:
         '200':
-          $ref: '#/components/responses/experimentalSearchOneOf'
+          $ref: '#/components/responses/searchResultsResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -866,7 +866,7 @@ paths:
             type: string
       responses:
         '200':
-          $ref: '#/components/responses/searchResultsResponsePageId'
+          $ref: '#/components/responses/searchResultsResponse'
         '400':
           $ref: '#/components/responses/searchResultsError'
 
@@ -1454,48 +1454,6 @@ components:
 #####################
 
   responses:
-
-    experimentalSearchOneOf:
-      description: Successfully retrived the specified page of search results.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-            oneOf:
-              - $ref: '#/components/responses/Cat'
-              - $ref: '#/components/responses/Dog'
-
-    Cat:
-      description: I'm a cat.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              hunts:
-                type: boolean
-              age:
-                type: integer
-          example:
-            hunts: true
-            age: 8
-    Dog:
-      description: I'm a dog.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              bark:
-                type: boolean
-              breed:
-                type: string
-                enum: [Dingo, Husky, Retriever, Shepherd]
-          example:
-            bark: true
-            breed: Retriever
-
 
     searchResultsResponsePageId:
       description: Successfully retrived the specified page of search results.
