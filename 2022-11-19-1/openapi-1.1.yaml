@@ -1640,6 +1640,7 @@ components:
         application/json:
           schema:
             type: object
+
             properties:
               conversation_option:
                 type: string
@@ -2631,7 +2632,7 @@ components:
                   additionalProperties: {}
               group_by:
                 description: |
-                  TODO
+                  Set this field to `video` to specify that the results should be grouped by videos.
                 type: string
                 default:
                   clip
@@ -2713,9 +2714,9 @@ components:
                   You can combine multiple simple queries together to build more targeted queries. When combining multiple queries, the API service supports the following operators:
 
                   - `$and`: Represents the logical `AND` operator. The API service will return the video fragments for which all the queries match.
-                  - `$or`:Represents the logical `AND` operator. The API service will return the video fragments for which at least one of the queries match.
+                  - `$or`: Represents the logical `AND` operator. The API service will return the video fragments for which at least one of the queries match.
                   - `$not`: Represents the logial `NOT` operator. Note that the `$not` operator is valid only when wrapped with the `$and` operator and has more than one query in a same block.
-                  - `$strict_or`: TODO
+                  - `$strict_or`: Use this operator to indicates that the order of the matching video fragments should be the same as the order of your queries.
 
                   ### Examples
                   
@@ -2781,25 +2782,20 @@ components:
 
 
                       Example:
-                      You've specified two queries and used to `AND` logical operator to retrieve only the video fragment for which both queries match. The first query matches a video fragment that starts and 10s and end at 10s. The second query second query matches a video fragment that starts at 50s and ends at 70s
+                      You've specified two queries and used to `AND` logical operator to retrieve only the video fragment for which both queries match. The first query matches a video fragment that starts at 10s and end at 30s. The second query second query matches a video fragment that starts at 50s and ends at 60s.
 
 
                       If you don't specify the `adjacency_threshold` parameter, then it takes the default value of 0s. The video fragments will not overlap, and the API service will not return any results.
 
-                      If you specify a value of 30s for the `adjacency_threshold` parameter, the first video fragment will start at 0s and end at 40s, and the second video fragment will start at 20s and end at 100s. The video fragments will overlap, and the API service will return a result that starts 20s and ends at 40s.
+                      If you specify a value of 20s for the `adjacency_threshold` parameter, the first video fragment will start at 0s and end at 50s, and the second video fragment will start at 30s and end at 80s. The video fragments will overlap, and the API service will return a result that starts 30s and ends at 50s.
 
                       **Default**: `0`.
                     default: 0
                   order_strict:
                     type: boolean
-                    description:
-                      TODO
+                    description: |
+                      When specifying multiple search queries, you can use this parameter to indicate if the order of the matching video fragments should be the same as the order of your queries.
 
-                      (1) query A and query B is in order so it will aggregated into single response but (2) query A and query B is not in order so it will not included.
-                      For now, we support order_strict only for the $or operator. But $and will be supported as well in few weeks
-
-
-    
     classify:
       content:
         application/json:
