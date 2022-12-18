@@ -824,9 +824,11 @@ paths:
         - Experimental/Search
       description: |
         Use the `/experimental/search` endpoint to build simple or combined queries.
-        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the POST method of the `/experimental/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/experimental/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
-        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTES**:
+        - Note that this is an experimental feature and the definition of the `/experimental/search` endpoint is subject to change.
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -846,7 +848,9 @@ paths:
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
-        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTES**:
+        - Note that this is an experimental feature and the definition of the `/experimental/search/{page-token}` endpoint is subject to change.
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: experimentalSearch-page-token
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -2676,7 +2680,7 @@ components:
                 type: object
                 description: |
                   
-                  Use the `query` parameter to build simple and combined queries. Note that this is an experimental feature and the definition of the `/experimental/search` is subject to change .
+                  Use the `query` parameter to build simple and combined queries. Note that this is an experimental feature and the definition of the `/experimental/search` is subject to change.
 
                   ## Simple Queries
 
