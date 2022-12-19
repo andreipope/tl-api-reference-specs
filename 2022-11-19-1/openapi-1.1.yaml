@@ -63,7 +63,7 @@ info:
 x-stoplight:
   id: 8y4w11j9s7zjg
 servers:
-  - url: 'https://api.twelvelabs.space'
+  - url: 'https://api.twelvelabs.io'
 
 ################
 ###   Tags   ###
