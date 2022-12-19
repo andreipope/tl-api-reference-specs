@@ -831,7 +831,7 @@ paths:
         This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
-        - Note that this feature is in beta and the definition of the `/beta/search` endpoint is subject to change.
+        - Note that this feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -853,7 +853,7 @@ paths:
         Use this endpoint to retrieve a specific page of search results.
 
         **NOTES**:
-        - Note that this feature is in beta and the definition of the `/beta/search/{page-token}` endpoint is subject to change.
+        - Note that this feature is in beta, and the definition of the `/beta/search/{page-token}` endpoint is subject to change.
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: betaSearch-page-token
       parameters:
@@ -2794,7 +2794,7 @@ components:
 
                     For numeric fields, the filter parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                    You can also filter by any of the custom fields specified by invoking the PUT method of the `/indexes/{index-id}/videos/{video-id}` endpoint. The following example returns only the videos for which a custom field named needsReview of type boolean is set to true: `"needs_review": true`.
+                    You can also filter by any of the custom fields specified using the PUT method of the `/indexes/{index-id}/videos/{video-id}` endpoint. The following example returns only the videos for which a custom field named `needsReview` of type boolean is set to true: `"needs_review": true`.
                   properties:
                     id:
                       type: array
@@ -2843,7 +2843,7 @@ components:
                 type: object
                 description: |
                   
-                  Use the `query` parameter to build simple and combined queries. Note that this feature is in beta and the definition of the `/beta/search` endpoint is subject to change.
+                  Use the `query` parameter to build simple and combined queries. Note that this feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
 
                   ## Simple Queries
 
@@ -2855,8 +2855,8 @@ components:
                     - `text_in_video`: Allows you to search for text that appears in your videos (OCR).
                   - `conversation_option`: A `string` that specifies the type of search the API service will perform. The following values are supported:
                     - `semantic`: The API service returns results that are semantically similar to the search query even if the results don't exactly match the search query.
-                    - `transcription`: The API service returns only the exact matches. Note that transcription can only be used with a single search option. For example, you cannot set the `search_option` parameter to equal `["visual", "conversation", "text_in_video"]` and the `conversation_option` parameter to equal `transcription`.
-                  The default value is `semantic`.
+                    - `transcription`: The API service returns only the exact matches.
+                  
                   
                   This parameter is required when the `option` parameter is set to `conversation`, but otherwise it's optional. The default value is `semantic`.
                     
