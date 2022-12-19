@@ -825,7 +825,9 @@ paths:
       tags:
         - Beta/Search
       description: |
-        Use the `/beta/search` endpoint to build simple or combined queries.
+        Use the `/beta/search` endpoint to build simple or combined queries. 
+        A combined query includes any number of seach queries linked with any number of logical operators. Combined queries are executed in one API request.
+
         This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
@@ -2942,7 +2944,7 @@ components:
                   adjacency_threshold:
                     type: number
                     description: |
-                      When specifying multiple search queries, you can use the `adjacency_threshold` to limit or expand your search results by extending the lower and upper boundaries of each matching video fragment. This parameter is expressed in seconds.
+                      When specifying multiple search queries, you can use the `adjacency_threshold` parameter to limit or expand your search results by extending the lower and upper boundaries of each matching video fragment. This parameter is expressed in seconds.
 
 
                       Example:
