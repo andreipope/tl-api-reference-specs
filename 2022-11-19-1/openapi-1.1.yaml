@@ -2815,15 +2815,6 @@ components:
                       type: string
                       description: A string field that restricts your search results based on the title of the video.
                   additionalProperties: {}
-              group_by:
-                description: |
-                  Set this field to `video` to specify that the results should be grouped by videos.
-                type: string
-                default:
-                  clip
-                enum:
-                  - clip
-                  - video
               index_id:
                 description: |
                   The unique identifier of the index to search.
@@ -2836,17 +2827,6 @@ components:
                   **Default**: `10`
                   **Max**: `50`
                 default: 10
-              sort_option:
-                type: string
-                description: |
-                  Use the `sort_option` parameter to specify how the API service should sort the results. The following options are available:
-
-                  - `score`: When the `group_by` parameter is set to `video`, the results are sorted by the maximum score of the clips in each video.
-                  - `clip_count`: You can use this value when the `group_by` parameter is set to `video`. The API service will return the results sorted by the number of matching fragments in each video.
-                enum:
-                  - score
-                  - clip_count
-                default: score
               threshold:
                 type: string
                 description: |
