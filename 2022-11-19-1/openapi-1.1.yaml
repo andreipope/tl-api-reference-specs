@@ -2901,7 +2901,6 @@ components:
                   - `$and`: Represents the logical `AND` operator. The API service will return the video fragments for which all the queries match.
                   - `$or`: Represents the logical `AND` operator. The API service will return the video fragments for which at least one of the queries match.
                   - `$not`: Represents the logial `NOT` operator. Note that the `$not` operator is valid only when wrapped with the `$and` operator and has more than one query in a same block.
-                  - `$strict_or`: Use this operator to indicates that the order of the matching video fragments should be the same as the order of your queries.
 
                   ### Examples
                   
