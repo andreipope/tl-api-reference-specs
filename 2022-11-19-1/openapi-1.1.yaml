@@ -76,7 +76,7 @@ tags:
   - name: Indexes
   - name: Indexes/Videos
   - name: Search
-  - name: Experimental/Search
+  - name: Beta/Search
   - name: Classify
 
 
@@ -815,45 +815,45 @@ paths:
           $ref: '#/components/responses/searchResultsError'
 
 #################################
-###   Search - experimental   ###
+###   Search - beta   ###
 #################################
 
-  '/v1.1/experimental/search':
+  '/v1.1/beta/search':
     post:
       summary: Make a Search Request
-      operationId: experimentalSearch
+      operationId: betaSearch
       tags:
-        - Experimental/Search
+        - Beta/Search
       description: |
-        Use the `/experimental/search` endpoint to build simple or combined queries.
-        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/experimental/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        Use the `/beta/search` endpoint to build simple or combined queries.
+        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
-        - Note that this is an experimental feature and the definition of the `/experimental/search` endpoint is subject to change.
+        - Note that this feature is in beta and the definition of the `/beta/search` endpoint is subject to change.
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
       requestBody:
-        $ref: '#/components/requestBodies/experimentalSearch'
+        $ref: '#/components/requestBodies/betaSearch'
       responses:
         '200':
-          $ref: '#/components/responses/experimentalSearchResultsResponse'
+          $ref: '#/components/responses/betaSearchResultsResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/experimental/search/{page-token}':
+  '/v1.1/beta/search/{page-token}':
     get:
       summary: Retrieve a Specific Page of Search Results
       tags:
-        - Experimental/Search
+        - Beta/Search
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
         **NOTES**:
-        - Note that this is an experimental feature and the definition of the `/experimental/search/{page-token}` endpoint is subject to change.
+        - Note that this feature is in beta and the definition of the `/beta/search/{page-token}` endpoint is subject to change.
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-      operationId: experimentalSearch-page-token
+      operationId: betaSearch-page-token
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -866,7 +866,7 @@ paths:
             type: string
       responses:
         '200':
-          $ref: '#/components/responses/experimentalSearchSpecificPageResultsResponse'
+          $ref: '#/components/responses/betaSearchSpecificPageResultsResponse'
         '400':
           $ref: '#/components/responses/searchResultsError'
 
@@ -1640,7 +1640,7 @@ components:
     updateIndexResponse:
       description: If successful, this method returns `204 No Content` response code. It does not return anything in the response body.
 
-    experimentalSearchResultsResponse:
+    betaSearchResultsResponse:
       description: Successfully performed a search request.
       content:
         application/json:
@@ -1730,7 +1730,7 @@ components:
               next_page_token: 4849bbc1-0f10-4ab1-9f10-9cfaf6e62311-1
 
 
-    experimentalSearchSpecificPageResultsResponse:
+    betaSearchSpecificPageResultsResponse:
       description: Successfully performed a search request.
       content:
         application/json:
@@ -2776,7 +2776,7 @@ components:
                 type: string
 
 
-    experimentalSearch:
+    betaSearch:
       content:
         application/json:
           schema:
@@ -2841,7 +2841,7 @@ components:
                 type: object
                 description: |
                   
-                  Use the `query` parameter to build simple and combined queries. Note that this is an experimental feature and the definition of the `/experimental/search` is subject to change.
+                  Use the `query` parameter to build simple and combined queries. Note that this feature is in beta and the definition of the `/beta/search` endpoint is subject to change.
 
                   ## Simple Queries
 
