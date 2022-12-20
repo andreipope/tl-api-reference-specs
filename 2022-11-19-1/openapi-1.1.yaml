@@ -2768,7 +2768,7 @@ components:
                 minimum: 1
                 type: integer
               threshold:
-                description: This parameter represents the miniumum similarity score between your label and the matching video fragments.
+                description: This parameter represents the minimum similarity score between your label and the matching video fragments.
                 default: low
                 enum:
                 - high
@@ -2832,7 +2832,7 @@ components:
               threshold:
                 type: string
                 description: |
-                  This parameter represents the miniumum similarity score between your search terms and the matching video fragments. 
+                  This parameter represents the minimum similarity score between your search terms and the matching video fragments. 
                 enum:
                   - high
                   - medium
@@ -2947,7 +2947,7 @@ components:
                       When specifying multiple search queries, you can use the `adjacency_threshold` parameter to limit or expand your search results by extending the lower and upper boundaries of each matching video fragment. This parameter is expressed in seconds.
 
 
-                      Example:
+                      **Example:**
                       You've specified two queries and used to `AND` logical operator to retrieve only the video fragment for which both queries match. The first query matches a video fragment that starts at 10s and end at 30s. The second query second query matches a video fragment that starts at 50s and ends at 60s.
 
 
@@ -3010,7 +3010,7 @@ components:
                 type: array
               threshold:
                 description: |
-                  This parameter represents the miniumum similarity score between your label and the matching video fragments.
+                  This parameter represents the minimum similarity score between your label and the matching video fragments.
                 default: low
                 enum:
                 - high
