@@ -996,6 +996,8 @@ components:
         An array containing the matching video fragments that the API service has identified.
       properties:
         clips: 
+          description: |
+            An array of objects containing information about each of the matching video fragments. This field is in included in the response only when you set the value of the `include_clips` parameter to `true`
           items:
             $ref: "#/components/schemas/classifyClip"
           type: array
@@ -2598,6 +2600,8 @@ components:
             type: object
             properties:
               labels:
+                description: |
+                  An array of objects containing information about the likelihood that each of the labels you've specified appears in the video.
                 items:
                   $ref: '#/components/schemas/classifyLabelResult'
                 type: array
@@ -2726,6 +2730,8 @@ components:
                   Specifies the type of search the API service will perform. The following values are supported:
                   - `semantic`: The API service returns results that are semantically similar to the labels you've specified even if the results don't exactly match those labels.
                   - `transcription`: The API service returns only the exact matches.
+
+                  **Default:** `semantic`
                 default: semantic
                 enum:
                 - semantic
@@ -2735,6 +2741,8 @@ components:
                 default: false
                 description: |
                   When this parameter is set to `true`, the API service will return information about each matching video fragment.
+
+                  **Default:** `false`
                 type: boolean
               index_id:
                 type: string
@@ -2762,13 +2770,21 @@ components:
                 minItems: 1
                 type: array
               page_limit:
-                description: The number of items to return on each page.
+                description: |
+                  The number of items to return on each page.
+
+                  **Default:** 10
+                  **Min:**: 1
+                  **Max:**: 50
                 default: 10
                 maximum: 50
                 minimum: 1
                 type: integer
               threshold:
-                description: This parameter represents the minimum similarity score between your label and the matching video fragments.
+                description: |
+                  This parameter represents the minimum similarity score between your label and the matching video fragments.
+
+                  **Default:** `low`
                 default: low
                 enum:
                 - high
@@ -2832,7 +2848,9 @@ components:
               threshold:
                 type: string
                 description: |
-                  This parameter represents the minimum similarity score between your search terms and the matching video fragments. 
+                  This parameter represents the minimum similarity score between your search terms and the matching video fragments.
+
+                  **Default:** `low`
                 enum:
                   - high
                   - medium
@@ -2977,6 +2995,8 @@ components:
                   Specifies the type of search the API service will perform. The following values are supported:
                   - `semantic`: The API service returns results that are semantically similar to the labels you've specified even if the results don't exactly match those labels.
                   - `transcription`: The API service returns only the exact matches.
+
+                  **Default:** `semantic`
                 default: semantic
                 enum:
                 - semantic
@@ -2985,6 +3005,8 @@ components:
               include_clips:
                 description: |
                   When this parameter is set to `true`, the API service will return information about each matching video fragment.
+
+                  **Default:** false
                 default: false
                 type: boolean
               labels:
@@ -3011,6 +3033,8 @@ components:
               threshold:
                 description: |
                   This parameter represents the minimum similarity score between your label and the matching video fragments.
+
+                  **Default:** `low`
                 default: low
                 enum:
                 - high
