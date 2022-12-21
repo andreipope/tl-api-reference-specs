@@ -2734,7 +2734,7 @@ components:
               include_clips:
                 default: false
                 description: |
-                  When this parameter is set to `true`, the API service will return a thumbnail for each matching video fragment.
+                  When this parameter is set to `true`, the API service will return information about each matching video fragment.
                 type: boolean
               index_id:
                 type: string
@@ -2984,7 +2984,7 @@ components:
                 type: string
               include_clips:
                 description: |
-                  When this parameter is set to `true`, the API service will return a thumbnail for each matching video fragment.
+                  When this parameter is set to `true`, the API service will return information about each matching video fragment.
                 default: false
                 type: boolean
               labels:
