@@ -1243,7 +1243,7 @@ components:
                       description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task. To map the identifier of a video indexing task to the identifier of a video, you can use the `/indexes/tasks/:task-id/video-idendpoint`. For details, see the Retrieve a Video ID Based on a Task ID section.
                     metadata:
                       type: array
-                      description: An array of objects where each object contains details about a type of match and has the following fields.
+                      description: An array of objects where each object contains details about a specific type of match and has the following fields.
                       items:
                         type: object
                         properties:
@@ -1261,6 +1261,14 @@ components:
                         - `medium`
                         - `low`
                         - `extremely low`
+                    thumbnail_url:
+                      type: string
+                      description: |
+                        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+                    module_confidence:
+                      type: object
+                      description: When multiple search options were specified, the API service returns the confidence level for each search option as an object composed of key-value pairs. The search option represents the key, and the confidence level represents the value.
+
               page_info:
                 type: object
                 description: An object that provides information about pagination.
@@ -1290,102 +1298,121 @@ components:
                 type: string
                 description: Describes the type of operation.
           example:
+            search_pool:
+              total_count: 13
+              total_duration: 8731
+              index_id: 639961c9e219c90227c371a2
+            query: racing car cornering
+            search_options:
+            - conversation
+            - visual
             conversation_option: semantic
             data:
-              - score: 92.49
-                start: 312
-                end: 344
-                metadata:
-                  - type: visual
-                  - type: conversation
-                    text:  Now on this old pit straight can Hamilton's try and get back ahead of max Verstappen and he's trying to get a slipstream as well. Hamilton's going to try and dance around the outside for staff and stays ahead british crowd roaring their approval for this duel on the first lap of 17, trying to go around the outside of cops.
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 91.45
-                start: 36
-                end: 42
-                metadata:
-                  - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 91.45
-                start: 36
-                end: 42
-                metadata:
-                  - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 91.38
-                start: 220
-                end: 260
-                metadata:
-                - type: visual
-                - type: conversation
-                  text: Then in second place Perez is trying to fight back Hamilton and Bottas getting involved as well on the inside there goes Lando Norris has to pull out before he hit Sergio Perez and the two Mercedes well swapping places there has got himself into a bit of a pickle but he has come out on top and ahead of his teammate Sergio Perez now turn four, trying to go the long way round the outside, his jewel continues with Lando Norris as he now goes onto the gravel and he loses six or seven places as a result of that Norris is not a man to back out, he will get his elbows out whenever he can.
-                video-id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 91.02
-                start: 364
-                end: 376
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 90.47
-                start: 444
-                end: 454
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 90.29
-                start: 386
-                end: 430
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 89.64
-                start: 174
-                end: 194
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 89.52
-                start: 300
-                end: 312
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 89.2
-                start: 550
-                end: 568
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 89.16
-                start: 128
-                end: 142
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
+            - score: 85.75
+              start: 238.75
+              end: 259.62109375
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/239.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=ded5986fa30922e264a1e5fd64d1d0e216778d204645b2fdfb2cea765d297d5c
+              module_confidence:
+                visual: high
+            - score: 85.7
+              start: 392.58125
+              end: 410.5
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/393.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=bd143ac27f13e7024191ae793b5ab8a1decde47d889d157e84d7be11083a64d3
+              module_confidence:
+                visual: high
+            - score: 85.65
+              start: 50.21875
+              end: 64.34375
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/51.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=2cff1948607cf211a88a90dfbbe01963bab9e71a8f3e20ab8893031cc986634e
+              module_confidence:
+                visual: high
+            - score: 85.57
+              start: 0
+              end: 10.46875
+              metadata:
+              - type: visual
+              video_id: 6399637ace36463e0199c8c6
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/1.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=d1db854a0ed064860dba6bf2b4e2296e058c75b92d66a357b8894ff268756966
+              module_confidence:
+                visual: high
+            - score: 85.2
+              start: 69.78125
+              end: 77.8125
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/70.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0bf6e0e88e09e5c2ca3006ab395908c53d62e7631ac9118752ad254f74e1bdd0
+              module_confidence:
+                visual: high
+            - score: 85.12
+              start: 106.8125
+              end: 117.8125
+              metadata:
+              - type: visual
+              video_id: 6399637ace36463e0199c8c6
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/107.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=92b6ef6660e64a42a9e99a0e095033d897accfe85e9dd14a6775dbcd4a57374d
+              module_confidence:
+                visual: high
+            - score: 85.09
+              start: 620.96875
+              end: 696.296875
+              metadata:
+              - type: visual
+              video_id: 6399637ace36463e0199c8c6
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/621.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=1acedc58645cc95c226081bd6b115aceaaec607db8f3894138cfa9fbb58d7413
+              module_confidence:
+                visual: high
+            - score: 85.08
+              start: 31.5625
+              end: 37.3125
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/32.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=e5527ad78a51e12c86d01804043dd6c7d6e2c3e82b150807045f5a82d2151c00
+              module_confidence:
+                visual: high
+            - score: 85.08
+              start: 39.96875
+              end: 45.40625
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/40.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=e01ea033f592f78dfe5dff148b0964af73756467e7e35a21f4591a36fd6f66e0
+              module_confidence:
+                visual: high
+            - score: 85.08
+              start: 72.5125
+              end: 99.8125
+              metadata:
+              - type: visual
+              video_id: 6399637ace36463e0199c8c6
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/73.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=2ae0d7c77289993a9c4326ee3f964fbf379fbb118ab78f4dcef3b2207abfc13d
+              module_confidence:
+                visual: high
             page_info:
               limit_per_page: 10
-              next_page_id: edd92402-0329-4122-9f0c-a9c4dad5d263-1
-              page_expired_at: 2022-07-20T20:35:47Z
-              total_results: 140
-            query: winning the race
-            search_options:
-              - conversation
-              - visual
-            search_pool:
-              index_id: 62d85fe7340fa665f1fda5dd
-              total_count: 2
-              total_duration: 1163
+              total_results: 195
+              page_expired_at: '2022-12-22T13:44:03Z'
+              next_page_id: b84a9a99-e1af-4927-9faa-fdde8c555d38-1
             type: search_create
 
     searchResultsResponsePageId:
@@ -1419,7 +1446,7 @@ components:
                       description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task. To map the identifier of a video indexing task to the identifier of a video, you can use the `/indexes/tasks/:task-id/video-idendpoint`. For details, see the Retrieve a Video ID Based on a Task ID section.
                     metadata:
                       type: array
-                      description: An array that contains details about each result. It has the following fields.
+                      description: An array of objects where each object contains details about a specific type of match and has the following fields.
                       items:
                         type: object
                         properties:
@@ -1437,6 +1464,14 @@ components:
                         - `medium`
                         - `low`
                         - `extremely low`
+                    thumbnail_url:
+                      type: string
+                      description: |
+                        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+                    module_confidence:
+                      type: object
+                      description: When multiple search options were specified, the API service returns the confidence level for each search option as an object composed of key-value pairs. The search option represents the key, and the confidence level represents the value.
+
               page_info:
                 type: object
                 description: An object that provides information about pagination.
@@ -1469,104 +1504,124 @@ components:
                 type: string
                 description: Describes the type of operation.
           example:
+            search_pool:
+              total_count: 13
+              total_duration: 8731
+              index_id: 639961c9e219c90227c371a2
+            query: racing car cornering
+            search_options:
+            - conversation
+            - visual
             conversation_option: semantic
             data:
-              - score: 92.49
-                start: 312
-                end: 344
-                metadata:
-                  - type: visual
-                  - type: conversation
-                    text:  Now on this old pit straight can Hamilton's try and get back ahead of max Verstappen and he's trying to get a slipstream as well. Hamilton's going to try and dance around the outside for staff and stays ahead british crowd roaring their approval for this duel on the first lap of 17, trying to go around the outside of cops.
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 91.45
-                start: 36
-                end: 42
-                metadata:
-                  - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 91.45
-                start: 36
-                end: 42
-                metadata:
-                  - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 91.38
-                start: 220
-                end: 260
-                metadata:
-                - type: visual
-                - type: conversation
-                  text: Then in second place Perez is trying to fight back Hamilton and Bottas getting involved as well on the inside there goes Lando Norris has to pull out before he hit Sergio Perez and the two Mercedes well swapping places there has got himself into a bit of a pickle but he has come out on top and ahead of his teammate Sergio Perez now turn four, trying to go the long way round the outside, his jewel continues with Lando Norris as he now goes onto the gravel and he loses six or seven places as a result of that Norris is not a man to back out, he will get his elbows out whenever he can.
-                video-id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 91.02
-                start: 364
-                end: 376
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 90.47
-                start: 444
-                end: 454
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 90.29
-                start: 386
-                end: 430
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 89.64
-                start: 174
-                end: 194
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 89.52
-                start: 300
-                end: 312
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 89.2
-                start: 550
-                end: 568
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
-              - score: 89.16
-                start: 128
-                end: 142
-                metadata:
-                - type: visual
-                video_id: 62d860deb0a389f9f568cde9
-                confidence: high
+            - score: 85.08
+              start: 515.4375
+              end: 527
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/516.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=9e991f972f8a1baa647d7460685d99e20c4a27408406a972a4baf173a10b0102
+              module_confidence:
+                visual: high
+            - score: 85.05
+              start: 11.5125
+              end: 23.140625
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/12.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=cd6b29e8723d51f71823dbd01c8edd252e49a8b231aca218f844e745e6b4e83a
+              module_confidence:
+                visual: high
+            - score: 85.05
+              start: 763.7708333333334
+              end: 782.0625
+              metadata:
+              - type: visual
+              video_id: 6399637ace36463e0199c8c6
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/764.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=4cb4392044330b76bca5e6b167ef4c3b9e04a3bcc0ca5e1af188005edbca21b7
+              module_confidence:
+                visual: high
+            - score: 84.95
+              start: 252.2421875
+              end: 278.15625
+              metadata:
+              - type: visual
+              video_id: 6399637ace36463e0199c8c6
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/253.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134943Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=75ddcff5ed8f14d400e21cb211440edc986a6d0320e4538a7ab2d1df4918ea43
+              module_confidence:
+                visual: high
+            - score: 84.95
+              start: 293.75
+              end: 302.47499999999997
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/294.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0a0882611208dbbdc836090426c95deb422c34ed41a3cb0ed56b78227c51c243
+              module_confidence:
+                visual: high
+            - score: 84.87
+              start: 10.46875
+              end: 39.225
+              metadata:
+              - type: visual
+              video_id: 6399637ace36463e0199c8c6
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/11.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134943Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=6d66c1afa7ea46df9127133114a84fbc426cb6f07ab65e3cca0b1c311dfb23d9
+              module_confidence:
+                visual: high
+            - score: 84.85
+              start: 479.09375
+              end: 596.71875
+              metadata:
+              - type: visual
+              video_id: 6399637ace36463e0199c8c6
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/480.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134943Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=7d9194af02753a9c756ef3e9c87419a1b4c2d42c1d6ff81a18c5b4b190dd2f8a
+              module_confidence:
+                visual: high
+            - score: 84.84
+              start: 127.60416666666667
+              end: 133.375
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/128.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=2f805542fb4a54afe358aecb74c3bed0bc5cb28aed0310dfd6f3dd695f60d925
+              module_confidence:
+                visual: high
+            - score: 84.8
+              start: 471
+              end: 477.59375
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/472.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=89637e18b70d0acfffe06cf2c2f12fc392630ea8b8238cf4ab0c4ffac2bca164
+              module_confidence:
+                visual: high
+            - score: 84.74
+              start: 85.5
+              end: 93.90625
+              metadata:
+              - type: visual
+              video_id: 639963a1ce36463e0199c8c7
+              confidence: high
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/86.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=507658ec89d016005338e7597dc70651751def947cd648dc107adde5af19d9eb
+              module_confidence:
+                visual: high
             page_info:
               limit_per_page: 10
-              next_page_id: 59c25df9-3657-4480-870c-6263434d5bb3-2
-              prev_page_id: 59c25df9-3657-4480-870c-6263434d5bb3-0
-              page_expired_at: 2022-07-20T20:35:47Z
-              total_results: 140
-            query: winning the race
-            search_options:
-              - conversation
-              - visual
-            search_pool:
-              index_id: 62d85fe7340fa665f1fda5dd
-              total_count: 2
-              total_duration: 1163
-            type: search_create
+              total_results: 195
+              page_expired_at: '2022-12-22T13:49:44Z'
+              next_page_id: cdfb7ca8-9316-4518-af82-8cadbe934474-2
+              prev_page_id: cdfb7ca8-9316-4518-af82-8cadbe934474-0
+            type: search_create_token
+
 
 
 
