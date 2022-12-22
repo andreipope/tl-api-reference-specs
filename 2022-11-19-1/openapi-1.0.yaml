@@ -1257,10 +1257,10 @@ components:
                       type: string
                       description: |
                         A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
-                        - `high`: For scores greater than 90 and less than 100
-                        - `medium`: For scores greater than 80 and less than 90
-                        - `low`: For scores greater than 70 and less than 80
-                        - `extremely low`: for scores greater than 70 and less than 80
+                        - `high`
+                        - `medium`
+                        - `low`
+                        - `extremely low`
               page_info:
                 type: object
                 description: An object that provides information about pagination.
@@ -1433,10 +1433,10 @@ components:
                       type: string
                       description: |
                         A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
-                        - `high`: For scores greater than 90 and less than 100
-                        - `medium`: For scores greater than 80 and less than 90
-                        - `low`: For scores greater than 70 and less than 80
-                        - `extremely low`: for scores greater than 70 and less than 80
+                        - `high`
+                        - `medium`
+                        - `low`
+                        - `extremely low`
               page_info:
                 type: object
                 description: An object that provides information about pagination.
