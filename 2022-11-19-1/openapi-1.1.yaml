@@ -1055,7 +1055,7 @@ components:
         thumbnail_url:
           type: string
           description: |
-            A string representing the URL of the thumbnail. Note that the URL expires in one hour.
+            If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
       type: object
 
     engine:
@@ -1707,7 +1707,7 @@ components:
                     thumbnail_url:
                       type: string
                       description: |
-                        A string representing the URL of the thumbnail. Note that the URL expires in one hour.
+                        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
               page_info:
                 type: object
                 description: An object that provides information about pagination.
@@ -1797,7 +1797,7 @@ components:
                     thumbnail_url:
                       type: string
                       description: |
-                        A string representing the URL of the thumbnail. Note that the URL expires in one hour.
+                        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
               page_info:
                 type: object
                 description: An object that provides information about pagination.
