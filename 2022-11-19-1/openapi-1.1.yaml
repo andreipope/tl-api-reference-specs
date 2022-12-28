@@ -773,7 +773,7 @@ paths:
       description: |
         Use the `/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
         
-        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: search
@@ -828,7 +828,7 @@ paths:
         Use the `/beta/search` endpoint to build simple or combined queries. 
         A combined query includes any number of search queries linked with any number of logical operators. Combined queries are executed in one API request.
 
-        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
         - Note that this feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
