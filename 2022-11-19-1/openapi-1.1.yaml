@@ -3153,6 +3153,42 @@ components:
 
                   The search options you specify must be a subset of the indexing options used when you created the index.
                   You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
+              group_by:
+                type: string
+                description: |
+                  Set this parameter to `video` to group the list of clips in the response by video.
+                enum:
+                  - video
+                  - clip
+                example: clip
+                default: clip
+              threshold:
+                description: |
+                  This parameter represents the minimum similarity score between your label and the matching video fragments.
+
+                  **Default:** `low`
+                default: low
+                enum:
+                - high
+                - medium
+                - low
+                - none
+                type: string
+              sort_option:
+                type: string
+                description: |
+                  Use this parameter to specify the sort order for the response.
+
+                  If you set this parameter to `score` and `group_by` is set to `video`, the videos in the response will be sorted by the maximum value of the `score` field.
+
+                  If you set this parameter to `clip` and `group_by` is set to `video`, the matching video fragments in the response will be sorted by the value of the `score` field.
+                  
+                  You can only set this parameter to `clip_count` when the `response_type` parameter is set to `video`. The videos in the response will be sorted by the number of clips.
+                enum:
+                  - score
+                  - clip_count
+                default: score
+                example: score
               operator:
                 type: string
                 description: |
