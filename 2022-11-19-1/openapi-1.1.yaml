@@ -3157,10 +3157,11 @@ components:
                 type: string
                 description: |
                   Set this parameter to `video` to group the list of clips in the response by video.
+
+                  **Default:**: `clip`
                 enum:
                   - video
                   - clip
-                example: clip
                 default: clip
               threshold:
                 description: |
@@ -3184,11 +3185,12 @@ components:
                   If you set this parameter to `clip` and `group_by` is set to `video`, the matching video fragments in the response will be sorted by the value of the `score` field.
                   
                   You can only set this parameter to `clip_count` when the `response_type` parameter is set to `video`. The videos in the response will be sorted by the number of clips.
+
+                  **Default:**: `score`
                 enum:
                   - score
                   - clip_count
                 default: score
-                example: score
               operator:
                 type: string
                 description: |
