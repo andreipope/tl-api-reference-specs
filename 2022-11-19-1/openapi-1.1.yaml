@@ -2823,8 +2823,8 @@ components:
                   The number of items to return on each page.
 
                   **Default:** 10
-                  **Min:**: 1
-                  **Max:**: 50
+                  **Min:** 1
+                  **Max:** 50
                 default: 10
                 maximum: 50
                 minimum: 1
@@ -3158,7 +3158,7 @@ components:
                 description: |
                   Set this parameter to `video` to group the list of clips in the response by video.
 
-                  **Default:**: `clip`
+                  **Default:** `clip`
                 enum:
                   - video
                   - clip
@@ -3186,7 +3186,7 @@ components:
                   
                   You can only set this parameter to `clip_count` when the `response_type` parameter is set to `video`. The videos in the response will be sorted by the number of clips.
 
-                  **Default:**: `score`
+                  **Default:** `score`
                 enum:
                   - score
                   - clip_count
