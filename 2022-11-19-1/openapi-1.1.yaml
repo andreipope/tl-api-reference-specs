@@ -771,7 +771,7 @@ paths:
       tags:
         - Search
       description: |
-        Use the `/search` endpoint to search for relevant matches in an index. This endpoint supports pagination and filtering.
+        Use the `/search` endpoint to search for relevant matches in an index. This endpoint supports sorting, pagination and filtering.
         
         This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
@@ -997,7 +997,7 @@ components:
       properties:
         clips: 
           description: |
-            An array of objects containing information about each of the matching video fragments. This field is in included in the response only when you set the value of the `include_clips` parameter to `true`
+            An array of objects containing information about each of the matching video fragments. This field is included in the response only when you set the value of the `include_clips` parameter to `true`.
           items:
             $ref: "#/components/schemas/classifyClip"
           type: array
@@ -1005,7 +1005,7 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+            A qualitative indicator measured by the internal QA team based on the value of the `score` field. This field can take one of the following values:
             - `high`
             - `medium`
             - `low`
@@ -1029,7 +1029,7 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+            A qualitative indicator measured by the internal QA team based on the value of the `score` field. This field can take one of the following values:
             - `high`
             - `medium`
             - `low`
@@ -1460,7 +1460,7 @@ components:
   responses:
 
     searchResultsResponsePageId:
-      description: Successfully retrived the specified page of search results.
+      description: Successfully retrieved the specified page of search results.
       content:
         application/json:
           schema:
@@ -1487,10 +1487,11 @@ components:
                       description: End time of the matching video fragment, expressed in seconds.
                     video_id:
                       type: string
-                      description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task. To map the identifier of a video indexing task to the identifier of a video, you can use the `/indexes/tasks/:task-id/video-idendpoint`. For details, see the Retrieve a Video ID Based on a Task ID section.
+                      description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     metadata:
                       type: array
-                      description: An array of objects where each object contains details about a specific type of match and has the following fields.
+                      description: |
+                        An array of objects where each object contains details about a specific type of match and has the following fields:
                       items:
                         type: object
                         properties:
@@ -1684,7 +1685,7 @@ components:
                   properties:
                     score:
                       description: |
-                        A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
+                        A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
                     start:
                       description: |
                         Start time of the matching video fragment, expressed in seconds.
@@ -1700,10 +1701,10 @@ components:
                       type: string
                       description: |
                         A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
-                        - `high`: For scores greater than 90 and less than 100
-                        - `medium`: For scores greater than 80 and less than 90
-                        - `low`: For scores greater than 70 and less than 80
-                        - `extremely low`: for scores greater than 70 and less than 80
+                        - `high`
+                        - `medium`
+                        - `low`
+                        - `extremely low`
                     thumbnail_url:
                       type: string
                       description: |
@@ -1774,7 +1775,7 @@ components:
                   properties:
                     score:
                       description: |
-                        A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
+                        A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
                     start:
                       description: |
                         Start time of the matching video fragment, expressed in seconds.
@@ -1790,10 +1791,10 @@ components:
                       type: string
                       description: |
                         A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
-                        - `high`: For scores greater than 90 and less than 100
-                        - `medium`: For scores greater than 80 and less than 90
-                        - `low`: For scores greater than 70 and less than 80
-                        - `extremely low`: for scores greater than 70 and less than 80
+                        - `high`
+                        - `medium`
+                        - `low`
+                        - `extremely low`
                     thumbnail_url:
                       type: string
                       description: |
@@ -1855,7 +1856,6 @@ components:
         application/json:
           schema:
             type: object
-
             properties:
               conversation_option:
                 type: string
@@ -1863,13 +1863,14 @@ components:
                   Indicates the type of search the API performed.
               data:
                 type: array
-                description: An array that contains your search results. For each match found, the search engine returns the following fields.
+                description: |
+                  An array that contains your search results. For each match found, the search engine returns the following fields:
                 items:
                   type: object
                   properties:
                     score:
                       type: number
-                      description: A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
+                      description: A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
                     start:
                       type: number
                       description: Start time of the matching video fragment, expressed in seconds.
@@ -1881,7 +1882,8 @@ components:
                       description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     metadata:
                       type: array
-                      description: An array of objects where each object contains details about a specific type of match and has the following fields.
+                      description: |
+                        An array of objects where each object contains details about a specific type of match and has the following fields:
                       items:
                         type: object
                         properties:
@@ -2642,7 +2644,7 @@ components:
                 description: A human-readable string describing the error.
     
     classifyResponse:
-      description: The specified video has succesfully been classified.
+      description: The specified video has successfully been classified.
       content:
         application/json:
           schema:
@@ -2777,7 +2779,7 @@ components:
               conversation_option:
                 description: |
                   Specifies the type of search the API service will perform. The following values are supported:
-                  - `semantic`: The API service returns results that are semantically similar to the labels you've specified even if the results don't exactly match those labels.
+                  - `semantic`: The API service returns results that are semantically similar to the labels you've specified, even if the results don't exactly match those labels.
                   - `transcription`: The API service returns only the exact matches.
 
                   **Default:** `semantic`
@@ -2807,7 +2809,7 @@ components:
               options:
                 description: |
                   This parameter specifies the source of information the API service uses when it categorizes a video. The following values are supported:
-                  - `visual`: Use this value to find objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
+                  - `visual`: Use this value to find objects, actions, sounds, movements, places, situational events, and complex audio-visual text descriptions.
                   - `conversation`: Use this value to find the exact point in your video where the specified word or phrase is mentioned.
                   - `text_in_video`: Use this value to search for text that appears in your videos (OCR).
                 items:
@@ -2945,8 +2947,8 @@ components:
                   You can combine multiple simple queries together to build more targeted queries. When combining multiple queries, the API service supports the following operators:
 
                   - `$and`: Represents the logical `AND` operator. The API service will return the video fragments for which all the queries match.
-                  - `$or`: Represents the logical `AND` operator. The API service will return the video fragments for which at least one of the queries match.
-                  - `$not`: Represents the logial `NOT` operator. Note that the `$not` operator is valid only when wrapped with the `$and` operator and has more than one query in a same block.
+                  - `$or`: Represents the logical `AND` operator. The API service will return the video fragments for which at least one of the queries matches.
+                  - `$not`: Represents the logical `NOT` operator. Note that the `$not` operator is valid only when wrapped with the `$and` operator and has more than one query in the same block.
 
                   ### Examples
                   
@@ -3065,7 +3067,7 @@ components:
               options:
                 description: |
                   This parameter specifies the source of information the API service uses when it categorizes a video. The following values are supported:
-                  - `visual`: Use this value to find objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
+                  - `visual`: Use this value to find objects, actions, sounds, movements, places, situational events, and complex audio-visual text descriptions.
                   - `conversation`: Use this value to find the exact point in your video where the specified word or phrase is mentioned.
                   - `text_in_video`: Use this value to search for text that appears in your videos (OCR).
                 items:
