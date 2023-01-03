@@ -883,7 +883,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
-      operationId: classify
+      operationId: classify-video
       tags:
         - Classify
       requestBody:
@@ -898,7 +898,7 @@ paths:
     post:
       summary: Classify All the Videos in an Index
       description: Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
-      operationId: classifyBulk
+      operationId: classify-bulk
       tags:
         - Classify
       parameters:
@@ -916,7 +916,7 @@ paths:
     get:
       summary: Retrieve a Specific Page of Results
       description: The `/classify/bulk` endpoint returns the first page or results. You can use this endpoint to retrieve the rest of the pages.
-      operationId: classifyPageId
+      operationId: classify-retrieve-specific-page
       tags:
         - Classify
       parameters:
