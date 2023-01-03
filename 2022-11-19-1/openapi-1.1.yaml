@@ -432,7 +432,7 @@ paths:
   '/v1.1/indexes/{index-id}/videos':
     get:
       summary: List Videos
-      operationId: listVideoInformation
+      operationId: list-videos
       description: |
         This method returns a list of the videos in the specified index. If no parameters are specified, the API returns your videos sorted by creation date, with the newest at the top of the list.
       tags:
@@ -549,7 +549,7 @@ paths:
     get:
       summary: Retrieve Video Information
       description: This method retrieves information about the specified video.
-      operationId: retrieveVideoInformation
+      operationId: retrieve-video-information
       tags:
         - Indexes/Videos
       parameters:
@@ -577,7 +577,7 @@ paths:
     put:
       summary: Update Video Information
       description: Use this method to update the title and the metadata of a video.
-      operationId: updateVideoInformation
+      operationId: update-video-information
       tags:
         - Indexes/Videos
       parameters:
@@ -607,7 +607,7 @@ paths:
           $ref: '#/components/responses/genericError'
     delete:
       summary: Delete Video Information
-      operationId: deleteVideoInformation
+      operationId: delete-video-information
       tags:
         - Indexes/Videos
       description: |
@@ -639,7 +639,7 @@ paths:
     get:
       summary: Retrieve a Transcription of the Spoken Words
       description: This method retrieves a transcription of the spoken words.
-      operationId: retrieveTranscription
+      operationId: retrieve-transcription
       tags:
         - Indexes/Videos
       parameters:
@@ -684,7 +684,7 @@ paths:
     get:
       summary: Retrieve Text Recognized in a Video (OCR)
       description: This method retrieves text recognized in a video (OCR).
-      operationId: retrieveOCR
+      operationId: retrieve-ocr
       tags:
         - Indexes/Videos
       parameters:
@@ -728,7 +728,7 @@ paths:
     get:
       summary: Retrieve a Thumbnail
       description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an Index](/reference/createindex) section.
-      operationId: retrieveThumbnail
+      operationId: retrieve-thumbnail
       tags:
         - Indexes/Videos
       parameters:
