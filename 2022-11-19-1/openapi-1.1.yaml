@@ -776,7 +776,7 @@ paths:
         This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
-      operationId: search
+      operationId: make-search-request
       requestBody:
         $ref: '#/components/requestBodies/search'
       parameters:
@@ -797,7 +797,7 @@ paths:
         Use this endpoint to retrieve a specific page of search results.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
-      operationId: search-page-token
+      operationId: retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
