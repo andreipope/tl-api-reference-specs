@@ -76,7 +76,7 @@ tags:
   - name: Indexes
   - name: Indexes/Videos
   - name: Search
-  - name: Beta/Search
+  - name: Combined Queries
   - name: Classify
 
 
@@ -797,7 +797,7 @@ paths:
         Use this endpoint to retrieve a specific page of search results.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
-      operationId: retrieve-specific-page
+      operationId: search-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -823,7 +823,7 @@ paths:
       summary: Make a Search Request
       operationId: combined-queries-make-search-request
       tags:
-        - Beta/Search
+        - Combined Queries
       description: |
         Use the `/beta/search` endpoint to build simple or combined queries. 
         A combined query includes any number of search queries linked with any number of logical operators. Combined queries are executed in one API request.
@@ -848,7 +848,7 @@ paths:
     get:
       summary: Retrieve a Specific Page of Search Results
       tags:
-        - Beta/Search
+        - Combined Queries
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
