@@ -821,7 +821,7 @@ paths:
   '/v1.1/beta/search':
     post:
       summary: Make a Search Request
-      operationId: betaSearch
+      operationId: combined-queries-make-search-request
       tags:
         - Beta/Search
       description: |
@@ -855,7 +855,7 @@ paths:
         **NOTES**:
         - Note that this feature is in beta, and the definition of the `/beta/search/{page-token}` endpoint is subject to change.
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-      operationId: betaSearch-page-token
+      operationId: combined-queries-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
