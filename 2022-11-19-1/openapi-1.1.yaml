@@ -91,7 +91,7 @@ paths:
     get:
       summary: List Search Engines
       description: This method lists all the search engines that are available in your account.
-      operationId: listEngines
+      operationId: list-engines
       tags:
         - Engines
       parameters:
