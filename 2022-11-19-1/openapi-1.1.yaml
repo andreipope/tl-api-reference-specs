@@ -249,7 +249,7 @@ paths:
     get:
       summary: Retrieve Tasks by Status
       description: This method retrieves the number video indexing tasks in each status for the specified index.
-      operationId: video-indexing-tasks-status
+      operationId: video-indexing-tasks-by-status
       tags:
         - Tasks
       parameters:
@@ -306,7 +306,7 @@ paths:
     post:
       summary: Create an Index
       description: This method creates an index.
-      operationId: createIndex
+      operationId: create-index
       tags:
         - Indexes
       parameters:
@@ -322,7 +322,7 @@ paths:
     get:
       summary: List indexes
       description: 'This method returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.'
-      operationId: listIndexes
+      operationId: list-indexes
       tags:
         - Indexes
       parameters:
@@ -362,7 +362,7 @@ paths:
     get:
       summary: Retrieve an Index
       description: This method retrieves details about the specified index.
-      operationId: retrieveIndex
+      operationId: retrieve-index
       tags:
         - Indexes
       parameters:
@@ -383,7 +383,7 @@ paths:
     put:
       summary: Update an Index
       description: This method updates the name of the specified index.
-      operationId: updateIndex
+      operationId: update-index
       tags:
         - Indexes
       parameters:
@@ -406,7 +406,7 @@ paths:
     delete:
       summary: Delete an index
       description: This method deletes the specified index and all the videos within it. This action cannot be undone.
-      operationId: deleteIndex
+      operationId: delete-index
       tags:
         - Indexes
       parameters:
