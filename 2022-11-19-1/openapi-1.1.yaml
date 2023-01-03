@@ -147,7 +147,7 @@ paths:
         - To provide a transcription file, you must set the `provide_transcription` parameter to `true` and specify at least one of the `transcription_file` and `transcription_url` parameters:
           - Use the `transcription_file` parameter to provide a transcription from the local file system. It must be a stream of bytes encoded as `multipart/form-data`.
           - Use the `transcription_url` parameter to provide a transcription file from a publicly accessible URL. It must be a `string`.
-      operationId: createVideoIndexingTask
+      operationId: create-video-indexing-task
       tags:
         - Tasks
       requestBody:
@@ -170,7 +170,7 @@ paths:
     get:
       summary: List Video Indexing Tasks
       description: This method returns a list of the video indexing tasks in your account. The API returns your video indexing tasks sorted by creation date, with the newest at the top of the list.
-      operationId: listVideoIndexingTasks
+      operationId: list-video-indexing-tasks
       tags:
         - Tasks
       parameters:
@@ -200,7 +200,7 @@ paths:
     get:
       summary: Retrieve a Video Indexing Task
       description: This method retrieves a video indexing task.
-      operationId: retrieveVideoIndexingTask
+      operationId: retrieve-video-indexing-task
       tags:
         - Tasks
       parameters:
@@ -225,7 +225,7 @@ paths:
         Note the following about deleting a video indexing task:
         - You can only delete video indexing tasks for which the status is `ready` or `failed`.
         - If the status of your video indexing task is `ready`, you must first delete the video vector associated with your video indexing task by calling the `DELETE` method of the `/indexes/videos` endpoint.
-      operationId: deleteVideoIndexingTask
+      operationId: delete-video-indexing-task
       tags:
         - Tasks
       parameters:
@@ -249,7 +249,7 @@ paths:
     get:
       summary: Retrieve Tasks by Status
       description: This method retrieves the number video indexing tasks in each status for the specified index.
-      operationId: retrieveSummaryVideoIndexingTask
+      operationId: video-indexing-tasks-status
       tags:
         - Tasks
       parameters:
