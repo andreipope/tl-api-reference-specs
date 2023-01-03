@@ -320,7 +320,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     get:
-      summary: List indexes
+      summary: List Indexes
       description: 'This method returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.'
       operationId: list-indexes
       tags:
