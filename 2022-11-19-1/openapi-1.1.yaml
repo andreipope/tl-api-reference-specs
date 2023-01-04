@@ -3096,7 +3096,7 @@ components:
 
                   If you set this parameter to `score` and `group_by` is set to `video`, the videos in the response will be sorted by the maximum value of the `score` field.
 
-                  If you set this parameter to `clip` and `group_by` is set to `video`, the matching video fragments in the response will be sorted by the value of the `score` field.
+                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the matching video fragments in the response will be sorted by the value of the `score` field.
                   
                   You can only set this parameter to `clip_count` when the `response_type` parameter is set to `video`. The videos in the response will be sorted by the number of clips.
 
