@@ -50,11 +50,11 @@ info:
 
     ### Errors
 
-    HTTP status codes in the `4xx` range indicate an error caused by the parameters you provided in the request. For more details, see the [Error Codes](/reference/error-codes) page. For each error, the API service returns the following fields in the body of the response:
+    HTTP status codes in the `4xx` range indicate an error caused by the parameters you provided in the request. For each error, the API service returns the following fields in the body of the response:
     - `code`: A string representing the error code.
     - `message`: A human-readable string describing the error, intended to be suitable for display in a user interface.
     - `docs_url`: The URL of the relevant documentation page.
-    For more details, see [Error Codes](/reference/error-codes) page.
+    For more details, see [Error codes](/reference/error-codes) page.
 
   contact:
     name: Twelve Labs Support
@@ -76,7 +76,7 @@ tags:
   - name: Indexes
   - name: Indexes/Videos
   - name: Search
-  - name: Combined Queries
+  - name: Combined queries
   - name: Classify
 
 
@@ -89,7 +89,7 @@ paths:
   '/v1.1/engines':
     summary:  Engines
     get:
-      summary: List Search Engines
+      summary: List search engines
       description: This method lists all the search engines that are available in your account.
       operationId: list-search-engines
       tags:
@@ -105,7 +105,7 @@ paths:
 
   '/v1.1/engines/{engine-id}':
     get:
-      summary: Retrieve a Search Engine
+      summary: Retrieve a search engine
       description: This method retrieves a search engine.
       operationId: retrieve-search-engine
       tags:
@@ -121,7 +121,7 @@ paths:
             The following search engines are available:
             - `marengo2`
             - `marengo`
-            For details about the features of each search engine, see the [Search Engines](/docs/concepts-search-engines) page.
+            For details about the features of each search engine, see the [Search engines](/docs/concepts-search-engines) page.
           required: true
           schema:
             type: string
@@ -138,7 +138,7 @@ paths:
 
   /v1.1/tasks:
     post:
-      summary: Create a Video Indexing Task
+      summary: Create a video indexing task
       description: |
         Use this method to create a new video indexing task that uploads a video to the API service and makes it searchable. Note the following about creating a new video indexing task:
         - To upload a file that resides on the local file system, pass the `video_file` parameter. It must be a stream of bytes encoded as `multipart/form-data`.
@@ -168,7 +168,7 @@ paths:
           $ref: '#/components/responses/genericError'
     
     get:
-      summary: List Video Indexing Tasks
+      summary: List video indexing tasks
       description: This method returns a list of the video indexing tasks in your account. The API returns your video indexing tasks sorted by creation date, with the newest at the top of the list.
       operationId: list-video-indexing-tasks
       tags:
@@ -198,7 +198,7 @@ paths:
   
   '/v1.1/tasks/{task_id}':
     get:
-      summary: Retrieve a Video Indexing Task
+      summary: Retrieve a video indexing task
       description: This method retrieves a video indexing task.
       operationId: retrieve-video-indexing-task
       tags:
@@ -219,7 +219,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     delete:
-      summary: Delete a Video Indexing Task
+      summary: Delete a video indexing task
       description: |
         This action cannot be undone.
         Note the following about deleting a video indexing task:
@@ -247,7 +247,7 @@ paths:
 
   '/v1.1/tasks/status':
     get:
-      summary: Retrieve Tasks by Status
+      summary: Retrieve tasks by status
       description: This method retrieves the number video indexing tasks in each status for the specified index.
       operationId: video-indexing-tasks-by-status
       tags:
@@ -273,7 +273,7 @@ paths:
 
   '/v1.1/tasks/transfers':
     post:
-      summary: Make a Cloud-to-Cloud Transfer
+      summary: Make a cloud-to-cloud transfer
       description: |
         This method makes a cloud-to-cloud transfer.
       parameters:
@@ -304,7 +304,7 @@ paths:
 
   '/v1.1/indexes':
     post:
-      summary: Create an Index
+      summary: Create an index
       description: This method creates an index.
       operationId: create-index
       tags:
@@ -320,7 +320,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     get:
-      summary: List Indexes
+      summary: List indexes
       description: 'This method returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.'
       operationId: list-indexes
       tags:
@@ -360,7 +360,7 @@ paths:
   
   '/v1.1/indexes/{index-id}':
     get:
-      summary: Retrieve an Index
+      summary: Retrieve an index
       description: This method retrieves details about the specified index.
       operationId: retrieve-index
       tags:
@@ -381,7 +381,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     put:
-      summary: Update an Index
+      summary: Update an index
       description: This method updates the name of the specified index.
       operationId: update-index
       tags:
@@ -431,7 +431,7 @@ paths:
 
   '/v1.1/indexes/{index-id}/videos':
     get:
-      summary: List Videos
+      summary: List videos
       operationId: list-videos
       description: |
         This method returns a list of the videos in the specified index. If no parameters are specified, the API returns your videos sorted by creation date, with the newest at the top of the list.
@@ -547,7 +547,7 @@ paths:
 
   '/v1.1/indexes/{index-id}/videos/{video-id}':
     get:
-      summary: Retrieve Video Information
+      summary: Retrieve video information
       description: This method retrieves information about the specified video.
       operationId: retrieve-video-information
       tags:
@@ -575,7 +575,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     put:
-      summary: Update Video Information
+      summary: Update video information
       description: Use this method to update the title and the metadata of a video.
       operationId: update-video-information
       tags:
@@ -606,7 +606,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
     delete:
-      summary: Delete Video Information
+      summary: Delete video information
       operationId: delete-video-information
       tags:
         - Indexes/Videos
@@ -637,7 +637,7 @@ paths:
 
   '/v1.1/indexes/{index-id}/videos/{video-id}/transcription':
     get:
-      summary: Retrieve a Transcription of the Spoken Words
+      summary: Retrieve a transcription of the spoken words
       description: This method retrieves a transcription of the spoken words.
       operationId: retrieve-transcription
       tags:
@@ -682,7 +682,7 @@ paths:
 
   '/v1.1/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
-      summary: Retrieve Text Recognized in a Video (OCR)
+      summary: Retrieve text recognized in a video (OCR)
       description: This method retrieves text recognized in a video (OCR).
       operationId: retrieve-ocr
       tags:
@@ -726,8 +726,8 @@ paths:
 
   '/v1.1/indexes/{index_id}/videos/{video_id}/thumbnail':
     get:
-      summary: Retrieve a Thumbnail
-      description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an Index](/reference/createindex) section.
+      summary: Retrieve a thumbnail
+      description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an index](/reference/createindex) section.
       operationId: retrieve-thumbnail
       tags:
         - Indexes/Videos
@@ -767,7 +767,7 @@ paths:
 
   '/v1.1/search':
     post:
-      summary: Make a Search Request
+      summary: Make a search request
       tags:
         - Search
       description: |
@@ -790,7 +790,7 @@ paths:
 
   '/v1.1/search/{page-token}':
     get:
-      summary: Retrieve a Specific Page of Search Results
+      summary: Retrieve a specific page of search results
       tags:
         - Search
       description: |
@@ -820,7 +820,7 @@ paths:
 
   '/v1.1/beta/search':
     post:
-      summary: Make a Search Request
+      summary: Make a search request
       operationId: combined-queries-make-search-request
       tags:
         - Combined Queries
@@ -845,7 +845,7 @@ paths:
 
   '/v1.1/beta/search/{page-token}':
     get:
-      summary: Retrieve a Specific Page of Search Results
+      summary: Retrieve a specific page of search results
       tags:
         - Combined Queries
       description: |
@@ -877,7 +877,7 @@ paths:
 
   '/v1.1/classify':
     post:
-      summary: Classify a Video
+      summary: Classify a video
       description: Use this method to classify a video based on the entities or actions shown in that video.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -895,7 +895,7 @@ paths:
 
   '/v1.1/classify/bulk':
     post:
-      summary: Classify All the Videos in an Index
+      summary: Classify all the videos in an index
       description: Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
       operationId: classify-bulk
       tags:
@@ -913,7 +913,7 @@ paths:
 
   '/v1.1/classify/{page_token}':
     get:
-      summary: Retrieve a Specific Page of Results
+      summary: Retrieve a specific page of results
       description: The `/classify/bulk` endpoint returns the first page or results. You can use this endpoint to retrieve the rest of the pages.
       operationId: classify-retrieve-specific-page
       tags:
@@ -1069,7 +1069,7 @@ components:
         allowed_index_options:
           type: array
           description: |
-            An array of strings representing the supported indexing options. For details, see the [Indexing Options](/docs/concepts-indexing-options) page.
+            An array of strings representing the supported indexing options. For details, see the [Indexing options](/docs/concepts-indexing-options) page.
           items:
             type: string
         author:
@@ -1121,7 +1121,7 @@ components:
           description: |
             An array of strings that determines how the engine processes your videos.
             
-            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/concepts-indexing-options) page.
+            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing options](/docs/concepts-indexing-options) page.
 
             **NOTES**:
             - The indexing options cannot be changed once the index has been created.
@@ -2600,7 +2600,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2618,7 +2618,7 @@ components:
               code:
                 type: string
                 description: |
-                  A string representing the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message: 
                 type: string
                 description: |
@@ -2637,7 +2637,7 @@ components:
               code:
                 type: string
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2913,7 +2913,7 @@ components:
                   
                   Use the `query` parameter to build combined queries. Note that this feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
 
-                  For details about building combined queries, see the [Combined Queries](/docs/guides-combined-queries) page.
+                  For details about building combined queries, see the [Combined queries](/docs/guides-combined-queries) page.
 
                 additionalProperties: {}
                 properties:
@@ -3116,7 +3116,7 @@ components:
                     
                     - `and`: The API returns only the results for which all search options match.
 
-                    For details and examples, see the [Multiple Search Options](/docs/guides-multiple-search-options) page.
+                    For details and examples, see the [Multiple search options](/docs/guides-multiple-search-options) page.
 
                     
                     **Default**: `or`.
@@ -3150,7 +3150,7 @@ components:
 
                   You can also filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
 
-                  For more details and examples, see the [Filter Search Results Based on Metadata](/docs/concepts-filtering-search-results) page.
+                  For more details and examples, see the [Filter search results based on metadata](/docs/concepts-filtering-search-results) page.
                 properties:
                   id:
                     type: array
