@@ -823,7 +823,7 @@ paths:
       summary: Make a search request
       operationId: combined-queries-make-search-request
       tags:
-        - Combined Queries
+        - Combined queries
       description: |
         Use the `/beta/search` endpoint to search for relevant matches in an index using combined queries.
 
@@ -847,7 +847,7 @@ paths:
     get:
       summary: Retrieve a specific page of search results
       tags:
-        - Combined Queries
+        - Combined queries
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
