@@ -60,7 +60,7 @@ paths:
 
   '/v1/engines':
     get:
-      summary: List Search Engines
+      summary: List search engines
       description: This method lists all the search engines that are available in your account.
       operationId: listEngines
       tags:
@@ -75,7 +75,7 @@ paths:
           $ref: '#/components/responses/genericError'
   '/v1/engines/{engine-id}':
     get:
-      summary: Retrieve a Search Engine
+      summary: Retrieve a search engine
       description: This method retrieves a search engine.
       operationId: retrieveSearchEngine
       tags:
@@ -92,7 +92,7 @@ paths:
             - `marengo2`
             - `marengo`
             
-            For details about the features of each search engine, see the [Search Engines](/docs/concepts-search-engines) page.
+            For details about the features of each search engine, see the [Search engines](/docs/concepts-search-engines) page.
           required: true
           schema:
             type: string
@@ -109,7 +109,7 @@ paths:
 
   '/v1/indexes':
     post:
-      summary: Create an Index
+      summary: Create an index
       description: This method creates an index.
       operationId: createIndex
       tags:
@@ -164,7 +164,7 @@ paths:
           $ref: '#/components/responses/getIndexesError'
   '/v1/indexes/{index-id}':
     get:
-      summary: Retrieve an Index
+      summary: Retrieve an index
       description: This method retrieves details about the specified index.
       operationId: retrieveIndex
       tags:
@@ -185,7 +185,7 @@ paths:
         '400':
           $ref: '#/components/responses/getIndexError'
     put:
-      summary: Update an Index
+      summary: Update an index
       description: This method updates the name of the specified index.
       operationId: updateIndex
       tags:
@@ -235,7 +235,7 @@ paths:
 
   '/v1/indexes/tasks':
     post:
-      summary: Create a Video Indexing Task
+      summary: Create a video indexing task
       description: |
         Use this method to create a new video indexing task that uploads a video to the API service and makes it searchable. Note the following about creating a new video indexing task:
         - To upload a file that resides on the local file system, pass the `video_file` parameter. It must be a stream of bytes encoded as `multipart/form-data`.
@@ -265,7 +265,7 @@ paths:
         '400':
           $ref: '#/components/responses/createVideoIndexingTaskError'
     get:
-      summary: List Video Indexing Tasks
+      summary: List video indexing tasks
       description: |
         This method returns a list of the video indexing tasks in your account. If no parameters are specified, the API returns your video indexing tasks sorted by creation date, with the newest at the top of the list.
       operationId: listVideoIndexingTasks
@@ -348,7 +348,7 @@ paths:
   
   '/v1/indexes/tasks/{task-id}':
     get:
-      summary: Retrieve a Video Indexing Task
+      summary: Retrieve a video indexing task
       description: This method retrieves a video indexing task.
       operationId: retrieveVideoIndexingTask
       tags:
@@ -369,7 +369,7 @@ paths:
         '400':
           $ref: '#/components/responses/getVideoIndexingTaskError'
     delete:
-      summary: Delete a Video Indexing Task
+      summary: Delete a video indexing task
       description: |
         This action cannot be undone.
         Note the following about deleting a video indexing task:
@@ -396,7 +396,7 @@ paths:
 
   '/v1/indexes/tasks/{task-id}/video-id':
     get:
-      summary: Retrieve the Video ID Associated with a Task ID
+      summary: Retrieve the video ID associated with a task ID
       description: 'Provide the ID of a video indexing task, and the API service will return the corresponding video ID.'
       operationId: retrieveVideoIdTaskId
       tags:
@@ -419,7 +419,7 @@ paths:
 
   '/v1/indexes/{index-id}/tasks/status':
     get:
-      summary: Retrieve the Number of Tasks in Each Status
+      summary: Retrieve the number of tasks in each status
       description: |
         This method retrieves the number of video indexing tasks in each status for the specified index.
       operationId: retrieveTasksInEachStatus
@@ -447,7 +447,7 @@ paths:
 
   '/v1/indexes/tasks/transfers':
     post:
-      summary: Make a Cloud-to-Cloud Transfer
+      summary: Make a cloud-to-cloud transfer
       description: This method makes a cloud-to-cloud transfer.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -476,7 +476,7 @@ paths:
 
   '/v1/indexes/{index-id}/videos':
     get:
-      summary: List Videos
+      summary: List videos
       operationId: listVideoInformation
       description: |
         This method returns a list of the videos in the specified index. If no parameters are specified, the API returns your videos sorted by creation date, with the newest at the top of the list.
@@ -590,7 +590,7 @@ paths:
   
   '/v1/indexes/{index-id}/videos/{video-id}':
     get:
-      summary: Retrieve Video Information
+      summary: Retrieve video information
       description: This method retrieves information about the specified video.
       operationId: retrieveVideoInformation
       tags:
@@ -618,7 +618,7 @@ paths:
         '400':
           $ref: '#/components/responses/getVideoVectorError'
     put:
-      summary: Update Video Information
+      summary: Update video information
       description: Use this method to update the title and the metadata of a video.
       operationId: updateVideoInformation
       tags:
@@ -649,7 +649,7 @@ paths:
           $ref: '#/components/responses/updateVideoVectorError'
 
     delete:
-      summary: Delete Video Information
+      summary: Delete video information
       operationId: deleteVideoInformation
       tags:
         - Indexes/Videos
@@ -680,7 +680,7 @@ paths:
   
   '/v1/indexes/{index-id}/videos/{video-id}/transcription':
     get:
-      summary: Retrieve a Transcription of the Spoken Words
+      summary: Retrieve a transcription of the spoken words
       description: This method retrieves a transcription of the spoken words.
       operationId: retrieveTranscription
       tags:
@@ -724,7 +724,7 @@ paths:
   
   '/v1/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
-      summary: Retrieve Text Recognized in a Video (OCR)
+      summary: Retrieve text recognized in a video (OCR)
       description: This method retrieves text recognized in a video (OCR).
       operationId: retrieveOCR
       tags:
@@ -768,8 +768,8 @@ paths:
 
   '/v1/indexes/{index-id}/videos/{video-id}/thumbnail':
     get:
-      summary: Retrieve a Thumbnail
-      description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an Index](/reference/createindex) section.
+      summary: Retrieve a thumbnail
+      description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an index](/reference/createindex) section.
       operationId: retrieveThumbnail
       tags:
         - Indexes/Videos
@@ -808,7 +808,7 @@ paths:
 ##################
   '/v1/search':
     post:
-      summary: Make a Search Request
+      summary: Make a search request
       tags:
         - Search
       description: |
@@ -829,7 +829,7 @@ paths:
 
   '/v1/search/{page-id}':
     post:
-      summary: Retrieve a Specific Page of Search Results
+      summary: Retrieve a specific page of search results
       tags:
         - Search
       description: |
@@ -874,7 +874,7 @@ components:
         allowed_index_options:
           type: array
           description: |
-            An array of strings representing the supported indexing options. For details, see the [Indexing Options](/docs/concepts-indexing-options) page.
+            An array of strings representing the supported indexing options. For details, see the [Indexing options](/docs/concepts-indexing-options) page.
           items:
             type: string
         author:
@@ -930,7 +930,7 @@ components:
           description: |
             An array of strings that determines how the engine processes your videos.
             
-            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/concepts-indexing-options) page.
+            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing options](/docs/concepts-indexing-options) page.
 
             **NOTES**:
             - The indexing options cannot be changed once the index has been created.
@@ -1058,7 +1058,7 @@ components:
         _id:
           type: string
           description: |
-            A string representing the unique identifier of a video. The API service creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs. To map a task ID to a video ID, see the Retrieve a [Video ID Based on a Task ID](/reference/retrievevideoidtaskid) section.
+            A string representing the unique identifier of a video. The API service creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs. To map a task ID to a video ID, see the Retrieve a [Video ID based on a task ID](/reference/retrievevideoidtaskid) section.
         created_at:
           type: string
           description: |
@@ -1881,7 +1881,7 @@ components:
                     description: |
                       An array of strings that determines how the engine processes your videos.
                       
-                      Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/concepts-indexing-options) page.
+                      Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing options](/docs/concepts-indexing-options) page.
 
                       **NOTES**:
                       - The indexing options cannot be changed once the index has been created.
@@ -2298,7 +2298,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2316,7 +2316,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2334,7 +2334,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2352,7 +2352,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2370,7 +2370,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2388,7 +2388,7 @@ components:
               error_code:
                 type: string
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2406,7 +2406,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2424,7 +2424,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2442,7 +2442,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2460,7 +2460,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2478,7 +2478,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2510,7 +2510,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2528,7 +2528,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2547,7 +2547,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2565,7 +2565,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2583,7 +2583,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2601,7 +2601,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2619,7 +2619,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2637,7 +2637,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2655,7 +2655,7 @@ components:
               error_code:
                 type: integer
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2674,7 +2674,7 @@ components:
               error_code:
                 type: string
                 description: |
-                  Represents the code associated with the error. See the [Error Codes](/reference/error-codes) page for details.
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
               message:
                 type: string
                 description: A human-readable string describing the error.
@@ -2758,7 +2758,7 @@ components:
                     
                     - `and`: The API returns only the results for which all search options match.
 
-                    For details and examples, see the [Multiple Search Options](/docs/guides-multiple-search-options) page.
+                    For details and examples, see the [Multiple search options](/docs/guides-multiple-search-options) page.
 
                     
                     **Default**: `or`.
@@ -2790,7 +2790,7 @@ components:
 
                   You can also filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
 
-                  For more details and examples, see the [Filter Search Results Based on Metadata](/docs/concepts-filtering-search-results) page.
+                  For more details and examples, see the [Filter search results based on metadata](/docs/concepts-filtering-search-results) page.
                 properties:
                   id:
                     type: array
