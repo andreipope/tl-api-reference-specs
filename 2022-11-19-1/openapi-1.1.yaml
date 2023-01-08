@@ -3130,7 +3130,7 @@ components:
                 description: |
                   Specifies the type of search the API service will perform. The following values are supported:
                   - `semantic`: The API service returns results that are semantically similar to the search query even if the results don't exactly match the search query.
-                  - `transcription`: The API service returns only the exact matches. Note that `transcription` can only be used with a single search option. For example, you cannot set the `search_option parameter` to equal `["visual", "conversation", "text_in_video"]` and the `conversation_option` parameter to equal `transcription`.
+                  - `transcription`: The API service returns only the exact matches. Note that `transcription` can only be used with a single search option. For example, you cannot set the `search_option` parameter to equal `["visual", "conversation", "text_in_video"]` and the `conversation_option` parameter to equal `transcription`.
 
                   **Default**: `semantic`.
                 default: semantic
