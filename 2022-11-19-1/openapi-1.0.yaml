@@ -1294,9 +1294,16 @@ components:
               search_pool:
                 type: object
                 description: An object that contains details about the index you queried.
-              type: 
-                type: string
-                description: Describes the type of operation.
+                properties:
+                  total_count:
+                    type: integer
+                    description: The number of videos in the index you queried.
+                  total_duration:
+                    type: number
+                    description: The total duration of the videos.
+                  index_id:
+                    type: string
+                    description: The unique identifier of the index.
           example:
             search_pool:
               total_count: 13
@@ -1500,6 +1507,16 @@ components:
               search_pool:
                 type: object
                 description: An object that contains details about the index you queried.
+                properties:
+                  total_count:
+                    type: integer
+                    description: The number of videos in the index you queried.
+                  total_duration:
+                    type: number
+                    description: The total duration of the videos.
+                  index_id:
+                    type: string
+                    description: The unique identifier of the index.
               type: 
                 type: string
                 description: Describes the type of operation.
