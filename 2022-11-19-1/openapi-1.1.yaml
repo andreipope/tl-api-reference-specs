@@ -3093,12 +3093,13 @@ components:
                 type: string
                 description: |
                   Use this parameter to specify the sort order for the response.
-
-                  If you set this parameter to `score` and `group_by` is set to `video`, the videos in the response will be sorted by the maximum value of the `score` field.
-
-                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the matching video fragments in the response will be sorted by the value of the `score` field.
                   
-                  You can only set this parameter to `clip_count` when the `response_type` parameter is set to `video`. The videos in the response will be sorted by the number of clips.
+                  When performing a search, the API service determines the similarity score between your search terms and each matching video fragment. By default, the search results are sorted on the similarity score in descending order. 
+
+                  If you set this parameter to `score` and `group_by` is set to `video`, the API service will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video fragments will be sorted by the similarity score.
+
+                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the API service will sort the videos in the response by the number of clips. For each video, the matching video fragments will be sorted by the similarity score. You can use `clip_count` only when the matching video fragments are sorted by video.
+                  
 
                   **Default:** `score`
                 enum:
