@@ -2787,8 +2787,8 @@ components:
                 default: semantic
                 description: |
                   Specifies the type of search the API service will perform. The following values are supported:
-                  - `semantic`: The API service returns results that are semantically similar to the search query even if the results don't exactly match the search query.
-                  - `transcription`: The API service returns only the exact matches. Note that `transcription` can only be used with a single search option. For example, you cannot set the `search_option parameter` to equal `["visual", "conversation", "text_in_video"]` and the `conversation_option` parameter to equal `transcription`.
+                  - `semantic`:  When using this value, the API service determines the meaning of a search query, rather than just matching the keywords you've specified to the content of your videos. Use this value when understanding the meaning of language and the relationships between different concepts and entities is required.
+                  - `transcription`: When using this value, the API service identifies the moments in your videos when the keywords or phrases you've specified are present. Use this value when the API service should return only the exact matches. Note that `transcription` can only be used with a single search option. For example, you cannot set the `search_option parameter` to equal `["visual", "conversation", "text_in_video"]` and the `conversation_option` parameter to equal `transcription`.
 
                   **Default**: `semantic`. 
               page_limit:
