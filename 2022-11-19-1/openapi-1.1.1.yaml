@@ -833,6 +833,7 @@ paths:
 
         **NOTES**:
         - Note that this feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
+        - Calling this method from the browser is an involved process. We have disabled this functionality in order to avoid confusion while we’re building a user interface that will provide a better experience.
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -857,6 +858,7 @@ paths:
 
         **NOTES**:
         - Note that this feature is in beta, and the definition of the `/beta/search/{page-token}` endpoint is subject to change.
+        - Calling this method from the browser is an involved process. We have disabled this functionality in order to avoid confusion while we’re building a user interface that will provide a better experience.
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: combined-queries-retrieve-specific-page
       parameters:
