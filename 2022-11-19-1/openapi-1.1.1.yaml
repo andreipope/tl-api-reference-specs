@@ -125,7 +125,7 @@ paths:
           required: true
           schema:
             type: string
-            default: marengo2
+            example: marengo2
       responses:
         '200':
           $ref: '#/components/responses/getEngineResponse'
@@ -3336,8 +3336,6 @@ components:
                     - You cannot disable thumbnails once the index has been created.
                   items:
                     type: string
-                  default:
-                    - thumbnail
             example:
               engine_id: marengo2
               index_options:
