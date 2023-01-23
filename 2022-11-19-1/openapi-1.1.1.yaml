@@ -3327,7 +3327,6 @@ components:
                   type: string
                   description: |
                     The name of the index. Make sure you use a succinct and descriptive name.
-                  default: myIndex
                 addons:
                   type: array
                   description: |
@@ -3347,4 +3346,4 @@ components:
                 - text_in_video
               addons:
                 - thumbnail
-              index_name: my-index
+              index_name: myIndex
