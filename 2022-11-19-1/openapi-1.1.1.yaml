@@ -3271,11 +3271,12 @@ components:
                 description: |
                   When the `provide_transcription` parameter is set to `true`, and you want to provide a transcription from a publicly accessible URL, use the `transcription_url` parameter to specify the URL of your transcription. The transcription must be in the SRT or VTT format.
     updateIndex:
-      required: true
       content:
         application/json:
           schema:
             type: object
+            required:
+              - index_name
             properties:
               index_name:
                 type: string
