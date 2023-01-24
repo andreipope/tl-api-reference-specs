@@ -5,7 +5,7 @@ x-readme:
     - "python"
     - "go"
     - "node"
-openapi: 3.1.0
+openapi: 3.0.0
 info:
   title: Twelve Labs Video Understanding API
   description: |
@@ -1524,13 +1524,19 @@ components:
                 properties:
                   limit_per_page:
                     type: integer
-                    description: The maximum number of items on each page.
+                    description: |
+                     The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video fragments per page. 
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
                   total_results:
                     type: integer
-                    description: The total number of results.
+                    description: |
+                     The total number of results. When grouping by video, this field represents the total number of video fragments matching your query. Otherwise , this field represents the total number of videos.
+                  total_inner_matches:
+                    type: integer 
+                    description: |
+                      When grouping by video, the API service return this field that shows the total number of video fragments matching your query.
                   next_page_token:
                     type: string
                     description: The unique identifier of the next page.
@@ -1946,13 +1952,19 @@ components:
                 properties:
                   limit_per_page:
                     type: integer
-                    description: The maximum number of items on each page.
+                    description: |
+                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video fragments per page.
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
                   total_results:
                     type: integer
-                    description: The total number of results.
+                    description: |
+                     The total number of results. When grouping by video, this field represents the total number of video fragments matching your query. Otherwise , this field represents the total number of videos. 
+                  total_inner_matches:
+                    type: integer
+                    description: |
+                      When grouping by video, the API service return this field that shows the total number of video fragments matching your query.
                   next_page_token:
                     type: string
                     description: The unique identifier of the next page.
@@ -3181,7 +3193,7 @@ components:
               page_limit:
                 type: integer
                 description: |
-                  The number of items to return on each page.
+                 The number of items to return on each page. When grouping by video, this parameter represents the number of videos per page. Otherwise, it represents the maximum number of video fragments per page. 
 
                   **Max**: `50`.
                 default: 10
