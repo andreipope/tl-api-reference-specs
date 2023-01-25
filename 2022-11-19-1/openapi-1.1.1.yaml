@@ -835,7 +835,7 @@ paths:
 
         This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
-       Note that, when you use pagination, you will not be charged for retrieving subsequent pages of results.
+        Note that, when you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
