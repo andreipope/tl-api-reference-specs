@@ -2989,10 +2989,6 @@ components:
 
                       **Default**: `0`.
                     default: 0
-                  order_strict:
-                    type: boolean
-                    description: |
-                      When specifying multiple search queries, you can use this parameter to indicate if the order of the matching video fragments should be the same as the order of your queries.
 
     classify:
       content:
