@@ -3055,7 +3055,7 @@ components:
               video_title:
                 type: string
                 description: |
-                  Specifies the new name of the video.
+                  Specifies the new title of the video.
               metadata:
                 type: object
                 description: |
