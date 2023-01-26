@@ -71,10 +71,10 @@ servers:
 
 tags:
   - name: Engines
-  - name: Tasks    
-  - name: Tasks/Transfers
   - name: Indexes
   - name: Indexes/Videos
+  - name: Tasks    
+  - name: Tasks/Transfers
   - name: Search
   - name: Combined queries
   - name: Classify
