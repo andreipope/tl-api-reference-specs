@@ -89,8 +89,8 @@ paths:
   '/v1.1/engines':
     summary:  Engines
     get:
-      summary: List search engines
-      description: This method lists all the search engines that are available in your account.
+      summary: List engines
+      description: This method lists all the engines that are available in your account.
       operationId: list-search-engines
       tags:
         - Engines
@@ -105,8 +105,8 @@ paths:
 
   '/v1.1/engines/{engine-id}':
     get:
-      summary: Retrieve a search engine
-      description: This method retrieves a search engine.
+      summary: Retrieve an engine
+      description: This method retrieves an engine.
       operationId: retrieve-search-engine
       tags:
         - Engines
@@ -118,10 +118,10 @@ paths:
           description: |
             The identifier of the engine to retrieve.
             
-            The following search engines are available:
+            The following engines are available:
             - `marengo2`
             - `marengo`
-            For details about the features of each search engine, see the [Search engines](/docs/concepts-search-engines) page.
+            For details about the features of each engine, see the [Engines](/docs/concepts-engines) page.
           required: true
           schema:
             type: string
@@ -1058,14 +1058,14 @@ components:
       type: object
 
     engine:
-      description: 'Search engine object'
+      description: 'Engine object'
       title: Engine
       type: object
       properties:
         _id:
           type: string
           description: |
-            A string representing the identifier of the search engine.
+            A string representing the identifier of the engine.
         allowed_index_options:
           type: array
           description: |
@@ -1471,7 +1471,8 @@ components:
                   Indicates the type of search the API performed.
               data:
                 type: array
-                description: An array that contains your search results. For each match found, the search engine returns the following fields.
+                description: |
+                  An array that contains your search results. For each match found, the engine returns the following fields:
                 items:
                   type: object
                   properties:
@@ -1893,7 +1894,7 @@ components:
               data:
                 type: array
                 description: |
-                  An array that contains your search results. For each match found, the search engine returns the following fields:
+                  An array that contains your search results. For each match found, the engine returns the following fields:
                 items:
                   type: object
                   properties:
@@ -2586,7 +2587,7 @@ components:
           schema:
             $ref: '#/components/schemas/engine'
     getEnginesResponse:
-      description: The search engines have successfully been retrieved.
+      description: The engines have successfully been retrieved.
       content:
         application/json:
           schema:
@@ -3292,7 +3293,7 @@ components:
                 engine_id:
                   type: string
                   description: |
-                    Specifies the search engine. The following options are available:
+                    Specifies the engine. The following options are available:
                       - `marengo2`
                       
                       - `marengo`
