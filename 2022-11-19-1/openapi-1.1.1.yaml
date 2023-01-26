@@ -2976,7 +2976,7 @@ components:
                   proximity:
                     type: number
                     description: |
-                      When specifying multiple search queries, you can use the `proximity` parameter to limit or expand your search results by extending the lower and upper boundaries of each matching video fragment. This parameter is expressed in seconds.
+                      When specifying multiple search queries, you can use the `proximity` parameter to limit or expand your search results by extending the lower and upper boundaries of each subquery. This parameter is expressed in seconds.
 
 
                       **Example:**
