@@ -10,58 +10,10 @@ info:
   title: Twelve Labs Video Understanding API
   description: |
     Use the Twelve Labs Video Understanding API to extract information from your videos and make it available to your applications. The API is organized around REST and returns responses in the JSON format. It is compatible with most programming languages, and you can also use Postman or other REST clients to send requests and view responses.
-
-    ## Call an Endpoint
-    
-    To call an endpoint, you must construct a URL similar to the following one:
-    ```
-    {Method} {BaseURL}/{version}/{resource}/{path_parameters}?{query_parameters}
-    ```
-
-    The list below describes each component of a request:
-    - **Method**: The API supports the following methods:
-      - `GET`: Reads data.
-      - `POST`: Creates a new object or performs an action.
-      - `PUT`: Updates an object.
-      - `DELETE`: Deletes an object.
-      
-      Note that the `POST` and `PUT` methods require you to pass a request body containing additional parameters.
-    - **Base URL**: The base URL of the API is https://api.twelvelabs.io.
-    - **Version:** To use the `v1.1` version of the API, it must be set to `v1.1`.
-    - **Resource**: The name of the resource you want to interact with.
-    - **Path Parameters**: Allow you to indicate a specific object. For example, you can retrieve details about an engine or index. 
-    - **Query Parameters**: Any parameters that an endpoint accepts. For example, you can filter or sort a response using query parameters.
-    Note that the API requires you to pass a header parameter containing your API key to authenticate each request. For details, see the [Authentication](/docs/guides-authentication) page.
-
-
-    ## Responses
-
-    Twelve Labs Video Understanding API follows the [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html) standard to indicate the success or failure of a request.
-
-    Each response contains a field named `X-Api-Version` that indicates the version of the API against which the operation was performed.
-
-    ### HTTP Status Codes
-
-    The following list is a summary of the HTTP status codes returned by the API:
-    - `200`: The request was successful.
-    - `201`: The request was successful and a new resource was created.
-    - `401`: The API key you provided is not valid. Note that, for security reasons, your API key automatically expires every two months. When your key has expired, you must generate a new one to continue using the API. For details, see the [Authentication](/docs/guides-authentication) page.
-    - `404`: The requested resource was not found.
-
-    ### Errors
-
-    HTTP status codes in the `4xx` range indicate an error caused by the parameters you provided in the request. For each error, the API service returns the following fields in the body of the response:
-    - `code`: A string representing the error code.
-    - `message`: A human-readable string describing the error, intended to be suitable for display in a user interface.
-    - `docs_url`: The URL of the relevant documentation page.
-    For more details, see [Error codes](/reference/error-codes) page.
-
   contact:
     name: Twelve Labs Support
     email: support@twelvelabs.io
   version: 1.1.1
-x-stoplight:
-  id: 8y4w11j9s7zjg
 servers:
   - url: 'https://api.twelvelabs.io'
 
@@ -71,10 +23,10 @@ servers:
 
 tags:
   - name: Engines
-  - name: Tasks    
-  - name: Tasks/Transfers
   - name: Indexes
   - name: Indexes/Videos
+  - name: Tasks    
+  - name: Tasks/Transfers
   - name: Search
   - name: Combined queries
   - name: Classify
@@ -91,7 +43,7 @@ paths:
     get:
       summary: List engines
       description: This method lists all the engines that are available in your account.
-      operationId: list-search-engines
+      operationId: list-engines
       tags:
         - Engines
       parameters:
@@ -107,7 +59,7 @@ paths:
     get:
       summary: Retrieve an engine
       description: This method retrieves an engine.
-      operationId: retrieve-search-engine
+      operationId: retrieve-engine
       tags:
         - Engines
       parameters:
@@ -118,7 +70,7 @@ paths:
           description: |
             The identifier of the engine to retrieve.
             
-            The following search engines are available:
+            The following engines are available:
             - `marengo2`
             - `marengo`
             For details about the features of each engine, see the [Engines](/docs/concepts-engines) page.
