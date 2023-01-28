@@ -724,8 +724,8 @@ paths:
   
   '/v1/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
-      summary: Retrieve text recognized in a video (OCR)
-      description: This method retrieves text recognized in a video (OCR).
+      summary: Retrieve text recognized in video (OCR)
+      description: This method retrieves text recognized in video (OCR).
       operationId: retrieveOCR
       tags:
         - Indexes/Videos
