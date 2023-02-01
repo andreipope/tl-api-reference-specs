@@ -2841,7 +2841,30 @@ components:
             properties:
               file:
                 description: |
-                  A JSON file containing the list of video files to be transferred and indexed.
+                  A JSON file that contains a list. Each element of the list is an object representing a file to be uploaded and indexed and has the following fields:
+
+                  - `index_id`: The unique identifier of the index with which the video file will be associated.
+                  - `language`: The language of your video.
+                  - `object`: The S3 URL of your video.
+                  - _(Optional)_ `transcription`: The S3 URL of your transcription.
+
+                  **Example:**
+                  ```
+                  [
+                    {
+                      "index_id": "6298d673f1090f1100476d4c",
+                      "language": "en",
+                      "object": "s3://twelve-labs-docs/01.mp4",
+                      "transcription": "s3://twelve-labs-docs/01.srt"
+                    },
+                    {
+                      "index_id": "6298d673f1090f1100476d4c",
+                      "language": "en",
+                      "object": "s3://twelve-labs-docs/02.mp4",
+                      "transcription": "s3://twelve-labs-docs/02.srt"
+                    }
+                  ]
+                  ```
                 type: string
                 format: binary
     createVideoIndexingTask:
