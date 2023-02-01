@@ -3281,7 +3281,7 @@ components:
                 engine_id:
                   type: string
                   description: |
-                    Specifies the engine. The following options are available:
+                    Specifies the engine used by this index. The following engines are available:
                       - `marengo2`
                       
                       - `marengo`
@@ -3291,6 +3291,8 @@ components:
                       - Twelve Labs strongly recommends you use `marengo2`.
 
                       - You cannot change the engine once the index has been created.
+
+                    For details about engines, see the [Engines](/docs/concepts-engines) page.
                   default: marengo2
                 index_options:
                   type: array
