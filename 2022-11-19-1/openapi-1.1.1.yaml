@@ -2395,7 +2395,7 @@ components:
                 type: integer
                 description: A value indicating the total number of video indexing tasks in the specified index.
           example:
-            - index_id: 635be12062c8def3b96b2616
+              index_id: 635be12062c8def3b96b2616
               ready: 7
               validating: 2
               pending: 0
