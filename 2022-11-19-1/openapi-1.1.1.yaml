@@ -3063,7 +3063,7 @@ components:
                   - text_in_video
                 description: |
                   Search options specify the source of information the API service uses when performing a search. For details, see the [Search options](/docs/concepts-search-options) page.
- 
+
                   **NOTES:** 
                   - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
                   - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
@@ -3111,15 +3111,15 @@ components:
               operator:
                 type: string
                 description: |
-                  When you specify more than one search option, you can use this parameter to indicate the logical operation that the API service should perform.
+                  When you perform a search specifying multiple [sources of information](/docs/concepts-search-options), you can use the this parameter to broaden or narrow your search.
                     
                     The following logical operators are supported:
                     
-                    - `or`: The API returns the results for which any search option matches.
+                    - `or`:
                     
-                    - `and`: The API returns only the results for which all search options match.
-
-                    For details and examples, see the [Multiple search options](/docs/guides-multiple-search-options) page.
+                    - `and`
+                    
+                    For details and examples, see the [Using multiple sources of information](/docs/using-simple-queries#using-multiple-sources-of-information) secttion.
 
                     
                     **Default**: `or`.
