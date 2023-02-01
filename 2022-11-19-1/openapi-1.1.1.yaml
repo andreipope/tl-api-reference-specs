@@ -3295,11 +3295,7 @@ components:
                 index_options:
                   type: array
                   description: |
-                    Must be a subset of `["visual", "conversation", "text_in_video"]`.
-                    
-                    **NOTES**:
-                    - The indexing options cannot be changed once the index has been created.
-                    - The types of searches you can perform on this index are a subset of the indexing options.
+                    An array that specifies how the API service will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video"]`. For more details, see the [Indexing options](/docs/concepts-indexing-options) page.
                   items:
                     type: string
                   minItems: 1
