@@ -3052,7 +3052,7 @@ components:
                   - conversation
                   - text_in_video
                 description: |
-                  Search options specify the source of information the API service uses when performing a search. For details, see the [Search options](/docs/concepts-search-options) page.
+                  An array that specifies the sources of information the API service uses when performing a search. For details, see the [Search options](/docs/concepts-search-options) page.
 
                   **NOTES:** 
                   - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
