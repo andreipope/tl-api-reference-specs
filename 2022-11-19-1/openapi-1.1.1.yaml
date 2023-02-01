@@ -2813,10 +2813,7 @@ components:
                 type: array
               options:
                 description: |
-                  This parameter specifies the source of information the API service uses when it categorizes a video. The following values are supported:
-                  - `visual`: Use this value to find objects, actions, sounds, movements, places, situational events, and complex audio-visual text descriptions.
-                  - `conversation`: Use this value to find the exact point in your video where the specified word or phrase is mentioned.
-                  - `text_in_video`: Use this value to search for text that appears in your videos (OCR).
+                  An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/concepts-search-options) page.
                 items:
                   enum:
                   - conversation
@@ -2976,10 +2973,7 @@ components:
                 type: array
               options:
                 description: |
-                  This parameter specifies the source of information the API service uses when it categorizes a video. The following values are supported:
-                  - `visual`: Use this value to find objects, actions, sounds, movements, places, situational events, and complex audio-visual text descriptions.
-                  - `conversation`: Use this value to find the exact point in your video where the specified word or phrase is mentioned.
-                  - `text_in_video`: Use this value to search for text that appears in your videos (OCR).
+                  An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/concepts-search-options) page.
                 items:
                   enum:
                   - visual
