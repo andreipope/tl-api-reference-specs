@@ -3062,13 +3062,11 @@ components:
                   - conversation
                   - text_in_video
                 description: |
-                  Search options specify the source of information the API service uses when performing a search. The following values are supported:
-                  - `visual`: Allows you to search by objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
-                  - `conversation`: Allows you to find the exact point in your video where the specified word or phrase is mentioned.
-                  - `text_in_video`: Allows you to search for text that appears in your videos (OCR).
-
-                  The search options you specify must be a subset of the indexing options used when you created the index.
-                  You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
+                  Search options specify the source of information the API service uses when performing a search. For details, see the [Search options](/docs/concepts-search-options) page.
+ 
+                  **NOTES:** 
+                  - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
+                  - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
               group_by:
                 type: string
                 description: |
