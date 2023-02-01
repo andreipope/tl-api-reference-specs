@@ -679,7 +679,7 @@ paths:
   '/v1.1/indexes/{index_id}/videos/{video_id}/thumbnail':
     get:
       summary: Retrieve a thumbnail
-      description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an index](/reference/createindex) section.
+      description: To use this feature, you must enable thumbnail generation for the index to which the video has been uploaded. For details, see the [Create an index](/reference/createindex) section.
       operationId: retrieve-thumbnail
       tags:
         - Indexes/Videos
@@ -689,7 +689,7 @@ paths:
         - name: index_id
           in: path
           description: |
-            The unique identifier of the index with which the video is associated.
+            The unique identifier of the index to which the video has been uploaded.
           required: true
           schema:
             type: string
@@ -2083,7 +2083,7 @@ components:
                       description: Text representing the spoken words within this time range.
               index_id:
                 type: string
-                description: The unique identifier of the index with which the video is associated.
+                description: The unique identifier of the index to which the video has been uploaded.
           example:
             id: 61e17c1c777e6caec646fa08
             data:
@@ -2124,7 +2124,7 @@ components:
                       type: string
               index_id:
                 type: string
-                description: The unique identifier of the index with which the video is associated.
+                description: The unique identifier of the index to which the video has been updated.
                 example: 61e165b061c43d6d9b73627b
           example:
             id: 61e17c1c777e6caec646fa08
@@ -3176,7 +3176,7 @@ components:
                 description: |
                   A JSON file that contains a list. Each element of the list is an object representing a file to be uploaded and indexed and has the following fields:
 
-                  - `index_id`: The unique identifier of the index with which the video file will be associated.
+                  - `index_id`: The unique identifier of the index to which the video file will be uploaded.
                   - `language`: The language of your video.
                   - `object`: The S3 URL of your video.
                   - _(Optional)_ `transcription`: The S3 URL of your transcription.
