@@ -996,7 +996,7 @@ components:
         score:
           type: number
           description: |
-            A quantitative value determined by the AI engine representing the similarity score between your label and the matching video fragment.
+            A quantitative value determined by the AI engine representing the level of confidence that the results match your labels.
         option:
           type: string
           description: Indicates the type of search the API service performed.
@@ -1432,8 +1432,9 @@ components:
                   type: object
                   properties:
                     score:
-                      type: number
-                      description: A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
+                      type: string
+                      description: |
+                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       type: number
                       description: Start time of the matching video fragment, expressed in seconds.
@@ -1656,7 +1657,7 @@ components:
                   properties:
                     score:
                       description: |
-                        A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
+                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       description: |
                         Start time of the matching video fragment, expressed in seconds.
@@ -1756,7 +1757,7 @@ components:
                   properties:
                     score:
                       description: |
-                        A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
+                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       description: |
                         Start time of the matching video fragment, expressed in seconds.
@@ -1861,7 +1862,8 @@ components:
                   properties:
                     score:
                       type: number
-                      description: A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
+                      description: |
+                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       type: number
                       description: Start time of the matching video fragment, expressed in seconds.
@@ -3086,11 +3088,11 @@ components:
                 description: |
                   Use this parameter to specify the sort order for the response.
                   
-                  When performing a search, the API service determines the similarity score between your search terms and each matching video fragment. By default, the search results are sorted on the similarity score in descending order. 
+                  When performing a search, the API service determines the level of confidence that each video fragment matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
-                  If you set this parameter to `score` and `group_by` is set to `video`, the API service will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video fragments will be sorted by the similarity score.
+                  If you set this parameter to `score` and `group_by` is set to `video`, the API service will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video fragments will be sorted by the level of confidence.
 
-                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the API service will sort the videos in the response by the number of clips. For each video, the matching video fragments will be sorted by the similarity score. You can use `clip_count` only when the matching video fragments are sorted by video.
+                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the API service will sort the videos in the response by the number of clips. For each video, the matching video fragments will be sorted by the level of confidence. You can use `clip_count` only when the matching video fragments are sorted by video.
                   
 
                   **Default:** `score`
