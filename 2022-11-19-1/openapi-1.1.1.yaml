@@ -2835,7 +2835,7 @@ components:
                 type: integer
               threshold:
                 description: |
-                  This parameter represents the minimum similarity score between your label and the matching video fragments.
+                  Use this parameter to filter on the level of confidence that the results match your labels.
 
                   **Default:** `low`
                 default: low
@@ -2901,7 +2901,7 @@ components:
               threshold:
                 type: string
                 description: |
-                  This parameter represents the minimum similarity score between your search terms and the matching video fragments.
+                  Use this parameter to filter on the level of confidence that the search results match your query.
 
                   **Default:** `low`
                 enum:
@@ -2984,7 +2984,7 @@ components:
                 type: array
               threshold:
                 description: |
-                  This parameter represents the minimum similarity score between your label and the matching video fragments.
+                  Use this parameter to filter on the level of confidence that the results match your labels.
 
                   **Default:** `low`
                 default: low
