@@ -13,7 +13,7 @@ info:
   contact:
     name: Twelve Labs Support
     email: support@twelvelabs.io
-  version: 1.1.1
+  version: 1.1.2
 servers:
   - url: 'https://api.twelvelabs.io'
 
