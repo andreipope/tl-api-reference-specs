@@ -2672,7 +2672,7 @@ components:
               video_id: 636b932fe9521f7108f5a30e
               labels:
                 - name: Dangerous animals
-                  score: 85.48
+                  max_score: 84.59
                   duration: 120
                   confidence: high
                   clips:
