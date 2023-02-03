@@ -960,7 +960,7 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the value of the `score` field. This field can take one of the following values:
+            A qualitative indicator measured by the internal QA team based on the values of the `score` field of each individual clip. It can take one of the following values:
             - `high`
             - `medium`
             - `low`
@@ -1471,7 +1471,7 @@ components:
                         If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
                     module_confidence:
                       type: object
-                      description: When multiple search options were specified, the API service returns the confidence level for each search option as an object composed of key-value pairs. The search option represents the key, and the confidence level represents the value.
+                      description: When multiple search options are specified in the request, the API service returns the confidence level that the results match your search terms for each search option as an object composed of key-value pairs. Each search option represents a key, and the confidence level represents the value.
               page_info:
                 type: object
                 description: An object that provides information about pagination.
