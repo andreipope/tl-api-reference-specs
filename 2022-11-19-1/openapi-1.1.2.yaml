@@ -845,7 +845,13 @@ paths:
         $ref: '#/components/requestBodies/classify'
       responses:
         '200':
-          $ref: '#/components/responses/classifyResponse'
+          description: The specified video has successfully been classified.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/responses/classifyResponse'
+                  - $ref: '#/components/responses/classifyResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
