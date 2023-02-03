@@ -850,8 +850,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/responses/classifyResponse'
-                  - $ref: '#/components/responses/classifyResponse'
+                  - $ref: '#/components/responses/classifyResponseSingleLabel'
+                  - $ref: '#/components/responses/classifyResponseMultipleLabels'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -2658,6 +2658,19 @@ components:
                 type: string
                 description: A human-readable string describing the error.
     
+    
+    classifyResponseSingleLabel:
+      description: The specified video has successfully been classified using a single label.
+      type: object
+      properties:
+        labels:
+          descriptions: An array.
+        video_id:
+          type: A video id.
+    
+    classifyResponseMultipleLabels:
+      description: The specified video has successfully been classified using multiple labels.
+
     classifyResponse:
       description: The specified video has successfully been classified.
       content:
