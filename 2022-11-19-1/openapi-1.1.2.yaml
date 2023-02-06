@@ -908,6 +908,10 @@ components:
       description: An array containing information about the video fragments that match the labels you've specified.
       type: object
       properties:
+        video_id:
+          type: string
+          description: |
+            The unique identifier of the video that has been classified.
 
 
     classifyResponseNoClips:
