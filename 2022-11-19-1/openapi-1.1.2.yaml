@@ -905,15 +905,11 @@ paths:
 components:
   schemas:
     classifyResponseIncludeClips:
-      description: The specified video has successfully been classified.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              video_id:
-                type: string
-                description: The unique identifier of the video that has been classified.
+      description: An array containing information about the video fragments that match the labels you've specified.
+      type: object
+      properties:
+
+
     classifyResponseNoClips:
       description: The specified video has successfully been classified.
       type: object
@@ -949,8 +945,17 @@ components:
                   - `medium`
                   - `low`
                   - `extremely low`
-
-
+      example:
+        video_id: 63a09373ce36463e0199c8de
+        labels:
+          - name: Car Shapes
+            max_score: 87.15
+            duration: 6069.999999999998
+            confidence: high
+          - name: Dangerous animals
+            max_score: 46.53
+            duration: 3029.8749999999995
+            confidence: low
 
 
               
@@ -1007,7 +1012,7 @@ components:
 
     classifyLabelResult:
       description: |
-        An array containing the matching video fragments that the API service has identified.
+        An array containing information about the video fragments that matched the labels you've specified.
       properties:
         clips: 
           description: |
@@ -1038,7 +1043,7 @@ components:
 
     classifyClip:
       name: clasifyClip
-      description: An array containing the video fragments that matched your label.
+      description: An array containing the video fragments that match the label you've specified.
       properties:
         confidence:
           type: string
@@ -2869,7 +2874,7 @@ components:
                   The unique identifier of the index containing the videos you want to classify.
               labels:
                 description: |
-                  An array containing the names and the definitions of entities or actions that the API service should identify.
+                  An array containing the names and the definitions of entities or actions that the API service must identify.
                 items:
                   $ref: '#/components/schemas/classifyLabel'
                 minItems: 1
@@ -3029,7 +3034,7 @@ components:
                 type: boolean
               labels:
                 description: |
-                  An array containing the names and the definitions of entities or actions that the API service should identify.
+                  An array containing the names and the definitions of entities or actions that the API service must identify.
                 items:
                   $ref: '#/components/schemas/classifyLabel'
                 minItems: 1
