@@ -905,6 +905,7 @@ paths:
 components:
   schemas:
     classifyResponseIncludeClips:
+      summary: No clips
       description: An array containing information about the video fragments that match the labels you've specified.
       type: object
       properties:
@@ -915,6 +916,7 @@ components:
 
 
     classifyResponseNoClips:
+      summary: Including clips
       description: The specified video has successfully been classified.
       type: object
       properties:
