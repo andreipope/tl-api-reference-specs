@@ -960,16 +960,17 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator based on the values of the `score` field of each individual clip. It can take one of the following values:
-            - `high`
-            - `medium`
-            - `low`
-            - `extremely low`
+            A qualitative indicator based on the value of the `max_score` field. This field can take one of the following values:
+              - `high`
+              - `medium`
+              - `low`
+              - `extremely low`
         duration:
           description: The total duration of the matching video fragments.
           type: number
         max_score:
-          description: The maximum value for the `score` property of each individual clip.
+          description: |
+            When classifying a video, the API service finds all video fragments that match the label you've specified in the request. For each video fragment found, the API service determines the level of confidence that the fragment matches the label. The `max_score` field is determined by comparing the confidence scores of each fragment and selecting the highest one.
           type: number
         name:
           description: The name of the label.
@@ -996,7 +997,7 @@ components:
         score:
           type: number
           description: |
-            A quantitative value determined by the AI engine representing the level of confidence that the results match your labels.
+            A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
         option:
           type: string
           description: Indicates the type of search the API service performed.
