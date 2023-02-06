@@ -850,8 +850,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/responses/classifyResponseSingleLabel'
-                  - $ref: '#/components/responses/classifyResponseMultipleLabels'
+                  - $ref: '#/components/schemas/classifyResponseIncludeClips'
+                  - $ref: '#/components/schemas/classifyResponseNoClips'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -904,6 +904,59 @@ paths:
 
 components:
   schemas:
+    classifyResponseIncludeClips:
+      description: The specified video has successfully been classified.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              video_id:
+                type: string
+                description: The unique identifier of the video that has been classified.
+    classifyResponseNoClips:
+      description: The specified video has successfully been classified.
+      type: object
+      properties:
+        video_id:
+          type: string
+          description: |
+            The unique identifier of the video that has been classified.
+        labels:
+          description: |
+            An array of objects containing information about the likelihood that each of the labels you've specified appears in the video.
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: |
+                  The name of the label.
+              max_score:
+                type: number
+                description: |
+                  When classifying a video, the API service finds all video fragments that match the label you've specified in the request. For each video fragment found, the API service determines the level of confidence that the fragment matches the label. The `max_score` field is determined by comparing the confidence scores of each fragment and selecting the highest one.
+              duration:
+                type: number
+                description: |
+                  The total duration of the video fragments that match the labels you've specified.
+              confidence:
+                type: string
+                description: |
+                  A qualitative indicator based on the value of the `max_score` field. This field can take one of the following values:
+                  - `high`
+                  - `medium`
+                  - `low`
+                  - `extremely low`
+
+
+
+
+              
+
+
+
 
     classifyPageInfo:
       properties:
@@ -966,7 +1019,7 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the values of the `score` field of each individual clip. It can take one of the following values:
+            A qualitative indicator based on the values of the `score` field of each individual clip. It can take one of the following values:
             - `high`
             - `medium`
             - `low`
@@ -990,7 +1043,7 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the value of the `score` field. This field can take one of the following values:
+            A qualitative indicator based on the value of the `score` field. This field can take one of the following values:
             - `high`
             - `medium`
             - `low`
@@ -1466,7 +1519,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1678,7 +1731,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1778,7 +1831,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1895,7 +1948,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -2658,18 +2711,7 @@ components:
                 type: string
                 description: A human-readable string describing the error.
     
-    
-    classifyResponseSingleLabel:
-      description: The specified video has successfully been classified using a single label.
-      type: object
-      properties:
-        labels:
-          descriptions: An array.
-        video_id:
-          type: A video id.
-    
-    classifyResponseMultipleLabels:
-      description: The specified video has successfully been classified using multiple labels.
+  
 
     classifyResponse:
       description: The specified video has successfully been classified.

@@ -960,7 +960,7 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the values of the `score` field of each individual clip. It can take one of the following values:
+            A qualitative indicator based on the values of the `score` field of each individual clip. It can take one of the following values:
             - `high`
             - `medium`
             - `low`
@@ -984,7 +984,7 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the value of the `score` field. This field can take one of the following values:
+            A qualitative indicator based on the value of the `score` field. This field can take one of the following values:
             - `high`
             - `medium`
             - `low`
@@ -1460,7 +1460,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1672,7 +1672,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1772,7 +1772,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1889,7 +1889,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
