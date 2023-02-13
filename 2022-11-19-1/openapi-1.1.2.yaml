@@ -3386,7 +3386,7 @@ components:
                   items:
                     type: string
                   minItems: 1
-                  maxitems: 2
+                  maxItems: 2
                   default:
                     - thumbnail
                     - logos
