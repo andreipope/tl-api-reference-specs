@@ -3389,7 +3389,7 @@ components:
                   maxItems: 2
                   default:
                     - thumbnail
-                    - logos
+                    - logo
 
             example:
               engine_id: marengo2
