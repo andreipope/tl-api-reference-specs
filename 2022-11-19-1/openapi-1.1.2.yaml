@@ -3384,9 +3384,7 @@ components:
                     **NOTE**:
                     - You cannot disable an add-on once the index has been created.
                   items:
-                    enum:
-                      - thumbnail
-                      - logo
+                    type: string
                   minItems: 1
                   maxitems: 2
 
