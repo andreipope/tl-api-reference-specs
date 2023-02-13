@@ -3375,12 +3375,21 @@ components:
                 addons:
                   type: array
                   description: |
-                    The list of add-ons that are enabled for this index. To enable thumbnail generation for an index, set this parameter to `["thumbnail"]`.
+                    An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
+                    - `thumbnail`: Enables thumbnail generation.
+                    - `logo`: Enables logo detection.
+                    
+                    If you don't provide this parameter, no add-ons will be enabled.
 
                     **NOTE**:
-                    - You cannot disable thumbnails once the index has been created.
+                    - You cannot disable an add-on once the index has been created.
                   items:
-                    type: string
+                    enum:
+                      - thumbnail
+                      - logo
+                  minItems: 1
+                  maxitems: 2
+
             example:
               engine_id: marengo2
               index_options:
@@ -3389,4 +3398,5 @@ components:
                 - text_in_video
               addons:
                 - thumbnail
+                - logo
               index_name: myIndex
