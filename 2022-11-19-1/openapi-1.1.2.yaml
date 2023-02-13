@@ -3387,6 +3387,9 @@ components:
                     type: string
                   minItems: 1
                   maxitems: 2
+                  default:
+                    - thumbnail
+                    - logos
 
             example:
               engine_id: marengo2
