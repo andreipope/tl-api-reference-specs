@@ -10,58 +10,10 @@ info:
   title: Twelve Labs Video Understanding API
   description: |
     Use the Twelve Labs Video Understanding API to extract information from your videos and make it available to your applications. The API is organized around REST and returns responses in the JSON format. It is compatible with most programming languages, and you can also use Postman or other REST clients to send requests and view responses.
-
-    ## Call an Endpoint
-    
-    To call an endpoint, you must construct a URL similar to the following one:
-    ```
-    {Method} {BaseURL}/{version}/{resource}/{path_parameters}?{query_parameters}
-    ```
-
-    The list below describes each component of a request:
-    - **Method**: The API supports the following methods:
-      - `GET`: Reads data.
-      - `POST`: Creates a new object or performs an action.
-      - `PUT`: Updates an object.
-      - `DELETE`: Deletes an object.
-      
-      Note that the `POST` and `PUT` methods require you to pass a request body containing additional parameters.
-    - **Base URL**: The base URL of the API is https://api.twelvelabs.io.
-    - **Version:** To use the `v1.1` version of the API, it must be set to `v1.1`.
-    - **Resource**: The name of the resource you want to interact with.
-    - **Path Parameters**: Allow you to indicate a specific object. For example, you can retrieve details about an engine or index. 
-    - **Query Parameters**: Any parameters that an endpoint accepts. For example, you can filter or sort a response using query parameters.
-    Note that the API requires you to pass a header parameter containing your API key to authenticate each request. For details, see the [Authentication](/docs/guides-authentication) page.
-
-
-    ## Responses
-
-    Twelve Labs Video Understanding API follows the [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html) standard to indicate the success or failure of a request.
-
-    Each response contains a field named `X-Api-Version` that indicates the version of the API against which the operation was performed.
-
-    ### HTTP Status Codes
-
-    The following list is a summary of the HTTP status codes returned by the API:
-    - `200`: The request was successful.
-    - `201`: The request was successful and a new resource was created.
-    - `401`: The API key you provided is not valid. Note that, for security reasons, your API key automatically expires every two months. When your key has expired, you must generate a new one to continue using the API. For details, see the [Authentication](/docs/guides-authentication) page.
-    - `404`: The requested resource was not found.
-
-    ### Errors
-
-    HTTP status codes in the `4xx` range indicate an error caused by the parameters you provided in the request. For each error, the API service returns the following fields in the body of the response:
-    - `code`: A string representing the error code.
-    - `message`: A human-readable string describing the error, intended to be suitable for display in a user interface.
-    - `docs_url`: The URL of the relevant documentation page.
-    For more details, see [Error codes](/reference/error-codes) page.
-
   contact:
     name: Twelve Labs Support
     email: support@twelvelabs.io
-  version: 1.1.0
-x-stoplight:
-  id: 8y4w11j9s7zjg
+  version: 1.1
 servers:
   - url: 'https://api.twelvelabs.io'
 
@@ -91,7 +43,7 @@ paths:
     get:
       summary: List engines
       description: This method lists all the engines that are available in your account.
-      operationId: list-search-engines
+      operationId: list-engines
       tags:
         - Engines
       parameters:
@@ -107,7 +59,7 @@ paths:
     get:
       summary: Retrieve an engine
       description: This method retrieves an engine.
-      operationId: retrieve-search-engine
+      operationId: retrieve-engine
       tags:
         - Engines
       parameters:
@@ -125,7 +77,7 @@ paths:
           required: true
           schema:
             type: string
-            default: marengo2
+            example: marengo2
       responses:
         '200':
           $ref: '#/components/responses/getEngineResponse'
@@ -558,7 +510,7 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video is associated.
+            The unique identifier of the index to which the video has been uploaded.
           required: true
           schema:
             type: string
@@ -586,7 +538,7 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video is associated.
+            The unique identifier of the index to which the video has been uploaded.
           required: true
           schema:
             type: string
@@ -618,7 +570,7 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video is associated.
+            The unique identifier of the index to which the video has been uploaded.
           required: true
           schema:
             type: string
@@ -648,7 +600,7 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video is associated.
+            The unique identifier of the index to which the video has been uploaded.
           required: true
           schema:
             type: string
@@ -693,7 +645,7 @@ paths:
         - name: index-id
           in: path
           description: |
-            The unique identifier of the index with which the video is associated.
+            The unique identifier of the index to which the video has been uploaded.
           required: true
           schema:
             type: string
@@ -727,7 +679,7 @@ paths:
   '/v1.1/indexes/{index_id}/videos/{video_id}/thumbnail':
     get:
       summary: Retrieve a thumbnail
-      description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an index](/reference/createindex) section.
+      description: To use this feature, you must enable thumbnail generation for the index to which the video has been uploaded. For details, see the [Create an index](/reference/createindex) section.
       operationId: retrieve-thumbnail
       tags:
         - Indexes/Videos
@@ -737,7 +689,7 @@ paths:
         - name: index_id
           in: path
           description: |
-            The unique identifier of the index with which the video is associated.
+            The unique identifier of the index to which the video has been uploaded.
           required: true
           schema:
             type: string
@@ -771,11 +723,12 @@ paths:
       tags:
         - Search
       description: |
-        Use the `/search` endpoint to search for relevant matches in an index. This endpoint supports sorting, pagination and filtering.
+        Use the POST method of the `/search` endpoint to search for relevant matches in an index.
         
-        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
-        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTE**:
+          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: make-search-request
       requestBody:
         $ref: '#/components/requestBodies/search'
@@ -820,18 +773,21 @@ paths:
 
   '/v1.1/beta/search':
     post:
+      x-readme:
+        explorer-enabled: false
       summary: Make a search request
       operationId: combined-queries-make-search-request
       tags:
         - Combined queries
       description: |
-        Use the `/beta/search` endpoint to search for relevant matches in an index using combined queries.
+        Use the POST method of the `/beta/search` endpoint to search for relevant matches in an index using combined queries.
+        
+        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
-        This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
-
-        **NOTES**:
-        - Note that this feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
-        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTES:**:
+          - Twelve Labs Inc. has disabled calling this method from the browser in order to avoid confusion while we’re building a user interface that will provide a better experience.
+          - This feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
+          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -992,7 +948,7 @@ components:
 
     classifyLabelResult:
       description: |
-        An array containing the matching video fragments that the API service has identified.
+        An array containing information about the video fragments that match the labels you've specified.
       properties:
         clips: 
           description: |
@@ -1004,16 +960,17 @@ components:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the value of the `score` field. This field can take one of the following values:
-            - `high`
-            - `medium`
-            - `low`
-            - `extremely low`
+            A qualitative indicator based on the value of the `max_score` field. This field can take one of the following values:
+              - `high`
+              - `medium`
+              - `low`
+              - `extremely low`
         duration:
           description: The total duration of the matching video fragments.
           type: number
         max_score:
-          description: The maximum value for the `score` property of each individual clip.
+          description: |
+            When classifying a video, the API service finds all video fragments that match the label you've specified in the request. For each video fragment found, the API service determines the level of confidence that the fragment matches the label. The `max_score` field is determined by comparing the confidence scores of each fragment and selecting the highest one.
           type: number
         name:
           description: The name of the label.
@@ -1023,12 +980,12 @@ components:
 
     classifyClip:
       name: clasifyClip
-      description: An array containing the video fragments that matched your label.
+      description: An array containing information about the video fragments that match the label you've specified.
       properties:
         confidence:
           type: string
           description: |
-            A qualitative indicator measured by the internal QA team based on the value of the `score` field. This field can take one of the following values:
+            A qualitative indicator based on the value of the `score` field. This field can take one of the following values:
             - `high`
             - `medium`
             - `low`
@@ -1040,7 +997,7 @@ components:
         score:
           type: number
           description: |
-            A quantitative value determined by the AI engine representing the similarity score between your label and the matching video fragment.
+            A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
         option:
           type: string
           description: Indicates the type of search the API service performed.
@@ -1471,14 +1428,14 @@ components:
                   Indicates the type of search the API performed.
               data:
                 type: array
-                description: |
-                  An array that contains your search results. For each match found, the engine returns the following fields:
+                description: An array that contains your search results. For each match found, the engine returns the following fields.
                 items:
                   type: object
                   properties:
                     score:
-                      type: number
-                      description: A quantitative value determined by the AI engine representing the similarity score between your search terms and the matching video fragment.
+                      type: string
+                      description: |
+                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       type: number
                       description: Start time of the matching video fragment, expressed in seconds.
@@ -1504,7 +1461,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1515,20 +1472,26 @@ components:
                         If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
                     module_confidence:
                       type: object
-                      description: When multiple search options were specified, the API service returns the confidence level for each search option as an object composed of key-value pairs. The search option represents the key, and the confidence level represents the value.
+                      description: When multiple search options are specified in the request, the API service returns the confidence level that the results match your search terms for each search option as an object composed of key-value pairs. Each search option represents a key, and the confidence level represents the value.
               page_info:
                 type: object
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
                     type: integer
-                    description: The maximum number of items on each page.
+                    description: |
+                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video fragments per page. 
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
                   total_results:
                     type: integer
-                    description: The total number of results.
+                    description: |
+                      The total number of results. When grouping by video, this field represents the total number of video fragments matching your query. Otherwise , this field represents the total number of videos.
+                  total_inner_matches:
+                    type: integer 
+                    description: |
+                      When grouping by video, the API service return this field that shows the total number of video fragments matching your query.
                   next_page_token:
                     type: string
                     description: The unique identifier of the next page.
@@ -1695,7 +1658,7 @@ components:
                   properties:
                     score:
                       description: |
-                        A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
+                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       description: |
                         Start time of the matching video fragment, expressed in seconds.
@@ -1710,7 +1673,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1795,7 +1758,7 @@ components:
                   properties:
                     score:
                       description: |
-                        A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
+                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       description: |
                         Start time of the matching video fragment, expressed in seconds.
@@ -1810,7 +1773,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1900,7 +1863,8 @@ components:
                   properties:
                     score:
                       type: number
-                      description: A quantitative value determined by the AI engine. It represents the similarity score between your search terms and the matching video fragment.
+                      description: |
+                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       type: number
                       description: Start time of the matching video fragment, expressed in seconds.
@@ -1926,7 +1890,7 @@ components:
                     confidence:
                       type: string
                       description: |
-                        A qualitative indicator measured by the internal QA team based on the value of the score field. This field can take one of the following values:
+                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
                         - `high`
                         - `medium`
                         - `low`
@@ -1944,13 +1908,19 @@ components:
                 properties:
                   limit_per_page:
                     type: integer
-                    description: The maximum number of items on each page.
+                    description: |
+                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video fragments per page.
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
                   total_results:
                     type: integer
-                    description: The total number of results.
+                    description: |
+                      The total number of results. When grouping by video, this field represents the total number of video fragments matching your query. Otherwise , this field represents the total number of videos. 
+                  total_inner_matches:
+                    type: integer
+                    description: |
+                      When grouping by video, the API service return this field that shows the total number of video fragments matching your query.
                   next_page_token:
                     type: string
                     description: The unique identifier of the next page.
@@ -2116,7 +2086,7 @@ components:
                       description: Text representing the spoken words within this time range.
               index_id:
                 type: string
-                description: The unique identifier of the index with which the video is associated.
+                description: The unique identifier of the index to which the video has been uploaded.
           example:
             id: 61e17c1c777e6caec646fa08
             data:
@@ -2157,7 +2127,7 @@ components:
                       type: string
               index_id:
                 type: string
-                description: The unique identifier of the index with which the video is associated.
+                description: The unique identifier of the index to which the video has been updated.
                 example: 61e165b061c43d6d9b73627b
           example:
             id: 61e17c1c777e6caec646fa08
@@ -2186,7 +2156,7 @@ components:
             thumbnail: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6320748774fed2f3511f2a92/10.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20220914%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220914T075213Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=46b3bac13fb8b022313244780c238cb6bfc53eddcbee3be23a8d2dd22d99543e
   
     getVideoVectorsResponse:
-      description: The video information associated with the specified index have successfully been retrieved.
+      description: The video vectors in the specified index have successfully been retrieved.
       content:
         application/json:
           schema:
@@ -2703,7 +2673,7 @@ components:
               video_id: 636b932fe9521f7108f5a30e
               labels:
                 - name: Dangerous animals
-                  score: 85.48
+                  max_score: 84.59
                   duration: 120
                   confidence: high
                   clips:
@@ -2818,9 +2788,7 @@ components:
             properties:
               conversation_option:
                 description: |
-                  Specifies the type of search the API service will perform. The following values are supported:
-                  - `semantic`: When using this value, the API service determines the meaning of a search query, rather than just matching the keywords you've specified to the content of your videos. Use this value when understanding the meaning of language and the relationships between different concepts and entities is required.
-                  - `transcription`: When using this value, the API service identifies the moments in your videos when the keywords or phrases you've specified are present. Use this value when the API service should return only the exact matches.
+                  Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-options) page.
 
                   **Default:** `semantic`
                 default: semantic
@@ -2841,17 +2809,14 @@ components:
                   The unique identifier of the index containing the videos you want to classify.
               labels:
                 description: |
-                  An array containing the names and the definitions of entities or actions that the API service should identify.
+                  An array containing the names and the definitions of entities or actions that the API service must identify.
                 items:
                   $ref: '#/components/schemas/classifyLabel'
                 minItems: 1
                 type: array
               options:
                 description: |
-                  This parameter specifies the source of information the API service uses when it categorizes a video. The following values are supported:
-                  - `visual`: Use this value to find objects, actions, sounds, movements, places, situational events, and complex audio-visual text descriptions.
-                  - `conversation`: Use this value to find the exact point in your video where the specified word or phrase is mentioned.
-                  - `text_in_video`: Use this value to search for text that appears in your videos (OCR).
+                  An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/concepts-search-options) page.
                 items:
                   enum:
                   - conversation
@@ -2873,7 +2838,7 @@ components:
                 type: integer
               threshold:
                 description: |
-                  This parameter represents the minimum similarity score between your label and the matching video fragments.
+                  Use this parameter to filter on the level of confidence that the results match your labels.
 
                   **Default:** `low`
                 default: low
@@ -2939,7 +2904,7 @@ components:
               threshold:
                 type: string
                 description: |
-                  This parameter represents the minimum similarity score between your search terms and the matching video fragments.
+                  Use this parameter to filter on the level of confidence that the search results match your query.
 
                   **Default:** `low`
                 enum:
@@ -2958,26 +2923,22 @@ components:
 
                 additionalProperties: {}
                 properties:
-                  adjacency_threshold:
+                  proximity:
                     type: number
                     description: |
-                      When specifying multiple search queries, you can use the `adjacency_threshold` parameter to limit or expand your search results by extending the lower and upper boundaries of each matching video fragment. This parameter is expressed in seconds.
+                      When specifying multiple search queries, you can use the `proximity` parameter to limit or expand your search results by extending the lower and upper boundaries of each subquery. This parameter is expressed in seconds.
 
 
                       **Example:**
                       You've specified two queries and used to `AND` logical operator to retrieve only the video fragment for which both queries match. The first query matches a video fragment that starts at 10s and end at 30s. The second query second query matches a video fragment that starts at 50s and ends at 60s.
 
 
-                      If you don't specify the `adjacency_threshold` parameter, then it takes the default value of 0s. The video fragments will not overlap, and the API service will not return any results.
+                      If you don't specify the `proximity` parameter, then it takes the default value of 0s. The video fragments will not overlap, and the API service will not return any results.
 
-                      If you specify a value of 20s for the `adjacency_threshold` parameter, the first video fragment will start at 0s and end at 50s, and the second video fragment will start at 30s and end at 80s. The video fragments will overlap, and the API service will return a result that starts 30s and ends at 50s.
+                      If you specify a value of 20s for the `proximity` parameter, the first video fragment will start at 0s and end at 50s, and the second video fragment will start at 30s and end at 80s. The video fragments will overlap, and the API service will return a result that starts 30s and ends at 50s.
 
                       **Default**: `0`.
                     default: 0
-                  order_strict:
-                    type: boolean
-                    description: |
-                      When specifying multiple search queries, you can use this parameter to indicate if the order of the matching video fragments should be the same as the order of your queries.
 
     classify:
       content:
@@ -2991,9 +2952,7 @@ components:
             properties:
               conversation_option:
                 description: |
-                  Specifies the type of search the API service will perform. The following values are supported:
-                  - `semantic`: When using this value, the API service determines the meaning of a search query, rather than just matching the keywords you've specified to the content of your videos. Use this value when understanding the meaning of language and the relationships between different concepts and entities is required.
-                  - `transcription`: When using this value, the API service identifies the moments in your videos when the keywords or phrases you've specified are present. Use this value when the API service should return only the exact matches.
+                  Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-options) page.
 
                   **Default:** `semantic`
                 default: semantic
@@ -3010,17 +2969,14 @@ components:
                 type: boolean
               labels:
                 description: |
-                  An array containing the names and the definitions of entities or actions that the API service should identify.
+                  An array containing the names and the definitions of entities or actions that the API service must identify.
                 items:
                   $ref: '#/components/schemas/classifyLabel'
                 minItems: 1
                 type: array
               options:
                 description: |
-                  This parameter specifies the source of information the API service uses when it categorizes a video. The following values are supported:
-                  - `visual`: Use this value to find objects, actions, sounds, movements, places, situational events, and complex audio-visual text descriptions.
-                  - `conversation`: Use this value to find the exact point in your video where the specified word or phrase is mentioned.
-                  - `text_in_video`: Use this value to search for text that appears in your videos (OCR).
+                  An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/concepts-search-options) page.
                 items:
                   enum:
                   - visual
@@ -3031,7 +2987,7 @@ components:
                 type: array
               threshold:
                 description: |
-                  This parameter represents the minimum similarity score between your label and the matching video fragments.
+                  Use this parameter to filter on the level of confidence that the results match your labels.
 
                   **Default:** `low`
                 default: low
@@ -3099,13 +3055,11 @@ components:
                   - conversation
                   - text_in_video
                 description: |
-                  Search options specify the source of information the API service uses when performing a search. The following values are supported:
-                  - `visual`: Allows you to search by objects, actions, sound, movements, places, situational events, and complex audio-visual text descriptions.
-                  - `conversation`: Allows you to find the exact point in your video where the specified word or phrase is mentioned.
-                  - `text_in_video`: Allows you to search for text that appears in your videos (OCR).
+                  An array that specifies the sources of information the API service uses when performing a search. For details, see the [Search options](/docs/concepts-search-options) page.
 
-                  The search options you specify must be a subset of the indexing options used when you created the index.
-                  You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
+                  **NOTES:** 
+                  - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
+                  - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
               group_by:
                 type: string
                 description: |
@@ -3120,7 +3074,7 @@ components:
                 default: clip
               threshold:
                 description: |
-                  This parameter represents the minimum similarity score between your label and the matching video fragments.
+                  Use this parameter to filter on the level of confidence that the search results match your query.
 
                   **Default:** `low`
                 default: low
@@ -3135,11 +3089,11 @@ components:
                 description: |
                   Use this parameter to specify the sort order for the response.
                   
-                  When performing a search, the API service determines the similarity score between your search terms and each matching video fragment. By default, the search results are sorted on the similarity score in descending order. 
+                  When performing a search, the API service determines the level of confidence that each video fragment matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
-                  If you set this parameter to `score` and `group_by` is set to `video`, the API service will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video fragments will be sorted by the similarity score.
+                  If you set this parameter to `score` and `group_by` is set to `video`, the API service will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video fragments will be sorted by the level of confidence.
 
-                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the API service will sort the videos in the response by the number of clips. For each video, the matching video fragments will be sorted by the similarity score. You can use `clip_count` only when the matching video fragments are sorted by video.
+                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the API service will sort the videos in the response by the number of clips. For each video, the matching video fragments will be sorted by the level of confidence. You can use `clip_count` only when the matching video fragments are sorted by video.
                   
 
                   **Default:** `score`
@@ -3150,15 +3104,15 @@ components:
               operator:
                 type: string
                 description: |
-                  When you specify more than one search option, you can use this parameter to indicate the logical operation that the API service should perform.
+                  When you perform a search specifying multiple [sources of information](/docs/concepts-search-options), you can use the this parameter to broaden or narrow your search.
                     
                     The following logical operators are supported:
                     
-                    - `or`: The API returns the results for which any search option matches.
+                    - `or`
                     
-                    - `and`: The API returns only the results for which all search options match.
-
-                    For details and examples, see the [Multiple search options](/docs/guides-multiple-search-options) page.
+                    - `and`
+                    
+                    For details and examples, see the [Using multiple sources of information](/docs/using-simple-queries#using-multiple-sources-of-information) secttion.
 
                     
                     **Default**: `or`.
@@ -3170,16 +3124,14 @@ components:
                   - semantic
                   - transcription
                 description: |
-                  Specifies the type of search the API service will perform. The following values are supported:
-                  - `semantic`: When using this value, the API service determines the meaning of a search query, rather than just matching the keywords you've specified to the content of your videos. Use this value when understanding the meaning of language and the relationships between different concepts and entities is required.
-                  - `transcription`:When using this value, the API service identifies the moments in your videos when the keywords or phrases you've specified are present. Use this value when the API service should return only the exact matches. Note that `transcription` can only be used with a single search option. For example, you cannot set the `search_option` parameter to equal `["visual", "conversation", "text_in_video"]` and the `conversation_option` parameter to equal `transcription`.
+                  Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-options) page.
 
                   **Default**: `semantic`.
                 default: semantic
               page_limit:
                 type: integer
                 description: |
-                  The number of items to return on each page.
+                  The number of items to return on each page. When grouping by video, this parameter represents the number of videos per page. Otherwise, it represents the maximum number of video fragments per page. 
 
                   **Max**: `50`.
                 default: 10
@@ -3227,7 +3179,7 @@ components:
                 description: |
                   A JSON file that contains a list. Each element of the list is an object representing a file to be uploaded and indexed and has the following fields:
 
-                  - `index_id`: The unique identifier of the index with which the video file will be associated.
+                  - `index_id`: The unique identifier of the index to which the video file will be uploaded.
                   - `language`: The language of your video.
                   - `object`: The S3 URL of your video.
                   - _(Optional)_ `transcription`: The S3 URL of your transcription.
@@ -3249,6 +3201,7 @@ components:
                     }
                   ]
                   ```
+
                 type: string
                 format: binary
     createVideoIndexingTask:
@@ -3292,11 +3245,12 @@ components:
                 description: |
                   When the `provide_transcription` parameter is set to `true`, and you want to provide a transcription from a publicly accessible URL, use the `transcription_url` parameter to specify the URL of your transcription. The transcription must be in the SRT or VTT format.
     updateIndex:
-      required: true
       content:
         application/json:
           schema:
             type: object
+            required:
+              - index_name
             properties:
               index_name:
                 type: string
@@ -3316,7 +3270,7 @@ components:
                 engine_id:
                   type: string
                   description: |
-                    Specifies the engine. The following options are available:
+                    Specifies the engine used by this index. The following engines are available:
                       - `marengo2`
                       
                       - `marengo`
@@ -3326,15 +3280,13 @@ components:
                       - Twelve Labs strongly recommends you use `marengo2`.
 
                       - You cannot change the engine once the index has been created.
+
+                    For details about engines, see the [Engines](/docs/concepts-engines) page.
                   default: marengo2
                 index_options:
                   type: array
                   description: |
-                    Must be a subset of `["visual", "conversation", "text_in_video"]`.
-                    
-                    **NOTES**:
-                    - The indexing options cannot be changed once the index has been created.
-                    - The types of searches you can perform on this index are a subset of the indexing options.
+                    An array that specifies how the API service will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video"]`. For more details, see the [Indexing options](/docs/concepts-indexing-options) page.
                   items:
                     type: string
                   minItems: 1
@@ -3347,7 +3299,6 @@ components:
                   type: string
                   description: |
                     The name of the index. Make sure you use a succinct and descriptive name.
-                  default: myIndex
                 addons:
                   type: array
                   description: |
@@ -3357,8 +3308,6 @@ components:
                     - You cannot disable thumbnails once the index has been created.
                   items:
                     type: string
-                  default:
-                    - thumbnail
             example:
               engine_id: marengo2
               index_options:
@@ -3367,4 +3316,4 @@ components:
                 - text_in_video
               addons:
                 - thumbnail
-              index_name: my-index
+              index_name: myIndex
