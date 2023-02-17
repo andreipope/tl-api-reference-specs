@@ -635,7 +635,7 @@ paths:
   '/v1.1/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
       summary: Retrieve text recognized in video (OCR)
-      description: This method retrieves text recognized in video (OCR).
+      description: This method retrieves text recognized in video (OCR). When the logo detection feature is enabled for an index, the API service also retrieves any logos detected in the specified video.
       operationId: retrieve-ocr
       tags:
         - Indexes/Videos
@@ -723,7 +723,7 @@ paths:
       tags:
         - Search
       description: |
-        Use the POST method of the `/search` endpoint to search for relevant matches in an index.
+        Use the POST method of the `/search` endpoint to search for relevant matches in an index. When the logo detection feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
@@ -781,7 +781,7 @@ paths:
       tags:
         - Combined queries
       description: |
-        Use the POST method of the `/beta/search` endpoint to search for relevant matches in an index using combined queries.
+        Use the POST method of the `/beta/search` endpoint to search for relevant matches in an index using combined queries. When the logo detection feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
