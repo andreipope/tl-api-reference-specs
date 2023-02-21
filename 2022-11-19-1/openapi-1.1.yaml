@@ -727,8 +727,9 @@ paths:
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
-        **NOTE**:
-          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTES**:
+          - This method has a rate limit of 1 call per second. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
+          When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: make-search-request
       requestBody:
         $ref: '#/components/requestBodies/search'
@@ -787,6 +788,7 @@ paths:
         **NOTES:**:
           - Twelve Labs Inc. has disabled calling this method from the browser in order to avoid confusion while we’re building a user interface that will provide a better experience.
           - This feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
+          - This method has a rate limit of 1 call per second. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
