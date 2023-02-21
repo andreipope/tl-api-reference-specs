@@ -729,7 +729,7 @@ paths:
 
         **NOTES**:
           - This method has a rate limit of 1 call per second. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
-          When you use pagination, you will not be charged for retrieving subsequent pages of results.
+          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: make-search-request
       requestBody:
         $ref: '#/components/requestBodies/search'
