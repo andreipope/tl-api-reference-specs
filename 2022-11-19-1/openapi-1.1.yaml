@@ -741,6 +741,9 @@ paths:
           $ref: '#/components/responses/searchResultsResponse'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the limit of 1 call per second is reached, the API service returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/v1.1/search/{page-token}':
     get:
@@ -800,6 +803,9 @@ paths:
           $ref: '#/components/responses/betaSearchResultsResponse'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the limit of 1 call per second is reached, the API service returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/v1.1/beta/search/{page-token}':
     get:
