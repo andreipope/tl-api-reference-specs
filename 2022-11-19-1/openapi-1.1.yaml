@@ -117,7 +117,7 @@ paths:
         '200':
           $ref: '#/components/responses/createVideoIndexingTaskResponse'
         '400':
-          $ref: '#/components/responses/genericError'
+          $ref: '#/components/responses/insufficientFunds'
     
     get:
       summary: List video indexing tasks
@@ -2626,7 +2626,31 @@ components:
           example:
             error_code: 104
             message: The conversation option of transcription is not allowed with multiple search options. You should use semantic instead.
-    
+
+    insufficientFunds:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: |
+                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
+              message: 
+                type: string
+                description: |
+                  A human-readable string describing the error, intended to be suitable for display in a user interface.
+              docs_url: 
+                type: string
+                description: |
+                  The URL of the relevant documentation page.
+          example:
+            code: insufficient_funds
+            message: Not enough free credit. Please register a payment method or contact sales@twelvelabs.io. 
+
+
     genericError:
       description: The request has failed.
       content:
