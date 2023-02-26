@@ -2569,8 +2569,8 @@ components:
                 type: string
                 description: A human-readable string describing the error.
           example:
-            error_code: 201
-            message: ID 629deb409ea24f052b971992 does not exist
+            error_code: 601
+            message: Insufficient funds
 
     deleteIndexError:
       description: The request has failed.
