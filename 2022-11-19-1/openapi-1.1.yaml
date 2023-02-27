@@ -15,7 +15,7 @@ info:
     email: support@twelvelabs.io
   version: 1.1.0 
 servers:
-  - url: 'https://api.twelvelabs.io'
+  - url: 'https://api.twelvelabs.io/v1.1'
 
 ################
 ###   Tags   ###
@@ -38,7 +38,7 @@ paths:
 ###   Engines   ###
 ###################
 
-  '/v1.1/engines':
+  '/engines':
     summary:  Engines
     get:
       summary: List engines
@@ -55,7 +55,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/engines/{engine-id}':
+  '/engines/{engine-id}':
     get:
       summary: Retrieve an engine
       description: This method retrieves an engine.
@@ -88,7 +88,7 @@ paths:
 ###   Tasks   ###
 #################
 
-  /v1.1/tasks:
+  /tasks:
     post:
       summary: Create a video indexing task
       description: |
@@ -148,7 +148,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
   
-  '/v1.1/tasks/{task_id}':
+  '/tasks/{task_id}':
     get:
       summary: Retrieve a video indexing task
       description: This method retrieves a video indexing task.
@@ -197,7 +197,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/tasks/status':
+  '/tasks/status':
     get:
       summary: Retrieve tasks by status
       description: This method retrieves the number video indexing tasks in each status for the specified index.
@@ -223,7 +223,7 @@ paths:
   ###   Tasks/Transfers   ###
   ###########################
 
-  '/v1.1/tasks/transfers':
+  '/tasks/transfers':
     post:
       summary: Make a cloud-to-cloud transfer
       description: |
@@ -254,7 +254,7 @@ paths:
 ###   Indexes   ###
 ###################
 
-  '/v1.1/indexes':
+  '/indexes':
     post:
       summary: Create an index
       description: This method creates an index.
@@ -310,7 +310,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
   
-  '/v1.1/indexes/{index-id}':
+  '/indexes/{index-id}':
     get:
       summary: Retrieve an index
       description: This method retrieves details about the specified index.
@@ -381,7 +381,7 @@ paths:
 ###   indexes/videos   ###
 ##########################
 
-  '/v1.1/indexes/{index-id}/videos':
+  '/indexes/{index-id}/videos':
     get:
       summary: List videos
       operationId: list-videos
@@ -497,7 +497,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/indexes/{index-id}/videos/{video-id}':
+  '/indexes/{index-id}/videos/{video-id}':
     get:
       summary: Retrieve video information
       description: This method retrieves information about the specified video.
@@ -587,7 +587,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/indexes/{index-id}/videos/{video-id}/transcription':
+  '/indexes/{index-id}/videos/{video-id}/transcription':
     get:
       summary: Retrieve a transcription
       description: This method retrieves a transcription of the spoken words.
@@ -632,7 +632,7 @@ paths:
           $ref: '#/components/responses/genericError'
 
 
-  '/v1.1/indexes/{index-id}/videos/{video-id}/text-in-video':
+  '/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
       summary: Retrieve text recognized in video (OCR)
       description: This method retrieves text recognized in video (OCR).
@@ -676,7 +676,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/indexes/{index_id}/videos/{video_id}/thumbnail':
+  '/indexes/{index_id}/videos/{video_id}/thumbnail':
     get:
       summary: Retrieve a thumbnail
       description: To use this feature, you must enable thumbnail generation for the index to which the video has been uploaded. For details, see the [Create an index](/reference/createindex) section.
@@ -717,7 +717,7 @@ paths:
 ###   Search   ###
 ##################
 
-  '/v1.1/search':
+  '/search':
     post:
       summary: Make a search request
       tags:
@@ -745,7 +745,7 @@ paths:
           description: |
             If the limit of 1 call per second is reached, the API service returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-  '/v1.1/search/{page-token}':
+  '/search/{page-token}':
     get:
       summary: Retrieve a specific page of search results
       tags:
@@ -775,7 +775,7 @@ paths:
 ###   Search - beta   ###
 #################################
 
-  '/v1.1/beta/search':
+  '/beta/search':
     post:
       x-readme:
         explorer-enabled: false
@@ -807,7 +807,7 @@ paths:
           description: |
             If the limit of 1 call per second is reached, the API service returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-  '/v1.1/beta/search/{page-token}':
+  '/beta/search/{page-token}':
     get:
       summary: Retrieve a specific page of search results
       tags:
@@ -839,7 +839,7 @@ paths:
 ###   Classify   ###
 ####################
 
-  '/v1.1/classify':
+  '/classify':
     post:
       summary: Classify a video
       description: Use this method to classify a video based on the entities or actions shown in that video.
@@ -857,7 +857,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/classify/bulk':
+  '/classify/bulk':
     post:
       summary: Classify all the videos in an index
       description: Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
@@ -875,7 +875,7 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-  '/v1.1/classify/{page_token}':
+  '/classify/{page_token}':
     get:
       summary: Retrieve a specific page of results
       description: The `/classify/bulk` endpoint returns the first page or results. You can use this endpoint to retrieve the rest of the pages.
