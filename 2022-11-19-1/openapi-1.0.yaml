@@ -814,7 +814,9 @@ paths:
       description: |
         Use this endpoint to search for relevant matches in an index. This endpoint returns the first page of results. To retrieve the subsequent pages, you must call the POST method of the `/search/{page-id}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
-        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTES**:
+          - This method has a rate limit of 1 call per second. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
+          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: search
       requestBody:
         $ref: '#/components/requestBodies/search'
