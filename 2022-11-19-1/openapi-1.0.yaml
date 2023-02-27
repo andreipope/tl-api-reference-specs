@@ -38,7 +38,7 @@ info:
 x-stoplight:
   id: 8y4w11j9s7zjg
 servers:
-  - url: 'https://api.twelvelabs.io'
+  - url: 'https://api.twelvelabs.io/v1'
 
 ################
 ###   Tags   ###
@@ -58,7 +58,7 @@ paths:
 ###   Engines   ###
 ###################
 
-  '/v1/engines':
+  '/engines':
     get:
       summary: List search engines
       description: This method lists all the search engines that are available in your account.
@@ -73,7 +73,7 @@ paths:
           $ref: '#/components/responses/getEnginesResponse'
         '400':
           $ref: '#/components/responses/genericError'
-  '/v1/engines/{engine-id}':
+  '/engines/{engine-id}':
     get:
       summary: Retrieve a search engine
       description: This method retrieves a search engine.
@@ -107,7 +107,7 @@ paths:
 ###   Indexes   ###
 ###################
 
-  '/v1/indexes':
+  '/indexes':
     post:
       summary: Create an index
       description: This method creates an index.
@@ -162,7 +162,7 @@ paths:
           $ref: '#/components/responses/getIndexesResponse'
         '400':
           $ref: '#/components/responses/getIndexesError'
-  '/v1/indexes/{index-id}':
+  '/indexes/{index-id}':
     get:
       summary: Retrieve an index
       description: This method retrieves details about the specified index.
@@ -233,7 +233,7 @@ paths:
 ###   Indexes/Tasks   ###
 #########################
 
-  '/v1/indexes/tasks':
+  '/indexes/tasks':
     post:
       summary: Create a video indexing task
       description: |
@@ -346,7 +346,7 @@ paths:
         '400':
           $ref: '#/components/responses/getVideoIndexingTasksError'
   
-  '/v1/indexes/tasks/{task-id}':
+  '/indexes/tasks/{task-id}':
     get:
       summary: Retrieve a video indexing task
       description: This method retrieves a video indexing task.
@@ -394,7 +394,7 @@ paths:
         '400':
           $ref: '#/components/responses/deleteVideoIndexingTaskError'
 
-  '/v1/indexes/tasks/{task-id}/video-id':
+  '/indexes/tasks/{task-id}/video-id':
     get:
       summary: Retrieve the video ID associated with a task ID
       description: 'Provide the ID of a video indexing task, and the API service will return the corresponding video ID.'
@@ -417,7 +417,7 @@ paths:
         '400':
           $ref: '#/components/responses/getVideoVectorIdError'
 
-  '/v1/indexes/{index-id}/tasks/status':
+  '/indexes/{index-id}/tasks/status':
     get:
       summary: Retrieve the number of tasks in each status
       description: |
@@ -445,7 +445,7 @@ paths:
 ###   Tasks/Transfers   ###
 ###########################
 
-  '/v1/indexes/tasks/transfers':
+  '/indexes/tasks/transfers':
     post:
       summary: Make a cloud-to-cloud transfer
       description: This method makes a cloud-to-cloud transfer.
@@ -474,7 +474,7 @@ paths:
 ###   Indexes/Videos   ###
 ##########################
 
-  '/v1/indexes/{index-id}/videos':
+  '/indexes/{index-id}/videos':
     get:
       summary: List videos
       operationId: listVideoInformation
@@ -588,7 +588,7 @@ paths:
         '400':
           $ref: '#/components/responses/getVideoVectorsError'
   
-  '/v1/indexes/{index-id}/videos/{video-id}':
+  '/indexes/{index-id}/videos/{video-id}':
     get:
       summary: Retrieve video information
       description: This method retrieves information about the specified video.
@@ -678,7 +678,7 @@ paths:
         '400':
           $ref: '#/components/responses/deleteVideoVectorError'
   
-  '/v1/indexes/{index-id}/videos/{video-id}/transcription':
+  '/indexes/{index-id}/videos/{video-id}/transcription':
     get:
       summary: Retrieve a transcription
       description: This method retrieves a transcription of the spoken words.
@@ -722,7 +722,7 @@ paths:
         '400':
           $ref: '#/components/responses/retrieveTranscriptionError'
   
-  '/v1/indexes/{index-id}/videos/{video-id}/text-in-video':
+  '/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
       summary: Retrieve text recognized in video (OCR)
       description: This method retrieves text recognized in video (OCR).
@@ -766,7 +766,7 @@ paths:
         '400':
           $ref: '#/components/responses/retrieveOcrError'
 
-  '/v1/indexes/{index-id}/videos/{video-id}/thumbnail':
+  '/indexes/{index-id}/videos/{video-id}/thumbnail':
     get:
       summary: Retrieve a thumbnail
       description: To use this feature, you must enable thumbnail generation for the index with which the video is associated. For details, see the [Create an index](/reference/createindex) section.
@@ -806,7 +806,7 @@ paths:
 ##################
 ###   Search   ###
 ##################
-  '/v1/search':
+  '/search':
     post:
       summary: Make a search request
       tags:
@@ -827,7 +827,7 @@ paths:
         '400':
           $ref: '#/components/responses/searchResultsError'
 
-  '/v1/search/{page-id}':
+  '/search/{page-id}':
     post:
       summary: Retrieve a specific page of search results
       tags:
