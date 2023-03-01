@@ -635,7 +635,7 @@ paths:
   '/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
       summary: Retrieve text recognized in video (OCR)
-      description: This method retrieves text recognized in video (OCR).
+      description: This method retrieves text recognized in video (OCR). When the [logo detection](/docs/guides-detecting-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified video.
       operationId: retrieve-ocr
       tags:
         - Indexes/Videos
@@ -723,12 +723,12 @@ paths:
       tags:
         - Search
       description: |
-        Use the POST method of the `/search` endpoint to search for relevant matches in an index.
+        Use the POST method of the `/search` endpoint to search for relevant matches in an index. When the [logo detection](/docs/guides-detecting-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
-          - This method has a rate limit of 1 call per second. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
+          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: make-search-request
       requestBody:
@@ -784,14 +784,14 @@ paths:
       tags:
         - Combined queries
       description: |
-        Use the POST method of the `/beta/search` endpoint to search for relevant matches in an index using combined queries.
+        Use the POST method of the `/beta/search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/guides-detecting-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES:**:
           - Twelve Labs Inc. has disabled calling this method from the browser in order to avoid confusion while we’re building a user interface that will provide a better experience.
           - This feature is in beta, and the definition of the `/beta/search` endpoint is subject to change.
-          - This method has a rate limit of 1 call per second. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
+          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -3334,12 +3334,21 @@ components:
                 addons:
                   type: array
                   description: |
-                    The list of add-ons that are enabled for this index. To enable thumbnail generation for an index, set this parameter to `["thumbnail"]`.
+                    An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
+                    - `thumbnail`: Enables thumbnail generation.
+                    - `logo`: Enables [logo detection](/docs/guides-detecting-logos).
+                    
+                    If you don't provide this parameter, no add-ons will be enabled.
 
                     **NOTE**:
-                    - You cannot disable thumbnails once the index has been created.
+                    - You cannot disable an add-on once the index has been created.
                   items:
                     type: string
+                  minItems: 1
+                  maxItems: 2
+                  default:
+                    - thumbnail
+                    - logo
             example:
               engine_id: marengo2
               index_options:
@@ -3348,4 +3357,5 @@ components:
                 - text_in_video
               addons:
                 - thumbnail
+                - logo
               index_name: myIndex
