@@ -797,7 +797,7 @@ paths:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
       requestBody:
-        $ref: '#/components/requestBodies/betaSearch'
+        $ref: '#/components/requestBodies/betaSearchRequest'
       responses:
         '200':
           $ref: '#/components/responses/betaSearchResultsResponse'
@@ -850,7 +850,7 @@ paths:
       tags:
         - Classify
       requestBody:
-        $ref: '#/components/requestBodies/classify'
+        $ref: '#/components/requestBodies/classifyRequest'
       responses:
         '200':
           $ref: '#/components/responses/classifyResponse'
@@ -868,7 +868,7 @@ paths:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
       requestBody:
-        $ref: '#/components/requestBodies/classifyBulk'
+        $ref: '#/components/requestBodies/classifyRequestBulk'
       responses:
         '200':
           $ref: '#/components/responses/classifyBulkResponse'
@@ -916,6 +916,47 @@ components:
       enum:
       - semantic
       - transcription
+      type: string
+
+    includeClips:
+      description: |
+        When this parameter is set to `true`, the API service will return information about each matching video fragment.
+
+        **Default:** false
+      default: false
+      type: boolean
+    
+    labels:
+      description: |
+        An array containing the names and the definitions of entities or actions that the API service must identify.
+      items:
+        $ref: '#/components/schemas/classifyLabel'
+      minItems: 1
+      type: array
+
+    options:
+      description: |
+        An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/concepts-search-options) page.
+      items:
+        enum:
+        - conversation
+        - text_in_video
+        - visual
+        type: string
+      minItems: 1
+      type: array
+
+    threshold:
+      description: |
+        Use this parameter to filter on the level of confidence that the results match your labels.
+
+        **Default:** `low`
+      default: low
+      enum:
+      - high
+      - medium
+      - low
+      - none
       type: string
 
     classifyPageInfo:
@@ -2817,7 +2858,7 @@ components:
 
   requestBodies:
 
-    classifyBulk:
+    classifyRequestBulk:
       content:
         application/json:
           schema:
@@ -2829,35 +2870,12 @@ components:
             properties:
               conversation_option:
                 $ref: '#/components/schemas/conversationOption'
-              include_clips:
-                default: false
-                description: |
-                  When this parameter is set to `true`, the API service will return information about each matching video fragment.
-
-                  **Default:** `false`
-                type: boolean
-              index_id:
-                type: string
-                description: |
-                  The unique identifier of the index containing the videos you want to classify.
+              includeClips:
+                $ref: '#/components/schemas/includeClips'
               labels:
-                description: |
-                  An array containing the names and the definitions of entities or actions that the API service must identify.
-                items:
-                  $ref: '#/components/schemas/classifyLabel'
-                minItems: 1
-                type: array
+                $ref: '#/components/schemas/labels'
               options:
-                description: |
-                  An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/concepts-search-options) page.
-                items:
-                  enum:
-                  - conversation
-                  - text_in_video
-                  - visual
-                  type: string
-                minItems: 1
-                type: array
+                $ref: '#/components/schemas/options'
               page_limit:
                 description: |
                   The number of items to return on each page.
@@ -2870,20 +2888,33 @@ components:
                 minimum: 1
                 type: integer
               threshold:
-                description: |
-                  Use this parameter to filter on the level of confidence that the results match your labels.
-
-                  **Default:** `low`
-                default: low
-                enum:
-                - high
-                - medium
-                - low
-                - none
-                type: string
+                $ref: '#/components/schemas/threshold'
 
 
-    betaSearch:
+    classifyRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - labels
+            - options
+            - video_id
+            properties:
+              conversation_option:
+                $ref: '#/components/schemas/conversationOption'
+              includeClips:
+                $ref: '#/components/schemas/includeClips'
+              labels:
+                $ref: '#/components/schemas/labels'
+              options:
+                $ref: '#/components/schemas/options'
+              threshold:
+                $ref: '#/components/schemas/threshold'
+
+
+
+    betaSearchRequest:
       content:
         application/json:
           schema:
@@ -2972,61 +3003,6 @@ components:
 
                       **Default**: `0`.
                     default: 0
-
-    classify:
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - labels
-            - options
-            - video_id
-            properties:
-              conversation_option:
-                $ref: '#/components/schemas/conversationOption'
-              include_clips:
-                description: |
-                  When this parameter is set to `true`, the API service will return information about each matching video fragment.
-
-                  **Default:** false
-                default: false
-                type: boolean
-              labels:
-                description: |
-                  An array containing the names and the definitions of entities or actions that the API service must identify.
-                items:
-                  $ref: '#/components/schemas/classifyLabel'
-                minItems: 1
-                type: array
-              options:
-                description: |
-                  An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/concepts-search-options) page.
-                items:
-                  enum:
-                  - visual
-                  - conversation
-                  - text_in_video
-                  type: string
-                minItems: 1
-                type: array
-              threshold:
-                description: |
-                  Use this parameter to filter on the level of confidence that the results match your labels.
-
-                  **Default:** `low`
-                default: low
-                enum:
-                - high
-                - medium
-                - low
-                - none
-                type: string
-              video_id:
-                type: string
-                description: |
-                  The unique identifier of the video you want to classify.
-
 
     update-video-vector:
       content:
