@@ -907,7 +907,7 @@ paths:
 components:
   schemas:
 
-    conversationOption:
+    conversation_option:
       description: |
         Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-options) page.
 
@@ -918,7 +918,7 @@ components:
       - transcription
       type: string
 
-    includeClips:
+    include_clips:
       description: |
         When this parameter is set to `true`, the API service will return information about each matching video fragment.
 
@@ -2871,9 +2871,9 @@ components:
             - options
             properties:
               conversation_option:
-                $ref: '#/components/schemas/conversationOption'
+                $ref: '#/components/schemas/conversation_option'
               includeClips:
-                $ref: '#/components/schemas/includeClips'
+                $ref: '#/components/schemas/include_clips'
               labels:
                 $ref: '#/components/schemas/labels'
               options:
@@ -2994,9 +2994,9 @@ components:
             - video_id
             properties:
               conversation_option:
-                $ref: '#/components/schemas/conversationOption'
+                $ref: '#/components/schemas/conversation_option'
               includeClips:
-                $ref: '#/components/schemas/includeClips'
+                $ref: '#/components/schemas/include_clips'
               labels:
                 $ref: '#/components/schemas/labels'
               options:
