@@ -191,9 +191,8 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: |
-            If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
+        '204':
+          $ref: '#/components/responses/noContentResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -244,8 +243,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/cloud-to-cloud-transfer'
       responses:
-        '200':
-          $ref: '#/components/responses/cloudToCloudTransferResponse'
+        '204':
+          $ref: '#/components/responses/noContentResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -351,8 +350,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/updateIndex'
       responses:
-        '200':
-          $ref: '#/components/responses/updateIndexResponse'
+        '204':
+          $ref: '#/components/responses/noContentResponse'
         '400':
           $ref: '#/components/responses/genericError'
     delete:
@@ -372,8 +371,8 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/deleteIndexResponse'
+        '204':
+          $ref: '#/components/responses/noContentResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -553,8 +552,8 @@ paths:
         $ref: '#/components/requestBodies/update-video-vector'
 
       responses:
-        '200':
-          $ref: '#/components/responses/updateVideoVectorResponse'
+        '204':
+          $ref: '#/components/responses/noContentResponse'
         '400':
           $ref: '#/components/responses/genericError'
     delete:
@@ -582,8 +581,8 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/deleteVideoVectorResponse'
+        '204':
+          $ref: '#/components/responses/noContentResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -1697,10 +1696,9 @@ components:
             type: search_create_token
 
 
-    cloudToCloudTransferResponse:
+    noContentResponse:
       description: If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
-    updateIndexResponse:
-      description: If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
+
 
     betaSearchResultsResponse:
       description: Successfully performed a search request.
@@ -2593,12 +2591,6 @@ components:
                 page: 1
                 total_page: 1
                 total_results: 2
-    updateVideoVectorResponse:
-      description: If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
-    deleteVideoVectorResponse:
-      description: If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
-    deleteIndexResponse:
-      description: If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
     createVideoIndexingTaskResponse:
       description: A video indexing task has successfully been created.
       content:
