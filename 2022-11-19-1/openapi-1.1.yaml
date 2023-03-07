@@ -928,7 +928,7 @@ components:
     
     labels:
       description: |
-        An array containing the names and the definitions of entities or actions that the API service must identify.
+        An array of objects containing the names and the definitions of entities or actions that the API service must identify.
       items:
         $ref: '#/components/schemas/classifyLabel'
       minItems: 1
