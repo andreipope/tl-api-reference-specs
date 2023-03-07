@@ -2872,7 +2872,7 @@ components:
             properties:
               conversation_option:
                 $ref: '#/components/schemas/conversation_option'
-              includeClips:
+              include_clips:
                 $ref: '#/components/schemas/include_clips'
               labels:
                 $ref: '#/components/schemas/labels'
@@ -2995,7 +2995,7 @@ components:
             properties:
               conversation_option:
                 $ref: '#/components/schemas/conversation_option'
-              includeClips:
+              include_clips:
                 $ref: '#/components/schemas/include_clips'
               labels:
                 $ref: '#/components/schemas/labels'
