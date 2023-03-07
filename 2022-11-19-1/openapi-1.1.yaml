@@ -106,13 +106,7 @@ paths:
         $ref: '#/components/requestBodies/createVideoIndexingTask'
       parameters:
         - $ref: '#/components/parameters/x-api-key'
-        - name: Content-Type
-          in: header
-          description: Must be set to `multipart/form-data`.
-          required: true
-          schema:
-            type: string
-            default: multipart/form-data
+        - $ref: '#/components/parameters/multipart'
       responses:
         '200':
           $ref: '#/components/responses/createVideoIndexingTaskResponse'
@@ -229,14 +223,7 @@ paths:
         This method makes a cloud-to-cloud transfer.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
-        - name: Content-Type
-          in: header
-          description: Must be set to `multipart/form-data`.
-          required: true
-          schema:
-            type: string
-            enum:
-              - multipart/form-data
+        - $ref: '#/components/parameters/multipart'
       operationId: cloud-to-cloud-transfer
       tags:
         - Tasks/Transfers
@@ -1345,6 +1332,14 @@ components:
       required: true
       schema:
         type: string
+    multipart:
+      name: Content-Type
+      in: header
+      description: Must be set to `multipart/form-data`.
+      required: true
+      schema:
+        type: string
+        default: multipart/form-data
     page:
       name: page
       in: query
