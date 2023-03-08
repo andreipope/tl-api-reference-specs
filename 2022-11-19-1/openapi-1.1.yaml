@@ -893,6 +893,10 @@ paths:
 components:
   schemas:
 
+    limit_per_page_simple:
+      type: integer
+      description: The maximum number of items on each page.
+
     total_inner_matches:
       type: integer 
       description: |
@@ -2355,8 +2359,7 @@ components:
                 type: object
                 properties:
                   limit_per_page:
-                    type: integer
-                    description: The maximum number of items on each page.
+                    $ref: '#/components/schemas/limit_per_page_simple'
                   page:
                     type: integer
                     description: The page you retrieved.
@@ -2513,8 +2516,7 @@ components:
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    description: The maximum number of items on each page.
-                    type: integer
+                    $ref: '#/components/schemas/limit_per_page_simple'
                   page:
                     description: The page you retrieved.
                     type: integer
