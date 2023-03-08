@@ -893,6 +893,10 @@ paths:
 components:
   schemas:
 
+    next_page_token:
+      type: string
+      description: The unique identifier of the next page.
+
     search_pool:
       type: object
       description: An object that contains details about the index you queried.
@@ -1561,8 +1565,7 @@ components:
                     description: |
                       When grouping by video, the API service return this field that shows the total number of video fragments matching your query.
                   next_page_token:
-                    type: string
-                    description: The unique identifier of the next page.
+                    $ref: '#/components/schemas/next_page_token'
                   prev_page_token:
                     type: string
                     description: The unique identifier of the previous page.
@@ -1752,8 +1755,7 @@ components:
                     type: integer
                     description: The total number of results.
                   next_page_token:
-                    type: string
-                    description: The unique identifier of the next page.
+                    $ref: '#/components/schemas/next_page_token'
               search_pool:
                 $ref: '#/components/schemas/search_pool'
           example:
@@ -1841,8 +1843,7 @@ components:
                     type: integer
                     description: The total number of results.
                   next_page_token:
-                    type: string
-                    description: The unique identifier of the next page.
+                    $ref: '#/components/schemas/next_page_token'
               search_pool:
                 $ref: '#/components/schemas/search_pool'
           example:
@@ -1956,8 +1957,7 @@ components:
                     description: |
                       When grouping by video, the API service return this field that shows the total number of video fragments matching your query.
                   next_page_token:
-                    type: string
-                    description: The unique identifier of the next page.
+                    $ref: '#/components/schemas/next_page_token'
               query:
                 type: string
                 description: The search query you specified.
