@@ -893,6 +893,10 @@ paths:
 components:
   schemas:
 
+    total_page:
+      type: integer
+      description: The total number of pages.
+
     limit_per_page_simple:
       type: integer
       description: The maximum number of items on each page.
@@ -2202,8 +2206,7 @@ components:
                     type: integer
                     description: The page you retrieved.
                   total_page:
-                    type: integer
-                    description: The total number of pages.
+                    $ref: '#/components/schemas/total_page'
                   total_results:
                     type: integer
                     description: The total number of results.
@@ -2361,8 +2364,7 @@ components:
                     type: integer
                     description: The page you retrieved.
                   total_page:
-                    type: integer
-                    description: The total number of pages.
+                    $ref: '#/components/schemas/total_page'
                   total_results:
                     type: integer
                     description: The total number of results.
@@ -2518,8 +2520,7 @@ components:
                     description: The page you retrieved.
                     type: integer
                   total_page:
-                    description: The total number of pages.
-                    type: integer
+                    $ref: '#/components/schemas/total_page'
                   total_results:
                     description: The total number of results. 
                     type: integer
