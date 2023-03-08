@@ -893,6 +893,20 @@ paths:
 components:
   schemas:
 
+    search_pool:
+      type: object
+      description: An object that contains details about the index you queried.
+      properties:
+        total_count:
+          type: integer
+          description: The number of videos in the index you queried.
+        total_duration:
+          type: number
+          description: The total duration of the videos.
+        index_id:
+          type: string
+          description: The unique identifier of the index.
+
     conversation_option:
       description: |
         Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-options) page.
@@ -1214,7 +1228,7 @@ components:
         index_id:
           type: string
           description: |
-            A string pointing to the index to which the video is assigned.
+            A string representing the unique identifier of the index to which the video must be uploaded.
         metadata:
           type: object
           description: |
@@ -1559,18 +1573,7 @@ components:
                 type: array
                 description: The search options you used.
               search_pool:
-                type: object
-                description: An object that contains details about the index you queried.
-                properties:
-                  total_count:
-                    type: integer
-                    description: The number of videos in the index you queried.
-                  total_duration:
-                    type: number
-                    description: The total duration of the videos.
-                  index_id:
-                    type: string
-                    description: The unique identifier of the index.
+                $ref: '#/components/schemas/search_pool'
           example:
             search_pool:
               total_count: 13
@@ -1752,18 +1755,7 @@ components:
                     type: string
                     description: The unique identifier of the next page.
               search_pool:
-                type: object
-                description: An object that contains details about the index you queried.
-                properties:
-                  total_count:
-                    type: integer
-                    description: The number of videos in the index you queried.
-                  total_duration:
-                    type: number
-                    description: The total duration of the videos.
-                  index_id:
-                    type: string
-                    description: The unique identifier of the index.
+                $ref: '#/components/schemas/search_pool'
           example:
             search_pool:
               total_count: 11
@@ -1852,18 +1844,7 @@ components:
                     type: string
                     description: The unique identifier of the next page.
               search_pool:
-                type: object
-                description: An object that contains details about the index you queried.
-                properties:
-                  total_count:
-                    type: integer
-                    description: The number of videos in the index you queried.
-                  total_duration:
-                    type: number
-                    description: The total duration of the videos.
-                  index_id:
-                    type: string
-                    description: The unique identifier of the index.
+                $ref: '#/components/schemas/search_pool'
           example:
             search_pool:
               total_count: 11
@@ -1984,18 +1965,7 @@ components:
                 type: array
                 description: The search options you used.
               search_pool:
-                type: object
-                description: An object that contains details about the index you queried.
-                properties:
-                  total_count:
-                    type: integer
-                    description: The number of videos in the index you queried.
-                  total_duration:
-                    type: number
-                    description: The total duration of the videos.
-                  index_id:
-                    type: string
-                    description: The unique identifier of the index.
+                $ref: '#/components/schemas/search_pool'
           example:
             search_pool:
               total_count: 13
