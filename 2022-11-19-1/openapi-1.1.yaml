@@ -893,6 +893,18 @@ paths:
 components:
   schemas:
 
+    total_results:
+      description: The total number of results. 
+      type: integer
+
+    page:
+      description: The page you retrieved.
+      type: integer
+
+    total_page:
+      type: integer
+      description: The total number of pages.
+
     limit_per_page_simple:
       type: integer
       description: The maximum number of items on each page.
@@ -1753,14 +1765,12 @@ components:
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    type: integer
-                    description: The maximum number of items on each page.
+                    $ref: '#/components/schemas/limit_per_page_simple'
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
                   total_results:
-                    type: integer
-                    description: The total number of results.
+                    $ref: '#/components/schemas/total_results'
                   next_page_token:
                     $ref: '#/components/schemas/next_page_token'
               search_pool:
@@ -1841,14 +1851,12 @@ components:
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    type: integer
-                    description: The maximum number of items on each page.
+                    $ref: '#/components/schemas/limit_per_page_simple'
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
                   total_results:
-                    type: integer
-                    description: The total number of results.
+                    $ref: '#/components/schemas/total_results'
                   next_page_token:
                     $ref: '#/components/schemas/next_page_token'
               search_pool:
@@ -2199,17 +2207,13 @@ components:
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    type: integer
-                    description: The maximum number of items on each page.
+                    $ref: '#/components/schemas/limit_per_page_simple'
                   page:
-                    type: integer
-                    description: The page you retrieved.
+                    $ref: '#/components/schemas/page'
                   total_page:
-                    type: integer
-                    description: The total number of pages.
+                    $ref: '#/components/schemas/total_page'
                   total_results:
-                    type: integer
-                    description: The total number of results.
+                    $ref: '#/components/schemas/total_results'
 
             example:
               data:
@@ -2361,14 +2365,11 @@ components:
                   limit_per_page:
                     $ref: '#/components/schemas/limit_per_page_simple'
                   page:
-                    type: integer
-                    description: The page you retrieved.
+                    $ref: '#/components/schemas/page'
                   total_page:
-                    type: integer
-                    description: The total number of pages.
+                    $ref: '#/components/schemas/total_page'
                   total_results:
-                    type: integer
-                    description: The total number of results.
+                    $ref: '#/components/schemas/total_results'
           example:
             data:
               - _id: 62a17bf847f5678267ec10cc
@@ -2518,14 +2519,11 @@ components:
                   limit_per_page:
                     $ref: '#/components/schemas/limit_per_page_simple'
                   page:
-                    description: The page you retrieved.
-                    type: integer
+                    $ref: '#/components/schemas/page'
                   total_page:
-                    description: The total number of pages.
-                    type: integer
+                    $ref: '#/components/schemas/total_page'
                   total_results:
-                    description: The total number of results. 
-                    type: integer
+                    $ref: '#/components/schemas/total_results'
             example:
               data:
                 - _id: 62d85fe7340fa665f1fda5dd
