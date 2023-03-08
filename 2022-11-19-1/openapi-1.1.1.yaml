@@ -1753,8 +1753,7 @@ components:
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    type: integer
-                    description: The maximum number of items on each page.
+                    $ref: '#/components/schemas/limit_per_page_simple'
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
@@ -1841,8 +1840,7 @@ components:
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    type: integer
-                    description: The maximum number of items on each page.
+                    $ref: '#/components/schemas/limit_per_page_simple'
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
@@ -2199,8 +2197,7 @@ components:
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    type: integer
-                    description: The maximum number of items on each page.
+                    $ref: '#/components/schemas/limit_per_page_simple'
                   page:
                     type: integer
                     description: The page you retrieved.
