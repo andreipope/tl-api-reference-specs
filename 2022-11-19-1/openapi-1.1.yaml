@@ -893,6 +893,12 @@ paths:
 components:
   schemas:
 
+    thumbnail_url:
+      type: string
+      description: |
+        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+
+
     total_results:
       description: The total number of results. 
       type: integer
@@ -1094,9 +1100,7 @@ components:
           description: |
             Start time of the matching video fragment, expressed in seconds.
         thumbnail_url:
-          type: string
-          description: |
-            If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+          $ref: '#/components/schemas/thumbnail_url'
       type: object
 
     engine:
@@ -1560,9 +1564,7 @@ components:
                         - `low`
                         - `extremely low`
                     thumbnail_url:
-                      type: string
-                      description: |
-                        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+                      $ref: '#/components/schemas/thumbnail_url'
                     module_confidence:
                       type: object
                       description: When multiple search options are specified in the request, the API service returns the confidence level that the results match your search terms for each search option as an object composed of key-value pairs. Each search option represents a key, and the confidence level represents the value.
@@ -1757,9 +1759,7 @@ components:
                         - `low`
                         - `extremely low`
                     thumbnail_url:
-                      type: string
-                      description: |
-                        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+                      $ref: '#/components/schemas/thumbnail_url'
               page_info:
                 type: object
                 description: An object that provides information about pagination.
@@ -1843,9 +1843,7 @@ components:
                         - `low`
                         - `extremely low`
                     thumbnail_url:
-                      type: string
-                      description: |
-                        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+                      $ref: '#/components/schemas/thumbnail_url'
               page_info:
                 type: object
                 description: An object that provides information about pagination.
@@ -1946,9 +1944,7 @@ components:
                         - `low`
                         - `extremely low`
                     thumbnail_url:
-                      type: string
-                      description: |
-                        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+                      $ref: '#/components/schemas/thumbnail_url'
                     module_confidence:
                       type: object
                       description: When multiple search options were specified, the API service returns the confidence level for each search option as an object composed of key-value pairs. The search option represents the key, and the confidence level represents the value.
@@ -3287,3 +3283,4 @@ components:
                 - thumbnail
                 - logo
               index_name: myIndex
+
