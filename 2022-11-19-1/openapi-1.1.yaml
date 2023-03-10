@@ -1012,7 +1012,7 @@ components:
         prev_token:
           type: string
           description: |
-            The unique identifier of the next page.
+            The unique identifier of the prev page.
         total_count:
           type: integer
           description: |
