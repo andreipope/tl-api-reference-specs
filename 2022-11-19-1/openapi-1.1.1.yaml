@@ -1020,9 +1020,7 @@ components:
         limit:
           $ref: '#/components/schemas/limit_per_page_simple'
         next_token:
-          type: string
-          description: |
-            The unique identifier of the next page.
+          $ref: '#/components/schemas/next_page_token' 
         prev_token:
           type: string
           description: |
