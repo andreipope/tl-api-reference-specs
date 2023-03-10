@@ -1091,7 +1091,7 @@ components:
         end:
           type: number
           description: |
-            End time of the matching video fragment, expressed in seconds.
+            The end time of the matching video fragment, expressed in seconds.
         score:
           type: number
           description: |
@@ -1105,7 +1105,7 @@ components:
         start:
           type: number
           description: |
-            Start time of the matching video fragment, expressed in seconds.
+            The start time of the matching video fragment, expressed in seconds.
         thumbnail_url:
           $ref: '#/components/schemas/thumbnail_url'
       type: object
@@ -1542,10 +1542,10 @@ components:
                         A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       type: number
-                      description: Start time of the matching video fragment, expressed in seconds.
+                      description: The start time of the matching video fragment, expressed in seconds.
                     end:
                       type: number
-                      description: End time of the matching video fragment, expressed in seconds.
+                      description: The end time of the matching video fragment, expressed in seconds.
                     video_id:
                       type: string
                       description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
@@ -1741,11 +1741,11 @@ components:
                         A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       description: |
-                        Start time of the matching video fragment, expressed in seconds.
+                        The start time of the matching video fragment, expressed in seconds.
                       type: number
                     end:
                       description: |
-                        End time of the matching video fragment, expressed in seconds.
+                        The end time of the matching video fragment, expressed in seconds.
                     video_id:
                       type: string
                       description: |
@@ -1819,11 +1819,11 @@ components:
                         A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       description: |
-                        Start time of the matching video fragment, expressed in seconds.
+                        The start time of the matching video fragment, expressed in seconds.
                       type: number
                     end:
                       description: |
-                        End time of the matching video fragment, expressed in seconds.
+                        The end time of the matching video fragment, expressed in seconds.
                     video_id:
                       type: string
                       description: |
@@ -1903,10 +1903,10 @@ components:
                         A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
                     start:
                       type: number
-                      description: Start time of the matching video fragment, expressed in seconds.
+                      description: The start time of the matching video fragment, expressed in seconds.
                     end:
                       type: number
-                      description: End time of the matching video fragment, expressed in seconds.
+                      description: The end time of the matching video fragment, expressed in seconds.
                     video_id:
                       type: string
                       description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
