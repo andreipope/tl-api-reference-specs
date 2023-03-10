@@ -1026,9 +1026,7 @@ components:
           description: |
             The unique identifier of the prev page.
         total_count:
-          type: integer
-          description: |
-            The total number of results.
+          $ref: '#/components/schemas/total_results' 
       type: object
 
     classifyLabel:
