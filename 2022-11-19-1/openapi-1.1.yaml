@@ -893,6 +893,22 @@ paths:
 components:
   schemas:
 
+    max_confidence:
+      type: string
+      description: |
+        A qualitative indicator based on the value of the `max_score` field. This field can take one of the following values:
+          - `high`
+          - `medium`
+          - `low`
+          - `extremely low`
+    confidence:
+      type: string
+      description: |
+        A qualitative indicator based on the value of the `score` field. This field can take one of the following values:
+        - `high`
+        - `medium`
+        - `low`
+        - `extremely low`
     module_confidence:
       type: object
       description: |
@@ -1002,9 +1018,7 @@ components:
           description: |
             A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
         limit:
-          type: integer
-          description: |
-            The maximum number of items on each page.
+          $ref: '#/components/schemas/limit_per_page_simple'
         next_token:
           type: string
           description: |
@@ -1054,13 +1068,7 @@ components:
           type: array
 
         confidence:
-          type: string
-          description: |
-            A qualitative indicator based on the value of the `max_score` field. This field can take one of the following values:
-              - `high`
-              - `medium`
-              - `low`
-              - `extremely low`
+          $ref: '#/components/schemas/max_confidence'
         duration:
           description: The total duration of the matching video fragments.
           type: number
@@ -1079,13 +1087,7 @@ components:
       description: An array containing information about the video fragments that match the label you've specified.
       properties:
         confidence:
-          type: string
-          description: |
-            A qualitative indicator based on the value of the `score` field. This field can take one of the following values:
-            - `high`
-            - `medium`
-            - `low`
-            - `extremely low`
+          $ref: '#/components/schemas/confidence'
         end:
           type: number
           description: |
@@ -1561,13 +1563,7 @@ components:
                             type: string
                             description: For `conversation` and `text_in_video`, the API returns a transcription of the spoken words or the text that matches your search query.
                     confidence:
-                      type: string
-                      description: |
-                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
-                        - `high`
-                        - `medium`
-                        - `low`
-                        - `extremely low`
+                      $ref: '#/components/schemas/confidence'
                     thumbnail_url:
                       $ref: '#/components/schemas/thumbnail_url'
                     module_confidence:
@@ -1755,13 +1751,7 @@ components:
                       description: |
                         A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     confidence:
-                      type: string
-                      description: |
-                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
-                        - `high`
-                        - `medium`
-                        - `low`
-                        - `extremely low`
+                      $ref: '#/components/schemas/confidence'
                     thumbnail_url:
                       $ref: '#/components/schemas/thumbnail_url'
               page_info:
@@ -1839,13 +1829,7 @@ components:
                       description: |
                         A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     confidence:
-                      type: string
-                      description: |
-                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
-                        - `high`
-                        - `medium`
-                        - `low`
-                        - `extremely low`
+                      $ref: '#/components/schemas/confidence'
                     thumbnail_url:
                       $ref: '#/components/schemas/thumbnail_url'
               page_info:
@@ -1940,13 +1924,7 @@ components:
                             type: string
                             description: For `conversation` and `text_in_video`, the API returns a transcription of the spoken words or the text that matches your search query.
                     confidence:
-                      type: string
-                      description: |
-                        A qualitative indicator based on the value of the score field. This field can take one of the following values:
-                        - `high`
-                        - `medium`
-                        - `low`
-                        - `extremely low`
+                      $ref: '#/components/schemas/confidence'
                     thumbnail_url:
                       $ref: '#/components/schemas/thumbnail_url'
                     module_confidence:

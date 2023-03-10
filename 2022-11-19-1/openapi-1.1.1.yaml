@@ -1018,9 +1018,7 @@ components:
           description: |
             A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
         limit:
-          type: integer
-          description: |
-            The maximum number of items on each page.
+          $ref: '#/components/schemas/limit_per_page_simple'
         next_token:
           type: string
           description: |
