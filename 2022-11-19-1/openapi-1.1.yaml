@@ -893,6 +893,11 @@ paths:
 components:
   schemas:
 
+    score_search_terms:
+      type: string
+      description: |
+        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
+
     max_confidence:
       type: string
       description: |
@@ -1020,17 +1025,13 @@ components:
         limit:
           $ref: '#/components/schemas/limit_per_page_simple'
         next_token:
-          type: string
-          description: |
-            The unique identifier of the next page.
+          $ref: '#/components/schemas/next_page_token' 
         prev_token:
           type: string
           description: |
             The unique identifier of the prev page.
         total_count:
-          type: integer
-          description: |
-            The total number of results.
+          $ref: '#/components/schemas/total_results' 
       type: object
 
     classifyLabel:
@@ -1537,9 +1538,7 @@ components:
                   type: object
                   properties:
                     score:
-                      type: string
-                      description: |
-                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
+                      $ref: '#/components/schemas/score_search_terms'
                     start:
                       type: number
                       description: The start time of the matching video fragment, expressed in seconds.
@@ -1737,8 +1736,7 @@ components:
                   type: object
                   properties:
                     score:
-                      description: |
-                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
+                      $ref: '#/components/schemas/score_search_terms'
                     start:
                       description: |
                         The start time of the matching video fragment, expressed in seconds.
@@ -1815,8 +1813,7 @@ components:
                   type: object
                   properties:
                     score:
-                      description: |
-                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
+                      $ref: '#/components/schemas/score_search_terms'
                     start:
                       description: |
                         The start time of the matching video fragment, expressed in seconds.
@@ -1898,9 +1895,7 @@ components:
                   type: object
                   properties:
                     score:
-                      type: number
-                      description: |
-                        A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
+                      $ref: '#/components/schemas/score_search_terms'
                     start:
                       type: number
                       description: The start time of the matching video fragment, expressed in seconds.
