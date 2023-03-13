@@ -893,6 +893,16 @@ paths:
 components:
   schemas:
 
+    end_time:
+      type: number
+      description: |
+        The end time of the matching video fragment, expressed in seconds.  
+
+    start_time:
+      type: number
+      description: |
+        The start time of the matching video fragment, expressed in seconds.
+    
     score_search_terms:
       type: string
       description: |
@@ -1090,9 +1100,7 @@ components:
         confidence:
           $ref: '#/components/schemas/confidence'
         end:
-          type: number
-          description: |
-            The end time of the matching video fragment, expressed in seconds.
+          $ref: '#/components/schemas/end_time'
         score:
           type: number
           description: |
@@ -1104,9 +1112,7 @@ components:
           type: string
           description: Indicates the prompt that the API service used.
         start:
-          type: number
-          description: |
-            The start time of the matching video fragment, expressed in seconds.
+          $ref: '#/components/schemas/start_time'
         thumbnail_url:
           $ref: '#/components/schemas/thumbnail_url'
       type: object
@@ -1540,11 +1546,9 @@ components:
                     score:
                       $ref: '#/components/schemas/score_search_terms'
                     start:
-                      type: number
-                      description: The start time of the matching video fragment, expressed in seconds.
+                      $ref: '#/components/schemas/start_time'
                     end:
-                      type: number
-                      description: The end time of the matching video fragment, expressed in seconds.
+                      $ref: '#/components/schemas/end_time'
                     video_id:
                       type: string
                       description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
@@ -1738,12 +1742,9 @@ components:
                     score:
                       $ref: '#/components/schemas/score_search_terms'
                     start:
-                      description: |
-                        The start time of the matching video fragment, expressed in seconds.
-                      type: number
+                      $ref: '#/components/schemas/start_time'
                     end:
-                      description: |
-                        The end time of the matching video fragment, expressed in seconds.
+                      $ref: '#/components/schemas/end_time'
                     video_id:
                       type: string
                       description: |
@@ -1815,12 +1816,9 @@ components:
                     score:
                       $ref: '#/components/schemas/score_search_terms'
                     start:
-                      description: |
-                        The start time of the matching video fragment, expressed in seconds.
-                      type: number
+                      $ref: '#/components/schemas/start_time'
                     end:
-                      description: |
-                        The end time of the matching video fragment, expressed in seconds.
+                      $ref: '#/components/schemas/end_time'
                     video_id:
                       type: string
                       description: |
@@ -1897,11 +1895,9 @@ components:
                     score:
                       $ref: '#/components/schemas/score_search_terms'
                     start:
-                      type: number
-                      description: The start time of the matching video fragment, expressed in seconds.
+                      $ref: '#/components/schemas/start_time'
                     end:
-                      type: number
-                      description: The end time of the matching video fragment, expressed in seconds.
+                      $ref: '#/components/schemas/end_time'
                     video_id:
                       type: string
                       description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
