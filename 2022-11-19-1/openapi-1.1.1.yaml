@@ -3047,15 +3047,7 @@ components:
                 example: or
                 default: or
               conversation_option:
-                type: string
-                enum:
-                  - semantic
-                  - transcription
-                description: |
-                  Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-options) page.
-
-                  **Default**: `semantic`.
-                default: semantic
+                $ref: '#/components/schemas/conversation_option'
               page_limit:
                 type: integer
                 description: |
