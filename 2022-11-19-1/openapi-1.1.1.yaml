@@ -893,6 +893,11 @@ paths:
 components:
   schemas:
 
+    start_time:
+      type: string
+      description: |
+        The start time of the matching video fragment, expressed in seconds.
+    
     score_search_terms:
       type: string
       description: |
@@ -1104,9 +1109,7 @@ components:
           type: string
           description: Indicates the prompt that the API service used.
         start:
-          type: number
-          description: |
-            The start time of the matching video fragment, expressed in seconds.
+          $ref: '#/components/schemas/start_time'
         thumbnail_url:
           $ref: '#/components/schemas/thumbnail_url'
       type: object
@@ -1540,8 +1543,7 @@ components:
                     score:
                       $ref: '#/components/schemas/score_search_terms'
                     start:
-                      type: number
-                      description: The start time of the matching video fragment, expressed in seconds.
+                      $ref: '#/components/schemas/start_time'
                     end:
                       type: number
                       description: The end time of the matching video fragment, expressed in seconds.
@@ -1738,9 +1740,7 @@ components:
                     score:
                       $ref: '#/components/schemas/score_search_terms'
                     start:
-                      description: |
-                        The start time of the matching video fragment, expressed in seconds.
-                      type: number
+                      $ref: '#/components/schemas/start_time'
                     end:
                       description: |
                         The end time of the matching video fragment, expressed in seconds.
@@ -1815,9 +1815,7 @@ components:
                     score:
                       $ref: '#/components/schemas/score_search_terms'
                     start:
-                      description: |
-                        The start time of the matching video fragment, expressed in seconds.
-                      type: number
+                      $ref: '#/components/schemas/start_time'
                     end:
                       description: |
                         The end time of the matching video fragment, expressed in seconds.
@@ -1897,8 +1895,7 @@ components:
                     score:
                       $ref: '#/components/schemas/score_search_terms'
                     start:
-                      type: number
-                      description: The start time of the matching video fragment, expressed in seconds.
+                      $ref: '#/components/schemas/start_time'
                     end:
                       type: number
                       description: The end time of the matching video fragment, expressed in seconds.
