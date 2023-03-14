@@ -2871,17 +2871,7 @@ components:
                   **Max**: `50`
                 default: 10
               threshold:
-                type: string
-                description: |
-                  Use this parameter to filter on the level of confidence that the search results match your query.
-
-                  **Default:** `low`
-                enum:
-                  - high
-                  - medium
-                  - low
-                  - none
-                default: low
+                $ref: '#/components/schemas/threshold'
               query:
                 type: object
                 description: |
@@ -3001,17 +2991,7 @@ components:
                   - clip
                 default: clip
               threshold:
-                description: |
-                  Use this parameter to filter on the level of confidence that the search results match your query.
-
-                  **Default:** `low`
-                default: low
-                enum:
-                - high
-                - medium
-                - low
-                - none
-                type: string
+                $ref: '#/components/schemas/threshold'
               sort_option:
                 type: string
                 description: |
