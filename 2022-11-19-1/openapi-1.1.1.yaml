@@ -285,7 +285,7 @@ paths:
         - name: index_options
           in: query
           description: |
-            Filter by the indexing options. When filtering multiple indexing options, the values must be comma-separated.
+            Filter by the indexing options. When filtering by multiple indexing options, the values must be comma-separated.
           required: false
           schema:
             type: string
