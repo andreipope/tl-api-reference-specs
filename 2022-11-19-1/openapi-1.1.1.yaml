@@ -270,12 +270,7 @@ paths:
         - $ref: '#/components/parameters/page_limit'
         - $ref: '#/components/parameters/sort_by'
         - $ref: '#/components/parameters/sort_option'
-        - name: _id
-          in: query
-          description: Filter by the unique identifier of an index.
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/index_id'
         - name: index_name
           in: query
           description: Filter by the name of an index.
