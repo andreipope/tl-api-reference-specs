@@ -879,7 +879,7 @@ paths:
             type: string
       responses:
         '200':
-          $ref: '#/components/responses/classifyResponse'
+          $ref: '#/components/responses/classifyBulkSpecificPageResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -1028,19 +1028,19 @@ components:
 
     classifyPageInfo:
       properties:
-        expired_at:
+        page_expired_at:
           type: string
           description: |
             A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
-        limit:
+        limit_per_page:
           $ref: '#/components/schemas/limit_per_page_simple'
-        next_token:
+        next_page_token:
           $ref: '#/components/schemas/next_page_token' 
-        prev_token:
+        prev_page_token:
           type: string
           description: |
-            The unique identifier of the prev page.
-        total_count:
+            The unique identifier of the previous page. If this is the first page, the API returns an empty string.
+        total_results:
           $ref: '#/components/schemas/total_results' 
       type: object
 
@@ -2764,21 +2764,76 @@ components:
                           confidence: medium
                           option: visual
                           prompt: Coupe
-                page_info:
-                  total_count: 4
-                  limit: 2
-                  next_token: a00ed394-75cf-41c0-9e17-39d9420bf081-1
-                  expired_at: 2022-12-13T11:09:08Z
+            page_info:
+              total_results: 4
+              limit_per_page: 2
+              next_page_token: a00ed394-75cf-41c0-9e17-39d9420bf081-1
+              prev_page_token: ""
+              page_expired_at: 2022-12-13T11:09:08Z
                 
 
+    classifyBulkSpecificPageResponse:
+      description: The videos in the specified index have successfully been classified.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                description: An array that contains the labels that were detected in each video. 
+                items:
+                  $ref: '#/components/schemas/classifyLabelResult'
+              page_info:
+                $ref: '#/components/schemas/classifyPageInfo'
+          example:
+            data:
+              - video_id: 6396c32269ff3402ec515ae0
+                labels:
+                  - name: Car Shapes
+                    max_score: 49.2
+                    duration: 8.697916666666671
+                    confidence: low
+                    clips:
+                        - start: 75.75
+                          end: 79.15625
+                          score: 47.24
+                          confidence: low
+                          option: visual
+                          prompt: Crrossover
+                        - start: 103.02083333333333,
+                          end: 108.3125
+                          score: 49.24
+                          confidence: low
+                          option: visual
+                          prompt: Hatchback
+              - video_id: 6396c23969ff3402ec515add
+                labels:
+                  - name: Car Shapes
+                    max_score: 49.2
+                    duration: 8.697916666666671
+                    confidence: low
+                    clips:
+                        - start: 10.2
+                          end: 14.624
+                          score: 48.14
+                          confidence: low
+                          option: visual
+                          prompt: SUV
+                        - start: 25.8
+                          end: 29.512
+                          score: 49.24
+                          confidence: medium
+                          option: visual
+                          prompt: Coupe
+            page_info:
+              total_results: 4
+              limit_per_page: 2
+              next_page_token: a00ed394-75cf-41c0-9e17-39d9420bf081-1
+              prev_page_token": 490d1751-ee0c-4b19-b9af-bb7498ecd348-0
+              page_expired_at: 2022-12-13T11:09:08Z
+                
 
-
-
-
-
-
-
-              
 
 ##########################
 ###   Request Bodies   ###
