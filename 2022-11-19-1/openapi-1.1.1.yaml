@@ -73,7 +73,7 @@ paths:
             The following engines are available:
             - `marengo2`
             - `marengo`
-            For details about the features of each engine, see the [Engines](/docs/concepts-engines) page.
+            For details about the features of each engine, see the [Video understanding engines](/docs/video-understanding-engines) page.
           required: true
           schema:
             type: string
@@ -621,7 +621,7 @@ paths:
   '/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
       summary: Retrieve text recognized in video (OCR)
-      description: This method retrieves text recognized in video (OCR). When the [logo detection](/docs/guides-detecting-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified video.
+      description: This method retrieves text recognized in video (OCR). When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified video.
       operationId: retrieve-ocr
       tags:
         - Indexes/Videos
@@ -709,7 +709,7 @@ paths:
       tags:
         - Search
       description: |
-        Use the POST method of the `/search` endpoint to search for relevant matches in an index. When the [logo detection](/docs/guides-detecting-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
+        Use the POST method of the `/search` endpoint to search for relevant matches in an index. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
@@ -770,7 +770,7 @@ paths:
       tags:
         - Combined queries
       description: |
-        Use the POST method of the `/beta/search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/guides-detecting-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
+        Use the POST method of the `/beta/search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
@@ -974,7 +974,7 @@ components:
 
     conversation_option:
       description: |
-        Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-options) page.
+        Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-option) page.
 
         **Default:** `semantic`
       default: semantic
@@ -1001,7 +1001,7 @@ components:
 
     options:
       description: |
-        An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/concepts-search-options) page.
+        An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/search-options) page.
       items:
         enum:
         - conversation
@@ -1127,7 +1127,7 @@ components:
         allowed_index_options:
           type: array
           description: |
-            An array of strings representing the supported indexing options. For details, see the [Indexing options](/docs/concepts-indexing-options) page.
+            An array of strings representing the supported indexing options. For details, see the [Indexing options](/docs/indexing-options) page.
           items:
             type: string
         author:
@@ -1145,7 +1145,7 @@ components:
         finetune:
           type: boolean
           description: |
-            A boolean indicating whether this engine supports fine-tunning. This feature is on the [roadmap](/docs/roadmap).
+            A boolean indicating whether this engine supports fine-tunning.
         ready:
           type: boolean
           description: A boolean specifying whether this engine is ready to be used.
@@ -1179,7 +1179,7 @@ components:
           description: |
             An array of strings that determines how the engine processes your videos.
             
-            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing options](/docs/concepts-indexing-options) page.
+            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing options](/docs/indexing-options) page.
 
             **NOTES**:
             - The indexing options cannot be changed once the index has been created.
@@ -2278,7 +2278,7 @@ components:
                 description: |
                   An array of strings that determines how the engine processes your videos.
                   
-                  Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/concepts-indexing-options) page.
+                  Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/indexing-options) page.
 
                   **NOTES**:
                   - The indexing options cannot be changed once the index has been created.
@@ -2931,7 +2931,7 @@ components:
                   
                   Use the `query` parameter to build combined queries.
 
-                  For details about building combined queries, see the [Combined queries](/docs/guides-combined-queries) page.
+                  For details about building combined queries, see the [Combined queries](/docs/search-combined-queries) page.
 
                 additionalProperties: {}
                 properties:
@@ -3026,7 +3026,7 @@ components:
                   - conversation
                   - text_in_video
                 description: |
-                  An array that specifies the sources of information the API service uses when performing a search. For details, see the [Search options](/docs/concepts-search-options) page.
+                  An array that specifies the sources of information the API service uses when performing a search. For details, see the [Search options](/docs/search-options) page.
 
                   **NOTES:** 
                   - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
@@ -3065,7 +3065,7 @@ components:
               operator:
                 type: string
                 description: |
-                  When you perform a search specifying multiple [sources of information](/docs/concepts-search-options), you can use the this parameter to broaden or narrow your search.
+                  When you perform a search specifying multiple [sources of information](/docs/search-options), you can use the this parameter to broaden or narrow your search.
                     
                     The following logical operators are supported:
                     
@@ -3073,7 +3073,7 @@ components:
                     
                     - `and`
                     
-                    For details and examples, see the [Using multiple sources of information](/docs/using-simple-queries#using-multiple-sources-of-information) secttion.
+                    For details and examples, see the [Using multiple sources of information](/docs/search-simple-queries#using-multiple-sources-of-information) secttion.
 
                     
                     **Default**: `or`.
@@ -3097,7 +3097,7 @@ components:
 
                   You can also filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
 
-                  For more details and examples, see the [Filter search results based on metadata](/docs/concepts-filtering-search-results) page.
+                  For more details and examples, see the [Filter search results based on metadata](/docs/sorting-search-results) page.
                 properties:
                   id:
                     type: array
@@ -3234,12 +3234,12 @@ components:
 
                       - You cannot change the engine once the index has been created.
 
-                    For details about engines, see the [Engines](/docs/concepts-engines) page.
+                    For details about engines, see the [Engines](/docs/video-understanding-engines) page.
                   default: marengo2
                 index_options:
                   type: array
                   description: |
-                    An array that specifies how the API service will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video"]`. For more details, see the [Indexing options](/docs/concepts-indexing-options) page.
+                    An array that specifies how the API service will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video"]`. For more details, see the [Indexing options](/docs/indexing-options) page.
                   items:
                     type: string
                   minItems: 1
@@ -3256,8 +3256,8 @@ components:
                   type: array
                   description: |
                     An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
-                    - `thumbnail`: Enables [thumbnail generation](/docs/guides-retrieving-thumbnails).
-                    - `logo`: Enables [logo detection](/docs/guides-detecting-logos).
+                    - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
+                    - `logo`: Enables [logo detection](/docs/extract-video-data-logos).
                     
                     If you don't provide this parameter, no add-ons will be enabled.
 
