@@ -758,10 +758,10 @@ paths:
           $ref: '#/components/responses/searchResultsError'
 
 #################################
-###   Search - beta   ###
+###   Search - combined   ###
 #################################
 
-  '/beta/search':
+  '/combined-search':
     post:
       x-readme:
         explorer-enabled: false
@@ -770,29 +770,29 @@ paths:
       tags:
         - Combined queries
       description: |
-        Use the POST method of the `/beta/search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
+        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
         
-        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/beta/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES:**:
-          - Twelve Labs Inc. has disabled calling this method from the browser in order to avoid confusion while we’re building a user interface that will provide a better experience.
+          - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion while we’re building a user interface that will provide a better experience.
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
       requestBody:
-        $ref: '#/components/requestBodies/betaSearch'
+        $ref: '#/components/requestBodies/combinedSearch'
       responses:
         '200':
-          $ref: '#/components/responses/betaSearchResultsResponse'
+          $ref: '#/components/responses/combinedSearchResultsResponse'
         '400':
           $ref: '#/components/responses/genericError'
         '429':
           description: |
             If the limit of 1 call per second is reached, the API service returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-  '/beta/search/{page-token}':
+  '/combined-search/{page-token}':
     get:
       summary: Retrieve a specific page of search results
       tags:
@@ -815,7 +815,7 @@ paths:
             type: string
       responses:
         '200':
-          $ref: '#/components/responses/betaSearchSpecificPageResultsResponse'
+          $ref: '#/components/responses/combinedSearchSpecificPageResultsResponse'
         '400':
           $ref: '#/components/responses/searchResultsError'
 
@@ -1723,7 +1723,7 @@ components:
       description: If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
 
 
-    betaSearchResultsResponse:
+    combinedSearchResultsResponse:
       description: Successfully performed a search request.
       content:
         application/json:
@@ -1797,7 +1797,7 @@ components:
               next_page_token: 4849bbc1-0f10-4ab1-9f10-9cfaf6e62311-1
 
 
-    betaSearchSpecificPageResultsResponse:
+    combinedSearchSpecificPageResultsResponse:
       description: Successfully performed a search request.
       content:
         application/json:
@@ -2872,7 +2872,7 @@ components:
                 $ref: '#/components/schemas/threshold'
 
 
-    betaSearch:
+    combinedSearch:
       content:
         application/json:
           schema:
