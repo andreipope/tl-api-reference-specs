@@ -28,7 +28,7 @@ tags:
   - name: Tasks    
   - name: Tasks/Transfers
   - name: Search
-  - name: Combined queries
+  - name: Combined search 
   - name: Classify
 
 
@@ -768,7 +768,7 @@ paths:
       summary: Make a search request
       operationId: combined-queries-make-search-request
       tags:
-        - Combined queries
+        - Combined search 
       description: |
         Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
         
@@ -796,7 +796,7 @@ paths:
     get:
       summary: Retrieve a specific page of search results
       tags:
-        - Combined queries
+        - Combined search 
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
