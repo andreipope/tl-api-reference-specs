@@ -2851,6 +2851,9 @@ components:
             - labels
             - options
             properties:
+              index_id:
+                type: string
+                description: The unique identifier of the index that you want to classify.
               conversation_option:
                 $ref: '#/components/schemas/conversation_option'
               include_clips:
@@ -2964,6 +2967,9 @@ components:
             - options
             - video_id
             properties:
+              video_id:
+                type: string
+                description: The unique identifier of the video that you want to classify.
               conversation_option:
                 $ref: '#/components/schemas/conversation_option'
               include_clips:
