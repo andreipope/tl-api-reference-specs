@@ -92,7 +92,7 @@ paths:
     post:
       summary: Create a video indexing task
       description: |
-        Use this method to create a new video indexing task that uploads a video to the API service and makes it searchable. Note the following about creating a new video indexing task:
+        Use this method to create a new video indexing task that uploads a video to the platform and makes it searchable. Note the following about creating a new video indexing task:
         - To upload a file that resides on the local file system, pass the `video_file` parameter. It must be a stream of bytes encoded as `multipart/form-data`.
         - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a `string`.
         - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
@@ -621,7 +621,7 @@ paths:
   '/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
       summary: Retrieve text recognized in video (OCR)
-      description: This method retrieves text recognized in video (OCR). When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified video.
+      description: This method retrieves text recognized in video (OCR). When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the platform also retrieves any logos detected in the specified video.
       operationId: retrieve-ocr
       tags:
         - Indexes/Videos
@@ -689,7 +689,7 @@ paths:
         - name: time
           in: query
           description: |
-            Specifies the time, in seconds, at which the API service must retrieve the thumbnail. If you don't specify this parameter, the API service retrieves a thumbnail from the middle of the video.
+            Specifies the time, in seconds, at which the platform must retrieve the thumbnail. If you don't specify this parameter, the platform retrieves a thumbnail from the middle of the video.
           required: false
           schema:
             type: number
@@ -709,12 +709,12 @@ paths:
       tags:
         - Search
       description: |
-        Use the POST method of the `/search` endpoint to search for relevant matches in an index. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
+        Use the POST method of the `/search` endpoint to search for relevant matches in an index. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the platform also retrieves any logos detected in the specified index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
-          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
+          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: make-search-request
       requestBody:
@@ -729,7 +729,7 @@ paths:
           $ref: '#/components/responses/genericError'
         '429':
           description: |
-            If the limit of 1 call per second is reached, the API service returns an `HTTP 429 - Too many requests` error response. The response body is empty.
+            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/search/{page-token}':
     get:
@@ -770,13 +770,13 @@ paths:
       tags:
         - Combined search 
       description: |
-        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the API service also retrieves any logos detected in the specified index.
+        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the platform also retrieves any logos detected in the specified index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES:**:
           - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion while we’re building a user interface that will provide a better experience.
-          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the API service returns an `HTTP 429 - Too many requests` error response.
+          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -790,7 +790,7 @@ paths:
           $ref: '#/components/responses/genericError'
         '429':
           description: |
-            If the limit of 1 call per second is reached, the API service returns an `HTTP 429 - Too many requests` error response. The response body is empty.
+            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/combined-search/{page-token}':
     get:
@@ -834,10 +834,10 @@ paths:
       tags:
         - Classify
       requestBody:
-        $ref: '#/components/requestBodies/classifyRequest'
+        $ref: '#/components/requestBodies/classifyRequestNew'
       responses:
         '200':
-          $ref: '#/components/responses/classifyResponse'
+          $ref: '#/components/responses/classifyResponseNew'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -852,10 +852,10 @@ paths:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
       requestBody:
-        $ref: '#/components/requestBodies/classifyRequestBulk'
+        $ref: '#/components/requestBodies/classifyRequestBulkNew'
       responses:
         '200':
-          $ref: '#/components/responses/classifyBulkResponse'
+          $ref: '#/components/responses/classifyBulkResponseNew'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -877,7 +877,7 @@ paths:
             type: string
       responses:
         '200':
-          $ref: '#/components/responses/classifyBulkSpecificPageResponse'
+          $ref: '#/components/responses/classifyBulkResponseNew'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -925,12 +925,12 @@ components:
     module_confidence:
       type: object
       description: |
-        When multiple search options are specified in the request, the API service returns the confidence level that the results match your search terms for each search option as an object composed of key-value pairs. Each search option represents a key, and the confidence level represents the value.
+        When multiple search options are specified in the request, the platform returns the confidence level that the results match your search terms for each search option as an object composed of key-value pairs. Each search option represents a key, and the confidence level represents the value.
 
     thumbnail_url:
       type: string
       description: |
-        If thumbnail generation has been enabled for this index, the API service returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
+        If thumbnail generation has been enabled for this index, the platform returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
 
 
     total_results:
@@ -952,7 +952,7 @@ components:
     total_inner_matches:
       type: integer 
       description: |
-        When grouping by video, the API service return this field that shows the total number of video fragments matching your query.
+        When grouping by video, the platform return this field that shows the total number of video fragments matching your query.
 
     next_page_token:
       type: string
@@ -974,7 +974,7 @@ components:
 
     conversation_option:
       description: |
-        Specifies the type of search the API service will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-option) page.
+        Specifies the type of match the platform will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-option) page.
 
         **Default:** `semantic`
       default: semantic
@@ -985,15 +985,67 @@ components:
 
     include_clips:
       description: |
-        When this parameter is set to `true`, the API service will return information about each matching video fragment.
+        When this parameter is set to `true`, the platform will return detailed information about each matching video fragment.
 
         **Default:** false
       default: false
       type: boolean
     
+    classes:
+      type: array
+      description: |
+        An array of objects containing the names and the definitions of entities or actions that the platform must identify.
+      items:
+        $ref: '#/components/schemas/classesObject'
+      minItems: 1
+
+      
+    classesObject:
+      type: object
+      required:
+      - name
+      - prompts
+      properties:
+        name:
+          type: string
+          description: A string representing the name you want to give this class. Make sure you use brief and meaningful names.
+        prompts:
+          description: |
+            An array of strings that specifies what the class contains. The platform will classify your videos based on this array Note that the total number of prompts you specify in a request must not exceed 100.
+          example:
+          - Truck
+            Sedan
+            SUV
+            Convertible
+          items:
+            type: string
+          minItems: 1
+          maxItems: 100
+          type: array
+        options:
+          description: |
+            You can use this parameter to override the `options` parameter for this class.
+          items:
+            enum:
+            - conversation
+            - text_in_video
+            - visual
+            type: string
+          minItems: 1
+          type: array
+        conversation_option:
+          description: |
+            You can use this parameter to override the `conversation_option` parameter for this class.
+          default: semantic
+          enum:
+          - semantic
+          - transcription
+          type: string
+
+
     labels:
       description: |
-        An array of objects containing the names and the definitions of entities or actions that the API service must identify.
+        An array of objects containing the names and the definitions of entities or actions that the platform must identify.
       items:
         $ref: '#/components/schemas/classifyLabel'
       minItems: 1
@@ -1001,7 +1053,7 @@ components:
 
     options:
       description: |
-        An array that specifies the sources of information the API service uses when it categorizes a video. For details, see the [Search options](/docs/search-options) page.
+        An array that specifies the sources of information the platform uses when it categorizes a video. For details, see the [Search options](/docs/search-options) page.
       items:
         enum:
         - conversation
@@ -1023,6 +1075,16 @@ components:
       - low
       - none
       type: string
+
+    thresholdClassifyNew:
+      description: |
+        Use this parameter to filter on the level of confidence that the results match your prompts.
+
+        **Min**: 0
+        **Max**: 100
+        **Default:** 75
+      default: 75
+      type: integer
 
     classifyPageInfo:
       properties:
@@ -1065,11 +1127,13 @@ components:
           minItems: 1
           type: array
 
+
+
     classifyLabelResult:
       description: |
-        An array containing information about the video fragments that match the labels you've specified.
+        An array containing information about the video fragments that match the the prompts you've specified.
       properties:
-        clips: 
+        classes: 
           description: |
             An array of objects containing information about each of the matching video fragments. This field is included in the response only when you set the value of the `include_clips` parameter to `true`.
           items:
@@ -1083,7 +1147,7 @@ components:
           type: number
         max_score:
           description: |
-            When classifying a video, the API service finds all video fragments that match the label you've specified in the request. For each video fragment found, the API service determines the level of confidence that the fragment matches the label. The `max_score` field is determined by comparing the confidence scores of each fragment and selecting the highest one.
+            When classifying a video, the platform finds all video fragments that match the label you've specified in the request. For each video fragment found, the platform determines the level of confidence that the fragment matches the label. The `max_score` field is determined by comparing the confidence scores of each fragment and selecting the highest one.
           type: number
         name:
           description: The name of the label.
@@ -1105,10 +1169,10 @@ components:
             A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
         option:
           type: string
-          description: Indicates the type of search the API service performed.
+          description: Indicates the type of search the platform performed.
         prompt:
           type: string
-          description: Indicates the prompt that the API service used.
+          description: Indicates the prompt that the platform used.
         start:
           $ref: '#/components/schemas/start_time'
         thumbnail_url:
@@ -1234,7 +1298,7 @@ components:
       title: Video Indexing Task
       description: |
         A task represents a request to upload and index a video. A task starts when you begin uploading your video by calling the **POST** method of the `tasks` endpoint, and it can have one of the following statuses:
-        - **Validating**: Your video has finished uploading, and the API service is validating it by performing the following checks:
+        - **Validating**: Your video has finished uploading, and the platform is validating it by performing the following checks:
           - Resolution must be greater or equal than 360p and less than 1080p (FHD).
           - Duration must be between 10 seconds and 2 hours (7,200s).
           - Your video must contain an audio track.
@@ -1244,21 +1308,21 @@ components:
         - **Ready**: Your video is ready to be searched.
         Additionally, you may receive one of the following error messages:
         - **Broken Video File**: Your video has broken frame(s) or does not contain an audio track.
-        - **Failed**: The API service encountered an internal error, and the video indexing task failed.
+        - **Failed**: The platform encountered an internal error, and the video indexing task failed.
         The `task` object has the following elements:
       type: object
       properties:
         _id:
           type: string
           description: |
-            A string representing the unique identifier of the task. It is assigned by the API service when a new task is created.
+            A string representing the unique identifier of the task. It is assigned by the platform when a new task is created.
         created_at:
           type: string
           description: 'A string indicating the date and time, in the RFC 3339 format, that the task was created.'
         updated_at:
           type: string
           description: |
-            A string indicating the date and time, in the RFC 3339 format, that the task object was last updated. The API service updates this field every time the video indexing task transitions to a different state.
+            A string indicating the date and time, in the RFC 3339 format, that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
         status:
           type: string
           description: A string indicating the status of the video indexing task.
@@ -1300,10 +1364,10 @@ components:
       type: object
       title: Video Vector
       description: |
-        When the API service indexes a video, it doesn't store it. Instead, the API service saves all the required information needed to perform fast, semantic, accurate, and scalable searches as lists of floating numbers. These lists are named video vectors.
+        When the platform indexes a video, it doesn't store it. Instead, the platform saves all the required information needed to perform fast, semantic, accurate, and scalable searches as lists of floating numbers. These lists are named video vectors.
 
         The `video_vector` object has the following elements:
-        - `_id`: A string representing the unique identifier of a video. The API service creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
+        - `_id`: A string representing the unique identifier of a video. The platform creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
         - `created_at`: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was created.
         - `indexed_at`: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video has finished indexing.
         - `metadata`: An object that contains the following information about the video:
@@ -1313,13 +1377,13 @@ components:
           - `height`
           - `size`
           - `width`
-        - `updated_at`: A string indicating the date and time, in the updated_at: A string indicating the date and time, in the RFC 3339 format, that the video indexing task object was last updated. The API service updates this field every time the video indexing task transitions to a different state. format, that the video indexing task object was last updated. The API service updates this field every time the video indexing task transitions to a different state.
+        - `updated_at`: A string indicating the date and time, in the updated_at: A string indicating the date and time, in the RFC 3339 format, that the video indexing task object was last updated. The platform updates this field every time the video indexing task transitions to a different state. format, that the video indexing task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
 
       properties:
         _id:
           type: string
           description: |
-            A string representing the unique identifier of a video. The API service creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
+            A string representing the unique identifier of a video. The platform creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
         created_at:
           type: string
           description: |
@@ -1327,7 +1391,7 @@ components:
         updated_at:
           type: string
           description: |
-            A string indicating the date and time, in the RFC 3339 format, that the video indexing task object was last updated. The API service updates this field every time the video indexing task transitions to a different state.
+            A string indicating the date and time, in the RFC 3339 format, that the video indexing task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
         indexed_at:
           type: string
           description: |
@@ -1549,7 +1613,7 @@ components:
                       $ref: '#/components/schemas/end_time'
                     video_id:
                       type: string
-                      description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
+                      description: A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     metadata:
                       type: array
                       description: |
@@ -1746,7 +1810,7 @@ components:
                     video_id:
                       type: string
                       description: |
-                        A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
+                        A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     confidence:
                       $ref: '#/components/schemas/confidence'
                     thumbnail_url:
@@ -1820,7 +1884,7 @@ components:
                     video_id:
                       type: string
                       description: |
-                        A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
+                        A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     confidence:
                       $ref: '#/components/schemas/confidence'
                     thumbnail_url:
@@ -1898,7 +1962,7 @@ components:
                       $ref: '#/components/schemas/end_time'
                     video_id:
                       type: string
-                      description: A string representing the unique identifier of the video. Once the API service indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
+                      description: A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     metadata:
                       type: array
                       description: |
@@ -2073,7 +2137,7 @@ components:
                 description: The unique identifier of the video.
               data:
                 type: array
-                description: An array of objects that contains the transcription. For each time range for which the API service finds spoken words, it returns an object that contains the fields below. If the API service doesn't find any spoken words, the data field is set to `None`.
+                description: An array of objects that contains the transcription. For each time range for which the platform finds spoken words, it returns an object that contains the fields below. If the platform doesn't find any spoken words, the data field is set to `None`.
                 items:
                   type: object
                   properties:
@@ -2112,8 +2176,8 @@ components:
               data:
                 type: array
                 description: |
-                  An array that contains the OCR elements. For each time range for which the API service finds OCR elements, it returns an object that contains the fields below.
-                  If the API service doesn't find any OCR elements, the `data` field is set to `None`.
+                  An array that contains the OCR elements. For each time range for which the platform finds OCR elements, it returns an object that contains the fields below.
+                  If the platform doesn't find any OCR elements, the `data` field is set to `None`.
                 items:
                   type: object
                   properties:
@@ -2225,7 +2289,7 @@ components:
                 description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was created.
               updated_at: 
                 type: string
-                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the corresponding video indexing task was last updated. The API service updates this field every time the corresponding video indexing task transitions to a different state.
+                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the corresponding video indexing task was last updated. The platform updates this field every time the corresponding video indexing task transitions to a different state.
               indexed_at:
                 type: string
                 description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video has finished indexing.
@@ -2415,7 +2479,7 @@ components:
                 description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the task object has been created.
               updated_at:
                 type: string
-                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the task object was last updated. The API service updates this field every time the video indexing task transitions to a different state.
+                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
               estimated_time:
                 type: string
                 description: A string indicating the estimated date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video is ready to be searched.
@@ -2442,7 +2506,7 @@ components:
                     type: integer
               process:
                 type: object
-                description: If your video has not yet finished indexing, the API service returns the current progress of the indexing operation.
+                description: If your video has not yet finished indexing, the platform returns the current progress of the indexing operation.
                 properties:
                   percentage:
                     description: |
@@ -2708,6 +2772,183 @@ components:
                       thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/636b932fe9521f7108f5a30e/129.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221213%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221213T064305Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a12488cb8c2da05445f1b3d90ef17f16ac2ced05fc1fc239c75b9eaad3466136
 
 
+
+    classifyResponseNew:
+      description: The specified video has successfully been classified.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              video_id:
+                description: |
+                  The unique identifier of the video that has been classified.
+                type: string
+              classes:
+                type: array
+                description: An array that contains information about the classes that were detected in your videos. 
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the prompt.
+                    score:
+                      type: float
+                      description: A quantitative value representing the level of confidence that this video fragment matches the prompts you've specified.
+                    duration_ratio:
+                      type: float
+                      description: A number represething the duration of the matching video fragment divided by the duration of the video to which this fragment belongs.
+                    clips:
+                      type: array
+                      description:  An array containing details information about the video fragments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                      items:
+                        type: object
+                        properties:
+                          start:
+                            $ref: '#/components/schemas/start_time'
+                          end:
+                            $ref: '#/components/schemas/end_time'
+                          score:
+                            type: number
+                            description: |
+                              A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
+                          option:
+                            type: string
+                            description: Indicates the type of match that the platform has performed.
+                          prompt:
+                            type: string
+                            description: Indicates the prompt that the platform used.
+                          thumbnail_url:
+                            $ref: '#/components/schemas/thumbnail_url'
+                    detailed_scores:
+                      type: object
+                      description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video fragment matches your prompts.
+                      properties:
+                        max_score:
+                          type: float
+                          description: |
+                            Represents the maximum score. It is determined by comparing the confidence scores of each fragment and selecting the highest one.
+                          
+                            **Min**: 0.
+                            **Max**: 100.
+                        avg_score:
+                          type: float
+                          description: |
+                            Represents the average score of the matching video fragments.
+                            
+                            **Min**: 0.
+                            **Max**: 100.
+                        duration_weighted_score:
+                          type: float
+                          description: |
+                            Represents the score of each matching video fragment, weighted by its length.
+
+                            **Min**: 0
+                            **Max**: 100
+
+                        normalized_score:
+                          type: float
+                          description: |
+                            Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+
+                            **Min**: 0
+                            **Max**: 100
+
+    classifyBulkResponseNew:
+      description: The videos in the specified index have successfully been classified.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                description: An array that contains the response. 
+                items:
+                  type: object
+                  properties:
+                    video_id:
+                      description: The unique identifier of the video.
+                      type: string
+                    classes:
+                      type: array
+                      description: An array that contains information about the classes that were detected in your videos. 
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: The name of the prompt.
+                          score:
+                            type: float
+                            description: A quantitative value representing the level of confidence that this video fragment matches the prompts you've specified.
+                          duration_ratio:
+                            type: float
+                            description: A number represething the duration of the matching video fragment divided by the duration of the video to which this fragment belongs.
+                          clips:
+                            type: array
+                            description:  An array containing details information about the video fragments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                            items:
+                              type: object
+                              properties:
+                                start:
+                                  $ref: '#/components/schemas/start_time'
+                                end:
+                                  $ref: '#/components/schemas/end_time'
+                                score:
+                                  type: number
+                                  description: |
+                                    A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
+                                option:
+                                  type: string
+                                  description: Indicates the type of match that the platform has performed.
+                                prompt:
+                                  type: string
+                                  description: Indicates the prompt that the platform used.
+                                thumbnail_url:
+                                  $ref: '#/components/schemas/thumbnail_url'
+                          detailed_scores:
+                            type: object
+                            description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video fragment matches your prompts.
+                            properties:
+                              max_score:
+                                type: float
+                                description: |
+                                  Represents the maximum score. It is determined by comparing the confidence scores of each fragment and selecting the highest one.
+                                
+                                  **Min**: 0.
+                                  **Max**: 100.
+                              avg_score:
+                                type: float
+                                description: |
+                                  Represents the average score of the matching video fragments.
+                                  
+                                  **Min**: 0.
+                                  **Max**: 100.
+                              duration_weighted_score:
+                                type: float
+                                description: |
+                                  Represents the score of each matching video fragment, weighted by its length.
+
+                                  **Min**: 0
+                                  **Max**: 100
+
+                              normalized_score:
+                                type: float
+                                description: |
+                                  Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+
+                                  **Min**: 0
+                                  **Max**: 100
+              page_info:
+                $ref: '#/components/schemas/classifyPageInfo'
+
+
+
+
+
+
     classifyBulkResponse:
       description: The videos in the specified index have successfully been classified.
       content:
@@ -2761,7 +3002,7 @@ components:
                           score: 49.24
                           confidence: medium
                           option: visual
-                          prompt: Coupe
+                          prompt: CoupeclassifyBulkSpecifi
             page_info:
               total_results: 4
               limit_per_page: 2
@@ -2839,6 +3080,91 @@ components:
 
   requestBodies:
 
+
+    classifyRequestNew:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+                - index_id
+                - classes
+                - options
+                - conversation_option
+            properties:
+                video_id:
+                  type: string
+                  description: |
+                    The unique identifier of the video that you want to classify.
+                include_clips:
+                  $ref: '#/components/schemas/include_clips'
+                threshold: 
+                  $ref: '#/components/schemas/thresholdClassifyNew'
+                show_detailed_score:
+                  type: boolean
+                  default: false
+                  description: |
+                    Set this parameter to `true` to specify that the platform should return a detailed score for each matching video fragment. A detailed score contains the following information:
+
+                    - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching fragment and selecting the highest one.
+                    - **Average score**: Represents the average score of the matching video fragments.
+                    - **Duration weighted score**: Represents the score of each matching video fragment, weighted by its length.
+                    - **Normalized score**: Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+
+                options:
+                  $ref: '#/components/schemas/options'
+                conversation_option:
+                  $ref: '#/components/schemas/conversation_option'
+                classes:
+                  $ref: '#/components/schemas/classes'
+
+
+                    
+    classifyRequestBulkNew:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - index_id
+              - classes
+              - options
+              - conversation_option
+            properties:
+              index_id:
+                type: string
+                description: |
+                  The unique identifier of the index that you want to classify.
+              page_limit:
+                type: integer
+                description: |
+                  The number of items to return on each page.
+
+                  **Default:** 10
+                  **Min:** 1
+                  **Max:** 50
+              include_clips:
+                $ref: '#/components/schemas/include_clips'
+              threshold: 
+                $ref: '#/components/schemas/thresholdClassifyNew'
+              show_detailed_score:
+                type: boolean
+                default: false
+                description: |
+                  Set this parameter to `true` to specify that the platform should return a detailed score for each matching video fragment. A detailed score contains the following information:
+
+                  - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching fragment and selecting the highest one.
+                  - **Average score**: Represents the average score of the matching video fragments.
+                  - **Duration weighted score**: Represents the score of each matching video fragment, weighted by its length.
+                  - **Normalized score**: Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+
+              options:
+                $ref: '#/components/schemas/options'
+              conversation_option:
+                $ref: '#/components/schemas/conversation_option'
+              classes:
+                $ref: '#/components/schemas/classes'
+
     classifyRequestBulk:
       content:
         application/json:
@@ -2849,6 +3175,11 @@ components:
             - labels
             - options
             properties:
+              index_id:
+                type: string
+                description: The unique identifier of the index that you want to classify.
+
+
               conversation_option:
                 $ref: '#/components/schemas/conversation_option'
               include_clips:
@@ -2945,9 +3276,9 @@ components:
                       You've specified two queries and used to `AND` logical operator to retrieve only the video fragment for which both queries match. The first query matches a video fragment that starts at 10s and end at 30s. The second query second query matches a video fragment that starts at 50s and ends at 60s.
 
 
-                      If you don't specify the `proximity` parameter, then it takes the default value of 0s. The video fragments will not overlap, and the API service will not return any results.
+                      If you don't specify the `proximity` parameter, then it takes the default value of 0s. The video fragments will not overlap, and the platform will not return any results.
 
-                      If you specify a value of 20s for the `proximity` parameter, the first video fragment will start at 0s and end at 50s, and the second video fragment will start at 30s and end at 80s. The video fragments will overlap, and the API service will return a result that starts 30s and ends at 50s.
+                      If you specify a value of 20s for the `proximity` parameter, the first video fragment will start at 0s and end at 50s, and the second video fragment will start at 30s and end at 80s. The video fragments will overlap, and the platform will return a result that starts 30s and ends at 50s.
 
                       **Default**: `0`.
                     default: 0
@@ -3026,7 +3357,7 @@ components:
                   - conversation
                   - text_in_video
                 description: |
-                  An array that specifies the sources of information the API service uses when performing a search. For details, see the [Search options](/docs/search-options) page.
+                  An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
 
                   **NOTES:** 
                   - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
@@ -3035,7 +3366,7 @@ components:
                 type: string
                 description: |
                   Use this parameter to group or ungroup items in a response. It can take one of the following values:
-                  - `video`:  The API service will group the matching video fragments in the response by video.
+                  - `video`:  The platform will group the matching video fragments in the response by video.
                   - `clip`: The matching video fragments in the response will not be grouped.
 
                   **Default:** `clip`
@@ -3050,11 +3381,11 @@ components:
                 description: |
                   Use this parameter to specify the sort order for the response.
                   
-                  When performing a search, the API service determines the level of confidence that each video fragment matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
+                  When performing a search, the platform determines the level of confidence that each video fragment matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
-                  If you set this parameter to `score` and `group_by` is set to `video`, the API service will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video fragments will be sorted by the level of confidence.
+                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video fragments will be sorted by the level of confidence.
 
-                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the API service will sort the videos in the response by the number of clips. For each video, the matching video fragments will be sorted by the level of confidence. You can use `clip_count` only when the matching video fragments are sorted by video.
+                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video fragments will be sorted by the level of confidence. You can use `clip_count` only when the matching video fragments are sorted by video.
                   
 
                   **Default:** `score`
@@ -3188,7 +3519,7 @@ components:
                 type: string
                 format: binary
                 description: |
-                  When the `provide_transcription` parameter is set to `true`, and you want to provide a transcription from the local file system, use the `transcription_file` parameter to pass your transcription file to the API service. It must be a stream of bytes encoded as `multipart/form-data`. The transcription must be in the SRT or VTT format.
+                  When the `provide_transcription` parameter is set to `true`, and you want to provide a transcription from the local file system, use the `transcription_file` parameter to pass your transcription file to the platform. It must be a stream of bytes encoded as `multipart/form-data`. The transcription must be in the SRT or VTT format.
               video_url:
                 type: string
                 description: |
@@ -3239,7 +3570,7 @@ components:
                 index_options:
                   type: array
                   description: |
-                    An array that specifies how the API service will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video"]`. For more details, see the [Indexing options](/docs/indexing-options) page.
+                    An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video"]`. For more details, see the [Indexing options](/docs/indexing-options) page.
                   items:
                     type: string
                   minItems: 1
