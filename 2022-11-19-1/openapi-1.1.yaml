@@ -3009,6 +3009,7 @@ components:
             required:
               - query
               - index_id
+              - search_options
             type: object
             properties:
               query:
