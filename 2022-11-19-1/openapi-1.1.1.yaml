@@ -993,6 +993,9 @@ components:
     
     classes:
       type: array
+      required:
+        - name
+        - prompts
       description: |
         An array of objects containing the names and the definitions of entities or actions that the platform must identify.
       items:
@@ -3087,7 +3090,7 @@ components:
           schema:
             type: object
             required:
-                - index_id
+                - video_id
                 - classes
                 - options
                 - conversation_option
@@ -3210,6 +3213,7 @@ components:
             type: object
             required:
               - index_id
+              - query
             properties:
               filter:
                   description: |
