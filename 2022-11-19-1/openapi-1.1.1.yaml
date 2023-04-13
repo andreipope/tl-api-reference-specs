@@ -873,7 +873,13 @@ paths:
   '/classify':
     post:
       summary: Classify a video
-      description: Use this method to classify a video based on the entities or actions shown in that video.
+      description: |
+        Use this method to classify a video based on the entities or actions shown in that video.
+
+        **NOTES**: 
+        - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
+        - The total number of prompts you specify in a request must not exceed 100.
+
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -887,11 +893,19 @@ paths:
           $ref: '#/components/responses/classifyResponseNew'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/classify/bulk':
     post:
       summary: Classify all the videos in an index
-      description: Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
+      description: |
+        Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
+
+        **NOTES**: 
+        - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
+        - The total number of prompts you specify in a request must not exceed 100.
       operationId: classify-bulk
       tags:
         - Classify
@@ -905,11 +919,17 @@ paths:
           $ref: '#/components/responses/classifyBulkResponseNew'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/classify/{page_token}':
     get:
       summary: Retrieve a specific page of results
-      description: The `/classify/bulk` endpoint returns the first page or results. You can use this endpoint to retrieve the rest of the pages.
+      description: |
+        The `/classify/bulk` endpoint returns the first page or results. You can use this endpoint to retrieve the rest of the pages.
+        
+        **NOTE**: This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
       operationId: classify-retrieve-specific-page
       tags:
         - Classify
@@ -927,6 +947,9 @@ paths:
           $ref: '#/components/responses/classifyBulkResponseNew'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 
 
@@ -1061,7 +1084,7 @@ components:
           description: A string representing the name you want to give this class. Make sure you use brief and meaningful names.
         prompts:
           description: |
-            An array of strings that specifies what the class contains. The platform will classify your videos based on this array Note that the total number of prompts you specify in a request must not exceed 100.
+            An array of strings that specifies what the class contains. The platform will classify your videos based on this array. Note that the total number of prompts you specify in a request must not exceed 100.
           example:
           - Truck
             Sedan
