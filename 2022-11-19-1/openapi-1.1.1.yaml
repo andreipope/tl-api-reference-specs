@@ -3537,37 +3537,6 @@ components:
               - query
               - search_options
             properties:
-              filter:
-                  description: |
-                    Use this parameter to filter your search results by metadata.
-
-                    For string fields, the filter parameter returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
-
-                    For numeric fields, the filter parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
-
-                    You can also filter by any of the custom fields specified using the PUT method of the `/indexes/{index-id}/videos/{video-id}` endpoint. The following example returns only the videos for which a custom field named `needsReview` of type boolean is set to true: `"needs_review": true`.
-                  properties:
-                    id:
-                      type: array
-                      description: An array of strings that restricts your search results based on the specified video IDs.
-                      items:
-                        type: string
-                    duration:
-                      type: number
-                      description: 'A numeric field that restricts your search results based on duration, expressed in seconds.'
-                    width:
-                      type: number
-                      description: A numeric field that restricts your search results based on width.
-                    height:
-                      type: number
-                      description: A numeric field that restricts your search results based on height.
-                    size:
-                      type: number
-                      description: 'A numeric field that restricts your search results based on size, expressed in bytes.'
-                    title:
-                      type: string
-                      description: A string field that restricts your search results based on the title of the video.
-                  additionalProperties: {}
               index_id:
                 description: |
                   The unique identifier of the index to search.
@@ -3603,7 +3572,37 @@ components:
                 - semantic
                 - transcription
                 type: string
+              filter:
+                  description: |
+                    Use this parameter to filter your search results by metadata.
 
+                    For string fields, the filter parameter returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
+
+                    For numeric fields, the filter parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
+
+                    You can also filter by any of the custom fields specified using the PUT method of the `/indexes/{index-id}/videos/{video-id}` endpoint. The following example returns only the videos for which a custom field named `needsReview` of type boolean is set to true: `"needs_review": true`.
+                  properties:
+                    id:
+                      type: array
+                      description: An array of strings that restricts your search results based on the specified video IDs.
+                      items:
+                        type: string
+                    duration:
+                      type: number
+                      description: 'A numeric field that restricts your search results based on duration, expressed in seconds.'
+                    width:
+                      type: number
+                      description: A numeric field that restricts your search results based on width.
+                    height:
+                      type: number
+                      description: A numeric field that restricts your search results based on height.
+                    size:
+                      type: number
+                      description: 'A numeric field that restricts your search results based on size, expressed in bytes.'
+                    title:
+                      type: string
+                      description: A string field that restricts your search results based on the title of the video.
+                  additionalProperties: {}
               page_limit:
                 type: number
                 description: |
