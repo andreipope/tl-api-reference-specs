@@ -71,13 +71,14 @@ paths:
             The identifier of the engine to retrieve.
             
             The following engines are available:
+            - `marengo2.5`
             - `marengo2`
             - `marengo`
             For details about the features of each engine, see the [Video understanding engines](/docs/video-understanding-engines) page.
           required: true
           schema:
             type: string
-            example: marengo2
+            example: marengo2.5
       responses:
         '200':
           $ref: '#/components/responses/getEngineResponse'
@@ -1265,9 +1266,9 @@ components:
           type: boolean
           description: A boolean specifying whether this engine is ready to be used.
       example:
-        id: marengo2
-        created_at: '2022-07-04 03:05:27.068 +0000 UTC'
-        updated_at: '2022-07-04 03:05:27.068 +0000 UTC'
+        id: marengo2.5
+        created_at: '2023-04-12 11:49:26.663 +0000 UTC'
+        updated_at: '2023-04-12 11:49:26.663 +0000 UTC'
         allowed_index_options:
           - visual
           - text_in_video
@@ -1343,7 +1344,7 @@ components:
           - logo
         created_at: '2022-07-04T13:58:39.262Z'
         updated_at: '2022-07-05T11:11:32.026Z'
-        engine_id: marengo2
+        engine_id: marengo2.5
         video_count: 12
         total_duration: 8716.8969
         addons:
@@ -2468,7 +2469,7 @@ components:
               - logo
             created_at: 2022-07-04T13:58:39.262Z
             updated_at: 2022-07-05T11:11:32.026Z
-            engine_id: marengo2
+            engine_id: marengo2.5
             video_count: 12
             total_duration: 8716.8969
             addons:
@@ -2663,7 +2664,7 @@ components:
                     - logo
                   created_at: '2022-07-20T20:04:55.776Z'
                   updated_at: '2022-07-20T20:04:55.776Z'
-                  engine_id: marengo2
+                  engine_id: marengo2.5
                   video_count: 2
                   total_duration: 1363.76
                   addons:
@@ -2677,7 +2678,7 @@ components:
                     - logo
                   created_at: '2022-07-20T19:35:10.385Z'
                   updated_at: '2022-07-20T19:35:10.385Z'
-                  engine_id: marengo2
+                  engine_id: marengo2.5
                   video_count: 1
                   total_duration: 579.12
                   addons:
@@ -2738,6 +2739,17 @@ components:
                   finetune: false
                   ready: true
                   updated_at: '2022-07-24 09:30:52.686 +0000 UTC'
+                - _id: marengo2.5
+                  allowed_index_options:
+                    - visual
+                    - text_in_video
+                    - conversation
+                    - logo
+                  author: twelve_labs
+                  created_at: '2023-04-12 11:49:26.663 +0000 UTC'
+                  finetune: false
+                  ready: true
+                  updated_at: '2023-04-12 11:49:26.663 +0000 UTC'
                 
     createIndexResponse:
       description: An index has successfully been created
@@ -3661,18 +3673,20 @@ components:
                   type: string
                   description: |
                     Specifies the engine used by this index. The following engines are available:
+                      - `marengo2.5`
+
                       - `marengo2`
                       
                       - `marengo`
 
                     **NOTES**:
 
-                      - Twelve Labs strongly recommends you use `marengo2`.
+                      - Twelve Labs strongly recommends you use `marengo2.5`.
 
                       - You cannot change the engine once the index has been created.
 
-                    For details about engines, see the [Engines](/docs/video-understanding-engines) page.
-                  default: marengo2
+                    For more details, see the [Video understanding engines](/docs/video-understanding-engines) page.
+                  default: marengo2.5
                 index_options:
                   type: array
                   description: |
@@ -3707,7 +3721,7 @@ components:
                   default:
                     - thumbnail
             example:
-              engine_id: marengo2
+              engine_id: marengo2.5
               index_options:
                 - visual
                 - conversation
