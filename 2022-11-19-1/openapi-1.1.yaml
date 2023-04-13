@@ -2940,6 +2940,30 @@ components:
 
                 additionalProperties: {}
                 properties:
+                  text:
+                    type: string
+                    description: Your search query.
+                  option:
+                    description: |
+                      An string that specifies the source of information the platform uses when it categorizes a video. The following vaues are supported:
+                      - `conversation`
+                      - `text_in_video`
+                      - `visual`
+                      - `logo`
+                      
+                      For details, see the [Search options](/docs/search-options) page.
+                    example: visual
+                    type: string
+                  conversation_option:
+                    description: |
+                      Specifies the type of match the platform will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-option) page.
+
+                      **Default:** `semantic`
+                    default: semantic
+                    enum:
+                    - semantic
+                    - transcription
+                    type: string
                   proximity:
                     type: number
                     description: |
