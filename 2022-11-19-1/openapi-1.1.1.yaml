@@ -1097,7 +1097,7 @@ components:
           type: array
         options:
           description: |
-            You can use this parameter to override the `options` parameter for this class.
+            You can use this parameter to override values for this class.
           items:
             enum:
             - conversation
@@ -1109,7 +1109,7 @@ components:
           type: array
         conversation_option:
           description: |
-            You can use this parameter to override the `conversation_option` parameter for this class.
+            You can use this parameter to override the value for this class.
           default: semantic
           enum:
           - semantic
@@ -3535,6 +3535,7 @@ components:
             required:
               - index_id
               - query
+              - search_options
             properties:
               filter:
                   description: |
@@ -3571,6 +3572,38 @@ components:
                 description: |
                   The unique identifier of the index to search.
                 type: string
+              search_options:
+                description: |
+                  An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
+                    
+                  **NOTES:** 
+                  - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
+                type: array
+                items:
+                  type: string
+                  minItems: 1
+                  maxItems: 4
+                example:
+                  - visual
+                  - conversation
+                  - text_in_video
+                  - logo
+                default:
+                  - visual
+                  - conversation
+                  - text_in_video
+                  - logo
+              conversation_option:
+                description: |
+                  Specifies the type of match the platform will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-option) page.
+
+                  **Default:** `semantic`
+                default: semantic
+                enum:
+                - semantic
+                - transcription
+                type: string
+
               page_limit:
                 type: number
                 description: |
@@ -3590,7 +3623,34 @@ components:
                   For details about building combined queries, see the [Combined queries](/docs/search-combined-queries) page.
 
                 additionalProperties: {}
+
                 properties:
+                  required:
+                    - text
+                  text:
+                    type: string
+                    description: |
+                      Your search query. Note that the API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
+                  search_options:
+                    description: |
+                      You can use this parameter to override the values for this query.
+                    type: array
+                    items:
+                      - visual
+                      - conversation
+                      - text_in_video
+                      - logo
+                    minItems: 1
+                    maxItems: 4
+                conversation_option:
+                  description: |
+                    You can use this parameter to override the the value for this query.
+                  default: semantic
+                  enum:
+                  - semantic
+                  - transcription
+                  type: string
+
                   proximity:
                     type: number
                     description: |
