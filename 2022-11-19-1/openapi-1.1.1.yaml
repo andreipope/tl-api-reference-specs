@@ -1097,7 +1097,7 @@ components:
           type: array
         options:
           description: |
-            You can use this parameter to override values for this class.
+            If set, overides the options for this class.
           items:
             enum:
             - conversation
@@ -1109,7 +1109,7 @@ components:
           type: array
         conversation_option:
           description: |
-            You can use this parameter to override the value for this class.
+            If set, overides the conversation option for this class.
           default: semantic
           enum:
           - semantic
@@ -3591,7 +3591,7 @@ components:
                       Your search query. Note that the API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
                   search_options:
                     description: |
-                      You can use this parameter to override the values for this query.
+                      If set, overrides the search options for this query.
                     type: array
                     items:
                       - visual
@@ -3602,7 +3602,7 @@ components:
                     maxItems: 4
                   conversation_option:
                     description: |
-                      You can use this parameter to override the the value for this query.
+                      If set, overrides the conversation option for this query.
                     default: semantic
                     enum:
                     - semantic
