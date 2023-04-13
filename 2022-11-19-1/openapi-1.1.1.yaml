@@ -621,7 +621,7 @@ paths:
   '/indexes/{index-id}/videos/{video-id}/text-in-video':
     get:
       summary: Retrieve text recognized in video (OCR)
-      description: This method retrieves text recognized in video (OCR). When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the platform also retrieves any logos detected in the specified video.
+      description: This method retrieves text recognized in video (OCR).
       operationId: retrieve-ocr
       tags:
         - Indexes/Videos
@@ -661,6 +661,52 @@ paths:
           $ref: '#/components/responses/retrieveOcrResponse'
         '400':
           $ref: '#/components/responses/genericError'
+
+  '/indexes/{index-id}/videos/{video-id}/logo':
+    get:
+      summary: Identifies the presence of brand logos within your videos.
+      description: Use this method to identify the presence of brand logos within your videos.
+
+      operationId: retrieve-logo
+      tags:
+        - Indexes/Videos
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+        - name: index-id
+          in: path
+          description: |
+            The unique identifier of the index to which the video has been uploaded.
+          required: true
+          schema:
+            type: string
+        - name: video-id
+          in: path
+          description: |
+            The unique identifier of the video.
+          required: true
+          schema:
+            type: string
+        - name: start
+          in: query
+          description: |
+            The start of the time range (in seconds) to retrieve OCRs for.
+          required: false
+          schema:
+            type: number
+        - name: end
+          in: query
+          description: |
+            The end of the time range (in seconds) to retrieve OCRs for.
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          $ref: '#/components/responses/retrieveLogoResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+  
 
   '/indexes/{index_id}/videos/{video_id}/thumbnail':
     get:
@@ -709,7 +755,7 @@ paths:
       tags:
         - Search
       description: |
-        Use the POST method of the `/search` endpoint to search for relevant matches in an index. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the platform also retrieves any logos detected in the specified index.
+        Use the POST method of the `/search` endpoint to search for relevant matches in an index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
@@ -770,7 +816,7 @@ paths:
       tags:
         - Combined search 
       description: |
-        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries. When the [logo detection](/docs/extract-video-data-logos) feature is enabled for an index, the platform also retrieves any logos detected in the specified index.
+        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
@@ -1033,6 +1079,7 @@ components:
             - conversation
             - text_in_video
             - visual
+            - logo
             type: string
           minItems: 1
           type: array
@@ -1062,6 +1109,7 @@ components:
         - conversation
         - text_in_video
         - visual
+        - logo
         type: string
       minItems: 1
       type: array
@@ -1224,6 +1272,7 @@ components:
           - visual
           - text_in_video
           - conversation
+          - logo
         author: twelve_labs
         finetune: false
         ready: true
@@ -1246,7 +1295,7 @@ components:
           description: |
             An array of strings that determines how the engine processes your videos.
             
-            Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing options](/docs/indexing-options) page.
+            Twelve Labs currently offers the following indexing options: `visual`, `conversation`, `text_in_video`, and `logo`. For more details, see the [Indexing options](/docs/indexing-options) page.
 
             **NOTES**:
             - The indexing options cannot be changed once the index has been created.
@@ -1257,6 +1306,7 @@ components:
               - visual
               - conversation
               - text_in_video
+              - logo
         created_at:
           type: string
           description: |
@@ -1290,6 +1340,7 @@ components:
           - visual
           - text_in_video
           - conversation
+          - logo
         created_at: '2022-07-04T13:58:39.262Z'
         updated_at: '2022-07-05T11:11:32.026Z'
         engine_id: marengo2
@@ -1626,7 +1677,7 @@ components:
                         properties:
                           type:
                             type: string
-                            description: A string that indicates the type of match (`visual`, `conversation`, `text_in_video`).
+                            description: A string that indicates the type of match (`visual`, `conversation`, `text_in_video`, or `logo`).
                           text:
                             type: string
                             description: For `conversation` and `text_in_video`, the API returns a transcription of the spoken words or the text that matches your search query.
@@ -1975,7 +2026,7 @@ components:
                         properties:
                           type:
                             type: string
-                            description: A string that indicates the type of match (`visual`, `conversation`, `text_in_video`).
+                            description: A string that indicates the type of match (`visual`, `conversation`, `text_in_video`, or `logo`).
                           text:
                             type: string
                             description: For `conversation` and `text_in_video`, the API returns a transcription of the spoken words or the text that matches your search query.
@@ -2167,6 +2218,49 @@ components:
                 value: ' Yeah,'
             index_id: 61e165b061c43d6d9b73627b
 
+
+    retrieveLogoResponse:
+      description: The request has been completed successfully.
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+                description: The unique identifier of the video.
+              data:
+                type: array
+                description: |
+                  An array that contains information about all the time ranges for which a brand logo has been identified.
+                  For each time range for which the platform identifies the presence of brand logos within the specified video, it returns an object that contains the fields below.
+                  If the platform doesn't find any logos, the `data` field is set to `None`.
+                items:
+                  type: object
+                  properties:
+                    start:
+                      description: 'The start of the time range, expressed in seconds.'
+                      type: number
+                    end:
+                      description: 'The end of the time range, expressed in seconds.'
+                      type: number
+                    value:
+                      description: |
+                        The logo identified within this time range.
+                      type: string
+              index_id:
+                type: string
+                description: The unique identifier of the index to which the video has been updated.
+          example:
+            id: 61e17c1c777e6caec646fa08
+            data:
+              - start: 28
+                end: 29
+                value: Verizon Wireless
+              - start: 32
+                end: 34
+                value: Apple Inc.
+            index_id: 61e165b061c43d6d9b73627b
+
     retrieveOcrResponse:
       description: OCRs have successfully been retrieved.
       content:
@@ -2345,7 +2439,7 @@ components:
                 description: |
                   An array of strings that determines how the engine processes your videos.
                   
-                  Twelve Labs currently offers three different indexing options: `visual`, `conversation`, and `text_in_video`. For more details, see the [Indexing Options](/docs/indexing-options) page.
+                  Twelve Labs currently supports the following indexing options: `visual`, `conversation`, `text_in_video`, and `logo`. For more details, see the [Indexing Options](/docs/indexing-options) page.
 
                   **NOTES**:
                   - The indexing options cannot be changed once the index has been created.
@@ -2371,6 +2465,7 @@ components:
               - visual
               - text_in_video
               - conversation
+              - logo
             created_at: 2022-07-04T13:58:39.262Z
             updated_at: 2022-07-05T11:11:32.026Z
             engine_id: marengo2
@@ -2565,6 +2660,7 @@ components:
                     - visual
                     - conversation
                     - text_in_video
+                    - logo
                   created_at: '2022-07-20T20:04:55.776Z'
                   updated_at: '2022-07-20T20:04:55.776Z'
                   engine_id: marengo2
@@ -2578,6 +2674,7 @@ components:
                     - visual
                     - conversation
                     - text_in_video
+                    - logo
                   created_at: '2022-07-20T19:35:10.385Z'
                   updated_at: '2022-07-20T19:35:10.385Z'
                   engine_id: marengo2
@@ -2624,6 +2721,7 @@ components:
                     - visual
                     - text_in_video
                     - conversation
+                    - logo
                   author: twelve_labs
                   created_at: '2022-07-24 09:30:52.683 +0000 UTC'
                   finetune: false
@@ -2634,6 +2732,7 @@ components:
                     - visual
                     - text_in_video
                     - conversation
+                    - logo
                   author: twelve_labs
                   created_at: '2022-07-24 09:30:52.686 +0000 UTC'
                   finetune: false
@@ -3352,15 +3451,17 @@ components:
                 items:
                   type: string
                 minItems: 1
-                maxItems: 3
+                maxItems: 4
                 example:
                   - visual
                   - conversation
                   - text_in_video
+                  - logo
                 default:
                   - visual
                   - conversation
                   - text_in_video
+                  - logo
                 description: |
                   An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
 
@@ -3575,15 +3676,16 @@ components:
                 index_options:
                   type: array
                   description: |
-                    An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video"]`. For more details, see the [Indexing options](/docs/indexing-options) page.
+                    An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video", "logo"]`. For more details, see the [Indexing options](/docs/indexing-options) page.
                   items:
                     type: string
                   minItems: 1
-                  maxItems: 3
+                  maxItems: 4
                   default:
                     - visual
                     - conversation
                     - text_in_video
+                    - logo
                 index_name:
                   type: string
                   description: |
@@ -3593,8 +3695,7 @@ components:
                   description: |
                     An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
                     - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
-                    - `logo`: Enables [logo detection](/docs/extract-video-data-logos).
-                    
+
                     If you don't provide this parameter, no add-ons will be enabled.
 
                     **NOTE**:
@@ -3602,17 +3703,16 @@ components:
                   items:
                     type: string
                   minItems: 1
-                  maxItems: 2
+                  maxItems: 1
                   default:
                     - thumbnail
-                    - logo
             example:
               engine_id: marengo2
               index_options:
                 - visual
                 - conversation
                 - text_in_video
+                - logo
               addons:
                 - thumbnail
-                - logo
               index_name: myIndex
