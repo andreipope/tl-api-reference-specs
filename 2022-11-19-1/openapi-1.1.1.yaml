@@ -664,7 +664,7 @@ paths:
 
   '/indexes/{index-id}/videos/{video-id}/logo':
     get:
-      summary: Identifies the presence of brand logos within your videos.
+      summary: Identify logos
       description: Use this method to identify the presence of brand logos within your videos.
 
       operationId: retrieve-logo
