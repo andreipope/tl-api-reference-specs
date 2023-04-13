@@ -2991,6 +2991,17 @@ components:
 
                             **Min**: 0
                             **Max**: 100
+          example:
+            video_id: 6435651a9ab33c7198615a80
+            classes:
+            - name: DanceTok
+              score: 96.77333333333335
+              duration_ratio: 1
+              detailed_scores:
+                max_score: 86.37
+                avg_score: 71.61778350515468
+                duration_weighted_score: 96.77333333333335
+                normalized_score: 100
 
     classifyBulkResponseNew:
       description: The videos in the specified index have successfully been classified.
