@@ -3572,6 +3572,60 @@ components:
                 - semantic
                 - transcription
                 type: string
+              query:
+                type: object
+                description: |
+                  
+                  Use the `query` parameter to build combined queries.
+
+                  For details about building combined queries, see the [Combined queries](/docs/search-combined-queries) page.
+
+                additionalProperties: {}
+
+                properties:
+                  required:
+                    - text
+                  text:
+                    type: string
+                    description: |
+                      Your search query. Note that the API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
+                  search_options:
+                    description: |
+                      You can use this parameter to override the values for this query.
+                    type: array
+                    items:
+                      - visual
+                      - conversation
+                      - text_in_video
+                      - logo
+                    minItems: 1
+                    maxItems: 4
+                  conversation_option:
+                    description: |
+                      You can use this parameter to override the the value for this query.
+                    default: semantic
+                    enum:
+                    - semantic
+                    - transcription
+                    type: string
+
+                  proximity:
+                    type: number
+                    description: |
+                      When specifying multiple search queries, you can use the `proximity` parameter to limit or expand your search results by extending the lower and upper boundaries of each subquery. This parameter is expressed in seconds.
+
+
+                      **Example:**
+                      You've specified two queries and used to `AND` logical operator to retrieve only the video fragment for which both queries match. The first query matches a video fragment that starts at 10s and end at 30s. The second query second query matches a video fragment that starts at 50s and ends at 60s.
+
+
+                      If you don't specify the `proximity` parameter, then it takes the default value of 0s. The video fragments will not overlap, and the platform will not return any results.
+
+                      If you specify a value of 20s for the `proximity` parameter, the first video fragment will start at 0s and end at 50s, and the second video fragment will start at 30s and end at 80s. The video fragments will overlap, and the platform will return a result that starts 30s and ends at 50s.
+
+                      **Default**: `0`.
+                    default: 0
+
               filter:
                   description: |
                     Use this parameter to filter your search results by metadata.
@@ -3613,60 +3667,6 @@ components:
                 default: 10
               threshold:
                 $ref: '#/components/schemas/threshold'
-              query:
-                type: object
-                description: |
-                  
-                  Use the `query` parameter to build combined queries.
-
-                  For details about building combined queries, see the [Combined queries](/docs/search-combined-queries) page.
-
-                additionalProperties: {}
-
-                properties:
-                  required:
-                    - text
-                  text:
-                    type: string
-                    description: |
-                      Your search query. Note that the API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
-                  search_options:
-                    description: |
-                      You can use this parameter to override the values for this query.
-                    type: array
-                    items:
-                      - visual
-                      - conversation
-                      - text_in_video
-                      - logo
-                    minItems: 1
-                    maxItems: 4
-                  conversation_option:
-                    description: |
-                      You can use this parameter to override the the value for this query.
-                    default: semantic
-                    enum:
-                    - semantic
-                    - transcription
-                    type: string
-
-                    proximity:
-                      type: number
-                      description: |
-                        When specifying multiple search queries, you can use the `proximity` parameter to limit or expand your search results by extending the lower and upper boundaries of each subquery. This parameter is expressed in seconds.
-
-
-                        **Example:**
-                        You've specified two queries and used to `AND` logical operator to retrieve only the video fragment for which both queries match. The first query matches a video fragment that starts at 10s and end at 30s. The second query second query matches a video fragment that starts at 50s and ends at 60s.
-
-
-                        If you don't specify the `proximity` parameter, then it takes the default value of 0s. The video fragments will not overlap, and the platform will not return any results.
-
-                        If you specify a value of 20s for the `proximity` parameter, the first video fragment will start at 0s and end at 50s, and the second video fragment will start at 30s and end at 80s. The video fragments will overlap, and the platform will return a result that starts 30s and ends at 50s.
-
-                        **Default**: `0`.
-                      default: 0
-
     classifyRequest:
       content:
         application/json:
