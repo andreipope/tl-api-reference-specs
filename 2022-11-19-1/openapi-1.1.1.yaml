@@ -667,7 +667,7 @@ paths:
       summary: Identify logos
       description: Use this method to identify the presence of brand logos within your videos.
 
-      operationId: retrieve-logo
+      operationId: identify-logos
       tags:
         - Indexes/Videos
       parameters:
