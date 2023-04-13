@@ -3227,6 +3227,50 @@ components:
                                   **Max**: 100
               page_info:
                 $ref: '#/components/schemas/classifyPageInfo'
+          example:
+            data:
+            - video_id: 6435651a9ab33c7198615a80
+              classes:
+              - name: DanceTok
+                score: 96.77333333333335
+                duration_ratio: 1
+                clips:
+                - start: 711.8125
+                  end: 774.15625
+                  score: 86.37
+                  option: visual
+                  prompt: Dance competition
+                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/712.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=94defeefcebaa10e7b60390b8a564a582ffa273535b1f74b97ae8324a3775afa
+                - start: 207.425
+                  end: 214.46875
+                  score: 46.77
+                  option: visual
+                  prompt: Dance tutorial
+                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/208.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=aeaa1f38ee2fff2502ccc1719e96417eadc6a2ac915318b7f0818c544155663b
+            - video_id: 643564b39ab33c7198615a7f
+              classes:
+              - name: DanceTok
+                score: 95.46863419938227
+                duration_ratio: 0.9962264438246706
+                clips:
+                - start: 473.09375
+                  end: 595.09375
+                  score: 84.92
+                  option: visual
+                  prompt: Dance tutorial
+                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/474.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=07fd122f6ea7305012ece1c1c46bcfbf0e7997f8e74418ce6a8e7ed030381090
+                - start: 369.09375
+                  end: 371.09375
+                  score: 56.52
+                  option: visual
+                  prompt: Dance group
+                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/370.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0cb1d1ed7a99f4b3bb78d331a8865c9d7d7d9b1a441013517956c7fc61b8c460
+            page_info:
+              limit_per_page: 10
+              total_results: 6
+              page_expired_at: '2023-04-12T12:02:22Z'
+              next_page_token: '490d1751-ee0c-4b19-b9af-bb7498ecd348-1'
+              prev_page_token: '490d1751-ee0c-4b19-b9af-bb7498ecd348-0'
 
 
     classifyBulkResponse:
