@@ -822,7 +822,7 @@ paths:
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES:**:
-          - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion while we’re building a user interface that will provide a better experience.
+          - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the [Playground](https://playground.twelvelabs.io/), which provides a better experience. 
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
