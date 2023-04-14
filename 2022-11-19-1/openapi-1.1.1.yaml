@@ -1044,13 +1044,13 @@ components:
 
     conversation_option:
       description: |
-        Specifies the type of match the platform will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-option) page.
+        Specifies the type of match the platform will perform. The following values are supported: `semantic` and `exact_match`. For details, see the [Conversation option](/docs/conversation-option) page.
 
         **Default:** `semantic`
       default: semantic
       enum:
       - semantic
-      - transcription
+      - exact_match
       type: string
 
     include_clips:
@@ -1113,7 +1113,7 @@ components:
           default: semantic
           enum:
           - semantic
-          - transcription
+          - exact_match
           type: string
 
 
@@ -3564,13 +3564,13 @@ components:
                   - logo
               conversation_option:
                 description: |
-                  Specifies the type of match the platform will perform. The following values are supported: `semantic` and `transcription`. For details, see the [Conversation option](/docs/conversation-option) page.
+                  Specifies the type of match the platform will perform. The following values are supported: `semantic` and `exact_match`. For details, see the [Conversation option](/docs/conversation-option) page.
 
                   **Default:** `semantic`
                 default: semantic
                 enum:
                 - semantic
-                - transcription
+                - exact_match
                 type: string
               query:
                 type: object
@@ -3606,7 +3606,7 @@ components:
                     default: semantic
                     enum:
                     - semantic
-                    - transcription
+                    - exact_match
                     type: string
 
                   proximity:
