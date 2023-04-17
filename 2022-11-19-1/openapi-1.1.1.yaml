@@ -893,7 +893,7 @@ paths:
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
         - The total number of prompts you specify in a request must not exceed 100.
-        - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page.To classify a video that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/classify`. Everything else remains the same.
+        - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify a video that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/classify`. Everything else remains the same.
 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
