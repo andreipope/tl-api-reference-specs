@@ -980,12 +980,12 @@ components:
     end_time:
       type: number
       description: |
-        The end time of the matching video fragment, expressed in seconds.  
+        The end time of the matching video segment, expressed in seconds.  
 
     start_time:
       type: number
       description: |
-        The start time of the matching video fragment, expressed in seconds.
+        The start time of the matching video segment, expressed in seconds.
     
     score_search_terms:
       type: string
@@ -1038,7 +1038,7 @@ components:
     total_inner_matches:
       type: integer 
       description: |
-        When grouping by video, the platform return this field that shows the total number of video fragments matching your query.
+        When grouping by video, the platform return this field that shows the total number of video segments matching your query.
 
     next_page_token:
       type: string
@@ -1071,7 +1071,7 @@ components:
 
     include_clips:
       description: |
-        When this parameter is set to `true`, the platform will return detailed information about each matching video fragment.
+        When this parameter is set to `true`, the platform will return detailed information about each matching video segment.
 
         **Default:** false
       default: false
@@ -1222,11 +1222,11 @@ components:
 
     classifyLabelResult:
       description: |
-        An array containing information about the video fragments that match the the prompts you've specified.
+        An array containing information about the video segments that match the the prompts you've specified.
       properties:
         classes: 
           description: |
-            An array of objects containing information about each of the matching video fragments. This field is included in the response only when you set the value of the `include_clips` parameter to `true`.
+            An array of objects containing information about each of the matching video segments. This field is included in the response only when you set the value of the `include_clips` parameter to `true`.
           items:
             $ref: "#/components/schemas/classifyClip"
           type: array
@@ -1234,11 +1234,11 @@ components:
         confidence:
           $ref: '#/components/schemas/max_confidence'
         duration:
-          description: The total duration of the matching video fragments.
+          description: The total duration of the matching video segments.
           type: number
         max_score:
           description: |
-            When classifying a video, the platform finds all video fragments that match the label you've specified in the request. For each video fragment found, the platform determines the level of confidence that the fragment matches the label. The `max_score` field is determined by comparing the confidence scores of each fragment and selecting the highest one.
+            When classifying a video, the platform finds all video segments that match the label you've specified in the request. For each video segment found, the platform determines the level of confidence that the segment matches the label. The `max_score` field is determined by comparing the confidence scores of each segment and selecting the highest one.
           type: number
         name:
           description: The name of the label.
@@ -1248,7 +1248,7 @@ components:
 
     classifyClip:
       name: clasifyClip
-      description: An array containing information about the video fragments that match the label you've specified.
+      description: An array containing information about the video segments that match the label you've specified.
       properties:
         confidence:
           $ref: '#/components/schemas/confidence'
@@ -1734,14 +1734,14 @@ components:
                   limit_per_page:
                     type: integer
                     description: |
-                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video fragments per page. 
+                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video segments per page. 
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
                   total_results:
                     type: integer
                     description: |
-                      The total number of results. When grouping by video, this field represents the total number of video fragments matching your query. Otherwise , this field represents the total number of videos.
+                      The total number of results. When grouping by video, this field represents the total number of video segments matching your query. Otherwise , this field represents the total number of videos.
                   total_inner_matches:
                     $ref: '#/components/schemas/total_inner_matches'
                   next_page_token:
@@ -2083,14 +2083,14 @@ components:
                   limit_per_page:
                     type: integer
                     description: |
-                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video fragments per page.
+                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video segments per page.
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
                   total_results:
                     type: integer
                     description: |
-                      The total number of results. When grouping by video, this field represents the total number of video fragments matching your query. Otherwise , this field represents the total number of videos. 
+                      The total number of results. When grouping by video, this field represents the total number of video segments matching your query. Otherwise , this field represents the total number of videos. 
                   total_inner_matches:
                     $ref: '#/components/schemas/total_inner_matches'
                   next_page_token:
@@ -2948,13 +2948,13 @@ components:
                       description: The name of the prompt.
                     score:
                       type: float
-                      description: A quantitative value representing the level of confidence that this video fragment matches the prompts you've specified.
+                      description: A number indicating the confidence level that the video segments match the specified class.
                     duration_ratio:
                       type: float
-                      description: A number represething the duration of the matching video fragment divided by the duration of the video to which this fragment belongs.
+                      description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
                     clips:
                       type: array
-                      description:  An array containing details information about the video fragments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                      description:  An array containing details information about the video segments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
                       items:
                         type: object
                         properties:
@@ -2976,26 +2976,26 @@ components:
                             $ref: '#/components/schemas/thumbnail_url'
                     detailed_scores:
                       type: object
-                      description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video fragment matches your prompts.
+                      description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video segment matches your prompts.
                       properties:
                         max_score:
                           type: float
                           description: |
-                            Represents the maximum score. It is determined by comparing the confidence scores of each fragment and selecting the highest one.
+                            Represents the maximum score. It is determined by comparing the confidence scores of each segment and selecting the highest one.
                           
                             **Min**: 0.
                             **Max**: 100.
                         avg_score:
                           type: float
                           description: |
-                            Represents the average score of the matching video fragments.
+                            Represents the average score of the matching video segments.
                             
                             **Min**: 0.
                             **Max**: 100.
                         duration_weighted_score:
                           type: float
                           description: |
-                            Represents the score of each matching video fragment, weighted by its length.
+                            Represents the score of each matching video segment, weighted by its length.
 
                             **Min**: 0
                             **Max**: 100
@@ -3046,13 +3046,13 @@ components:
                             description: The name of the prompt.
                           score:
                             type: float
-                            description: A quantitative value representing the level of confidence that this video fragment matches the prompts you've specified.
+                            description: A number indicating the confidence level that the video segments match the specified class.
                           duration_ratio:
                             type: float
-                            description: A number represething the duration of the matching video fragment divided by the duration of the video to which this fragment belongs.
+                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
                           clips:
                             type: array
-                            description:  An array containing details information about the video fragments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                            description:  An array containing details information about the video segments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
                             items:
                               type: object
                               properties:
@@ -3074,26 +3074,26 @@ components:
                                   $ref: '#/components/schemas/thumbnail_url'
                           detailed_scores:
                             type: object
-                            description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video fragment matches your prompts.
+                            description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video segment matches your prompts.
                             properties:
                               max_score:
                                 type: float
                                 description: |
-                                  Represents the maximum score. It is determined by comparing the confidence scores of each fragment and selecting the highest one.
+                                  Represents the maximum score. It is determined by comparing the confidence scores of each segment and selecting the highest one.
                                 
                                   **Min**: 0.
                                   **Max**: 100.
                               avg_score:
                                 type: float
                                 description: |
-                                  Represents the average score of the matching video fragments.
+                                  Represents the average score of the matching video segments.
                                   
                                   **Min**: 0.
                                   **Max**: 100.
                               duration_weighted_score:
                                 type: float
                                 description: |
-                                  Represents the score of each matching video fragment, weighted by its length.
+                                  Represents the score of each matching video segment, weighted by its length.
 
                                   **Min**: 0
                                   **Max**: 100
@@ -3182,13 +3182,13 @@ components:
                             description: The name of the prompt.
                           score:
                             type: float
-                            description: A quantitative value representing the level of confidence that this video fragment matches the prompts you've specified.
+                            description: A number indicating the confidence level that the video segments match the specified class.
                           duration_ratio:
                             type: float
-                            description: A number represething the duration of the matching video fragment divided by the duration of the video to which this fragment belongs.
+                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
                           clips:
                             type: array
-                            description:  An array containing details information about the video fragments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                            description:  An array containing details information about the video segments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
                             items:
                               type: object
                               properties:
@@ -3210,26 +3210,26 @@ components:
                                   $ref: '#/components/schemas/thumbnail_url'
                           detailed_scores:
                             type: object
-                            description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video fragment matches your prompts.
+                            description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video segment matches your prompts.
                             properties:
                               max_score:
                                 type: float
                                 description: |
-                                  Represents the maximum score. It is determined by comparing the confidence scores of each fragment and selecting the highest one.
+                                  Represents the maximum score. It is determined by comparing the confidence scores of each segment and selecting the highest one.
                                 
                                   **Min**: 0.
                                   **Max**: 100.
                               avg_score:
                                 type: float
                                 description: |
-                                  Represents the average score of the matching video fragments.
+                                  Represents the average score of the matching video segments.
                                   
                                   **Min**: 0.
                                   **Max**: 100.
                               duration_weighted_score:
                                 type: float
                                 description: |
-                                  Represents the score of each matching video fragment, weighted by its length.
+                                  Represents the score of each matching video segment, weighted by its length.
 
                                   **Min**: 0
                                   **Max**: 100
@@ -3444,11 +3444,11 @@ components:
                   type: boolean
                   default: false
                   description: |
-                    Set this parameter to `true` to specify that the platform should return a detailed score for each matching video fragment. A detailed score contains the following information:
+                    Set this parameter to `true` to specify that the platform should return a detailed score for each matching video segment. A detailed score contains the following information:
 
-                    - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching fragment and selecting the highest one.
-                    - **Average score**: Represents the average score of the matching video fragments.
-                    - **Duration weighted score**: Represents the score of each matching video fragment, weighted by its length.
+                    - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching segment and selecting the highest one.
+                    - **Average score**: Represents the average score of the matching video segments.
+                    - **Duration weighted score**: Represents the score of each matching video segment, weighted by its length.
                     - **Normalized score**: Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
 
                 options:
@@ -3491,11 +3491,11 @@ components:
                 type: boolean
                 default: false
                 description: |
-                  Set this parameter to `true` to specify that the platform should return a detailed score for each matching video fragment. A detailed score contains the following information:
+                  Set this parameter to `true` to specify that the platform should return a detailed score for each matching video segment. A detailed score contains the following information:
 
-                  - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching fragment and selecting the highest one.
-                  - **Average score**: Represents the average score of the matching video fragments.
-                  - **Duration weighted score**: Represents the score of each matching video fragment, weighted by its length.
+                  - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching segment and selecting the highest one.
+                  - **Average score**: Represents the average score of the matching video segments.
+                  - **Duration weighted score**: Represents the score of each matching video segment, weighted by its length.
                   - **Normalized score**: Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
 
               options:
@@ -3632,12 +3632,12 @@ components:
 
 
                       **Example:**
-                      You've specified two queries and used to `AND` logical operator to retrieve only the video fragment for which both queries match. The first query matches a video fragment that starts at 10s and end at 30s. The second query second query matches a video fragment that starts at 50s and ends at 60s.
+                      You've specified two queries and used to `AND` logical operator to retrieve only the video segment for which both queries match. The first query matches a video segment that starts at 10s and end at 30s. The second query second query matches a video segment that starts at 50s and ends at 60s.
 
 
-                      If you don't specify the `proximity` parameter, then it takes the default value of 0s. The video fragments will not overlap, and the platform will not return any results.
+                      If you don't specify the `proximity` parameter, then it takes the default value of 0s. The video segments will not overlap, and the platform will not return any results.
 
-                      If you specify a value of 20s for the `proximity` parameter, the first video fragment will start at 0s and end at 50s, and the second video fragment will start at 30s and end at 80s. The video fragments will overlap, and the platform will return a result that starts 30s and ends at 50s.
+                      If you specify a value of 20s for the `proximity` parameter, the first video segment will start at 0s and end at 50s, and the second video segment will start at 30s and end at 80s. The video segments will overlap, and the platform will return a result that starts 30s and ends at 50s.
 
                       **Default**: `0`.
                     default: 0
@@ -3769,8 +3769,8 @@ components:
                 type: string
                 description: |
                   Use this parameter to group or ungroup items in a response. It can take one of the following values:
-                  - `video`:  The platform will group the matching video fragments in the response by video.
-                  - `clip`: The matching video fragments in the response will not be grouped.
+                  - `video`:  The platform will group the matching video segments in the response by video.
+                  - `clip`: The matching video segments in the response will not be grouped.
 
                   **Default:** `clip`
                 enum:
@@ -3784,11 +3784,11 @@ components:
                 description: |
                   Use this parameter to specify the sort order for the response.
                   
-                  When performing a search, the platform determines the level of confidence that each video fragment matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
+                  When performing a search, the platform determines the level of confidence that each video segment matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
-                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video fragments will be sorted by the level of confidence.
+                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video segments will be sorted by the level of confidence.
 
-                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video fragments will be sorted by the level of confidence. You can use `clip_count` only when the matching video fragments are sorted by video.
+                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video segments will be sorted by the level of confidence. You can use `clip_count` only when the matching video segments are sorted by video.
                   
 
                   **Default:** `score`
@@ -3818,7 +3818,7 @@ components:
               page_limit:
                 type: integer
                 description: |
-                  The number of items to return on each page. When grouping by video, this parameter represents the number of videos per page. Otherwise, it represents the maximum number of video fragments per page. 
+                  The number of items to return on each page. When grouping by video, this parameter represents the number of videos per page. Otherwise, it represents the maximum number of video segments per page. 
 
                   **Max**: `50`.
                 default: 10
