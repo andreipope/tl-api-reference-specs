@@ -1257,7 +1257,7 @@ components:
         score:
           type: number
           description: |
-            A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
+            A number indicating the confidence level that the video segments match the specified class.
         option:
           type: string
           description: Indicates the type of search the platform performed.
@@ -2965,7 +2965,7 @@ components:
                           score:
                             type: number
                             description: |
-                              A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
+                              A number indicating the confidence level that the video segments match the specified class.
                           option:
                             type: string
                             description: Indicates the type of match that the platform has performed.
@@ -3063,7 +3063,7 @@ components:
                                 score:
                                   type: number
                                   description: |
-                                    A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
+                                    A number indicating the confidence level that the video segments match the specified class.
                                 option:
                                   type: string
                                   description: Indicates the type of match that the platform has performed.
@@ -3199,7 +3199,7 @@ components:
                                 score:
                                   type: number
                                   description: |
-                                    A quantitative value determined by the AI engine representing the level of confidence that the results match the labels you've specified.
+                                    A number indicating the confidence level that the video segments match the specified class.
                                 option:
                                   type: string
                                   description: Indicates the type of match that the platform has performed.
