@@ -1393,7 +1393,7 @@ components:
       description: |
         A task represents a request to upload and index a video. A task starts when you begin uploading your video by calling the **POST** method of the `tasks` endpoint, and it can have one of the following statuses:
         - **Validating**: Your video has finished uploading, and the platform is validating it by performing the following checks:
-          - Resolution must be greater or equal than 360p and less than 1080p (FHD).
+          - Resolution must be greater than or equal to 360p and less than or equal to 1080p (FHD).
           - File size must not exceed 2 GB.
           - Duration must be between 10 seconds and 2 hours (7,200s).
           - Your video must contain an audio track.
