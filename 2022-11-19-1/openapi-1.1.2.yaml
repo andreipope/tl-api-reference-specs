@@ -3455,7 +3455,6 @@ components:
                   type: array
                   description: |
                     An array containing the unique identifiers of the videos that you want to classify.
-                    items:
                   items:
                     type: string
                     minItems: 1
