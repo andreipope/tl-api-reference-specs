@@ -886,13 +886,14 @@ paths:
 
   '/classify':
     post:
-      summary: Classify a video
+      summary: Classify videos
       description: |
-        Use this method to classify a video based on the entities or actions shown in that video.
+        Use this method to classify one or more videos based on the entities or actions shown in the specified videos.
 
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
-        - The total number of prompts you specify in a request must not exceed 100.
+        - The total number of the prompts you specify in a request must not exceed 100.
+        - The total duration of the videos you classify in a request must not exceed 10 hours.
         - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify a video that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/classify`. Everything else remains the same.
 
       parameters:
@@ -907,7 +908,8 @@ paths:
         '200':
           $ref: '#/components/responses/classifyResponseNew'
         '400':
-          $ref: '#/components/responses/genericError'
+         $ref: '#/components/responses/classify10hours'
+
         '429':
           description: |
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
@@ -2845,6 +2847,31 @@ components:
             message: Not enough free credit. Please register a payment method or contact sales@twelvelabs.io. 
 
 
+
+    classify10hours:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: |
+                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
+              message: 
+                type: string
+                description: |
+                  A human-readable string describing the error, intended to be suitable for display in a user interface.
+              docs_url: 
+                type: string
+                description: |
+                  The URL of the relevant documentation page.
+            example:
+              code: parameter_invalid
+              message: The total duration(seconds) 3760 of videos exceeds the limit.
+
+
     genericError:
       description: The request has failed.
       content:
@@ -2928,7 +2955,7 @@ components:
 
 
     classifyResponseNew:
-      description: The specified video has successfully been classified.
+      description: The specified videos have successfully been classified.
       content:
         application/json:
           schema:
@@ -2940,16 +2967,16 @@ components:
                 type: string
               classes:
                 type: array
-                description: An array that contains information about the classes that were detected in your videos. 
+                description: An array that contains information about the classes that were detected in your video. 
                 items:
                   type: object
                   properties:
                     name:
                       type: string
-                      description: The name of the prompt.
+                      description: The name of the class.
                     score:
                       type: float
-                      description: A number indicating the confidence level that the video segments match the specified class.
+                      description: A number indicating the confidence level that the entire video matches the specified class.
                     duration_ratio:
                       type: float
                       description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
@@ -2993,14 +3020,6 @@ components:
                             
                             **Min**: 0.
                             **Max**: 100.
-                        duration_weighted_score:
-                          type: float
-                          description: |
-                            Represents the score of each matching video segment, weighted by its length.
-
-                            **Min**: 0
-                            **Max**: 100
-
                         normalized_score:
                           type: float
                           description: |
@@ -3012,12 +3031,11 @@ components:
             video_id: 6435651a9ab33c7198615a80
             classes:
             - name: DanceTok
-              score: 96.77333333333335
+              score: 96.77
               duration_ratio: 1
               detailed_scores:
                 max_score: 86.37
-                avg_score: 71.61778350515468
-                duration_weighted_score: 96.77333333333335
+                avg_score: 71.61
                 normalized_score: 100
 
     classifyBulkResponseNew:
@@ -3132,7 +3150,7 @@ components:
               classes:
               - name: DanceTok
                 score: 95.46863419938227
-                duration_ratio: 0.9962264438246706
+                duration_ratio: 0.99
                 clips:
                 - start: 473.09375
                   end: 595.09375
@@ -3268,7 +3286,7 @@ components:
               classes:
               - name: DanceTok
                 score: 95.46863419938227
-                duration_ratio: 0.9962264438246706
+                duration_ratio: 0.99
                 clips:
                 - start: 473.09375
                   end: 595.09375
@@ -3428,19 +3446,62 @@ components:
           schema:
             type: object
             required:
-                - video_id
+                - video_ids
                 - classes
                 - options
                 - conversation_option
             properties:
-                video_id:
-                  type: string
+                video_ids:
+                  type: array
                   description: |
-                    The unique identifier of the video that you want to classify.
+                    An array containing the unique identifiers of the videos that you want to classify.
+                    items:
+                  items:
+                    type: string
+                    minItems: 1
                 include_clips:
                   $ref: '#/components/schemas/include_clips'
                 threshold: 
-                  $ref: '#/components/schemas/thresholdClassifyNew'
+                  description: |
+                    An object that allows you to filter on the level of confidence that the results match your prompts.
+                  type: object
+                  properties:
+                    min_video_score:
+                      description: |
+                        A numeric value indicating indicating the minimum confidence level that the video match the specified class. The platorm will returns only the results for which the the value of the `score` field is greater than or equal to `min_video_score`.
+                        
+                        **Default:** 65
+                        **Min:** 0
+                        **Max:** 100
+                      type: number
+                      default: 65
+                      maximum: 100
+                      minimum: 0
+                    
+                    min_clip_score:
+                      description: |
+                        A numeric value indicating the minimum the minimum confidence level that each clip matches the specified class.
+                        
+                        **Default:** 65
+                        **Min:** 0
+                        **Max:** 10
+                      type: number
+                      default: 65
+                      maximum: 100
+                      minimum: 0
+
+                    min_duration_ratio:
+                      description: | 
+                        A number indicating the minimum duration ratio. The duration ratio represents the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
+                        
+                        **Default:** 0.5
+                        **Min:** 0.01
+                        **Max:** 1
+                      type: float
+                      default: 0.5
+                      maximum: 1
+                      minimum: 0.01
+
                 show_detailed_score:
                   type: boolean
                   default: false
@@ -3449,7 +3510,6 @@ components:
 
                     - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching segment and selecting the highest one.
                     - **Average score**: Represents the average score of the matching video segments.
-                    - **Duration weighted score**: Represents the score of each matching video segment, weighted by its length.
                     - **Normalized score**: Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
 
                 options:
