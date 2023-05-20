@@ -2946,7 +2946,7 @@ components:
                   properties:
                     name:
                       type: string
-                      description: The name of the prompt.
+                      description: The name of the class.
                     score:
                       type: float
                       description: A number indicating the confidence level that the video segments match the specified class.
@@ -3044,7 +3044,7 @@ components:
                         properties:
                           name:
                             type: string
-                            description: The name of the prompt.
+                            description: The name of the class.
                           score:
                             type: float
                             description: A number indicating the confidence level that the video segments match the specified class.
