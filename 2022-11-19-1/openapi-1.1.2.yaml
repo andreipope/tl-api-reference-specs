@@ -908,7 +908,7 @@ paths:
         '200':
           $ref: '#/components/responses/classifyResponseNew'
         '400':
-         $ref: '#/components/responses/classify10hours'
+          $ref: '#/components/responses/classify10hours'
 
         '429':
           description: |
@@ -2961,82 +2961,111 @@ components:
           schema:
             type: object
             properties:
-              video_id:
-                description: |
-                  The unique identifier of the video that has been classified.
-                type: string
-              classes:
+              data:
                 type: array
-                description: An array that contains information about the classes that were detected in your video. 
+                description: An array that contains the response. Each element of the array contains information about a specific video.
                 items:
                   type: object
                   properties:
-                    name:
+                    video_id:
+                      description: |
+                        The unique identifier of the video that has been classified.
                       type: string
-                      description: The name of the class.
-                    score:
-                      type: float
-                      description: A number indicating the confidence level that the entire video matches the specified class.
-                    duration_ratio:
-                      type: float
-                      description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
-                    clips:
+                    classes:
                       type: array
-                      description:  An array containing details information about the video segments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                      description: An array that contains information about the classes that were detected in your video. 
                       items:
                         type: object
                         properties:
-                          start:
-                            $ref: '#/components/schemas/start_time'
-                          end:
-                            $ref: '#/components/schemas/end_time'
+                          name:
+                            type: string
+                            description: The name of the class.
                           score:
-                            type: number
-                            description: |
-                              A number indicating the confidence level that the video segments match the specified class.
-                          option:
-                            type: string
-                            description: Indicates the type of match that the platform has performed.
-                          prompt:
-                            type: string
-                            description: Indicates the prompt that the platform used.
-                          thumbnail_url:
-                            $ref: '#/components/schemas/thumbnail_url'
-                    detailed_scores:
-                      type: object
-                      description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video segment matches your prompts.
-                      properties:
-                        max_score:
-                          type: float
-                          description: |
-                            Represents the maximum score. It is determined by comparing the confidence scores of each segment and selecting the highest one.
-                          
-                            **Min**: 0.
-                            **Max**: 100.
-                        avg_score:
-                          type: float
-                          description: |
-                            Represents the average score of the matching video segments.
-                            
-                            **Min**: 0.
-                            **Max**: 100.
-                        normalized_score:
-                          type: float
-                          description: |
-                            Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+                            type: float
+                            description: A number indicating the confidence level that the entire video matches the specified class.
+                          duration_ratio:
+                            type: float
+                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
+                          clips:
+                            type: array
+                            description:  An array containing details information about the video segments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                            items:
+                              type: object
+                              properties:
+                                start:
+                                  $ref: '#/components/schemas/start_time'
+                                end:
+                                  $ref: '#/components/schemas/end_time'
+                                score:
+                                  type: number
+                                  description: |
+                                    A number indicating the confidence level that the video segments match the specified class.
+                                option:
+                                  type: string
+                                  description: Indicates the type of match that the platform has performed.
+                                prompt:
+                                  type: string
+                                  description: Indicates the prompt that the platform used.
+                                thumbnail_url:
+                                  $ref: '#/components/schemas/thumbnail_url'
+                          detailed_scores:
+                            type: object
+                            description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video segment matches your prompts.
+                            properties:
+                              max_score:
+                                type: float
+                                description: |
+                                  Represents the maximum score. It is determined by comparing the confidence scores of each segment and selecting the highest one.
+                                
+                                  **Min**: 0.
+                                  **Max**: 100.
+                              avg_score:
+                                type: float
+                                description: |
+                                  Represents the average score of the matching video segments.
+                                  
+                                  **Min**: 0.
+                                  **Max**: 100.
+                              normalized_score:
+                                type: float
+                                description: |
+                                  Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
 
-                            **Min**: 0
-                            **Max**: 100
+                                  **Min**: 0
+                                  **Max**: 100
           example:
-            video_id: 6435651a9ab33c7198615a80
-            classes:
-            - name: DanceTok
-              score: 96.77
-              duration_ratio: 1
-              detailed_scores:
-                max_score: 86.37
-                avg_score: 71.61
-                normalized_score: 100
+            data:
+              - video_id: 6435651a9ab33c7198615a80
+                classes:
+                - name: DanceTok
+                  score: 96.77
+                  duration_ratio: 1
+                  clips:
+                    - start: 167
+                      end: 170
+                      score: 9
+                      option: text_in_video
+                      prompt: Dance tutorial
+                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643d1b389ab33c7198616774/168.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230520%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230520T122303Z&X-Amz-Expires=604799&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=1e46088f00cd47d834eab5f2b942ca578a952c74cedbf278227857534d307606
+                    - start: 165.63
+                      end: 172.75
+                      score: 83.4
+                      option: visual
+                      prompt: Dance group
+                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643d1b389ab33c7198616774/166.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230520%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230520T122303Z&X-Amz-Expires=604799&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a31bf0b6a88ba972cc0ed3b055e08fd3b1ec8054b0c1274ac425719e3b7afb7e
+                  detailed_scores:
+                    max_score: 86.37
+                    avg_score: 71.61
+                    normalized_score: 100
+              - video_id: 643d1b389ab33c7198616774
+                classes:
+                - name: DanceTok
+                  score: 79.88
+                  duration_ratio: 0.8
+                  detailed_scores:
+                    max_score: 86.37
+                    avg_score: 71.61
+                    normalized_score: 100
 
     classifyBulkResponseNew:
       description: The videos in the specified index have successfully been classified.
@@ -3149,7 +3178,7 @@ components:
             - video_id: 643564b39ab33c7198615a7f
               classes:
               - name: DanceTok
-                score: 95.46863419938227
+                score: 95.46
                 duration_ratio: 0.99
                 clips:
                 - start: 473.09375
@@ -3467,7 +3496,7 @@ components:
                   properties:
                     min_video_score:
                       description: |
-                        A numeric value indicating indicating the minimum confidence level that the video match the specified class. The platorm will returns only the results for which the the value of the `score` field is greater than or equal to `min_video_score`.
+                        The video score represents the confidence level that a video matches the specified class. Use this field to specify the minimum value for the video score. The platform returns only the results for which the value of the `classes.score` field in the response is greater than or equal to `min_video_score`.
                         
                         **Default:** 65
                         **Min:** 0
@@ -3479,7 +3508,7 @@ components:
                     
                     min_clip_score:
                       description: |
-                        A numeric value indicating the minimum the minimum confidence level that each clip matches the specified class.
+                        The clip score represents the confidence level that a clip matches the specified class. Use this field to specify the minimum value for the clip score. The platform returns only the results for which the value of the `classes.clips.score` is greater than or equal to `min_clip_score`.
                         
                         **Default:** 65
                         **Min:** 0
@@ -3491,7 +3520,7 @@ components:
 
                     min_duration_ratio:
                       description: | 
-                        A number indicating the minimum duration ratio. The duration ratio represents the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
+                        The duration ratio represents the ratio of the sum of the lengths of the matching video segments divided by the total length of a video. Use this field to specify the minimum duration ratio.
                         
                         **Default:** 0.5
                         **Min:** 0.01
