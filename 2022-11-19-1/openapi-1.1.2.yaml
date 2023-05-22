@@ -3487,6 +3487,14 @@ components:
                   items:
                     type: string
                     minItems: 1
+                page_limit:
+                  type: integer
+                  description: |
+                    The number of items to return on each page.
+
+                    **Default:** 10
+                    **Min:** 1
+                    **Max:** 50
                 include_clips:
                   $ref: '#/components/schemas/include_clips'
                 threshold: 
