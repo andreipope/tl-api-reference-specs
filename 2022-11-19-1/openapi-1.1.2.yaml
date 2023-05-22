@@ -886,7 +886,7 @@ paths:
 
   '/classify':
     post:
-      summary: Classify videos
+      summary: Classify a set of videos
       description: |
         Use this method to classify one or more videos based on the entities or actions shown in the specified videos.
 
