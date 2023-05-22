@@ -3518,7 +3518,7 @@ components:
                     
                     min_clip_score:
                       description: |
-                        The clip score represents the confidence level that a clip matches the specified class. Use this field to specify the minimum value for the clip score. The platform returns only the results for which the value of the `classes.clips.score` is greater than or equal to `min_clip_score`.
+                        The clip score represents the confidence level that a clip matches the specified class. Use this field to specify the minimum value for the clip score. The platform returns only the results for which the value of the `classes.clips.score` field is greater than or equal to `min_clip_score`.
                         
                         **Default:** 65
                         **Min:** 0
@@ -3530,7 +3530,7 @@ components:
 
                     min_duration_ratio:
                       description: | 
-                        The duration ratio represents the ratio of the sum of the lengths of the matching video segments divided by the total length of a video. Use this field to specify the minimum duration ratio.
+                        The duration ratio represents the ratio of the sum of the lengths of the matching video segments divided by the total length of a video. Use this field to specify the minimum value for the duration ratio. The platform will return only the results for which the value of the `classes.duration_ratio` field is greater than or equal to `min_duration_ratio`.
                         
                         **Default:** 0.5
                         **Min:** 0.01
