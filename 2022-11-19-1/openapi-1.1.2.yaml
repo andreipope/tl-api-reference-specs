@@ -909,7 +909,6 @@ paths:
           $ref: '#/components/responses/classifyResponseNew'
         '400':
           $ref: '#/components/responses/classify10hours'
-
         '429':
           description: |
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
@@ -2985,7 +2984,7 @@ components:
                             description: A number indicating the confidence level that the entire video matches the specified class.
                           duration_ratio:
                             type: float
-                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
+                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video to which the segments belong.
                           clips:
                             type: array
                             description:  An array containing details information about the video segments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
@@ -3097,7 +3096,7 @@ components:
                             description: A number indicating the confidence level that the video segments match the specified class.
                           duration_ratio:
                             type: float
-                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
+                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video to which the segments belong.
                           clips:
                             type: array
                             description:  An array containing details information about the video segments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
@@ -3233,7 +3232,7 @@ components:
                             description: A number indicating the confidence level that the video segments match the specified class.
                           duration_ratio:
                             type: float
-                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video.
+                            description: A number indicating the ratio of the sum of the lengths of the matching video segments divided by the total length of the video to which the segments belong.
                           clips:
                             type: array
                             description:  An array containing details information about the video segments that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
@@ -3532,7 +3531,7 @@ components:
 
                     min_duration_ratio:
                       description: | 
-                        The duration ratio represents the ratio of the sum of the lengths of the matching video segments divided by the total length of a video. Use this field to specify the minimum value for the duration ratio. The platform will return only the results for which the value of the `classes.duration_ratio` field is greater than or equal to `min_duration_ratio`.
+                        The duration ratio represents the ratio of the sum of the lengths of the matching video segments divided by the total length of the video to which the segments belong. Use this field to specify the minimum value for the duration ratio. The platform will return only the results for which the value of the `classes.duration_ratio` field is greater than or equal to `min_duration_ratio`.
                         
                         **Default:** 0.5
                         **Min:** 0.01
