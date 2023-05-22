@@ -3495,6 +3495,8 @@ components:
                     **Default:** 10
                     **Min:** 1
                     **Max:** 50
+                  default: 10
+                  example: 10
                 include_clips:
                   $ref: '#/components/schemas/include_clips'
                 threshold: 
