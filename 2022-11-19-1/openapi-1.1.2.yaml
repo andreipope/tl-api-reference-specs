@@ -3508,13 +3508,14 @@ components:
                       description: |
                         The video score represents the confidence level that a video matches the specified class. Use this field to specify the minimum value for the video score. The platform returns only the results for which the value of the `classes.score` field in the response is greater than or equal to `min_video_score`.
                         
-                        **Default:** 65
+                        **Default:** 75
                         **Min:** 0
                         **Max:** 100
                       type: number
-                      default: 65
+                      default: 75
                       maximum: 100
                       minimum: 0
+                      example: 75
                     
                     min_clip_score:
                       description: |
@@ -3527,6 +3528,7 @@ components:
                       default: 65
                       maximum: 100
                       minimum: 0
+                      example: 65
 
                     min_duration_ratio:
                       description: | 
@@ -3539,6 +3541,7 @@ components:
                       default: 0.5
                       maximum: 1
                       minimum: 0.01
+                      example: 0.5
 
                 show_detailed_score:
                   type: boolean
