@@ -3491,7 +3491,7 @@ components:
                   $ref: '#/components/schemas/include_clips'
                 threshold: 
                   description: |
-                    An object that allows you to filter on the level of confidence that the results match your prompts.
+                    An object that allows you to filter the results.
                   type: object
                   properties:
                     min_video_score:
