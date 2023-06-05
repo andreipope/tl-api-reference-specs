@@ -1167,6 +1167,19 @@ components:
       - low
       - none
       type: string
+    
+    threshold_search:
+      description: |
+        Use this parameter to filter on the level of confidence that the results match your labels.
+
+        **Default:** `low`
+      default: low
+      enum:
+      - high
+      - medium
+      - low
+      - none
+      type: string
 
     thresholdClassifyNew:
       description: |
@@ -3783,7 +3796,7 @@ components:
                   **Max**: `50`
                 default: 10
               threshold:
-                $ref: '#/components/schemas/threshold'
+                $ref: '#/components/schemas/threshold_search'
     classifyRequest:
       content:
         application/json:
@@ -3879,7 +3892,7 @@ components:
                   - clip
                 default: clip
               threshold:
-                $ref: '#/components/schemas/threshold'
+                $ref: '#/components/schemas/threshold_search'
               sort_option:
                 type: string
                 description: |
