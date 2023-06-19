@@ -2459,6 +2459,18 @@ components:
                     type: integer
                   width:
                     type: integer
+              hls:
+                type: object
+                description: An object that contains the video and thumbnail URLs. The platform returns this object only for the videos that you uploaded with the `disable_video_stream` parameter set to `false`.
+                properties:
+                  video_url:
+                    type: string
+                    description: A string representing the URL of the video.
+                  thumbnail_urls:
+                    type: array
+                    description: An array containing the URL of the thumbnail.
+                    items:
+                      type: string
             example:
               _id: 61e17be5777e6caec646fa07
               created_at: 2022-01-14T13:34:29Z
@@ -2470,6 +2482,10 @@ components:
                 fps: 29.97002997002997
                 height: 360
                 width: 482
+              hls:
+                video_url: https://d2cp8xx7n5vxnu.cloudfront.net/6298aa0b535db125bf6e1d10/64902a28fb01304dd47be3cb/stream/c924f34a-144e-41df-bf2a-c693703fa134.m3u8
+                thumbnail_urls:
+                  - https://d2cp8xx7n5vxnu.cloudfront.net/6298aa0b535db125bf6e1d10/64902a28fb01304dd47be3cb/thumbnails/c924f34a-144e-41df-bf2a-c693703fa134.0000001.jpg
 
     getIndexResponse:
       description: The specified index has successfully been retrieved.
@@ -4045,6 +4061,12 @@ components:
                 type: string
                 description: |
                   When the `provide_transcription` parameter is set to `true`, and you want to provide a transcription from a publicly accessible URL, use the `transcription_url` parameter to specify the URL of your transcription. The transcription must be in the SRT or VTT format.
+              disable_video_stream:
+                type: boolean
+                description: |
+                  This parameter indicates whether or not the platform should save the video you're uploading. If you set this parameter to `false`, the platform will store the video, and you will be able to retrieve its URL by calling the [`GET`](/reference/retrieve-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint.
+                default: false
+                  
     updateIndex:
       content:
         application/json:
