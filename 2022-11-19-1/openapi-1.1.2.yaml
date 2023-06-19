@@ -4065,6 +4065,8 @@ components:
                 type: boolean
                 description: |
                   This parameter indicates whether or not the platform should save the video you're uploading. If you set this parameter to `false`, the platform will store the video, and you will be able to retrieve its URL by calling the [`GET`](/reference/retrieve-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint.
+
+                  **Default:** `false`
                 default: false
                   
     updateIndex:
