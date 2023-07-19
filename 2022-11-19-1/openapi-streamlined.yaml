@@ -940,8 +940,6 @@ paths:
           description: |
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-
-
 security:
   - ApiKeyAuth: []
 
@@ -974,18 +972,10 @@ components:
         The start time of the matching video segment, expressed in seconds.
     
     score_search_terms:
-      type: string
+      type: number
       description: |
         A quantitative value determined by the AI engine representing the level of confidence that the results match your search terms.
 
-    max_confidence:
-      type: string
-      description: |
-        A qualitative indicator based on the value of the `max_score` field. This field can take one of the following values:
-          - `high`
-          - `medium`
-          - `low`
-          - `extremely low`
     confidence:
       type: string
       description: |
@@ -1029,6 +1019,10 @@ components:
     next_page_token:
       type: string
       description: The unique identifier of the next page.
+    
+    prev_page_token:
+      type: string
+      description: The unique identifier of the previous page.
 
     search_pool:
       type: object
@@ -1118,15 +1112,6 @@ components:
           - exact_match
           type: string
 
-
-    labels:
-      description: |
-        An array of objects containing the names and the definitions of entities or actions that the platform must identify.
-      items:
-        $ref: '#/components/schemas/classifyLabel'
-      minItems: 1
-      type: array
-
     options:
       description: |
         An array that specifies the sources of information the platform uses when it categorizes a video. For details, see the [Search options](/docs/search-options) page.
@@ -1139,19 +1124,6 @@ components:
         type: string
       minItems: 1
       type: array
-
-    threshold:
-      description: |
-        Use this parameter to filter on the level of confidence that the results match your labels.
-
-        **Default:** `low`
-      default: low
-      enum:
-      - high
-      - medium
-      - low
-      - none
-      type: string
     
     threshold_search:
       description: |
@@ -1192,81 +1164,6 @@ components:
             The unique identifier of the previous page. If this is the first page, the API returns an empty string.
         total_results:
           $ref: '#/components/schemas/total_results' 
-      type: object
-
-    classifyLabel:
-      type: object
-      required:
-      - name
-      - prompts
-      properties:
-        name:
-          description: A string representing the name you want to give this label.
-          example: Car Shapes
-          type: string
-        prompts:
-          description: |
-            An array of strings that specifies what the label contains.
-          example:
-          - Truck
-            Sedan
-            SUV
-            Convertible
-          items:
-            type: string
-          minItems: 1
-          type: array
-
-
-
-    classifyLabelResult:
-      description: |
-        An array containing information about the video segments that match the the prompts you've specified.
-      properties:
-        classes: 
-          description: |
-            An array of objects containing information about each of the matching video segments. This field is included in the response only when you set the value of the `include_clips` parameter to `true`.
-          items:
-            $ref: "#/components/schemas/classifyClip"
-          type: array
-
-        confidence:
-          $ref: '#/components/schemas/max_confidence'
-        duration:
-          description: The total duration of the matching video segments.
-          type: number
-        max_score:
-          description: |
-            When classifying a video, the platform finds all video segments that match the label you've specified in the request. For each video segment found, the platform determines the level of confidence that the segment matches the label. The `max_score` field is determined by comparing the confidence scores of each segment and selecting the highest one.
-          type: number
-        name:
-          description: The name of the label.
-          type: string
-
-
-
-    classifyClip:
-      name: clasifyClip
-      description: An array containing information about the video segments that match the label you've specified.
-      properties:
-        confidence:
-          $ref: '#/components/schemas/confidence'
-        end:
-          $ref: '#/components/schemas/end_time'
-        score:
-          type: number
-          description: |
-            A number indicating the confidence level that the video segments match the specified class.
-        option:
-          type: string
-          description: Indicates the type of search the platform performed.
-        prompt:
-          type: string
-          description: Indicates the prompt that the platform used.
-        start:
-          $ref: '#/components/schemas/start_time'
-        thumbnail_url:
-          $ref: '#/components/schemas/thumbnail_url'
       type: object
 
     engine:
@@ -1535,16 +1432,6 @@ components:
       schema:
         type: string
         default: application/json
-    x-api-key:
-      name: x-api-key
-      in: header
-      description: |
-        Your API key.
-        
-        **NOTE:** You can find your API key on the [Dashboard](https://api.twelvelabs.io/dashboard) page.
-      required: true
-      schema:
-        type: string
     multipart:
       name: Content-Type
       in: header
@@ -1996,6 +1883,8 @@ components:
                     $ref: '#/components/schemas/total_results'
                   next_page_token:
                     $ref: '#/components/schemas/next_page_token'
+                  prev_page_token:
+                    $ref: '#/components/schemas/prev_page_token'
               search_pool:
                 $ref: '#/components/schemas/search_pool'
           example:
@@ -2505,6 +2394,9 @@ components:
               updated_at:
                 type: string
                 description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was updated.
+              video_count:
+                type: integer
+                description: A number representing the total number of videos in the index.
               total_duration:
                 type: number
                 description: A number representing the total duration, in seconds, of the videos in the index.
@@ -2603,10 +2495,13 @@ components:
               pending:
                 type: integer
                 description:  A value indicating the number of video indexing tasks for which the status is `pending`.
+              indexing:
+                type: integer
+                description: A value indicating the number of video indexing tasks for which the status is `indexing`.
               failed:
                 type: integer
                 description: A value indicating the number of video indexing tasks for which the status is `failed`.
-              total:
+              total_result:
                 type: integer
                 description: A value indicating the total number of video indexing tasks in the specified index.
           example:
@@ -3447,44 +3342,6 @@ components:
               classes:
                 $ref: '#/components/schemas/classes'
 
-    classifyRequestBulk:
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - index_id
-            - labels
-            - options
-            properties:
-              index_id:
-                type: string
-                description: The unique identifier of the index that you want to classify.
-
-
-              conversation_option:
-                $ref: '#/components/schemas/conversation_option'
-              include_clips:
-                $ref: '#/components/schemas/include_clips'
-              labels:
-                $ref: '#/components/schemas/labels'
-              options:
-                $ref: '#/components/schemas/options'
-              page_limit:
-                description: |
-                  The number of items to return on each page.
-
-                  **Default:** 10
-                  **Min:** 1
-                  **Max:** 50
-                default: 10
-                maximum: 50
-                minimum: 1
-                type: integer
-              threshold:
-                $ref: '#/components/schemas/threshold'
-
-
     combinedSearch:
       content:
         application/json:
@@ -3625,27 +3482,6 @@ components:
                 default: 10
               threshold:
                 $ref: '#/components/schemas/threshold_search'
-    classifyRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - labels
-            - options
-            - video_id
-            properties:
-              conversation_option:
-                $ref: '#/components/schemas/conversation_option'
-              include_clips:
-                $ref: '#/components/schemas/include_clips'
-              labels:
-                $ref: '#/components/schemas/labels'
-              options:
-                $ref: '#/components/schemas/options'
-              threshold:
-                $ref: '#/components/schemas/threshold'
-
 
     update-video-vector:
       content:
