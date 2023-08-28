@@ -3937,7 +3937,7 @@ components:
                     
                     - `and`
                     
-                    For details and examples, see the [Using multiple sources of information](/docs/search-simple-queries#using-multiple-sources-of-information) secttion.
+                    For details and examples, see the [Using multiple sources of information](/docs/search-single-queries#using-multiple-sources-of-information) section.
 
                     
                     **Default**: `or`.
