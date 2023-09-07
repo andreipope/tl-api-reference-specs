@@ -1407,10 +1407,11 @@ components:
       description: |
         A task represents a request to upload and index a video. A task starts when you begin uploading your video by calling the **POST** method of the `tasks` endpoint, and it can have one of the following statuses:
         - **Validating**: Your video has finished uploading, and the platform is validating it by performing the following checks:
-          - Resolution must be greater than or equal to 360p and less than or equal to 1080p (FHD).
+          - Resolution must be greater than or equal to 360p and less than or equal to 4K.
+          - Duration must be between 4 seconds and 2 hours (7,200s).
           - File size must not exceed 2 GB.
-          - Duration must be between 10 seconds and 2 hours (7,200s).
-          - Your video must contain an audio track.
+          If you require different options, send us an email at `support[at]twelvelabs.io`.
+          - If the `conversation` indexing option is selected, the video you're uploading must contain an audio track.
           - Your video must not have missing frames.
         - **Pending**: The API is spawning a new worker server to process your video.
         - **Indexing**: The API is transforming the video you uploaded into vectors. A vector is like a compressed version of the video and contains all the information that Twelve Labs' deep-learning models need to perform fast, semantic, accurate, and scalable searches.
