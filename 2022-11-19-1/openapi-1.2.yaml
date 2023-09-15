@@ -3028,6 +3028,25 @@ components:
     summarizeResponse:
       description: |
         The specified video has successfully been summarized.
+      content:
+        application/json:
+          schema: 
+            oneOf: 
+              -  $ref: '#/components/responses/summary'
+              -  $ref: '#/components/responses/chapter'
+              -  $ref: '#/components/responses/highlight'
+    
+    summary:
+      description: |
+        Summary
+
+    chapter:
+      description: |
+        Chapter
+
+    highlight:
+      description: |
+        Highlight
     
     gistResponse:
       description: |
