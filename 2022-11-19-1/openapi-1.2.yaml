@@ -3041,6 +3041,13 @@ components:
                     description: |
                       Unique identifier of the response.
                     type: string
+                    example: 56dd2567-9b34-4ee9-9fbb-c20fc283e5bf
+                  summary:
+                    description: |
+                      A brief report of the main points of the video.
+                    type: string
+                    example: |
+                      Black Friday shoppers are shown in a mall, pushing and shoving through the crowds. A news reporter talks about shopping mania and its impact on stores. He mentions that stores are filled to the brim and that the hunt for deals can make people miserable. A woman talks to the camera about how people have lost their minds and how the American dream has become associated with material possessions.
               - type: object
                 description: |
                   When the value of the `type` parameter is set to `chapter`, the response is as follows:
@@ -3050,6 +3057,53 @@ components:
                     description: |
                       Unique identifier of the response.
                     type: string
+                    example: da3cdd02-dff8-4712-a2a9-9b44f342c039
+                  chapters:
+                    description: |
+                      An array that contains details about the detected chapters and their content.
+                    type: array
+                    items: 
+                      type: object
+                      description: |
+                        An object that contains details about a chapter. Each chapter has a unique number, start time, end time, title, and summary.
+                      properties:
+                        chapter_number:
+                          description: |
+                            Represents the sequence number of the chapter. Note that this field starts at 0. Ensure to interpret it accordingly in your application.
+                          type: integer
+                        start:
+                          description: |
+                            The starting time of the chapter, measured in seconds from the beginning of the video.
+                          type: integer
+                        end:
+                          description: |
+                            The ending time of the chapter, measured in seconds from the beginning of the video.
+                          type: integer
+                        chapter_title:
+                          description: |
+                            The title of the chapter.
+                          type: string
+                        chapter_summary:
+                          description: |
+                            A brief summary describing the content of the chapter.
+                          type: string
+                    example:
+                      - chapter_number: 0
+                        start: 15
+                        end: 30
+                        chapter_title: Graduation and Moving Home
+                        chapter_summary: The woman talks about her recent graduation and moving back home.
+                      - chapter_number: 1
+                        start: 30
+                        end: 45
+                        chapter_title: Outdoor Adventures
+                        chapter_summary: The woman discusses spending time outdoors and getting a tan.
+                      - chapter_number: 2
+                        start: 45
+                        end: 60
+                        chapter_title: Shopping Hauls
+                        chapter_summary: The woman talks about her recent shopping spree and purchases.
+
               - type: object
                 description: |
                   When the value of the `type` parameter is set to `highlight`, the response is as follows:
@@ -3059,7 +3113,39 @@ components:
                     description: |
                       Unique identifier of the response.
                     type: string
-    
+                    example: 2f2a504f-6956-446c-84d8-29d86f793c66
+                  highlights:
+                    description: |
+                      An array that contains the important events or activities in the video.
+                    type: array
+                    items:
+                      type: object
+                      description: |
+                        An object that provides a brief snapshot of a specific segment of the video. Each highlight is defined by a starting time, ending time, and a description of its content.
+                      properties:
+                        start:
+                          description: |
+                            The starting time of the highlight, measured in seconds from the beginning of the video.
+                          type: integer
+                        end:
+                          description: |
+                            The ending time of the highlight, measured in seconds from the beginning of the video.
+                          type: integer
+                        highlight:
+                          description: |
+                            A brief description that captures the essence of the segment.
+                          type: string
+                    example:
+                      - start: 0
+                        end: 30
+                        highlight: Two women are talking about their lifestyles as they prepare for an event.
+                      - start: 30
+                        end: 60
+                        highlight: A woman sitting at a table talks about her recent graduation.
+                      - start: 105
+                        end: 135
+                        description: A woman talks about her life while showing pictures of herself.
+
     gistResponse:
       description: |
         The gist has successfully been generated.
