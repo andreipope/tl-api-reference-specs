@@ -3032,21 +3032,33 @@ components:
         application/json:
           schema: 
             oneOf: 
-              -  $ref: '#/components/responses/summary'
-              -  $ref: '#/components/responses/chapter'
-              -  $ref: '#/components/responses/highlight'
-    
-    summary:
-      description: |
-        Summary
-
-    chapter:
-      description: |
-        Chapter
-
-    highlight:
-      description: |
-        Highlight
+              - type: object
+                description: |
+                  When the value of the `type` parameter is set to `summary`, the response is as follows:
+                title: Summary
+                properties:
+                  id:
+                    description: |
+                      Unique identifier of the response.
+                    type: string
+              - type: object
+                description: |
+                  When the value of the `type` parameter is set to `chapter`, the response is as follows:
+                title: Chapter
+                properties:
+                  id:
+                    description: |
+                      Unique identifier of the response.
+                    type: string
+              - type: object
+                description: |
+                  When the value of the `type` parameter is set to `highlight`, the response is as follows:
+                title: Highlight
+                properties:
+                  id:
+                    description: |
+                      Unique identifier of the response.
+                    type: string
     
     gistResponse:
       description: |
