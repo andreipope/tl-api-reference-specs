@@ -979,6 +979,8 @@ paths:
       summary: Generate a gist
       description: |
         Use this endpoint to generate a gist in the form of a title, topics, and hashtags that represent key elements or themes of a video.
+
+        **NOTE**: This endpoint is currenlty in early beta. Therefore, Twelve Labs recommends you validate the results before relying on them for critical applications. If you have suggestions for improvement or any other feedback,  please email us at support[at]twelvelabs.io.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1014,6 +1016,24 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
+  '/generate':
+    post:
+      summary: Generate an open-ended text representation
+      description: |
+        Use this endpoint for converting video data into structured or summarized textual formats such as tables of content, action items, memos, and detailed analyses.
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+      operationId: generate-text-representation
+      tags:
+        - Generate
+      requestBody:
+        $ref: '#/components/requestBodies/generateTextRepresentationRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/generateTextRepresentationResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
 #######################
 ###   Components   ####
 #######################
@@ -3025,6 +3045,28 @@ components:
                       thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/636b932fe9521f7108f5a30e/129.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221213%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221213T064305Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a12488cb8c2da05445f1b3d90ef17f16ac2ced05fc1fc239c75b9eaad3466136
 
 
+    generateTextRepresentationResponse:
+      description: The specified video has successfully been processed.
+      content:
+        application/json:
+          schema: 
+            type: object
+            properties:
+              id:
+                description: |
+                  Unique identifier of the response.
+                type: string
+              data:
+                description: |
+                  The generated text based on the prompt you provided.
+                type: string
+          example:
+            id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
+            data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
+            
+
+
+
     summarizeResponse:
       description: |
         The specified video has successfully been summarized.
@@ -3707,6 +3749,28 @@ components:
 ##########################
 
   requestBodies:
+
+    generateTextRepresentationRequest:
+      content:
+        application/json:
+          schema: 
+            type: object
+            required:
+              - video_id
+              - prompt
+            properties:
+              video_id:
+                type: string
+                description: The unique identifier of the video you wish to process.
+              prompt:
+                type: string
+                description: |
+                  A prompt that guides the model on the desired textual representation format or content. The maximum length of the prompt is 500 tokens or roughly 350 words. Note that even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
+                
+                  **Examples**:
+                    
+                    - Based on this video, I want to generate five keywords for SEO (Search Engine Optimization).
+                    - I want to generate a description for my video with the following format: [Title of the video], followed by a summary in 2-3 sentences, highlighting the main topic, key events, and concluding remarks.
 
     summarizeRequest:
       content:
