@@ -3819,15 +3819,15 @@ components:
 
                     - `topic`: The central theme of a video.
 
-                      **Example**:  Shopping, Vlog, Lifestyle
+                      **Example response**:  Shopping, Vlog, Lifestyle
 
                     - `hashtag`: A keyword or phrase preceded by the hash symbol (`#)`, used to facilitate easier searching and categorizing content on social media platforms.
                     
-                      **Example**: #BlackFriday, #ShoppingMania, #Consumerism.
+                      **Example response**: #BlackFriday, #ShoppingMania, #Consumerism.
                     
                     - `title`: The descriptive heading for a video, offering an overview of the video's content concisely.
                     
-                      **Example**: From Consumerism to Minimalism: A Journey Toward Sustainable Living
+                      **Example response**: From Consumerism to Minimalism: A Journey Toward Sustainable Living
 
                 items:
                   type: string
