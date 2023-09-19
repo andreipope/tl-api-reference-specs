@@ -3815,7 +3815,7 @@ components:
               types:
                 type: array
                 description: |
-                  An array specifying the list of elements the platform must extract from the video. Use one of the following values:
+                  An array specifying the list of elements the platform must extract from the video. Use one or more of the following values:
 
                     - `topic`: The central theme of a video.
 
