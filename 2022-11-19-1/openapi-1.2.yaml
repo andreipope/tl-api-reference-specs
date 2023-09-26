@@ -978,7 +978,7 @@ paths:
     post:
       summary: Generate a gist
       description: |
-        Use this endpoint to generate a gist in the form of a title, topics, and hashtags that represent key elements or themes of a video.
+        Use this endpoint to generate concise overviews in the form of titles, topics, and hashtags representing the key elements or themes of a video..
 
         **NOTE**: This endpoint is currenlty in early beta. Therefore, Twelve Labs recommends you validate the results before relying on them for critical applications. If you have suggestions for improvement or any other feedback,  please email us at support[at]twelvelabs.io.
       parameters:
@@ -999,7 +999,7 @@ paths:
     post:
       summary: Generate a summary
       description: |
-        Use this endpoint to summarize a video. Depending on the parameters, this can generate a summary, chapters, or highlights.
+        Use this endpoint to summarize videos. It can generate summaries, chapters, or highlights. Optionally, you can provide a prompt to customize the output.
         
         **NOTE**: This endpoint is currenlty in early beta. Therefore, Twelve Labs recommends you validate the results before relying on them for critical applications. If you have suggestions for improvement or any other feedback,  please email us at support[at]twelvelabs.io.
       parameters:
@@ -1020,7 +1020,7 @@ paths:
     post:
       summary: Generate an open-ended text representation
       description: |
-        Use this endpoint for converting video data into structured or summarized textual formats such as tables of content, action items, memos, and detailed analyses.
+        Use this endpoint to generate open-ended textual representations for your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
