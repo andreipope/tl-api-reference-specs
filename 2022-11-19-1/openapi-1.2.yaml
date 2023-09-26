@@ -3765,7 +3765,7 @@ components:
               prompt:
                 type: string
                 description: |
-                  A prompt that guides the model on the desired textual representation format or content. The maximum length of the prompt is 500 tokens or roughly 350 words. Note that even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
+                  A prompt that guides the model on the desired format or content for the textual representation. The maximum length of the prompt is 500 tokens or roughly 350 words. Note that even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
                 
                   **Examples**:
                     
