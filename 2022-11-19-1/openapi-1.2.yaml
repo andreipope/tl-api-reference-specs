@@ -3815,7 +3815,7 @@ components:
               types:
                 type: array
                 description: |
-                  An array specifying the types of outputs the platform must generate. Use one or more of the following values:
+                  An array specifying the type of textual representation the platform must generate. Use one or more of the following values:
 
                     - `topic`: A topic is the central theme of a video, such as "Shopping Vlog Lifestyle", summarizing its content for efficient categorization and reference.
 
