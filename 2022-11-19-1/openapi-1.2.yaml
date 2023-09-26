@@ -999,7 +999,7 @@ paths:
     post:
       summary: Generate a summary
       description: |
-        This endpoint generate summaries, chapters, or highlights for your videos. Optionally, you can provide a prompt to customize the output.
+        This endpoint generates summaries, chapters, or highlights for your videos. Optionally, you can provide a prompt to customize the output.
         
         **NOTE**: This endpoint is currenlty in early beta. Therefore, Twelve Labs recommends you validate the results before relying on them for critical applications. If you have suggestions for improvement or any other feedback,  please email us at support[at]twelvelabs.io.
       parameters:
