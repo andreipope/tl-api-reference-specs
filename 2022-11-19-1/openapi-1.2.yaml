@@ -1018,7 +1018,7 @@ paths:
 
   '/generate':
     post:
-      summary: Generate an open-ended text representation
+      summary: Generate open-ended textual representations
       description: |
         This endpoint generates open-ended textual representations for your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
       parameters:
