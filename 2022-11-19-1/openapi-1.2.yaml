@@ -3761,7 +3761,7 @@ components:
             properties:
               video_id:
                 type: string
-                description: The unique identifier of the video you wish to process.
+                description: The unique identifier of the video for which you wish to generate an open-ended textual representation.
               prompt:
                 type: string
                 description: |
