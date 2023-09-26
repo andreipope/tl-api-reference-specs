@@ -3791,7 +3791,7 @@ components:
                   Specifies the type of summary. Use one of the following values:
                     - `summary`: A brief report of the main points of the video.
                     - `chapter`: A chronological list of all the events or activities in the specified video, with a title and summary for each chapter.
-                    - `highlight`: A chronological list of the important events or activities in the video, with a summary for each highlight.
+                    - `highlight`: A chronological list of the important events or activities in the specified video, with a summary for each highlight.
               user_prompt:
                   type: string
                   description: |
