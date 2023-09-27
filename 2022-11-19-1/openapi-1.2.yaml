@@ -15,7 +15,7 @@ info:
     email: support@twelvelabs.io
   version: 1.2.0 
 servers:
-  - url: 'https://api.twelvelabs.io/v1.1'
+  - url: 'https://api.twelvelabs.io/v1.2'
 
 ################
 ###   Tags   ###
@@ -248,7 +248,7 @@ paths:
       description: |
         This method creates an index.
 
-        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To create an index in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/indexes`. Everything else remains the same.
+        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To create an index in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes`. Everything else remains the same.
 
       operationId: create-index
       tags:
@@ -268,7 +268,7 @@ paths:
       description: |
         This method returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.
 
-        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To list the indexes from the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/indexes`. Everything else remains the same.
+        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To list the indexes from the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes`. Everything else remains the same.
       operationId: list-indexes
       tags:
         - Indexes
@@ -333,7 +333,7 @@ paths:
       description: |
         This method updates the name of the specified index.
 
-        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To update an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/indexes/{index-id}`. Everything else remains the same.
+        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To update an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes/{index-id}`. Everything else remains the same.
       operationId: update-index
       tags:
         - Indexes
@@ -775,7 +775,7 @@ paths:
         **NOTES**:
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-          - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/search`. Everything else remains the same.
+          - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/search`. Everything else remains the same.
 
       operationId: make-search-request
       requestBody:
@@ -837,7 +837,7 @@ paths:
 
         **NOTES**:
           - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the [Playground](https://playground.twelvelabs.io/), which provides a better experience.
-          - To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/combined-search`. Everything else remains the same.
+          - To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/combined-search`. Everything else remains the same.
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
@@ -895,7 +895,7 @@ paths:
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
         - The total number of the prompts you specify in a request must not exceed 100.
         - The total duration of the videos you classify in a request must not exceed 10 hours.
-        - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify a video that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/classify`. Everything else remains the same.
+        - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify a video that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/classify`. Everything else remains the same.
 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -923,7 +923,7 @@ paths:
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
         - The total number of prompts you specify in a request must not exceed 100.
-        - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify all the videos in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/classify/bulk`. Everything else remains the same.
+        - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify all the videos in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/classify/bulk`. Everything else remains the same.
       operationId: classify-bulk
       tags:
         - Classify
@@ -997,7 +997,7 @@ paths:
           
   '/summarize':
     post:
-      summary: Generate a summary
+      summary: Generate a summary, chapter, or highlight
       description: |
         This endpoint generates summaries, chapters, or highlights for your videos. Optionally, you can provide a prompt to customize the output.
         
