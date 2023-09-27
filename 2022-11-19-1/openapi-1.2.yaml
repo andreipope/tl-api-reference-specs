@@ -976,7 +976,7 @@ paths:
 
   '/gist':
     post:
-      summary: Generate a gist
+      summary: Generate a title, topic, or hashtag
       description: |
         This endpoint generates concise overviews in the form of titles, topics, and hashtags representing the key elements or themes of a video..
 
