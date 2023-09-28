@@ -27,6 +27,7 @@ tags:
   - name: Indexes/Videos
   - name: Tasks    
   - name: Tasks/Transfers
+  - name: Tasks/External-provider
   - name: Search
   - name: Combined search 
   - name: Classify
@@ -237,6 +238,27 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
+  ####################################
+  ###   Tasks/External Providers   ###
+  ####################################
+  
+  '/tasks/external-provider':
+    post:
+      summary: Upload videos from external providers
+      description: |
+        Use this endpoint to upload videos from external providers. The platform currently supports only YouTube as an external provider, but we will add support for additional providers in the future.
+      operationId: upload-external-provider
+      tags:
+        - Tasks/External-provider
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+      requestBody:
+        $ref: '#/components/requestBodies/upload-external-provider'
+      responses:
+        '201':
+          $ref: '#/components/responses/createVideoIndexingTaskResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
 
 ###################
 ###   Indexes   ###
@@ -4355,6 +4377,26 @@ components:
 
                 type: string
                 format: binary
+
+    upload-external-provider:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            required:
+              - index_id
+              - url
+            properties:
+              index_id:
+                type: string
+                description: |
+                  The unique identifier of the index to which the video is being uploaded.
+              url:
+                type: string
+                description: |
+                  The URL of the video that you wish to upload.
+              
     createVideoIndexingTask:
       required: true
       content:
