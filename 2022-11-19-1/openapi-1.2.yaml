@@ -249,7 +249,7 @@ paths:
         Use this endpoint to upload videos from external providers. The platform currently supports only YouTube as an external provider, but we will add support for additional providers in the future.
       operationId: upload-external-provider
       tags:
-        - Tasks/External-provider
+        - Tasks
       parameters:
         - $ref: '#/components/parameters/x-api-key'
       requestBody:
