@@ -2851,7 +2851,7 @@ components:
             properties:
               _id:
                 type: string
-                description: A string representing the unique identifier of the `task` object.
+                description: A string representing the unique identifier of your video indexing task.
           example:
             _id: 62a1ec6d9ea24f052b971a0f
     getEngineResponse:
