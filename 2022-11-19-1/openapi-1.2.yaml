@@ -3813,7 +3813,7 @@ components:
                     - `summary`: A brief report of the main points of the video.
                     - `chapter`: A chronological list of all the events or activities in the specified video, with a title and summary for each chapter.
                     - `highlight`: A chronological list of the important events or activities in the specified video, with a summary for each highlight.
-              user_prompt:
+              prompt:
                   type: string
                   description: |
                     Use this field to provide context for the summarization task, such as the target audience, style, tone of voice, and purpose.
