@@ -312,10 +312,10 @@ paths:
           required: false
           schema:
             type: string
-        - name: index_options
+        - name: engine_options
           in: query
           description: |
-            Filter by the indexing options. When filtering by multiple indexing options, the values must be comma-separated.
+            Filter by the engine options. When filtering by multiple engine options, the values must be comma-separated.
           required: false
           schema:
             type: string
@@ -1377,10 +1377,10 @@ components:
           type: string
           description: |
             A string representing the identifier of the engine.
-        allowed_index_options:
+        allowed_engine_options:
           type: array
           description: |
-            An array of strings representing the supported indexing options. For details, see the [Indexing options](/docs/indexing-options) page.
+            An array of strings representing the supported engine options for each engine. For details, see the [Engine options](/docs/engine-options) page.
           items:
             type: string
         author:
@@ -1414,6 +1414,7 @@ components:
         author: twelve_labs
         finetune: false
         ready: true
+
     index:
       title: Index
       description: |
@@ -1422,70 +1423,50 @@ components:
       properties:
         _id:
           type: string
-          description: |
-            A string representing the unique identifier of the index. It is assigned by the API when an index is created.
-        index_name:
-          type: string
-          description: |
-            A string representing the name of the index.
-        index_options:
-          type: array
-          description: |
-            An array of strings that determines how the engine processes your videos.
-            
-            Twelve Labs currently offers the following indexing options: `visual`, `conversation`, `text_in_video`, and `logo`. For more details, see the [Indexing options](/docs/indexing-options) page.
-
-            **NOTES**:
-            - The indexing options cannot be changed once the index has been created.
-            - The types of searches you can perform on this index are a subset of the indexing options.
-          items:
-            type: string
-            enum:
-              - visual
-              - conversation
-              - text_in_video
-              - logo
+          description: A string representing the unique identifier of the index. It is assigned by the API when an index is created.
         created_at:
           type: string
-          description: |
-            A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was created.
+          description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was created.
         updated_at:
           type: string
-          description: |
-            A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was updated.
-        engine_id:
+          description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index has been updated.
+        index_name:
           type: string
-          description: |
-            A string representing the unique identifier of the engine that the API will use to index the videos in this index.
-        video_count:
-          type: integer
-          description: |
-            An integer representing the number of videos in the index.
+          description: A string representing the name of the index.
         total_duration:
           type: number
-          description: |
-            A number representing the total duration, in seconds, of the videos in the index.
-        addons:
+          description: A number representing the total duration, in seconds, of the videos in the index.
+        video_count:
+          type: number
+          description: The number of videos uploaded to this index.
+        engines:
           type: array
-          description: |
-            The list of add-ons that are enabled for this index.
+          description: An array containing the list of video understanding engines enabled for this index.
           items:
-            type: string
-      example:
-        _id: 62d9bafa90077fc60af827a0
-        index_name: myIndex
-        index_options:
-          - visual
-          - text_in_video
-          - conversation
-          - logo
-        created_at: '2022-07-04T13:58:39.262Z'
-        updated_at: '2022-07-05T11:11:32.026Z'
-        engine_id: marengo2.5
-        video_count: 12
-        total_duration: 8716.8969
-        addons:
-          - thumbnail
+            type: object
+            properties:
+              engine_name:
+                type: string
+                description: A string representing the name of the engine
+              engine_options:
+                type: array
+                description: |
+                  An array of strings that contains the engines options enabled for this engine.
+
+                  **NOTES**:
+                  - The engine options cannot be changed once the index has been created.
+                  - The types of searches you can perform on this index are a subset of the engine options.
+
+                  Twelve Labs currently supports the following engine options: `visual`, `conversation`, `text_in_video`, and `logo`. For more details, see the [Engine Options](/docs/engine-options) page.
+                items:
+                  type: string
+              addons:
+                type: array
+                description: The list of add-ons that are enabled for this engine.
+                items:
+                  type: string
+
+
     videoIndexingTask:
       title: Video Indexing Task
       description: |
@@ -1495,7 +1476,7 @@ components:
           - Duration must be between 4 seconds and 2 hours (7,200s).
           - File size must not exceed 2 GB.
           If you require different options, send us an email at `support[at]twelvelabs.io`.
-          - If the `conversation` indexing option is selected, the video you're uploading must contain an audio track.
+          - If the `conversation` engine option is selected, the video you're uploading must contain an audio track.
           - Your video must not have missing frames.
         - **Pending**: The API is spawning a new worker server to process your video.
         - **Indexing**: The API is transforming the video you uploaded into vectors. A vector is like a compressed version of the video and contains all the information that Twelve Labs' deep-learning models need to perform fast, semantic, accurate, and scalable searches.
@@ -2572,6 +2553,7 @@ components:
                 thumbnail_urls:
                   - https://d2cp8xx7n5vxnu.cloudfront.net/6298aa0b535db125bf6e1d10/64902a28fb01304dd47be3cb/thumbnails/c924f34a-144e-41df-bf2a-c693703fa134.0000001.jpg
 
+
     getIndexResponse:
       description: The specified index has successfully been retrieved.
       content:
@@ -2584,51 +2566,65 @@ components:
               created_at:
                 type: string
                 description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was created.
-              engine_id:
+              updated_at:
                 type: string
-                description: A string representing the unique identifier of the engine that the API will use to index the videos in this index.
+                description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index has been updated.
               index_name:
                 type: string
                 description: A string representing the name of the index.
-              index_options:
-                type: array
-                description: |
-                  An array of strings that determines how the engine processes your videos.
-                  
-                  Twelve Labs currently supports the following indexing options: `visual`, `conversation`, `text_in_video`, and `logo`. For more details, see the [Indexing Options](/docs/indexing-options) page.
-
-                  **NOTES**:
-                  - The indexing options cannot be changed once the index has been created.
-                  - The types of searches you can perform on this index are a subset of the indexing options.
-
-
-              updated_at:
-                type: string
-                description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was updated.
               total_duration:
                 type: number
                 description: A number representing the total duration, in seconds, of the videos in the index.
-              addons:
+              video_count:
+                type: number
+                description: The number of videos uploaded to this index.
+              engines:
                 type: array
-                description: |
-                  The list of add-ons that are enabled for this index.
+                description: An array containing the list of video understanding engines enabled for this index.
                 items:
-                  type: string
+                  type: object
+                  properties:
+                    engine_name:
+                      type: string
+                      description: A string representing the name of the engine
+                    engine_options:
+                      type: array
+                      description: |
+                        An array of strings that contains the engines options enabled for this engine.
+      
+                        **NOTES**:
+                        - The engine options cannot be changed once the index has been created.
+                        - The types of searches you can perform on this index are a subset of the engine options.
+
+                        Twelve Labs currently supports the following engine options: `visual`, `conversation`, `text_in_video`, and `logo`. For more details, see the [Engine Options](/docs/engine-options) page.
+                      items:
+                        type: string
+                    addons:
+                      type: array
+                      description: The list of add-ons that are enabled for this engine.
+                      items:
+                        type: string
           example:
             _id: 62d9bafa90077fc60af827a0
             index_name: myIndex
-            index_options:
-              - visual
-              - text_in_video
-              - conversation
-              - logo
             created_at: 2022-07-04T13:58:39.262Z
             updated_at: 2022-07-05T11:11:32.026Z
-            engine_id: marengo2.5
             video_count: 12
             total_duration: 8716.8969
-            addons:
-              - thumbnail
+            engines:
+              - engine_name: marengo2.5
+                engine_options:
+                  - visual
+                  - text_in_video
+                  - conversation
+                  - logo
+                addons:
+                  - thumbnail
+              - engine_name: pegasus1.0
+                engine_options:
+                  - visual
+                  - conversation
+
 
     getVideoIndexingTasksResponse:
       description: The video indexing tasks have successfully been retrieved.
@@ -2812,32 +2808,40 @@ components:
               data:
                 - _id: 62d85fe7340fa665f1fda5dd
                   index_name: index-01
-                  index_options:
-                    - visual
-                    - conversation
-                    - text_in_video
-                    - logo
                   created_at: '2022-07-20T20:04:55.776Z'
                   updated_at: '2022-07-20T20:04:55.776Z'
-                  engine_id: marengo2.5
                   video_count: 2
                   total_duration: 1363.76
-                  addons:
-                    - thumbnail
+                  engines:
+                    - engine_name: marengo2.5
+                      engine_options:
+                        - visual
+                        - text_in_video
+                        - conversation
+                        - logo
+                      addons:
+                        - thumbnail
+                    - engine_name: pegasus1.0
+                      engine_options:
+                        - visual
+                        - conversation
                 - _id: 62d858ee340fa665f1fda5d8
                   index_name: index-02
-                  index_options:
-                    - visual
-                    - conversation
-                    - text_in_video
-                    - logo
                   created_at: '2022-07-20T19:35:10.385Z'
                   updated_at: '2022-07-20T19:35:10.385Z'
-                  engine_id: marengo2.5
                   video_count: 1
                   total_duration: 579.12
-                  addons:
-                    - thumbnail
+                  engines:
+                    - engine_name: marengo2.5
+                      engine_options:
+                        - visual
+                        - logo
+                      addons:
+                        - thumbnail
+                    - engine_name: pegasus1.0
+                      engine_options:
+                        - visual
+                        - conversation
               page_info:
                 limit_per_page: 10
                 page: 1
@@ -2872,8 +2876,8 @@ components:
                 items:
                   $ref: '#/components/schemas/engine'
             example:
-                - _id: marengo
-                  allowed_index_options:
+                - _id: marengo2.5
+                  allowed_engine_options:
                     - visual
                     - text_in_video
                     - conversation
@@ -2894,12 +2898,10 @@ components:
                   finetune: false
                   ready: true
                   updated_at: '2022-07-24 09:30:52.686 +0000 UTC'
-                - _id: marengo2.5
-                  allowed_index_options:
+                - _id: pegasus1
+                  allowed_engine_options:
                     - visual
-                    - text_in_video
                     - conversation
-                    - logo
                   author: twelve_labs
                   created_at: '2023-04-12 11:49:26.663 +0000 UTC'
                   finetune: false
@@ -4047,7 +4049,7 @@ components:
                   An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
                     
                   **NOTES:** 
-                  - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
+                  - The search options you specify must be a subset of the [engine options](/docs/concepts-engine-options) used when you created the index.
                 type: array
                 items:
                   type: string
@@ -4248,7 +4250,7 @@ components:
                   An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
 
                   **NOTES:** 
-                  - The search options you specify must be a subset of the [indexing options](/docs/concepts-indexing-options) used when you created the index.
+                  - The search options you specify must be a subset of the [engine options](/docs/concepts-engine-options) used when you created the index.
                   - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
               group_by:
                 type: string
@@ -4456,6 +4458,8 @@ components:
                 type: string
                 description: |
                   The name of the index.
+
+
     createIndex:
         required: true
         content:
@@ -4463,68 +4467,119 @@ components:
             schema:
               type: object
               required:
-                - engine_id
-                - index_options
+                - engines
                 - index_name
               properties:
-                engine_id:
-                  type: string
-                  description: |
-                    Specifies the engine used by this index. The following engines are available:
-                      - `marengo2.5`
-
-                      - `marengo2`
-                      
-                      - `marengo`
-
-                    **NOTES**:
-
-                      - Twelve Labs strongly recommends you use `marengo2.5`.
-
-                      - You cannot change the engine once the index has been created.
-
-                    For more details, see the [Video understanding engines](/docs/video-understanding-engines) page.
-                  default: marengo2.5
-                index_options:
-                  type: array
-                  description: |
-                    An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video", "logo"]`. For more details, see the [Indexing options](/docs/indexing-options) page.
-                  items:
-                    type: string
-                  minItems: 1
-                  maxItems: 4
-                  default:
-                    - visual
-                    - conversation
-                    - text_in_video
-                    - logo
                 index_name:
                   type: string
                   description: |
                     The name of the index. Make sure you use a succinct and descriptive name.
-                addons:
+                engines:
                   type: array
                   description: |
-                    An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
-                    - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
-
-                    If you don't provide this parameter, no add-ons will be enabled.
-
-                    **NOTE**:
-                    - You cannot disable an add-on once the index has been created.
+                    An array that specifies th list of engines to be enabled for this index.
                   items:
-                    type: string
-                  minItems: 1
-                  maxItems: 1
-                  default:
-                    - thumbnail
+                    type: object
+                    required:
+                      - engine_name
+                      - engine_options
+                    properties:
+                      engine_name:
+                        type: string
+                        description: |
+                          The name of the engine. The following engines are available:
+                            - `marengo2.5`
+      
+                            - `marengo2`
+                            
+                            - `marengo`
+      
+                            - `pegasus1.0`
+      
+                          **NOTE:** You cannot change the engines once the index has been created.
+      
+                          For more details, see the [Video understanding engines](/docs/video-understanding-engines) page.
+                      engine_options:
+                        type: array
+                        description: |
+                          An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video", "logo"]`. For more details, see the [Engine options](/docs/engine-options) page.
+
+                          **NOTE:** When enabling the Pegasus video understanding engine, you must set the value of this parameter to `["visual", "conversation"]`.
+                        items:
+                          type: string
+                        minItems: 1
+                        maxItems: 4
+                      addons:
+                        type: array
+                        description: |
+                          An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
+                          - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
+
+                          If you don't provide this parameter, no add-ons will be enabled.
+
+                          **NOTES:**
+                            - You can only enable addons when using the Marengo video understanding engine.
+                            - You cannot disable an add-on once the index has been created.
+                        items:
+                          type: string
+                        minItems: 1
+                        maxItems: 1
             example:
-              engine_id: marengo2.5
-              index_options:
-                - visual
-                - conversation
-                - text_in_video
-                - logo
-              addons:
-                - thumbnail
               index_name: myIndex
+              engines:
+                - engine_name: marengo2.5
+                  engine_options:
+                    - visual
+                    - conversation
+                    - text_in_video
+                    - logo
+                  addons:
+                    - thumbnail
+                - engine_name: pagasus1.0
+                  engine_options:
+                    - visual
+                    - conversation
+                    
+            #       engines_options:
+            #       type: array
+            #       description: |
+            #         An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video", "logo"]`. For more details, see the [Engine options](/docs/engine-options) page.
+            #       items:
+            #         type: string
+            #       minItems: 1
+            #       maxItems: 4
+            #       default:
+            #         - visual
+            #         - conversation
+            #         - text_in_video
+            #         - logo
+            #     index_name:
+            #       type: string
+            #       description: |
+            #         The name of the index. Make sure you use a succinct and descriptive name.
+            #     addons:
+            #       type: array
+            #       description: |
+            #         An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
+            #         - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
+
+            #         If you don't provide this parameter, no add-ons will be enabled.
+
+            #         **NOTE**:
+            #         - You cannot disable an add-on once the index has been created.
+            #       items:
+            #         type: string
+            #       minItems: 1
+            #       maxItems: 1
+            #       default:
+            #         - thumbnail
+            # example:
+            #   engine_id: marengo2.5
+            #   index_options:
+            #     - visual
+            #     - conversation
+            #     - text_in_video
+            #     - logo
+            #   addons:
+            #     - thumbnail
+            #   index_name: myIndex
