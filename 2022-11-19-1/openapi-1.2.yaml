@@ -4477,7 +4477,7 @@ components:
                 engines:
                   type: array
                   description: |
-                    An array that specifies th list of engines to be enabled for this index.
+                    An array that specifies the list of engines to be enabled for this index.
                   items:
                     type: object
                     required:
