@@ -241,23 +241,23 @@ paths:
   ###   Tasks/External Providers   ###
   ####################################
   
-  '/tasks/external-provider':
-    post:
-      summary: Upload videos from external providers
-      description: |
-        Use this endpoint to upload videos from external providers. The platform currently supports only YouTube as an external provider, but we will add support for additional providers in the future.
-      operationId: upload-external-provider
-      tags:
-        - Tasks
-      parameters:
-        - $ref: '#/components/parameters/x-api-key'
-      requestBody:
-        $ref: '#/components/requestBodies/upload-external-provider'
-      responses:
-        '201':
-          $ref: '#/components/responses/createVideoIndexingTaskResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+  # '/tasks/external-provider':
+  #   post:
+  #     summary: Upload videos from external providers
+  #     description: |
+  #       Use this endpoint to upload videos from external providers. The platform currently supports only YouTube as an external provider, but we will add support for additional providers in the future.
+  #     operationId: upload-external-provider
+  #     tags:
+  #       - Tasks
+  #     parameters:
+  #       - $ref: '#/components/parameters/x-api-key'
+  #     requestBody:
+  #       $ref: '#/components/requestBodies/upload-external-provider'
+  #     responses:
+  #       '201':
+  #         $ref: '#/components/responses/createVideoIndexingTaskResponse'
+  #       '400':
+  #         $ref: '#/components/responses/genericError'
 
 ###################
 ###   Indexes   ###
