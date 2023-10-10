@@ -319,7 +319,25 @@ paths:
           required: false
           schema:
             type: string
+          example: engine_options=visual,conversation
+        - name: engine_family
+          in: query
+          description: |
+            Filter by the engine family. This parameter can take one of the following values: `marengo` or `pegasus`. You can specify a single value.
+          schema: 
+            type: string
+          required: false
+        - name: index_options
+          in: query
+          description: |
+            Filter by the indexing options. When filtering by multiple indexing options, the values must be comma-separated.
+
+            **NOTE:** This parameter is supported for backward compatibility and will be deprecated in a future release. Instead, use `engine_options` or `engine_family`.
+          required: false
+          schema:
+            type: string
           example: index_options=visual,conversation
+          
       responses:
         '200':
           $ref: '#/components/responses/getIndexesResponse'
