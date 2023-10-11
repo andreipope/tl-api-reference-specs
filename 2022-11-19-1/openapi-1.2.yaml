@@ -4527,21 +4527,21 @@ components:
                           type: string
                         minItems: 1
                         maxItems: 4
-                      addons:
-                        type: array
-                        description: |
-                          An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
-                          - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
+                addons:
+                  type: array
+                  description: |
+                    An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
+                    - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
 
-                          If you don't provide this parameter, no add-ons will be enabled.
+                    If you don't provide this parameter, no add-ons will be enabled.
 
-                          **NOTES:**
-                            - You can only enable addons when using the Marengo video understanding engine.
-                            - You cannot disable an add-on once the index has been created.
-                        items:
-                          type: string
-                        minItems: 1
-                        maxItems: 1
+                    **NOTES:**
+                      - You can only enable addons when using the Marengo video understanding engine.
+                      - You cannot disable an add-on once the index has been created.
+                  items:
+                    type: string
+                  minItems: 1
+                  maxItems: 1
             example:
               index_name: myIndex
               engines:
