@@ -2638,7 +2638,7 @@ components:
                   - logo
                 addons:
                   - thumbnail
-              - engine_name: pegasus1.0
+              - engine_name: pegasus1
                 engine_options:
                   - visual
                   - conversation
@@ -2839,7 +2839,7 @@ components:
                         - logo
                       addons:
                         - thumbnail
-                    - engine_name: pegasus1.0
+                    - engine_name: pegasus1
                       engine_options:
                         - visual
                         - conversation
@@ -2856,7 +2856,7 @@ components:
                         - logo
                       addons:
                         - thumbnail
-                    - engine_name: pegasus1.0
+                    - engine_name: pegasus1
                       engine_options:
                         - visual
                         - conversation
@@ -4512,7 +4512,7 @@ components:
                             
                             - `marengo`
       
-                            - `pegasus1.0`
+                            - `pegasus1`
       
                           **NOTE:** You cannot change the engines once the index has been created.
       
