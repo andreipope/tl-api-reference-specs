@@ -1492,7 +1492,7 @@ components:
         A task represents a request to upload and index a video. A task starts when you begin uploading your video by calling the **POST** method of the `tasks` endpoint, and it can have one of the following statuses:
         - **Validating**: Your video has finished uploading, and the platform is validating it by performing the following checks:
           - Resolution must be greater than or equal to 360p and less than or equal to 4K.
-          - Duration must be between 4 seconds and 2 hours (7,200s).
+          - For Marengo, the duration of your video must be between 4 seconds and 2 hours (7,200s). For Pegasus, it must be between 30 seconds and 30 minutes (1800s)..
           - File size must not exceed 2 GB.
           If you require different options, send us an email at `support[at]twelvelabs.io`.
           - If the `conversation` engine option is selected, the video you're uploading must contain an audio track.
