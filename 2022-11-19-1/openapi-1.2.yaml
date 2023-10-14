@@ -3838,7 +3838,7 @@ components:
                   description: |
                     Use this field to provide context for the summarization task, such as the target audience, style, tone of voice, and purpose.
 
-                    The maximum length is 20 words.
+                    The maximum length is 85 characters.
 
                     **Example**: Generate a summary of this video for a social media post, up to two sentences.
 
