@@ -3830,9 +3830,10 @@ components:
                 type: string
                 description: |
                   Specifies the type of summary. Use one of the following values:
-                    - `summary`: A brief report of the main points of the video.
-                    - `chapter`: A chronological list of all the events or activities in the specified video, with a title and summary for each chapter.
-                    - `highlight`: A chronological list of the important events or activities in the specified video, with a summary for each highlight.
+                    - `summary`: A brief that encapsulates the key points of a video, presenting the most important information clearly and concisely.
+                    - `chapter`: A chronological list of all the segments in a video, providing a granular breakdown of its content. For each chapter, the platform returns its starting and end times, measured in seconds from the beginning of the video segment, a descriptive headline that offers a brief of the events or activities within that segment, and an accompanying summary that elaborates on the headline.
+                    - `highlight`: A chronologically ordered list of the most important events within a video. Unlike chapters, highlights only capture the key moments, providing a snapshot of the video's main topics. For each highlight, the platform returns its starting and end times, measured in seconds from the beginning of the video, and a brief description that captures the essence of the segment.
+
               prompt:
                   type: string
                   description: |
