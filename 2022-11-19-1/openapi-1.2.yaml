@@ -4339,7 +4339,7 @@ components:
 
                   You can also filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
 
-                  For more details and examples, see the [Filter search results based on metadata](/docs/sorting-search-results) page.
+                  For more details and examples, see the [Filter search results based on metadata](/docs/filtering-search-results) page.
                 properties:
                   id:
                     type: array
