@@ -1057,9 +1057,9 @@ paths:
 
   '/generate':
     post:
-      summary: Generate open-ended textual representations
+      summary: Generate open-ended texts
       description: |
-        This endpoint generates open-ended textual representations for your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
+        This endpoint generates open-ended texts based on your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -3802,11 +3802,11 @@ components:
             properties:
               video_id:
                 type: string
-                description: The unique identifier of the video for which you wish to generate an open-ended textual representation.
+                description: The unique identifier of the video for which you wish to generate a text.
               prompt:
                 type: string
                 description: |
-                  A prompt that guides the model on the desired format or content for the textual representation. The maximum length of the prompt is 500 tokens or roughly 350 words. Note that even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
+                  A prompt that guides the model on the desired format or content. The maximum length of the prompt is 500 tokens or roughly 350 words. Note that even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
                 
                   **Examples**:
                     
@@ -3859,7 +3859,7 @@ components:
               types:
                 type: array
                 description: |
-                  An array specifying the type of textual representation the platform must generate. Use one or more of the following values:
+                  An array specifying the type of text the platform must generate. Use one or more of the following values:
 
                     - `topic`: A topic is the central theme of a video, such as "Shopping Vlog Lifestyle", summarizing its content for efficient categorization and reference.
 
