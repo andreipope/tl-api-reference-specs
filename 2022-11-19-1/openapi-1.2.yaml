@@ -1025,7 +1025,7 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
       operationId: generate-gist
       tags:
-        - Generate
+        - Generate text from video
       requestBody:
         $ref: '#/components/requestBodies/gistRequest'
       responses:
@@ -1046,7 +1046,7 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
       operationId: summarize
       tags:
-        - Generate
+        - Generate text from video
       requestBody:
         $ref: '#/components/requestBodies/summarizeRequest'
       responses:
@@ -1065,7 +1065,7 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
       operationId: generate-text-representation
       tags:
-        - Generate
+        - Generate text from video
       requestBody:
         $ref: '#/components/requestBodies/generateTextRepresentationRequest'
       responses:
@@ -3807,6 +3807,10 @@ components:
                 type: string
                 description: |
                   A prompt that guides the model on the desired format or content. The maximum length of the prompt is 500 tokens or roughly 350 words. Note that even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
+
+                  **NOTES**:
+                    - Your prompts must be instructive or descriptive, and you should not phrase them as questions.
+                    - The maximum length of a prompt is 300 words.
                 
                   **Examples**:
                     
@@ -3839,7 +3843,9 @@ components:
                   description: |
                     Use this field to provide context for the summarization task, such as the target audience, style, tone of voice, and purpose.
 
-                    The maximum length is 85 characters.
+                    **NOTES**:
+                      - Your prompts must be instructive or descriptive, and you should not phrase them as questions.
+                      - The maximum length of a prompt is 300 words.
 
                     **Example**: Generate a summary of this video for a social media post, up to two sentences.
 
