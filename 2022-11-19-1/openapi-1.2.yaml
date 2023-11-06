@@ -30,7 +30,7 @@ tags:
   - name: Search
   - name: Combined search 
   - name: Classify
-  - name: Generate text from video
+  - name: Generate
 
 
 paths:
