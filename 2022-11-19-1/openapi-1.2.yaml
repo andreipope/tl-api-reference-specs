@@ -1060,6 +1060,8 @@ paths:
       summary: Open-ended texts
       description: |
         This endpoint generates open-ended texts based on your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
+
+        **NOTE**: This endpoint is currenlty in early beta. Therefore, Twelve Labs recommends you validate the results before relying on them for critical applications. If you have suggestions for improvement or any other feedback,  please email us at support@twelvelabs.io.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -3038,53 +3040,6 @@ components:
               message:
                 type: string
                 description: A human-readable string describing the error.
-    
-    classifyResponse:
-      description: The specified video has successfully been classified.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              labels:
-                description: |
-                  An array of objects containing information about the likelihood that each of the labels you've specified appears in the video.
-                items:
-                  $ref: '#/components/schemas/classifyLabelResult'
-                type: array
-              video_id:
-                type: string
-                description: The unique identifier of the video that has been classified.
-            example:
-              video_id: 636b932fe9521f7108f5a30e
-              labels:
-                - name: Dangerous animals
-                  max_score: 84.59
-                  duration: 120
-                  confidence: high
-                  clips:
-                    - start: 40
-                      end: 46
-                      score: 83.45
-                      confidence: high
-                      option: visual
-                      prompt: Hippo
-                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/636b932fe9521f7108f5a30e/41.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221213%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221213T064305Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=836c44fd8d4ff4524b3987b77ac97d032eb6a1bbf6252a0ed8ea5cddca5c583c
-                    - start: 56
-                      end: 74
-                      score: 84.59
-                      confidence: high
-                      option: visual
-                      prompt: Bear
-                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/636b932fe9521f7108f5a30e/57.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221213%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221213T064305Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=b5aa71735987631ef8cfebbf40d737622e5e6390740a100e7094eb769b2350ca
-                    - start: 128
-                      end: 134
-                      score: 83.1
-                      confidence: high
-                      option: visual
-                      prompt: Lion
-                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/636b932fe9521f7108f5a30e/129.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221213%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221213T064305Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a12488cb8c2da05445f1b3d90ef17f16ac2ced05fc1fc239c75b9eaad3466136
-
 
     generateTextRepresentationResponse:
       description: The specified video has successfully been processed.
@@ -4567,46 +4522,3 @@ components:
                     - visual
                     - conversation
                     
-            #       engines_options:
-            #       type: array
-            #       description: |
-            #         An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video", "logo"]`. For more details, see the [Engine options](/docs/engine-options) page.
-            #       items:
-            #         type: string
-            #       minItems: 1
-            #       maxItems: 4
-            #       default:
-            #         - visual
-            #         - conversation
-            #         - text_in_video
-            #         - logo
-            #     index_name:
-            #       type: string
-            #       description: |
-            #         The name of the index. Make sure you use a succinct and descriptive name.
-            #     addons:
-            #       type: array
-            #       description: |
-            #         An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
-            #         - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
-
-            #         If you don't provide this parameter, no add-ons will be enabled.
-
-            #         **NOTE**:
-            #         - You cannot disable an add-on once the index has been created.
-            #       items:
-            #         type: string
-            #       minItems: 1
-            #       maxItems: 1
-            #       default:
-            #         - thumbnail
-            # example:
-            #   engine_id: marengo2.5
-            #   index_options:
-            #     - visual
-            #     - conversation
-            #     - text_in_video
-            #     - logo
-            #   addons:
-            #     - thumbnail
-            #   index_name: myIndex
