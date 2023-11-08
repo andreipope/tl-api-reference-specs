@@ -69,7 +69,19 @@ paths:
         - name: engine-id
           in: path
           description: |
-            The identifier of the engine to retrieve.
+            The identifier of the engine to retrieve. The following engines are available:
+                            
+            - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
+
+              - `marengo2.5`
+
+              - `marengo2`
+              
+              - `marengo`
+
+            - **Generative**: These engines generate text based on your videos.
+
+              - `pegasus1`
 
             For details about the features of each engine, see the [Video understanding engines](/docs/video-understanding-engines) page.
           required: true
