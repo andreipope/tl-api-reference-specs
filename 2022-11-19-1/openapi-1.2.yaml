@@ -70,11 +70,7 @@ paths:
           in: path
           description: |
             The identifier of the engine to retrieve.
-            
-            The following engines are available:
-            - `marengo2.5`
-            - `marengo2`
-            - `marengo`
+
             For details about the features of each engine, see the [Video understanding engines](/docs/video-understanding-engines) page.
           required: true
           schema:
