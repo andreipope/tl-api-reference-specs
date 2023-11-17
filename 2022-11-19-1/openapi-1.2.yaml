@@ -1027,7 +1027,7 @@ paths:
       description: |
         This endpoint generates concise overviews in the form of titles, topics, and hashtags representing the key elements or themes of a video.
 
-        **NOTE**: This endpoint is currenlty in early beta. Therefore, Twelve Labs recommends you validate the results before relying on them for critical applications. For feedback or suggestions, please use the messenger application at the bottom right corner of the [Playground](https://playground.twelvelabs.io/Playground) or email us at  [support@twelvelabs.io](mailto:support@twelvelabs.io)..
+        **NOTE**: This endpoint is currently in limited Beta and accessible exclusively to a select group of users. To request access, please register on <a href="https://twelvelabs.typeform.com/to/cA0qthmi?typeform-source=app.twelvelabs.io" target="_blank">this waitlist</a>.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1048,7 +1048,7 @@ paths:
       description: |
         This endpoint generates summaries, chapters, or highlights for your videos. Optionally, you can provide a prompt to customize the output.
         
-        **NOTE**: This endpoint is currenlty in early beta. Therefore, Twelve Labs recommends you validate the results before relying on them for critical applications. For feedback or suggestions, please use the messenger application at the bottom right corner of the [Playground](https://playground.twelvelabs.io/Playground) or email us at  [support@twelvelabs.io](mailto:support@twelvelabs.io).
+        **NOTE**: This endpoint is currently in limited Beta and accessible exclusively to a select group of users. To request access, please register on <a href="https://twelvelabs.typeform.com/to/cA0qthmi?typeform-source=app.twelvelabs.io" target="_blank">this waitlist</a>.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1069,7 +1069,7 @@ paths:
       description: |
         This endpoint generates open-ended texts based on your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
 
-        **NOTE**: This endpoint is currenlty in early beta. Therefore, Twelve Labs recommends you validate the results before relying on them for critical applications. For feedback or suggestions, please use the messenger application at the bottom right corner of the [Playground](https://playground.twelvelabs.io/Playground) or email us at  [support@twelvelabs.io](mailto:support@twelvelabs.io).
+        **NOTE**: This endpoint is currently in limited Beta and accessible exclusively to a select group of users. To request access, please register on <a href="https://twelvelabs.typeform.com/to/cA0qthmi?typeform-source=app.twelvelabs.io" target="_blank">this waitlist</a>.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
