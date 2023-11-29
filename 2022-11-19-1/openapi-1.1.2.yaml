@@ -1410,7 +1410,7 @@ components:
           - Resolution must be greater than or equal to 360p and less than or equal to 4K.
           - Duration must be between 4 seconds and 2 hours (7,200s).
           - File size must not exceed 2 GB.
-          If you require different options, send us an email at `support[at]twelvelabs.io`.
+          If you require different options, send us an email at support@twelvelabs.io.
           - If the `conversation` indexing option is selected, the video you're uploading must contain an audio track.
           - Your video must not have missing frames.
         - **Pending**: The API is spawning a new worker server to process your video.
