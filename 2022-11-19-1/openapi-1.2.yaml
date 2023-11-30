@@ -277,7 +277,7 @@ paths:
       description: |
         This method creates an index.
 
-        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To create an index in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes`. Everything else remains the same.
+        **NOTE**: The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To create an index in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes`. Everything else remains the same.
 
       operationId: create-index
       tags:
