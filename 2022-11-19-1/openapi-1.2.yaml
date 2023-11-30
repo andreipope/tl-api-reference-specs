@@ -297,7 +297,7 @@ paths:
       description: |
         This method returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.
 
-        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To list the indexes from the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes`. Everything else remains the same.
+        **NOTE**: The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To list the indexes from the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes`. Everything else remains the same.
       operationId: list-indexes
       tags:
         - Indexes
@@ -380,7 +380,7 @@ paths:
       description: |
         This method updates the name of the specified index.
 
-        **NOTE**: The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To update an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes/{index-id}`. Everything else remains the same.
+        **NOTE**: The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To update an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/indexes/{index-id}`. Everything else remains the same.
       operationId: update-index
       tags:
         - Indexes
@@ -499,21 +499,21 @@ paths:
         - name: created_at
           in: query
           description: |
-            Filter by the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was created.
+            Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was created.
           required: false
           schema:
             type: string
         - name: updated_at
           in: query
           description: |
-            Filter by the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was updated.
+            Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was updated.
           required: false
           schema:
             type: string
         - name: indexed_at
           in: query
           description: |
-            Filter by the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video has finished indexing.
+            Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video has finished indexing.
           required: false
           schema:
             type: string
@@ -822,7 +822,7 @@ paths:
         **NOTES**:
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-          - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/search`. Everything else remains the same.
+          - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/search`. Everything else remains the same.
 
       operationId: make-search-request
       requestBody:
@@ -883,7 +883,7 @@ paths:
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
-          - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the [Playground](https://playground.twelvelabs.io/), which provides a better experience.
+          - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the <a href="https://playground.twelvelabs.io" target="_blank">Playground</a>, which provides a better experience.
           - To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/combined-search`. Everything else remains the same.
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
@@ -942,7 +942,7 @@ paths:
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
         - The total number of the prompts you specify in a request must not exceed 100.
         - The total duration of the videos you classify in a request must not exceed 10 hours.
-        - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify a video that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/classify`. Everything else remains the same.
+        - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify a video that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/classify`. Everything else remains the same.
 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -970,7 +970,7 @@ paths:
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
         - The total number of prompts you specify in a request must not exceed 100.
-        - The [Playground](https://playground.twelvelabs.io) is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify all the videos in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/classify/bulk`. Everything else remains the same.
+        - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify all the videos in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.2/classify/bulk`. Everything else remains the same.
       operationId: classify-bulk
       tags:
         - Classify
@@ -1308,7 +1308,7 @@ components:
         page_expired_at:
           type: string
           description: |
-            A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
         limit_per_page:
           $ref: '#/components/schemas/limit_per_page_simple'
         next_page_token:
@@ -1418,11 +1418,11 @@ components:
         created_at:
           type: string
           description: |
-            A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the engine was created.
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the engine was created.
         updated_at:
           type: string
           description: |
-            A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the engine was updated.
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the engine was updated.
         finetune:
           type: boolean
           description: |
@@ -1454,10 +1454,10 @@ components:
           description: A string representing the unique identifier of the index. It is assigned by the API when an index is created.
         created_at:
           type: string
-          description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was created.
+          description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index was created.
         updated_at:
           type: string
-          description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index has been updated.
+          description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index has been updated.
         index_name:
           type: string
           description: A string representing the name of the index.
@@ -1571,8 +1571,8 @@ components:
 
         The `video_vector` object has the following elements:
         - `_id`: A string representing the unique identifier of a video. The platform creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
-        - `created_at`: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was created.
-        - `indexed_at`: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video has finished indexing.
+        - `created_at`: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was created.
+        - `indexed_at`: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video has finished indexing.
         - `metadata`: An object that contains the following information about the video:
           - `duration`
           - `filename`
@@ -1650,7 +1650,7 @@ components:
       description: |
         Your API key.
         
-        **NOTE:** You can find your API key on the [Dashboard](https://api.twelvelabs.io/dashboard) page.
+        **NOTE:** You can find your API key on <a href="https://api.twelvelabs.io/dashboard" target="_blank">Dashboard</a> the page.
       required: true
       schema:
         type: string
@@ -1690,8 +1690,8 @@ components:
       in: query
       description: |
         The field to sort on. The following options are available:
-        - `updated_at`: Sorts by the time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, when the item was updated.
-        - `created_at`: Sorts by the time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, when the item was created.
+        - `updated_at`: Sorts by the time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, when the item was updated.
+        - `created_at`: Sorts by the time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, when the item was created.
 
         **Default**: `created_at`.
       schema:
@@ -1763,7 +1763,7 @@ components:
       name: created_at
       in: query
       description: |
-        Filter by the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was created.
+        Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was created.
       schema:
         type: string
       required: false
@@ -1771,7 +1771,7 @@ components:
       name: updated_at
       in: query
       description: |
-        Filter by the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was updated.
+        Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was updated.
       schema:
         type: string
       required: false
@@ -1779,7 +1779,7 @@ components:
       name: estimated_time
       in: query
       description: |
-        Filter by the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task is ready to be searched.
+        Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task is ready to be searched.
       schema:
         type: string
       required: false
@@ -1846,7 +1846,7 @@ components:
                       The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video segments per page. 
                   page_expired_at:
                     type: string
-                    description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
+                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
                   total_results:
                     type: integer
                     description: |
@@ -2026,7 +2026,7 @@ components:
                     $ref: '#/components/schemas/limit_per_page_simple'
                   page_expired_at:
                     type: string
-                    description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
+                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
                   total_results:
                     $ref: '#/components/schemas/total_results'
                   next_page_token:
@@ -2100,7 +2100,7 @@ components:
                     $ref: '#/components/schemas/limit_per_page_simple'
                   page_expired_at:
                     type: string
-                    description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
+                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
                   total_results:
                     $ref: '#/components/schemas/total_results'
                   next_page_token:
@@ -2195,7 +2195,7 @@ components:
                       The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video segments per page.
                   page_expired_at:
                     type: string
-                    description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the page expires.
+                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
                   total_results:
                     type: integer
                     description: |
@@ -2532,13 +2532,13 @@ components:
                 description: The unique identifier of the video.
               created_at:
                 type: string
-                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video indexing task was created.
+                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was created.
               updated_at: 
                 type: string
-                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the corresponding video indexing task was last updated. The platform updates this field every time the corresponding video indexing task transitions to a different state.
+                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the corresponding video indexing task was last updated. The platform updates this field every time the corresponding video indexing task transitions to a different state.
               indexed_at:
                 type: string
-                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video has finished indexing.
+                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video has finished indexing.
               metadata:
                 type: object
                 description: An object that contains the information about the video.
@@ -2559,7 +2559,7 @@ components:
                 properties:
                   video_url:
                     type: string
-                    description: A string representing the URL of the video. You can then use this URL to access the stream over the [HLS](https://en.wikipedia.org/wiki/HTTP_Live_Streaming) protocol.
+                    description: A string representing the URL of the video. You can then use this URL to access the stream over the <a href="https://en.wikipedia.org/wiki/HTTP_Live_Streaming" target="_blank">HLS</a> protocol.
                   thumbnail_urls:
                     type: array
                     description: An array containing the URL of the thumbnail.
@@ -2593,10 +2593,10 @@ components:
                 description: A string representing the unique identifier of the index. It is assigned by the API when an index is created.
               created_at:
                 type: string
-                description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index was created.
+                description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index was created.
               updated_at:
                 type: string
-                description: A string representing the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the index has been updated.
+                description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index has been updated.
               index_name:
                 type: string
                 description: A string representing the name of the index.
@@ -2760,7 +2760,7 @@ components:
                 description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
               estimated_time:
                 type: string
-                description: A string indicating the estimated date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the video is ready to be searched.
+                description: A string indicating the estimated date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video is ready to be searched.
               index_id:
                 type: string
                 description: A string pointing to the index to which the video is assigned.
@@ -3315,7 +3315,7 @@ components:
                               normalized_score:
                                 type: float
                                 description: |
-                                  Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+                                  Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
                                   **Min**: 0
                                   **Max**: 100
@@ -3435,7 +3435,7 @@ components:
                               normalized_score:
                                 type: float
                                 description: |
-                                  Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+                                  Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
                                   **Min**: 0
                                   **Max**: 100
@@ -3571,7 +3571,7 @@ components:
                               normalized_score:
                                 type: float
                                 description: |
-                                  Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+                                  Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
                                   **Min**: 0
                                   **Max**: 100
@@ -3926,7 +3926,7 @@ components:
 
                     - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching segment and selecting the highest one.
                     - **Average score**: Represents the average score of the matching video segments.
-                    - **Normalized score**: Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+                    - **Normalized score**: Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
                 options:
                   $ref: '#/components/schemas/options'
@@ -3973,7 +3973,7 @@ components:
                   - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching segment and selecting the highest one.
                   - **Average score**: Represents the average score of the matching video segments.
                   - **Duration weighted score**: Represents the score of each matching video segment, weighted by its length.
-                  - **Normalized score**: Represents the probability distribution of classes in the results, determined using the [Softmax function](https://en.wikipedia.org/wiki/Softmax_function).
+                  - **Normalized score**: Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
               options:
                 $ref: '#/components/schemas/options'
@@ -4431,7 +4431,7 @@ components:
               disable_video_stream:
                 type: boolean
                 description: |
-                  This parameter indicates if the platform stores the video for streaming. When set to `false`, the platform stores the video, and you can retrieve its URL by calling the [`GET`](/reference/retrieve-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. You can then use this URL to access the stream over the [HLS](https://en.wikipedia.org/wiki/HTTP_Live_Streaming) protocol.
+                  This parameter indicates if the platform stores the video for streaming. When set to `false`, the platform stores the video, and you can retrieve its URL by calling the [`GET`](/reference/retrieve-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. You can then use this URL to access the stream over the <a href="https://en.wikipedia.org/wiki/HTTP_Live_Streaming" target="_blank">HLS</a> protocol.
 
                   **Default:** `false`
                 default: false
