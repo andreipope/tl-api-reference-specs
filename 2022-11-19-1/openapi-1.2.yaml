@@ -180,7 +180,7 @@ paths:
         This action cannot be undone.
         Note the following about deleting a video indexing task:
         - You can only delete video indexing tasks for which the status is `ready` or `failed`.
-        - If the status of your video indexing task is `ready`, you must first delete the video vector associated with your video indexing task by calling the `DELETE` method of the `/indexes/videos` endpoint.
+        - If the status of your video indexing task is `ready`, you must first delete the video vector associated with your video indexing task by calling the [`DELETE`](/reference/delete-video-information) method of the `/indexes/videos` endpoint.
       operationId: delete-video-indexing-task
       tags:
         - Tasks
@@ -521,7 +521,7 @@ paths:
         - name: metadata # Arbitrary name that won't be included in the request URL.
           in: query
           description: |
-            You can filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` method.
+            You can filter by any of the custom fields specified by invoking the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` method.
 
             Examples:
             - To filter on a string: `?category=recentlyAdded`
@@ -815,9 +815,9 @@ paths:
       tags:
         - Search
       description: |
-        Use the POST method of the `/search` endpoint to search for relevant matches in an index.
+        Use this method to search for relevant matches in an index.
         
-        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/search-retrieve-specific-page) method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.

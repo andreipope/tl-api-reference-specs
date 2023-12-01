@@ -171,7 +171,7 @@ paths:
         This action cannot be undone.
         Note the following about deleting a video indexing task:
         - You can only delete video indexing tasks for which the status is `ready` or `failed`.
-        - If the status of your video indexing task is `ready`, you must first delete the video vector associated with your video indexing task by calling the `DELETE` method of the `/indexes/videos` endpoint.
+        - If the status of your video indexing task is `ready`, you must first delete the video vector associated with your video indexing task by calling the [`DELETE`](/reference/delete-video-information) method of the `/indexes/videos` endpoint.
       operationId: delete-video-indexing-task
       tags:
         - Tasks
@@ -473,7 +473,7 @@ paths:
         - name: metadata # Arbitrary name that won't be included in the request URL.
           in: query
           description: |
-            You can filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` method.
+            You can filter by any of the custom fields specified by invoking the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` method.
 
             Examples:
             - To filter on a string: `?category=recentlyAdded`
@@ -767,9 +767,9 @@ paths:
       tags:
         - Search
       description: |
-        Use the POST method of the `/search` endpoint to search for relevant matches in an index.
+        Use this method to search for relevant matches in an index.
         
-        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/search-retrieve-specific-page) method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
@@ -830,9 +830,9 @@ paths:
       tags:
         - Combined search 
       description: |
-        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries.
+        Use this method to search for relevant matches in an index using combined queries.
         
-        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/combined-queries-retrieve-specific-page) method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
           - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the <a href="https://playground.twelvelabs.io" target="_blank">Playground</a>, which provides a better experience.
@@ -888,7 +888,7 @@ paths:
     post:
       summary: Classify a set of videos
       description: |
-        Use this method to classify a set of videos based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
+        Use this method to classify a set of videos based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the [`GET`](/classify-retrieve-specific-page) method of the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
 
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
@@ -917,7 +917,7 @@ paths:
     post:
       summary: Classify all the videos in an index
       description: |
-        Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
+        Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the [`GET`](/classify-retrieve-specific-page) method of the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
 
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
@@ -944,7 +944,7 @@ paths:
     get:
       summary: Retrieve a specific page of results
       description: |
-        The `classify` and `/classify/bulk` endpoints return the first page or results. You can use this endpoint to retrieve the rest of the pages.
+        The `POST`  methods of the [`classify`](/reference/classify-videos) and [`/classify/bulk`](/reference/classify-bulk) endpoints return the first page or results. You can use this endpoint to retrieve the rest of the pages.
         
         **NOTE**: This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
       operationId: classify-retrieve-specific-page
@@ -3781,7 +3781,7 @@ components:
 
                     For numeric fields, the filter parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                    You can also filter by any of the custom fields specified using the PUT method of the `/indexes/{index-id}/videos/{video-id}` endpoint. The following example returns only the videos for which a custom field named `needsReview` of type boolean is set to true: `"needs_review": true`.
+                    You can also filter by any of the custom fields specified using the [`PUT`](/reference/update-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. The following example returns only the videos for which a custom field named `needsReview` of type boolean is set to true: `"needs_review": true`.
                   properties:
                     id:
                       type: array
@@ -3960,7 +3960,7 @@ components:
                   
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                  You can also filter by any of the custom fields specified by invoking the `PUT` method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
+                  You can also filter by any of the custom fields specified by invoking the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
 
                   For more details and examples, see the [Filter search results based on metadata](/docs/filtering-search-results) page.
                 properties:
