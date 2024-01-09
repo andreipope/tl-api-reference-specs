@@ -2698,7 +2698,7 @@ components:
               failed:
                 type: integer
                 description: A value indicating the number of video indexing tasks for which the status is `failed`.
-              total:
+              total_result:
                 type: integer
                 description: A value indicating the total number of video indexing tasks in the specified index.
           example:
