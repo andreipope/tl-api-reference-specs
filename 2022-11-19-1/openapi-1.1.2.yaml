@@ -2684,6 +2684,24 @@ components:
                     type: integer
                   width:
                     type: integer
+              hls:
+                type: object
+                description: The platform returns this object only for the videos that you uploaded with the `disable_video_stream` parameter set to `false`.
+                properties:
+                  video_url:
+                    type: string
+                    description: A string representing the URL of the video. You can then use this URL to access the stream over the <a href="https://en.wikipedia.org/wiki/HTTP_Live_Streaming" target="_blank">HLS</a> protocol.
+                  thumbnail_urls:
+                    type: array
+                    description: An array containing the URL of the thumbnail.
+                    items:
+                      type: string
+                  status:
+                    type: string
+                    description: A string representing the encoding status of the video file from its original format to a streamable format.
+                  updated_at:
+                    type: string
+                    description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the encoding status was last updated.
               process:
                 type: object
                 description: If your video has not yet finished indexing, the platform returns the current progress of the indexing operation.
@@ -2708,7 +2726,13 @@ components:
               filename: WPK3hvTr8PU.mp4
               height: 360
               width: 544
-            status: indexing
+            status: ready
+            hls:
+              video_url: https://d2cp8xx7n5vxnu.cloudfront.net/6298aa0b535db125bf6e1d10/64902a28fb01304dd47be3cb/stream/c924f34a-144e-41df-bf2a-c693703fa134.m3u8
+              thumbnail_urls:
+                - https://d2cp8xx7n5vxnu.cloudfront.net/6298aa0b535db125bf6e1d10/64902a28fb01304dd47be3cb/thumbnails/c924f34a-144e-41df-bf2a-c693703fa134.0000001.jpg
+              status: COMPLETE
+              updated_at: 2024-01-16T07:59:40.879Z
 
 
     getIndexesResponse:
