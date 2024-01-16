@@ -2531,7 +2531,7 @@ components:
                     type: integer
               hls:
                 type: object
-                description: An object that contains the streaming and thumbnail URLs. The platform returns this object only for the videos that you uploaded with the `disable_video_stream` parameter set to `false`.
+                description: The platform returns this object only for the videos that you uploaded with the `disable_video_stream` parameter set to `false`.
                 properties:
                   video_url:
                     type: string
