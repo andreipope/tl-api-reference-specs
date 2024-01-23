@@ -1774,10 +1774,6 @@ components:
           schema:
             type: object
             properties:
-              conversation_option:
-                type: string
-                description: |
-                  Indicates the type of search the API performed.
               data:
                 type: array
                 description: An array that contains your search results. For each match found, the engine returns the following fields.
@@ -1834,12 +1830,6 @@ components:
                   prev_page_token:
                     type: string
                     description: The unique identifier of the previous page.
-              query:
-                type: string
-                description: The search query you specified.
-              search_options:
-                type: array
-                description: The search options you used.
               search_pool:
                 $ref: '#/components/schemas/search_pool'
           example:
@@ -1847,11 +1837,6 @@ components:
               total_count: 13
               total_duration: 8731
               index_id: 639961c9e219c90227c371a2
-            query: racing car cornering
-            search_options:
-            - conversation
-            - visual
-            conversation_option: semantic
             data:
             - score: 85.08
               start: 515.4375
@@ -2122,10 +2107,6 @@ components:
           schema:
             type: object
             properties:
-              conversation_option:
-                type: string
-                description: |
-                  Indicates the type of search the API performed.
               data:
                 type: array
                 description: |
@@ -2180,12 +2161,6 @@ components:
                     $ref: '#/components/schemas/total_inner_matches'
                   next_page_token:
                     $ref: '#/components/schemas/next_page_token'
-              query:
-                type: string
-                description: The search query you specified.
-              search_options:
-                type: array
-                description: The search options you used.
               search_pool:
                 $ref: '#/components/schemas/search_pool'
           example:
@@ -2193,11 +2168,6 @@ components:
               total_count: 13
               total_duration: 8731
               index_id: 639961c9e219c90227c371a2
-            query: racing car cornering
-            search_options:
-            - conversation
-            - visual
-            conversation_option: semantic
             data:
             - score: 85.75
               start: 238.75
