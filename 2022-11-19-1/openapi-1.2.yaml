@@ -832,7 +832,7 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
       responses:
         '200':
-          $ref: '#/components/responses/searchResultsResponse'
+          $ref: '#/components/responses/searchResultsResponse' 
         '400':
           $ref: '#/components/responses/genericError'
         '429':
