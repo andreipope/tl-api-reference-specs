@@ -4535,8 +4535,53 @@ webhooks:
       summary: Event notifications
       description: |
         The platform sends notifications following the schema described below:
+        
         **Header**:
           - `t`: A Unix timestamp representing the time when the platform has sent the notification.
+          - `v1`: A signature generated uniquely for each webhook event, using `HMAC` with `SHA-256`. For instructions on how you can verify the signature, see the [Validate the integrity of an event](/docs/webhooks-requirements-for-processing-notifications#1-validate-the-integrity-of-an-event) section.
+
+        **Response**:
+          - `id`: A string representing the unique identifier of the notification.
+          - `created_at`: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the platform has sent the notification.
+          - `type`: A string indicating the type of event. It can take one of the following values:
+              - `index.task.ready`: Specifies that your video is ready to be searched.
+              - `index.task.failed`: Specifies that the video indexing task has failed.
+          - `data`: An object that contains the following information:
+              - `id`: A string representing the unique identifier of the video indexing task.
+              - `metadata`: An object containing the duration of the video.
+              - `status`: A string representing the status of the video indexing task. For details about the possible statuses, see the [API Reference > Tasks](/reference/tasks) page.
+              - `engine`: The engine used to index the video.
+              - `engine_options`: An array of strings that determines how the engine processes your videos. For more details, see the Indexing options page.
+              - `tags`: An array of strings representing the tags associated with this video indexing task.
+
+        **Example**:
+        
+        ```json
+        POST /user-webhook-endpoint HTTP/1.1
+        TL-Signature: t=1659342128,v1=0f596565898448fe00d22c52fcaddffb1d1054da3b1d47268b99b6041c79aa29
+        
+        {
+          "id": "whe_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "created_at": "2022-08-01T17:22:18.372553+09:00",
+          "type": "index.task.ready",
+          "data": {
+            "id": "xxxxxxxxxxxxxxxxxxxxxxx",
+            "metadata": { "duration": 30 },
+            "status": "ready",
+            "engines": [
+              {
+                "name": "marengo2.5", "options": ["visual", "conversation", "text_in_video", "logo"]
+              },
+              {
+                "name": "pegasus1", "options": ["visual","conversation"]
+              }      
+        
+            ],
+            "tags": []
+          }
+        }        
+        ```
+
       tags:
         - Tasks
       responses:
