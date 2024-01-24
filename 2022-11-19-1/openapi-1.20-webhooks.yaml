@@ -4532,7 +4532,7 @@ components:
 webhooks:
   newNotification:
     post:
-      summary: Your webhook must return a `2xx` status code for each notification it receives from the platform, indicating successful delivery of the notification. The platform will treat a different response code as a failure, and the status will show as `Failed`.
+      summary: Event notifications
       description: |
         The platform sends notifications following the schema described below:
         **Header**:
@@ -4541,4 +4541,4 @@ webhooks:
         - Tasks
       responses:
         "200":
-          description: Return a `2xx` status code indicating successful delivery of the notification.
+          description: Your webhook must return a `2xx` status code for each notification it receives from the platform, indicating successful delivery of the notification. The platform will treat a different response code as a failure, and the status will show as `Failed`.
