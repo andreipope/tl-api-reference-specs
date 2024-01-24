@@ -4532,6 +4532,10 @@ components:
 webhooks:
   newNotification:
     post:
+      summary: I'm a summary
+      description: I'm a description
+      tags:
+        - Tasks
       responses:
         "200":
           description: Return a 200 status to indicate that the data was received successfully
