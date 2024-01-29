@@ -247,8 +247,6 @@ paths:
       description: |
         This method creates an index.
 
-        **NOTE**: The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To create an index in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/indexes`. Everything else remains the same.
-
       operationId: create-index
       tags:
         - Indexes
@@ -267,7 +265,6 @@ paths:
       description: |
         This method returns a list of the indexes in your account. The API returns indexes sorted by creation date, with the oldest indexes at the top of the list.
 
-        **NOTE**: The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To list the indexes from the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/indexes`. Everything else remains the same.
       operationId: list-indexes
       tags:
         - Indexes
@@ -332,7 +329,6 @@ paths:
       description: |
         This method updates the name of the specified index.
 
-        **NOTE**: The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To update an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/indexes/{index-id}`. Everything else remains the same.
       operationId: update-index
       tags:
         - Indexes
@@ -774,7 +770,6 @@ paths:
         **NOTES**:
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-          - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/search`. Everything else remains the same.
 
       operationId: make-search-request
       requestBody:
@@ -836,7 +831,6 @@ paths:
 
         **NOTES**:
           - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the <a href="https://playground.twelvelabs.io" target="_blank">Playground</a>, which provides a better experience.
-          - To search for relevant matches in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/combined-search`. Everything else remains the same.
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       parameters:
@@ -894,7 +888,6 @@ paths:
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
         - The total number of the prompts you specify in a request must not exceed 100.
         - The total duration of the videos you classify in a request must not exceed 10 hours.
-        - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify a video that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/classify`. Everything else remains the same.
 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -922,7 +915,6 @@ paths:
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
         - The total number of prompts you specify in a request must not exceed 100.
-        - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. To classify all the videos in an index that has been created in the Playground, you must append `p` to the base URL, as follows: `https://api.twelvelabs.io/p/v1.1/classify/bulk`. Everything else remains the same.
       operationId: classify-bulk
       tags:
         - Classify
