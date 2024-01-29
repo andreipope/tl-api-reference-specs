@@ -4224,6 +4224,16 @@ components:
                   **NOTES:** 
                   - The search options you specify must be a subset of the [engine options](/docs/concepts-engine-options) used when you created the index.
                   - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
+              adjust_confidence_level:
+                type: number
+                description: |
+                  This parameter specifies the strictness of the thresholds for assigning the high, medium, or low confidence levels to search results. If you use a lower value, the thresholds become more relaxed, and more search results will be classified as having high, medium, or low confidence levels. You can use this parameter to include a broader range of potentially relevant video clips, even if some results might be less precise.
+
+                  **Min**: 0
+                  **Max**: 1
+                  **Default:** 0.5
+                default: 1
+
               group_by:
                 type: string
                 description: |
