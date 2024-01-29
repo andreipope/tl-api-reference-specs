@@ -4504,7 +4504,9 @@ components:
                         description: |
                           An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video", "logo"]`. For more details, see the [Engine options](/docs/engine-options) page.
 
-                          **NOTE:** When enabling the Pegasus video understanding engine, you must set the value of this parameter to `["visual", "conversation"]`.
+                          **NOTES:**
+                          - When using the Marengo family of video understanding engines, you can specify any combination of the available engine options.
+                          - When using the Pegasus family of video understanding engines, you must always specify both the `visual` and `conversation` engine options.
                         items:
                           type: string
                         minItems: 1
