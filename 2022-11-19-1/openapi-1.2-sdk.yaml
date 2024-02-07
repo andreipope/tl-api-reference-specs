@@ -274,6 +274,25 @@ paths:
   '/indexes':
     post:
       summary: Create an index
+      x-readme:
+        code-samples:
+          - language: python
+            code: |
+              index_obj = client.index.create(
+                name = "<YOUR_INDEX_NAME>",
+                engines =[
+                    {
+                        "name": "marengo2.5",
+                        "options": ["visual", "conversation", "text_in_video"],
+                    },
+                    {
+                        "name": "pegasus1",
+                        "options": ["visual", "conversation"],
+                    },
+                ],
+              )
+            name: Twelve Labs Python SDK
+            install: pip install twelvelabs    
       description: |
         This method creates an index.
 
@@ -4295,12 +4314,6 @@ components:
 
     createIndex:
         required: true
-        x-readme:
-          code-samples:
-            - language: python
-              code: print("!23")
-              name: Twelve Labs Python SDK
-              install: pip install twelvelabs
         content:
           application/json:
             schema:
