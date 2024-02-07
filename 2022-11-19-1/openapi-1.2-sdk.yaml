@@ -4297,7 +4297,7 @@ components:
         required: true
         x-readme:
           code-samples:
-            - language: Python
+            - language: python
               code: |
                 index_obj = client.index.create(
                   name = "<YOUR_INDEX_NAME>",
