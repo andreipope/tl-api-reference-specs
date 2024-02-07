@@ -280,7 +280,7 @@ paths:
             code: |
               index_obj = client.index.create(
                 name = "<YOUR_INDEX_NAME>",
-                engines =[
+                engines = [
                     {
                         "name": "marengo2.5",
                         "options": ["visual", "conversation", "text_in_video"],
