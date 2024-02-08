@@ -4358,8 +4358,7 @@ components:
                               - `marengo`
 
                             - **Generative**: These engines generate text based on your videos.
-      
-    
+
                               - `pegasus1`
       
                           **NOTE:** You cannot change the engines once the index has been created.
