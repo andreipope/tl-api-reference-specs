@@ -3629,8 +3629,9 @@ components:
                 description: |
                   A prompt that guides the model on the desired format or content. The maximum length of the prompt is 500 tokens or roughly 350 words. Note that even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
 
-                  **NOTE**:
-                    - The maximum length of a prompt is 300 words.
+                  **NOTES**:
+                    - Your prompts can be instructive or descriptive, or you can also phrase them as questions.
+                    - The maximum length of a prompt is 300 characters.
                 
                   **Examples**:
                     
@@ -3678,7 +3679,8 @@ components:
                     Use this field to provide context for the summarization task, such as the target audience, style, tone of voice, and purpose.
 
                     **NOTE**:
-                      - The maximum length of a prompt is 300 words.
+                      - Your prompts can be instructive or descriptive, or you can also phrase them as questions.
+                      - The maximum length of a prompt is 300 characters.
 
                     **Example**: Generate a summary of this video for a social media post, up to two sentences.
               temperature:
