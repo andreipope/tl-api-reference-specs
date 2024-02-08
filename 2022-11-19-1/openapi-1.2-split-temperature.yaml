@@ -4370,7 +4370,7 @@ components:
                           An array that specifies how the platform will process the videos uploaded to this index. For more details, see the [Engine options](/docs/engine-options) page.
 
                           **NOTES:**
-                          - When using the Marengo family of video understanding engines, specify any combination of the available engine options - `visual`, `conversation`, `text_in_video`, `logo``.
+                          - When using the Marengo family of video understanding engines, specify any combination of the available engine options - `visual`, `conversation`, `text_in_video`, and `logo`.
                           - When using the Pegasus family of video understanding engines, specify one or both of the following engine options: `visual` and `conversation`.
                         items:
                           type: string
