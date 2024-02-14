@@ -4278,6 +4278,14 @@ components:
 
                   **Default:** `false`
                 default: false
+              user_metadata:
+                type: object
+                description: |
+                  Add metadata to categorize your videos using this field. Specify a list of keys and values: keys as strings and values as one of the following types - `string`, `integer`, `float`, or `boolean`.
+
+                  **NOTES:**
+                  -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
+                additionalProperties: {}
                   
     updateIndex:
       content:
