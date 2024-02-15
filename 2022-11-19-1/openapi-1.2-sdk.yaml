@@ -3646,11 +3646,12 @@ components:
               prompt:
                 type: string
                 description: |
-                  A prompt that guides the model on the desired format or content. The maximum length of the prompt is 500 tokens or roughly 350 words. Note that even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
+                  A prompt that guides the model on the desired format or content.
 
                   **NOTES**:
-                    - Your prompts must be instructive or descriptive, and you should not phrase them as questions.
-                    - The maximum length of a prompt is 300 words.
+                    - Even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
+                    - Your prompts can be instructive or descriptive, or you can also phrase them as questions. 
+                    - The maximum length of a prompt is 300 characters.
                 
                   **Examples**:
                     
