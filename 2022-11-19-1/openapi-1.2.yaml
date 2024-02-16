@@ -903,8 +903,7 @@ paths:
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
-        **NOTE**:
-        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: combined-queries-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -4367,11 +4366,11 @@ components:
                       engine_options:
                         type: array
                         description: |
-                          An array that specifies how the platform will process the videos uploaded to this index. Must be a subset of `["visual", "conversation", "text_in_video", "logo"]`. For more details, see the [Engine options](/docs/engine-options) page.
+                          An array that specifies how the platform will process the videos uploaded to this index. For more details, see the [Engine options](/docs/engine-options) page.
 
                           **NOTES:**
-                          - When using the Marengo family of video understanding engines, you can specify any combination of the available engine options.
-                          - When using the Pegasus family of video understanding engines, you must always specify both the `visual` and `conversation` engine options.
+                          - When using the Marengo family of video understanding engines, specify any combination of the available engine options - `visual`, `conversation`, `text_in_video`, and `logo`.
+                          - When using the Pegasus family of video understanding engines, specify one or both of the following engine options: `visual` and `conversation`.
                         items:
                           type: string
                         minItems: 1
