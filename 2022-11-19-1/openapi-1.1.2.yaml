@@ -3831,7 +3831,7 @@ components:
                     duration:
                       type: object
                       description: |
-                        A field of type `object` that that filters your search results based on the duration of the video, expressed in seconds.
+                        A field of type `object` that filters your search results based on the duration of the video, expressed in seconds.
                         The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds.
                         ```
                         "duration": {
@@ -4043,7 +4043,7 @@ components:
                   duration:
                     type: object
                     description: |
-                      A field of type `object` that that filters your search results based on the duration of the video, expressed in seconds.
+                      A field of type `object` that filters your search results based on the duration of the video, expressed in seconds.
                       The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds.
                       ```
                       "duration": {
