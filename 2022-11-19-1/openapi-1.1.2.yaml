@@ -3831,7 +3831,8 @@ components:
                     duration:
                       type: object
                       description: |
-                        A field of type `object` that filters your search results based on the duration of the video containing the segment that matches your query, expressed in seconds. 
+                        This field filters your search results based on the duration of the video containing the segment that matches your query. 
+
                         The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds: 
                         ```
                         "duration": {
@@ -3849,7 +3850,7 @@ components:
                           type: number
                           format: float
                           description: |
-                            This parameter specifies the maximum duration, expressed in seconds, of the video.
+                            This field specifies the maximum duration, expressed in seconds, of the video.
 
                     width:
                       type: number
@@ -4044,7 +4045,8 @@ components:
                   duration:
                     type: object
                     description: |
-                      A field of type `object` that filters your search results based on the duration of the video containing the segment that matches your query, expressed in seconds. 
+                      This field filters your search results based on the duration of the video containing the segment that matches your query. 
+
                       The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds: 
                       ```
                       "duration": {
@@ -4062,7 +4064,7 @@ components:
                         type: number
                         format: float
                         description: |
-                          This parameter specifies the maximum duration, expressed in seconds, of the video.
+                          This field specifies the maximum duration, expressed in seconds, of the video.
                   width:
                     type: number
                     description: A numeric field that filters your search results based on width.
