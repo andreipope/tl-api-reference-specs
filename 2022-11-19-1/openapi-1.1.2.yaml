@@ -3824,24 +3824,45 @@ components:
                   properties:
                     id:
                       type: array
-                      description: An array of strings that restricts your search results based on the specified video IDs.
+                      description: An array of strings that filters your search results based on the specified video IDs.
                       items:
                         type: string
+
                     duration:
-                      type: number
-                      description: 'A numeric field that restricts your search results based on duration, expressed in seconds.'
+                      type: object
+                      description: |
+                        A field of type `object` that that filters your search results based on the duration of the video, expressed in seconds.
+                        The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds.
+                        ```
+                        "duration": {
+                          "gte": 600,
+                          "lte": 800
+                        }
+                        ```
+                      properties:
+                        gte:
+                          type: number
+                          format: float
+                          description: |
+                            This field specifies the minimum duration, expressed in seconds, of the matching video.
+                        lte:
+                          type: number
+                          format: float
+                          description: |
+                            This parameter specifies the maximum duration, expressed in seconds, of the matching video.
+
                     width:
                       type: number
-                      description: A numeric field that restricts your search results based on width.
+                      description: A numeric field that filters your search results based on width.
                     height:
                       type: number
-                      description: A numeric field that restricts your search results based on height.
+                      description: A numeric field that filters your search results based on height.
                     size:
                       type: number
-                      description: 'A numeric field that restricts your search results based on size, expressed in bytes.'
+                      description: A numeric field that filters your search results based on size, expressed in bytes.
                     title:
                       type: string
-                      description: A string field that restricts your search results based on the title of the video.
+                      description: A string field that filters your search results based on the title of the video.
                   additionalProperties: {}
               page_limit:
                 type: number
@@ -4016,24 +4037,43 @@ components:
                 properties:
                   id:
                     type: array
-                    description: An array of strings that restricts your search results based on the specified video IDs.
+                    description: An array of strings that filters your search results based on the specified video IDs.
                     items:
                       type: string
                   duration:
-                    type: number
-                    description: 'A numeric field that restricts your search results based on duration, expressed in seconds.'
+                    type: object
+                    description: |
+                      A field of type `object` that that filters your search results based on the duration of the video, expressed in seconds.
+                      The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds.
+                      ```
+                      "duration": {
+                        "gte": 600,
+                        "lte": 800
+                      }
+                      ```
+                    properties:
+                      gte:
+                        type: number
+                        format: float
+                        description: |
+                          This field specifies the minimum duration, expressed in seconds, of the matching video.
+                      lte:
+                        type: number
+                        format: float
+                        description: |
+                          This parameter specifies the maximum duration, expressed in seconds, of the matching video.
                   width:
                     type: number
-                    description: A numeric field that restricts your search results based on width.
+                    description: A numeric field that filters your search results based on width.
                   height:
                     type: number
-                    description: A numeric field that restricts your search results based on height.
+                    description: A numeric field that filters your search results based on height.
                   size:
                     type: number
-                    description: 'A numeric field that restricts your search results based on size, expressed in bytes.'
+                    description: 'A numeric field that filters your search results based on size, expressed in bytes.'
                   title:
                     type: string
-                    description: A string field that restricts your search results based on the title of the video.
+                    description: A string field that filters your search results based on the title of the video.
 
                 additionalProperties: {}
             
