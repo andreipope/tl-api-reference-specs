@@ -3143,12 +3143,12 @@ components:
                     example: 2f2a504f-6956-446c-84d8-29d86f793c66
                   highlights:
                     description: |
-                      An array that contains the important events or activities in the video.
+                      An array that contains the highlights.
                     type: array
                     items:
                       type: object
                       description: |
-                        An object that provides a brief snapshot of a specific part of the video. Each highlight is defined by a starting time, ending time, and a description of its content.
+                        An object that provides a brief snapshot of a specific part of the video.
                       properties:
                         start:
                           description: |
@@ -3160,18 +3160,22 @@ components:
                           type: integer
                         highlight:
                           description: |
-                            A brief description that captures the essence of this part of the video.
+                            The tile of the highlight.
                           type: string
+                        highlight_summary:
+                          type: string
+                          description: |
+                              A brief description that captures the essence of this part of the video.
+
                     example:
                       - start: 0
                         end: 30
-                        highlight: Two women are talking about their lifestyles as they prepare for an event.
+                        highlight: A woman vlogs about her summer day, sharing her experience while standing in her childhood home in Minnesota.
+                        highlight_summary: The woman talks about her love for getting some sun, despite not tanning well, and shows the camera around her house, mentioning her fake tanner.
                       - start: 30
                         end: 60
-                        highlight: A woman sitting at a table talks about her recent graduation.
-                      - start: 105
-                        end: 135
-                        description: A woman talks about her life while showing pictures of herself.
+                        highlight: A woman is making a video of her food preparation and tasting.
+                        highlight_summary: A woman demonstrates how to make a delicious bread salad with tomatoes and cheese while explaining the process.
 
     gistResponse:
       description: |
@@ -3670,7 +3674,7 @@ components:
                   Specifies the type of summary. Use one of the following values:
                     - `summary`: A brief that encapsulates the key points of a video, presenting the most important information clearly and concisely.
                     - `chapter`: A chronological list of all the chapters in a video, providing a granular breakdown of its content. For each chapter, the platform returns its starting and end times, measured in seconds from the beginning of the video clip, a descriptive headline that offers a brief of the events or activities within that part of the video, and an accompanying summary that elaborates on the headline.
-                    - `highlight`: A chronologically ordered list of the most important events within a video. Unlike chapters, highlights only capture the key moments, providing a snapshot of the video's main topics. For each highlight, the platform returns its starting and end times, measured in seconds from the beginning of the video, and a brief description that captures the essence of this part of the video.
+                    - `highlight`: A chronologically ordered list of the most important events within a video. Unlike chapters, highlights only capture the key moments, providing a snapshot of the video's main topics. For each highlight, the platform returns its starting and end times, measured in seconds from the beginning of the video, a title, and a brief description that captures the essence of this part of the video.
 
               prompt:
                   type: string
