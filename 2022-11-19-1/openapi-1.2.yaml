@@ -864,7 +864,7 @@ paths:
 ###   Search - combined   ###
 #################################
 
-  '/combined-search':
+  '/search/combined':
     post:
       x-readme:
         explorer-enabled: false
@@ -895,7 +895,7 @@ paths:
           description: |
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-  '/combined-search/{page-token}':
+  '/search/combined/{page-token}':
     get:
       summary: Retrieve a specific page of search results
       tags:
