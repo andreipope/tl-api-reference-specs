@@ -3937,8 +3937,6 @@ components:
                 additionalProperties: {}
 
                 properties:
-                  required:
-                    - text
                   text:
                     type: string
                     description: |
