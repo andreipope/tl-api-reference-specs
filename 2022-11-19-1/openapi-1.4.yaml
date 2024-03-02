@@ -72,11 +72,7 @@ paths:
                             
             - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
 
-              - `marengo2.5`
-
-              - `marengo2`
-              
-              - `marengo`
+              - `marengo2.6`
 
             - **Generative**: These engines generate text based on your videos.
 
@@ -86,7 +82,7 @@ paths:
           required: true
           schema:
             type: string
-            example: marengo2.5
+            example: marengo2.6
       responses:
         '200':
           $ref: '#/components/responses/getEngineResponse'
@@ -1431,7 +1427,7 @@ components:
           type: boolean
           description: A boolean specifying whether this engine is ready to be used.
       example:
-        id: marengo2.5
+        id: marengo2.6
         created_at: '2023-04-12 11:49:26.663 +0000 UTC'
         updated_at: '2023-04-12 11:49:26.663 +0000 UTC'
         allowed_index_options:
@@ -2604,7 +2600,7 @@ components:
             video_count: 12
             total_duration: 8716.8969
             engines:
-              - engine_name: marengo2.5
+              - engine_name: marengo2.6
                 engine_options:
                   - visual
                   - text_in_video
@@ -2830,7 +2826,7 @@ components:
                   video_count: 2
                   total_duration: 1363.76
                   engines:
-                    - engine_name: marengo2.5
+                    - engine_name: marengo2.6
                       engine_options:
                         - visual
                         - text_in_video
@@ -2850,7 +2846,7 @@ components:
                   video_count: 1
                   total_duration: 579.12
                   engines:
-                    - engine_name: marengo2.5
+                    - engine_name: marengo2.6
                       engine_options:
                         - visual
                         - logo
@@ -2894,7 +2890,7 @@ components:
                 items:
                   $ref: '#/components/schemas/engine'
             example:
-                - _id: marengo2.5
+                - _id: marengo2.6
                   allowed_engine_options:
                     - visual
                     - text_in_video
@@ -4405,11 +4401,7 @@ components:
                             
                             - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
 
-                              - `marengo2.5`
-      
-                              - `marengo2`
-                            
-                              - `marengo`
+                              - `marengo2.6`
 
                             - **Generative**: These engines generate text based on your videos.
       
@@ -4448,7 +4440,7 @@ components:
             example:
               index_name: myIndex
               engines:
-                - engine_name: marengo2.5
+                - engine_name: marengo2.6
                   engine_options:
                     - visual
                     - conversation
