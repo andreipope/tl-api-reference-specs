@@ -28,7 +28,6 @@ tags:
   - name: Tasks    
   - name: Tasks/Transfers
   - name: Search
-  - name: Search/Combined
   - name: Classify
   - name: Generate
 
@@ -871,7 +870,7 @@ paths:
       summary: Make a search request
       operationId: combined-queries-make-search-request
       tags:
-        - Search/Combined
+        - Search
       description: |
         Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries.
         
@@ -899,7 +898,7 @@ paths:
     get:
       summary: Retrieve a specific page of search results
       tags:
-        - Search/Combined
+        - Search
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
