@@ -873,6 +873,16 @@ paths:
         - Search
       description: |
         Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries.
+
+        For clarity, the combined search feature is documented in this section. However, note that the `/search` endpoint supports all the features of the `/combined-search` endpoint.
+
+        This endpoint supports pagination and filtering.
+        
+        > 📘 Note
+        > 
+        > When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        
+        Related guide: [Use combined queries](/docs/search-combined-queries).
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
