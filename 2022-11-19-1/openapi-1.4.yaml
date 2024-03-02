@@ -867,7 +867,7 @@ paths:
     post:
       x-readme:
         explorer-enabled: false
-      summary: Make a search request
+      summary: Make a combined search request
       operationId: combined-queries-make-search-request
       tags:
         - Search
@@ -896,7 +896,7 @@ paths:
 
   '/search/combined/{page-token}':
     get:
-      summary: Retrieve a specific page of search results
+      summary: Retrieve a specific page of combined search results
       tags:
         - Search
       description: |
