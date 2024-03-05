@@ -42,6 +42,24 @@ paths:
     summary:  Engines
     get:
       summary: List engines
+      x-readme:
+        code-samples:
+          - language: python
+            code: |
+              from twelvelabs import TwelveLabs
+              client = TwelveLabs(api_key='<YOUR_API_KEY>')
+              engines = client.engine.list()
+              print(engines)
+            name: Twelve Labs Python SDK
+            install: pip install twelvelabs
+          - language: javascript
+            code: |
+              import { TwelveLabs } from 'twelvelabs-js';
+              client = TwelveLabs(api_key='<YOUR_API_KEY>')
+              engines = client.engine.list()
+              print(engines)
+            name: Twelve Labs Python SDK
+            install: pip install twelvelabs  
       description: This method lists all the engines that are available in your account.
       operationId: list-engines
       tags:
