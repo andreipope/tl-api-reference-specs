@@ -52,7 +52,7 @@ paths:
               print(engines)
             name: Twelve Labs Python SDK
             install: pip install twelvelabs
-          - language: javascript
+          - language: node
             code: |
               import { TwelveLabs } from 'twelvelabs-js';
               client = TwelveLabs(api_key='<YOUR_API_KEY>')
