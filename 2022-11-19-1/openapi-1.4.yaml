@@ -47,7 +47,7 @@ paths:
           - language: python
             code: |
               from twelvelabs import TwelveLabs
-              client = TwelveLabs(api_key='<YOUR_API_KEY>')
+              client = TwelveLabs(api_key="<YOUR_API_KEY>")
               engines = client.engine.list()
               print(engines)
             name: Twelve Labs Python SDK
@@ -55,11 +55,13 @@ paths:
           - language: node
             code: |
               import { TwelveLabs } from 'twelvelabs-js';
-              client = TwelveLabs(api_key='<YOUR_API_KEY>')
-              engines = client.engine.list()
-              print(engines)
-            name: Twelve Labs Python SDK
-            install: pip install twelvelabs  
+              (async () => {
+                const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
+                const engines = await client.engine.list();
+                console.log(engines);
+              })();              
+            name: Twelve Labs JS SDK
+            install: yarn add twelvelabs-js
       description: This method lists all the engines that are available in your account.
       operationId: list-engines
       tags:
@@ -76,6 +78,15 @@ paths:
   '/engines/{engine-id}':
     get:
       summary: Retrieve an engine
+      x-readme:
+        code-samples:
+          - language: python
+            code: |
+              from twelvelabs import TwelveLabs
+              client = TwelveLabs(api_key='<YOUR_API_KEY>')
+              engine = client.engine.retrieve('pegasus1')
+              print(engine)
+            name: Twelve Labs Python SDK
       description: This method retrieves an engine.
       operationId: retrieve-engine
       tags:
