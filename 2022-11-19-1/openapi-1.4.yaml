@@ -83,10 +83,21 @@ paths:
           - language: python
             code: |
               from twelvelabs import TwelveLabs
-              client = TwelveLabs(api_key='<YOUR_API_KEY>')
+              client = TwelveLabs(api_key="<YOUR_API_KEY>")
               engine = client.engine.retrieve('pegasus1')
               print(engine)
             name: Twelve Labs Python SDK
+            install: pip install twelvelabs
+          - language: node
+            code: |
+              import { TwelveLabs } from 'twelvelabs-js';
+              (async () => {
+                const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
+                const engine = await client.engine.retrieve('pegasus1');
+                console.log(engine);
+              })();              
+            name: Twelve Labs JS SDK
+            install: yarn add twelvelabs-js
       description: This method retrieves an engine.
       operationId: retrieve-engine
       tags:
