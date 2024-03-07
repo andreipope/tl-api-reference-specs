@@ -42,26 +42,26 @@ paths:
     summary:  Engines
     get:
       summary: List engines
-      x-readme:
-        code-samples:
-          - language: python
-            code: |
-              from twelvelabs import TwelveLabs
-              client = TwelveLabs(api_key="<YOUR_API_KEY>")
-              engines = client.engine.list()
-              print(engines)
-            name: Twelve Labs Python SDK
-            install: pip install twelvelabs
-          - language: node
-            code: |
-              import { TwelveLabs } from 'twelvelabs-js';
-              (async () => {
-                const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
-                const engines = await client.engine.list();
-                console.log(engines);
-              })();              
-            name: Twelve Labs JS SDK
-            install: yarn add twelvelabs-js
+      # x-readme:
+      #   code-samples:
+      #     - language: python
+      #       code: |
+      #         from twelvelabs import TwelveLabs
+      #         client = TwelveLabs(api_key="<YOUR_API_KEY>")
+      #         engines = client.engine.list()
+      #         print(engines)
+      #       name: Twelve Labs Python SDK
+      #       install: pip install twelvelabs
+      #     - language: node
+      #       code: |
+      #         import { TwelveLabs } from 'twelvelabs-js';
+      #         (async () => {
+      #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
+      #           const engines = await client.engine.list();
+      #           console.log(engines);
+      #         })();              
+      #       name: Twelve Labs JS SDK
+      #       install: yarn add twelvelabs-js
       description: This method lists all the engines that are available in your account.
       operationId: list-engines
       tags:
@@ -78,26 +78,26 @@ paths:
   '/engines/{engine-id}':
     get:
       summary: Retrieve an engine
-      x-readme:
-        code-samples:
-          - language: python
-            code: |
-              from twelvelabs import TwelveLabs
-              client = TwelveLabs(api_key="<YOUR_API_KEY>")
-              engine = client.engine.retrieve('pegasus1')
-              print(engine)
-            name: Twelve Labs Python SDK
-            install: pip install twelvelabs
-          - language: node
-            code: |
-              import { TwelveLabs } from 'twelvelabs-js';
-              (async () => {
-                const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
-                const engine = await client.engine.retrieve('pegasus1');
-                console.log(engine);
-              })();              
-            name: Twelve Labs JS SDK
-            install: yarn add twelvelabs-js
+      # x-readme:
+      #   code-samples:
+      #     - language: python
+      #       code: |
+      #         from twelvelabs import TwelveLabs
+      #         client = TwelveLabs(api_key="<YOUR_API_KEY>")
+      #         engine = client.engine.retrieve('pegasus1')
+      #         print(engine)
+      #       name: Twelve Labs Python SDK
+      #       install: pip install twelvelabs
+      #     - language: node
+      #       code: |
+      #         import { TwelveLabs } from 'twelvelabs-js';
+      #         (async () => {
+      #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
+      #           const engine = await client.engine.retrieve('pegasus1');
+      #           console.log(engine);
+      #         })();              
+      #       name: Twelve Labs JS SDK
+      #       install: yarn add twelvelabs-js
       description: This method retrieves an engine.
       operationId: retrieve-engine
       tags:
@@ -136,31 +136,31 @@ paths:
   /tasks:
     post:
       summary: Create a video indexing task
-      x-readme:
-        code-samples:
-          - language: python
-            code: |
-              from twelvelabs import TwelveLabs
-              task = client.task.create(
-                index_id='<YOUR_INDEX_ID>',
-                file='<YOUR_FILE_PATH>',
-              )
-              print(f"Task id={task.id}")
-            name: Twelve Labs Python SDK
-            install: pip install twelvelabs
-          - language: node
-            code: |
-              import { TwelveLabs } from 'twelvelabs-js';
-              (async () => {
-                const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
-                const task = await client.task.create({
-                  indexId: '<YOUR_INDEX_ID',
-                  file: '<YOUR_FILE_NAME' # Example'./assets/1.mp4',
-                });
-                console.log(`Task id=${task.id}`);
-              })();              
-            name: Twelve Labs JS SDK
-            install: yarn add twelvelabs-js
+      # x-readme:
+      #   code-samples:
+      #     - language: python
+      #       code: |
+      #         from twelvelabs import TwelveLabs
+      #         task = client.task.create(
+      #           index_id='<YOUR_INDEX_ID>',
+      #           file='<YOUR_FILE_PATH>',
+      #         )
+      #         print(f"Task id={task.id}")
+      #       name: Twelve Labs Python SDK
+      #       install: pip install twelvelabs
+      #     - language: node
+      #       code: |
+      #         import { TwelveLabs } from 'twelvelabs-js';
+      #         (async () => {
+      #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
+      #           const task = await client.task.create({
+      #             indexId: '<YOUR_INDEX_ID',
+      #             file: '<YOUR_FILE_NAME' # Example'./assets/1.mp4',
+      #           });
+      #           console.log(`Task id=${task.id}`);
+      #         })();              
+      #       name: Twelve Labs JS SDK
+      #       install: yarn add twelvelabs-js
       description: |
         Use this method to create a new video indexing task that uploads a video to the platform and makes it searchable. Note the following about creating a new video indexing task:
         - To upload a file that resides on the local file system, pass the `video_file` parameter. It must be a stream of bytes encoded as `multipart/form-data`.
