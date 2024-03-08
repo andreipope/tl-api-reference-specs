@@ -1,9 +1,10 @@
 x-readme:
   samples-languages:
+    - "http"
     - "curl"
     - "python"
+    - "go"
     - "node"
-  explorer-enabled: false
 
 openapi: 3.1.0
 info:
