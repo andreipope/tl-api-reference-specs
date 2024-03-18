@@ -28,7 +28,6 @@ tags:
   - name: Tasks    
   - name: Tasks/Transfers
   - name: Search
-  - name: Combined search 
   - name: Classify
   - name: Generate
 
@@ -43,6 +42,26 @@ paths:
     summary:  Engines
     get:
       summary: List engines
+      # x-readme:
+      #   code-samples:
+      #     - language: python
+      #       code: |
+      #         from twelvelabs import TwelveLabs
+      #         client = TwelveLabs(api_key="<YOUR_API_KEY>")
+      #         engines = client.engine.list()
+      #         print(engines)
+      #       name: Twelve Labs Python SDK
+      #       install: pip install twelvelabs
+      #     - language: node
+      #       code: |
+      #         import { TwelveLabs } from 'twelvelabs-js';
+      #         (async () => {
+      #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
+      #           const engines = await client.engine.list();
+      #           console.log(engines);
+      #         })();              
+      #       name: Twelve Labs JS SDK
+      #       install: yarn add twelvelabs-js
       description: This method lists all the engines that are available in your account.
       operationId: list-engines
       tags:
@@ -59,6 +78,26 @@ paths:
   '/engines/{engine-id}':
     get:
       summary: Retrieve an engine
+      # x-readme:
+      #   code-samples:
+      #     - language: python
+      #       code: |
+      #         from twelvelabs import TwelveLabs
+      #         client = TwelveLabs(api_key="<YOUR_API_KEY>")
+      #         engine = client.engine.retrieve('pegasus1')
+      #         print(engine)
+      #       name: Twelve Labs Python SDK
+      #       install: pip install twelvelabs
+      #     - language: node
+      #       code: |
+      #         import { TwelveLabs } from 'twelvelabs-js';
+      #         (async () => {
+      #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
+      #           const engine = await client.engine.retrieve('pegasus1');
+      #           console.log(engine);
+      #         })();              
+      #       name: Twelve Labs JS SDK
+      #       install: yarn add twelvelabs-js
       description: This method retrieves an engine.
       operationId: retrieve-engine
       tags:
@@ -73,11 +112,7 @@ paths:
                             
             - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
 
-              - `marengo2.5`
-
-              - `marengo2`
-              
-              - `marengo`
+              - `marengo2.6`
 
             - **Generative**: These engines generate text based on your videos.
 
@@ -87,7 +122,7 @@ paths:
           required: true
           schema:
             type: string
-            example: marengo2.5
+            example: marengo2.6
       responses:
         '200':
           $ref: '#/components/responses/getEngineResponse'
@@ -101,6 +136,31 @@ paths:
   /tasks:
     post:
       summary: Create a video indexing task
+      # x-readme:
+      #   code-samples:
+      #     - language: python
+      #       code: |
+      #         from twelvelabs import TwelveLabs
+      #         task = client.task.create(
+      #           index_id='<YOUR_INDEX_ID>',
+      #           file='<YOUR_FILE_PATH>',
+      #         )
+      #         print(f"Task id={task.id}")
+      #       name: Twelve Labs Python SDK
+      #       install: pip install twelvelabs
+      #     - language: node
+      #       code: |
+      #         import { TwelveLabs } from 'twelvelabs-js';
+      #         (async () => {
+      #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
+      #           const task = await client.task.create({
+      #             indexId: '<YOUR_INDEX_ID',
+      #             file: '<YOUR_FILE_NAME' # Example'./assets/1.mp4',
+      #           });
+      #           console.log(`Task id=${task.id}`);
+      #         })();              
+      #       name: Twelve Labs JS SDK
+      #       install: yarn add twelvelabs-js
       description: |
         Use this method to create a new video indexing task that uploads a video to the platform and makes it searchable. Note the following about creating a new video indexing task:
         - To upload a file that resides on the local file system, pass the `video_file` parameter. It must be a stream of bytes encoded as `multipart/form-data`.
@@ -834,6 +894,48 @@ paths:
           description: |
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
+
+
+  '/search/combined':
+    post:
+      x-readme:
+        explorer-enabled: false
+      summary: Make a combined search request
+      operationId: combined-queries-make-search-request
+      tags:
+        - Search
+      description: |
+        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries.
+
+        For clarity, the combined search feature is documented in this section. However, note that the `/search` endpoint supports all the features of the `/combined-search` endpoint.
+
+        This endpoint supports pagination and filtering.
+        
+        > 📘 Note
+        > 
+        > When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        
+        Related guide: [Use combined queries](/docs/search-combined-queries).
+        
+        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
+
+        **NOTES**:
+          - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the <a href="https://playground.twelvelabs.io" target="_blank">Playground</a>, which provides a better experience.
+          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
+          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+      requestBody:
+        $ref: '#/components/requestBodies/combinedSearch'
+      responses:
+        '200':
+          $ref: '#/components/responses/combinedSearchResultsResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
   '/search/{page-token}':
     get:
       summary: Retrieve a specific page of search results
@@ -860,46 +962,13 @@ paths:
         '400':
           $ref: '#/components/responses/searchResultsError'
 
-#################################
-###   Search - combined   ###
-#################################
 
-  '/search/combined':
-    post:
-      x-readme:
-        explorer-enabled: false
-      summary: Make a search request
-      operationId: combined-queries-make-search-request
-      tags:
-        - Combined search 
-      description: |
-        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries.
-        
-        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
-
-        **NOTES**:
-          - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the <a href="https://playground.twelvelabs.io" target="_blank">Playground</a>, which provides a better experience.
-          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
-          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-      parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-      requestBody:
-        $ref: '#/components/requestBodies/combinedSearch'
-      responses:
-        '200':
-          $ref: '#/components/responses/combinedSearchResultsResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-        '429':
-          description: |
-            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/search/combined/{page-token}':
     get:
-      summary: Retrieve a specific page of search results
+      summary: Retrieve a specific page of combined search results
       tags:
-        - Combined search 
+        - Search
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
@@ -1018,7 +1087,6 @@ paths:
       description: |
         This endpoint generates concise overviews in the form of titles, topics, and hashtags representing the key elements or themes of a video.
 
-        **NOTE**: This endpoint is currently in limited Beta and accessible exclusively to a select group of users. To request access, please register on <a href="https://twelvelabs.typeform.com/to/cA0qthmi?typeform-source=app.twelvelabs.io" target="_blank">this waitlist</a>.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1038,8 +1106,6 @@ paths:
       summary: Summaries, chapters, or highlights
       description: |
         This endpoint generates summaries, chapters, or highlights for your videos. Optionally, you can provide a prompt to customize the output.
-        
-        **NOTE**: This endpoint is currently in limited Beta and accessible exclusively to a select group of users. To request access, please register on <a href="https://twelvelabs.typeform.com/to/cA0qthmi?typeform-source=app.twelvelabs.io" target="_blank">this waitlist</a>.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1059,8 +1125,6 @@ paths:
       summary: Open-ended texts
       description: |
         This endpoint generates open-ended texts based on your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
-
-        **NOTE**: This endpoint is currently in limited Beta and accessible exclusively to a select group of users. To request access, please register on <a href="https://twelvelabs.typeform.com/to/cA0qthmi?typeform-source=app.twelvelabs.io" target="_blank">this waitlist</a>.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1422,7 +1486,7 @@ components:
           type: boolean
           description: A boolean specifying whether this engine is ready to be used.
       example:
-        id: marengo2.5
+        id: marengo2.6
         created_at: '2023-04-12 11:49:26.663 +0000 UTC'
         updated_at: '2023-04-12 11:49:26.663 +0000 UTC'
         allowed_index_options:
@@ -2595,7 +2659,7 @@ components:
             video_count: 12
             total_duration: 8716.8969
             engines:
-              - engine_name: marengo2.5
+              - engine_name: marengo2.6
                 engine_options:
                   - visual
                   - text_in_video
@@ -2821,7 +2885,7 @@ components:
                   video_count: 2
                   total_duration: 1363.76
                   engines:
-                    - engine_name: marengo2.5
+                    - engine_name: marengo2.6
                       engine_options:
                         - visual
                         - text_in_video
@@ -2841,7 +2905,7 @@ components:
                   video_count: 1
                   total_duration: 579.12
                   engines:
-                    - engine_name: marengo2.5
+                    - engine_name: marengo2.6
                       engine_options:
                         - visual
                         - logo
@@ -2885,7 +2949,7 @@ components:
                 items:
                   $ref: '#/components/schemas/engine'
             example:
-                - _id: marengo2.5
+                - _id: marengo2.6
                   allowed_engine_options:
                     - visual
                     - text_in_video
@@ -4396,11 +4460,7 @@ components:
                             
                             - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
 
-                              - `marengo2.5`
-      
-                              - `marengo2`
-                            
-                              - `marengo`
+                              - `marengo2.6`
 
                             - **Generative**: These engines generate text based on your videos.
       
@@ -4439,7 +4499,7 @@ components:
             example:
               index_name: myIndex
               engines:
-                - engine_name: marengo2.5
+                - engine_name: marengo2.6
                   engine_options:
                     - visual
                     - conversation
