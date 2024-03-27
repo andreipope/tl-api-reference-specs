@@ -3953,7 +3953,7 @@ components:
                   An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
                     
                   **NOTES:** 
-                  - The search options you specify must be a subset of the [engine options](/docs/concepts-engine-options) used when you created the index.
+                  - The search options you specify must be a subset of the [engine options](/docs/engine-options) used when you created the index.
                 type: array
                 items:
                   type: string
@@ -4185,7 +4185,7 @@ components:
                   An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
 
                   **NOTES:** 
-                  - The search options you specify must be a subset of the [engine options](/docs/concepts-engine-options) used when you created the index.
+                  - The search options you specify must be a subset of the [engine options](/docs/engine-options) used when you created the index.
                   - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
               adjust_confidence_level:
                 type: number
