@@ -998,7 +998,7 @@ paths:
     post:
       summary: Classify a set of videos
       description: |
-        Use this method to classify a set of videos based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
+        Use this method to classify a set of videos based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the [`GET`](/reference/classify-retrieve-specific-page) method of the /classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
 
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
@@ -1026,7 +1026,7 @@ paths:
     post:
       summary: Classify all the videos in an index
       description: |
-        Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
+        Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the [`GET`](/reference/classify-retrieve-specific-page) method of the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
 
         **NOTES**: 
         - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
