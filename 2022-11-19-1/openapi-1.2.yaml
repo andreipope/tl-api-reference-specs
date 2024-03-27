@@ -4446,7 +4446,7 @@ components:
                 engines:
                   type: array
                   description: |
-                    An array that specifies the list of engines to be enabled for this index.
+                    An array that specifies the [video understanding engines](/docs/video-understanding-engines) and the [engine options](/docs/engine-options) to be enabled for this index. This determines how the platform processes your videos.
                   items:
                     type: object
                     required:
