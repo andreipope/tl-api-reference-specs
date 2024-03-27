@@ -4485,7 +4485,7 @@ components:
                   type: array
                   description: |
                     An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
-                    - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data-thumbnails).
+                    - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data#retrieve-thumbnails).
 
                     If you don't provide this parameter, no add-ons will be enabled.
 
