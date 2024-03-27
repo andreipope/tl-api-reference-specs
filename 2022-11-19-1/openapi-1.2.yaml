@@ -488,7 +488,7 @@ paths:
       summary: List videos
       operationId: list-videos
       description: |
-        This method returns a list of the videos in the specified index. If no parameters are specified, the API returns your videos sorted by creation date, with the newest at the top of the list.
+        This method returns a list of the videos in the specified index. By default, the API returns your videos sorted by creation date, with the newest at the top of the list.
       tags:
         - Indexes/Videos
       parameters:
