@@ -917,7 +917,7 @@ paths:
         
         Related guide: [Use combined queries](/docs/search-combined-queries).
         
-        This method returns the first page of results. To retrieve the subsequent pages, you must call the GET method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
+        This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/combined-queries-retrieve-specific-page) method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
           - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the <a href="https://playground.twelvelabs.io" target="_blank">Playground</a>, which provides a better experience.
