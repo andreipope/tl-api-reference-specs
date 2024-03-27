@@ -905,7 +905,7 @@ paths:
       tags:
         - Search
       description: |
-        Use the POST method of the `/combined-search` endpoint to search for relevant matches in an index using combined queries.
+        Use this method to search for relevant matches in an index using combined queries.
 
         For clarity, the combined search feature is documented in this section. However, note that the `/search` endpoint supports all the features of the `/combined-search` endpoint.
 
