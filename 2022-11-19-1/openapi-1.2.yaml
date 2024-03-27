@@ -827,7 +827,7 @@ paths:
   '/indexes/{index_id}/videos/{video_id}/thumbnail':
     get:
       summary: Retrieve a thumbnail
-      description: To use this feature, you must enable thumbnail generation for the index to which the video has been uploaded. For details, see the [Create an index](/reference/createindex) section.
+      description: To use this feature, you must enable thumbnail generation for the index to which the video has been uploaded. For details, see the [Create an index](/reference/create-index) section.
       operationId: retrieve-thumbnail
       tags:
         - Indexes/Videos
