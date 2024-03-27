@@ -4004,7 +4004,7 @@ components:
                   text:
                     type: string
                     description: |
-                      Your search query. Note that the API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
+                      Your search query. Note that the platform supports full natural language-based search. The following examples are valid queries: "birds flying near a castle," "sun shining on the water," "chickens on the road," "an officer holding a child's hand.", "crowd cheering in the stadium."
                   search_options:
                     description: |
                       If set, overrides the search options for this query.
@@ -4160,7 +4160,7 @@ components:
               query:
                 type: string
                 description: |
-                  Your search query. Note that the API supports full natural language-based search. The following examples are valid queries: "birds flying near a castle", "sun shining on water", "chickens on the road", "an officer holding a child's hand.", "crowd cheering in the stadium."
+                  Your search query. Note that the platform supports full natural language-based search. The following examples are valid queries: "birds flying near a castle," "sun shining on the water," "chickens on the road," "an officer holding a child's hand.", "crowd cheering in the stadium."
               index_id:
                 type: string
                 description: |
