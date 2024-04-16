@@ -914,11 +914,9 @@ paths:
         This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/combined-queries-retrieve-specific-page) method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
-          - The <a href="https://playground.twelvelabs.io" target="_blank">Playground</a> is a sandbox environment that allows you to try out the features of the Twelve Labs Video Understanding Platform through an intuitive web page. Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you use the <a href="https://playground.twelvelabs.io" target="_blank">Playground</a>, which provides a better experience.
+          - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you invoke it using one of the available [SKDs](/docs/twelve-labs-sdks). See the [Use combined queries](/docs/search-combined-queries) page for details.
           - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
           - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-
-          Related guide: [Use combined queries](/docs/search-combined-queries).
           
       parameters:
         - $ref: '#/components/parameters/x-api-key'
