@@ -1282,7 +1282,6 @@ components:
             - conversation
             - text_in_video
             - visual
-            - logo
             type: string
           minItems: 1
           type: array
@@ -1313,6 +1312,18 @@ components:
         - text_in_video
         - visual
         - logo
+        type: string
+      minItems: 1
+      type: array
+
+    options_classify:
+      description: |
+        An array that specifies the sources of information the platform uses when it categorizes a video. For details, see the [Search options](/docs/search-options) page.
+      items:
+        enum:
+        - conversation
+        - text_in_video
+        - visual
         type: string
       minItems: 1
       type: array
@@ -3831,26 +3842,26 @@ components:
                         The video score represents the confidence level that a video matches the specified class. Use this field to specify the minimum value for the video score. The platform returns only the results for which the value of the `classes.score` field in the response is greater than or equal to `min_video_score`.
                         
                         **Default:** 75
-                        **Min:** 0
+                        **Min:** 1
                         **Max:** 100
                       type: number
                       default: 75
                       maximum: 100
-                      minimum: 0
+                      minimum: 1
                       example: 75
                     
                     min_clip_score:
                       description: |
                         The clip score represents the confidence level that a clip matches the specified class. Use this field to specify the minimum value for the clip score. The platform returns only the results for which the value of the `classes.clips.score` field is greater than or equal to `min_clip_score`.
                         
-                        **Default:** 65
-                        **Min:** 0
+                        **Default:** 30
+                        **Min:** 1
                         **Max:** 10
                       type: number
-                      default: 65
+                      default: 30
                       maximum: 100
-                      minimum: 0
-                      example: 65
+                      minimum: 1
+                      example: 30
 
                     min_duration_ratio:
                       description: | 
@@ -3876,7 +3887,7 @@ components:
                     - **Normalized score**: Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
                 options:
-                  $ref: '#/components/schemas/options'
+                  $ref: '#/components/schemas/options_classify'
                 conversation_option:
                   $ref: '#/components/schemas/conversation_option'
                 classes:
@@ -3923,7 +3934,7 @@ components:
                   - **Normalized score**: Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
               options:
-                $ref: '#/components/schemas/options'
+                $ref: '#/components/schemas/options_classify'
               conversation_option:
                 $ref: '#/components/schemas/conversation_option'
               classes:
