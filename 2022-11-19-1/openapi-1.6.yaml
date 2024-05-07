@@ -1157,6 +1157,21 @@ paths:
           $ref: '#/components/responses/gistResponse'
         '400':
           $ref: '#/components/responses/genericError'
+  '/embed/tasks':
+    post:
+      summary: Create a video embedding task.
+      description: |
+        This method creates a new video embedding task that uploads a video to the platform and creates one or multiple embeddings. Note the following about using this endpoint: ...
+      operationId: create-video-embeding-task
+      tags:
+        - Embed
+      requestBody:
+        $ref: '#/components/requestBodies/gistRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/gistResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
 
 #######################
 ###   Components   ####
