@@ -32,7 +32,6 @@ tags:
   - name: Generate
   - name: Embed
 
-
 paths:
 
 ###################
@@ -1072,15 +1071,6 @@ paths:
           description: |
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-#################
-###   Embed   ###  
-#################
-
-  '/embed':
-      post:
-        summary: Text embeddings
-        description: |
-          This endpoint creates text embeddings.
 
 ####################
 ###   Generate   ###
@@ -1143,6 +1133,31 @@ paths:
           $ref: '#/components/responses/generateTextRepresentationResponse'
         '400':
           $ref: '#/components/responses/genericError'
+
+####################
+###   Embed   ###
+####################
+
+  '/embed':
+    post:
+      summary: Text embeddings
+      description: |
+        This endpoint creates text embeddings.
+
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+      operationId: create-text-enbedding
+      tags:
+        - Embed
+      requestBody:
+        $ref: '#/components/requestBodies/gistRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/gistResponse'
+        '400':
+          $ref: '#/components/responses/genericError'
+
 #######################
 ###   Components   ####
 #######################
