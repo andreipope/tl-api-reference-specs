@@ -1077,9 +1077,10 @@ paths:
 #################
 
   '/embed':
-    post: Text embeddings
-    description: |
-      This endpoint creates text embeddings.
+    post:
+      summary: Text embeddings
+      description: |
+        This endpoint creates text embeddings.
 
 ####################
 ###   Generate   ###
