@@ -30,7 +30,8 @@ tags:
   - name: Search
   - name: Classify
   - name: Generate
-  - name: Embed
+  - name: Text embeddings
+  - name: Video embeddings
 
 paths:
 
@@ -1134,13 +1135,13 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
-####################
-###   Embed   ###
-####################
+###########################
+###   Text embeddings   ###
+###########################
 
   '/embed':
     post:
-      summary: Text embeddings
+      summary: Create a text embedding
       description: |
         This endpoint creates text embeddings.
 
@@ -1149,7 +1150,7 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
       operationId: create-text-enbedding
       tags:
-        - Embed
+        - Text embeddings
       requestBody:
         $ref: '#/components/requestBodies/gistRequest'
       responses:
@@ -1157,6 +1158,11 @@ paths:
           $ref: '#/components/responses/gistResponse'
         '400':
           $ref: '#/components/responses/genericError'
+
+############################
+###   Video embeddings   ###
+############################
+
   '/embed/tasks':
     post:
       summary: Create a video embedding task.
@@ -1164,7 +1170,7 @@ paths:
         This method creates a new video embedding task that uploads a video to the platform and creates one or multiple embeddings. Note the following about using this endpoint: ...
       operationId: create-video-embeding-task
       tags:
-        - Embed
+        - Video embeddings
       requestBody:
         $ref: '#/components/requestBodies/gistRequest'
       responses:
