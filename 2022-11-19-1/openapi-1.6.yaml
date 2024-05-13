@@ -3197,7 +3197,21 @@ components:
       content:
         application/json:
           schema:
-            type: object
+            oneOf:
+            - type: object
+              properties:
+                code:
+                  type: string
+                  description: |
+                    A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
+                message:
+                  type: string
+                  description: |
+                    A human-readable string describing the error.
+              example:
+                code: parameter_invalid
+                message: The video_clip_length parameter is invalid. video_clip_length should be within 2-10 seconds long.
+            - type: object
             properties:
               code:
                 type: string
@@ -3210,7 +3224,7 @@ components:
             example:
               code: parameter_invalid
               message: The video_clip_length parameter is invalid. video_clip_length should be within 2-10 seconds long.
-        
+    
 
     textEmbeddingExceedsTokenLimit:
       description: |
