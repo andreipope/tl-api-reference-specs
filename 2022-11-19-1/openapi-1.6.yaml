@@ -1185,7 +1185,7 @@ paths:
         '200':
           $ref: '#/components/responses/createVideoEmbeddingTaskResponse'
         '400':
-          $ref: '#/components/responses/createVideoClipLengthTooLong'
+          $ref: '#/components/responses/genericError'
     
   '/embed/tasks/{task_id}/status':
     get:
@@ -1208,7 +1208,7 @@ paths:
         '200':
           $ref: '#/components/responses/retrieveVideoEmbeddingTaskStatusResponse'
         '400':
-          $ref: '#/components/responses/retrieveVideoEmbeddingTaskInvalidValue'
+          $ref: '#/components/responses/genericError'
     
   '/embed/tasks/{task_id}':
     get:
@@ -1226,7 +1226,7 @@ paths:
         '200':
           $ref: '#/components/responses/retrieveVideoEmbeddingResponse'
         '400':
-          $ref: '#/components/responses/retrieveVideoEmbeddingTaskInvalidValue'
+          $ref: '#/components/responses/genericError'
 
 
 
@@ -3171,60 +3171,9 @@ components:
               code: parameter_invalid
               message: The total duration(seconds) 3760 of videos exceeds the limit.
 
-    retrieveVideoEmbeddingTaskInvalidValue:
-      description: |
-        This error occurs if the value of the `task-id` parameter is invalid.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: |
-                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
-              message:
-                type: string
-                description: |
-                  A human-readable string describing the error.
-            example:
-              code: parameter_invalid
-              message: The task_id parameter is invalid. task_id value is invalid.
 
-    createVideoClipLengthTooLong:
-      description: |
-        The platform returns this error when you set the `video_clip_length` is outside of the supprted range of 2 to 10 seconds.
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - type: object
-              properties:
-                code:
-                  type: string
-                  description: |
-                    A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
-                message:
-                  type: string
-                  description: |
-                    A human-readable string describing the error.
-              example:
-                code: parameter_invalid
-                message: The video_clip_length parameter is invalid. video_clip_length should be within 2-10 seconds long.
-            - type: object
-            properties:
-              code:
-                type: string
-                description: |
-                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
-              message:
-                type: string
-                description: |
-                  A human-readable string describing the error.
-            example:
-              code: parameter_invalid
-              message: The video_clip_length parameter is invalid. video_clip_length should be within 2-10 seconds long.
-    
+
+        
 
     textEmbeddingExceedsTokenLimit:
       description: |
