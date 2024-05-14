@@ -1141,7 +1141,7 @@ paths:
 
   '/embed':
     post:
-      summary: Create a text embedding
+      summary: Create text embeddings
       description: |
         This endpoint creates text embeddings.
       operationId: create-text-enbedding
@@ -1156,7 +1156,7 @@ paths:
         '200':
           $ref: '#/components/responses/createTextEmbeddingResponse'
         '400':
-          $ref: '#/components/responses/textEmbeddingExceedsTokenLimit'
+          $ref: '#/components/responses/genericError'
 
 ############################
 ###   Video embeddings   ###
@@ -3252,7 +3252,7 @@ components:
 
     createTextEmbeddingResponse:
       description: |
-        The platform returns an object that contains the fields below:
+        A text embedding has successfully been generated.
       content:
         application/json:
           schema:
@@ -3369,7 +3369,7 @@ components:
 
     retrieveVideoEmbeddingTaskStatusResponse:
       description: |
-        The unique identifier of your video embedding task has been retrieved.
+        The status of your video embedding task has been retrieved.
       content:
         application/json:
           schema:
