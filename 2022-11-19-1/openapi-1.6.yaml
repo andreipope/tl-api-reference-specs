@@ -3359,7 +3359,7 @@ components:
                     - 0.012404642
             
               - start_offset_sec: 12
-                end_offset_sec: 13.48
+                end_offset_sec: 18
                 embedding_scope: "clip"
                 embedding:
                   float:
