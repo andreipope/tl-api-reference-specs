@@ -4005,7 +4005,6 @@ components:
                   **Default**: 0
                   **Min**: 0
                   **Max**: Duration of the video minus 6
-                default: 0
                 example: 0
               video_end_offset:
                 type: number
