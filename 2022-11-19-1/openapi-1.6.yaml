@@ -4055,7 +4055,8 @@ components:
                 description: |
                   The name of the engine you want to use. The following engines are available:
                     - `Marengo-retrieval-2.6`
-                example: Marengo-retrieval-2.6 
+                example: Marengo-retrieval-2.6
+                default: Marengo-retrieval-2.6
               text:
                 type: string
                 description: |
