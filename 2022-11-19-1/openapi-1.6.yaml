@@ -4055,6 +4055,7 @@ components:
         
 
     createTextEmbeddingRequest:
+      required: true
       content:
         multipart/formdata:
           schema: 
@@ -4096,6 +4097,7 @@ components:
 
 
     generateTextRepresentationRequest:
+      required: true
       content:
         application/json:
           schema: 
