@@ -1195,7 +1195,7 @@ paths:
         Each video embedding task represents a request to upload and create one or multiple embeddings. A task starts when you begin uploading a video by calling the `POST` method of the `/embed/task` endpoint, and can have one of the following statuses:
         - `processing`: This status indicates that the embeddings are being created.
         - `ready`: This status indicates that the platform has finished processing your video, and you can retrieve the embeddings by invoking the [`GET`](/reference/retrieve-video-embeding) method on the `/embed/tasks/{task_id} endpoint`.
-        - `failed`: This status indicates that the task could not be completed as expected, and the embeddings haven't been generated.
+        - `failed`: This status indicates that the task could not be completed as expected, and the embeddings haven't been created.
       operationId: retrieve-video-embeding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -3252,7 +3252,7 @@ components:
 
     createTextEmbeddingResponse:
       description: |
-        A text embedding has successfully been generated.
+        A text embedding has successfully been created.
       content:
         application/json:
           schema:
@@ -3323,8 +3323,8 @@ components:
                       type: string
                       description: |
                         Indicates the scope of the embeddings. It can take the following values:
-                        - `video`: The platform has generated an embedding for the entire video.
-                        - `clip`: The platform generated embeddings for a specific segment.
+                        - `video`: The platform has created an embedding for the entire video.
+                        - `clip`: The platform created embeddings for a specific segment.
                     embedding:
                       description: |
                         An object that contains a field named `float` which is an array of floating point numbers representing the embedding. 
