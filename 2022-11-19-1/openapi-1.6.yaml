@@ -1144,7 +1144,6 @@ paths:
       summary: Create a text embedding
       description: |
         This endpoint creates text embeddings.
-
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
@@ -3976,7 +3975,7 @@ components:
   requestBodies:
     createVideoEmbeddingTaskRequest:
       content:
-        multipart/formdata:
+        multipart/form-data:
           schema:
             type: object
             required:
@@ -4041,23 +4040,10 @@ components:
                 default: video
                 example: video
 
-
-
-
-
-
-                  
-
-
-
-
-
-        
-
     createTextEmbeddingRequest:
       required: true
       content:
-        multipart/formdata:
+        multipart/form-data:
           schema: 
             type: object
             required:
