@@ -1144,14 +1144,14 @@ paths:
       summary: Create a text embedding
       description: |
         This endpoint creates text embeddings.
-      parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/multipart'
       operationId: create-text-enbedding
       tags:
         - Text embeddings
       requestBody:
         $ref: '#/components/requestBodies/createTextEmbeddingRequest'
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/multipart'
       responses:
         '200':
           $ref: '#/components/responses/createTextEmbeddingResponse'
