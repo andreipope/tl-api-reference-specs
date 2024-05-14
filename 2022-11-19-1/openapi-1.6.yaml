@@ -4007,7 +4007,7 @@ components:
                   **Min**: 0
                   **Max**: Duration of the video minus 6
                 example: 0
-              video_end_offset:
+              video_end_offset_sec:
                 type: number
                 format: float
                 description: |
