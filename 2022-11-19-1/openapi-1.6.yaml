@@ -4023,7 +4023,7 @@ components:
                   --form video_embedding_scope=video
                   ```
                   
-                  When generating both embeddings for specific video segments and for the entire video, the expected format of the response returned by the [`GET`](/reference/retrieve-video-embeding) method of the `https://api.twelvelabs.io/v1.2/embed/tasks/{task_id}` endpoint is as follows:
+                  When generating both embeddings for specific video segments and for the entire video, the expected format of the response returned by the [`GET`](/reference/retrieve-video-embeding) method of the `/embed/tasks/{task_id}` endpoint is as follows:
 
                   ```json
                   {
