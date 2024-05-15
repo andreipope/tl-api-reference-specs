@@ -3170,32 +3170,6 @@ components:
               code: parameter_invalid
               message: The total duration(seconds) 3760 of videos exceeds the limit.
 
-
-
-        
-
-    textEmbeddingExceedsTokenLimit:
-      description: |
-        The platform returns this error when you set the `text_truncate` parameter to `none` and provide a text that exceeds 77 tokens.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-                description: |
-                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
-              message:
-                type: string
-                description: |
-                  A human-readable string describing the error.
-            example:
-              code: parameter_invalid
-              message: The text parameter is invalid. The text token length should be less than or equal to 77.
-
-
-
     genericError:
       description: The request has failed.
       content:
@@ -3299,7 +3273,7 @@ components:
               status:
                 type: string
                 description: |
-                  A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`. 
+                  A string indicating the status of the video indexing task. 
               video_embeddings:
                 type: array
                 description: |
@@ -3309,12 +3283,12 @@ components:
                   description: |
                     Each object corresponds to an embedding and has the following fields:
                   properties:
-                    start_offset_time:
+                    start_offset_sec:
                       type: number
                       format: float
                       description: |
                         The start time of the video segment for this embedding. If the embedding scope is `video`, this field equals `0`.
-                    end_offset_time:
+                    end_offset_sec:
                       type: number
                       format: float
                       description: |
@@ -3322,12 +3296,12 @@ components:
                     embedding_scope:
                       type: string
                       description: |
-                        Indicates the scope of the embeddings. It can take the following values:
-                        - `video`: The platform has created an embedding for the entire video.
-                        - `clip`: The platform created embeddings for a specific segment.
+                        Indicates the scope of this embedding. It can take the following values:
+                        - `video`: Indicates that this embedding if for the entire video.
+                        - `clip`: Indicates that this embedding is for a specific segment.
                     embedding:
                       description: |
-                        An object that contains a field named `float` which is an array of floating point numbers representing the embedding. 
+                        An object that contains a field named `float` which represents the embedding. 
                       type: object
                       properties:
                         float:
@@ -3365,7 +3339,13 @@ components:
                   float:
                     - -0.05971131
                     - -0.00859428
-            
+              - start_offset_sec: 0
+                end_offset_sec: 18
+                embedding_scope: "video"
+                embedding:
+                  float:
+                    - -0.05971131
+                    - -0.00859428
 
     retrieveVideoEmbeddingTaskStatusResponse:
       description: |
@@ -4032,9 +4012,69 @@ components:
               video_embedding_scope:
                 type: string
                 description: |
-                  Defines the scope of the video embedding generation. You can use one or both of the following values:
+                  Defines the scope of the video embedding generation. You can specify one or both of the following values:
                   - `clip`: Generates embeddings for each video segment of `video_clip_length` seconds, from `video_start_offset_sec` to `video_end_offset_sec`.
-                  - `video`: The platform generates an embedding for the entire video. 
+                  - `video`: The platform generates an embedding for the entire video.
+
+                  To generate both embeddings for specific video segments and for the entire video, include this parameter twice in the request as shown below:
+
+                  ```json
+                  --form video_embedding_scope=clip \
+                  --form video_embedding_scope=video
+                  ```
+                  
+                  When generating both embeddings for specific video segments and for the entire video, the expected format of the response returned by the [`GET`](/reference/retrieve-video-embeding) method of the `/embed/tasks/{task_id}` endpoint is as follows:
+
+                  ```json
+                  {
+                    "_id": "66444e431e13b17a8c2e67ba",
+                    "engine_name": "Marengo-retrieval-2.6",
+                    "status": "ready",
+                    "video_embeddings": [
+                      {
+                        "start_offset_sec": 0,
+                        "end_offset_sec": 6,
+                        "embedding_scope": "clip",
+                        "embedding": {
+                          "float": [
+                            -0.060086973,
+                            0.016479108,
+                            ...
+                          ]
+                        }
+                      },
+                      {
+                        "start_offset_sec": 6,
+                        "end_offset_sec": 12,
+                        "embedding_scope": "clip",
+                        "embedding": {
+                          "float": [
+                            -0.056660935,
+                            0.012404642,
+                            ...
+                          ]
+                        }
+                      },
+                      {
+                        "start_offset_sec": 0,
+                        "end_offset_sec": 13.48,
+                        "embedding_scope": "video",
+                        "embedding": {
+                          "float": [
+                            -0.05881974,
+                            0.0067631565,
+                            ...
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                  
+                  ```
+
+                  Note the following about this example response:
+                    - The first two embeddings have the `embedding_scope` field set to `clip` and they correspond to specific segments in the video you provided.
+                    - The third embedding has the `embedding_scope` field set to `video` and it corresponds to the entire video.
 
                   **Default**: `video`
                 default: video
