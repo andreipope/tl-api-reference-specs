@@ -4014,7 +4014,7 @@ components:
                 description: |
                   Defines the scope of the video embedding generation. You can specify one or both of the following values:
                   - `clip`: Generates embeddings for each video segment of `video_clip_length` seconds, from `video_start_offset_sec` to `video_end_offset_sec`.
-                  - `video`: The platform generates an embedding for the entire video.
+                  - `video`: Generates an embedding for the entire video.
 
                   To generate both embeddings for specific video segments and for the entire video, include this parameter twice in the request as shown below:
 
