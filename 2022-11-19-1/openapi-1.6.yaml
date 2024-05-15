@@ -4044,7 +4044,7 @@ components:
                   ```
                     
                   
-                  The expected format of the response is as follows:
+                  The expected format of embeddings returned by the `GET` method is as follows:
 
                   ```json
                   {
