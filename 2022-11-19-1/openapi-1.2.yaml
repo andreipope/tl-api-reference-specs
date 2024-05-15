@@ -4034,7 +4034,7 @@ components:
                 description: |
                   Defines the scope of the video embedding generation. You can use one or both of the following values:
                   - `clip`: Generates embeddings for each video segment of `video_clip_length` seconds, from `video_start_offset_sec` to `video_end_offset_sec`.
-                  - `video`: The platform generates an embedding for the entire video.
+                  - `video`: The platform generates an embedding for the entire video. 
 
                   **Default**: `video`
                 default: video
