@@ -4023,9 +4023,9 @@ components:
                   --form video_embedding_scope=video
                   ```
 
-                  **Default**: `video`
-                default: video
-                example: video
+                  **Default**: `clip`
+                default: clip
+                example: clip
 
     createTextEmbeddingRequest:
       required: true
