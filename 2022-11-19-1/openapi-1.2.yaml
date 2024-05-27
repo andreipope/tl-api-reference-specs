@@ -1270,7 +1270,7 @@ components:
     modules:
       type: array
       description: |
-        When multiple sources of information are specified in the request, the platform returns the confidence level for each source, indicating the confidence level that the result is accurate for each source of information.
+        When the request specifies multiple sources of information, this array indicates the confidence level that the result is accurate for each matching source of information.
       items:
         description: |
           Each element is a dictionary.
