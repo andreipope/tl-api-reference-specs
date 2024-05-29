@@ -1164,7 +1164,7 @@ paths:
 
   '/embed/tasks':
     post:
-      summary: Create a video embedding task.
+      summary: Create a video embedding task
       description: |
         This method creates a new video embedding task that uploads a video to the platform and creates one or multiple embeddings.
         
@@ -1172,6 +1172,12 @@ paths:
         - To upload a file that resides on the local file system, pass the `video_file` parameter.  It must be a stream of bytes encoded as `multipart/form-data`.
         - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a string.
         - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
+
+        The videos for which you wish to generate embeddings must meet the following requirements:
+        - **Duration**: Must be between 4 seconds and 2 hours (7,200s).
+        - **File size**: Must not exceed 2 GB.
+        - **Video resolution**: Must be greater or equal than 360p and less or equal than 4K. For consistent search results, Twelve Labs recommends you upload 360p videos.
+        - **Video and audio formats**: The video files must be encoded in the video and audio formats listed on the [FFmpeg Formats Documentation](https://ffmpeg.org/ffmpeg-formats.html)  page. For videos in other formats, contact us at [support@twelvelabs.io](mailto:support@twelvelabs.io).
       operationId: create-video-embeding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
