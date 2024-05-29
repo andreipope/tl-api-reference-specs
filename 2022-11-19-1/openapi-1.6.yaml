@@ -28,6 +28,7 @@ tags:
   - name: Tasks    
   - name: Tasks/Transfers
   - name: Search
+  - name: Multimodal search
   - name: Classify
   - name: Generate
   - name: Text embeddings
@@ -1231,22 +1232,22 @@ paths:
 ###   Image-to-video search   ###
 #################################
 
-  '/embed/tasks':
+  '/search-v2':
+    summary: Multimodal search
     post:
-      summary: Create a video embedding task.
+      summary: Perform a multimodal search request
       description: |
-        This method creates a new video embedding task that uploads a video to the platform and creates one or multiple embeddings.
-        
+        Use this method to search for relevant matches in an index using either text or images as queries.
         Note the following about using this endpoint:
-        - To upload a file that resides on the local file system, pass the video_file parameter.  It must be a stream of bytes encoded as `multipart/form-data`.
+        - To upload a file that resides on the local file system, pass the `video_file` parameter.  It must be a stream of bytes encoded as `multipart/form-data`.
         - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a string.
         - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
-      operationId: create-video-embeding-task
+      operationId: multimodal-search 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
       tags:
-        - Video embeddings
+        - Multimodal search 
       requestBody:
         $ref: '#/components/requestBodies/createVideoEmbeddingTaskRequest'
       responses:
