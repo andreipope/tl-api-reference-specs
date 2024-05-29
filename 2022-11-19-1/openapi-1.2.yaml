@@ -4116,6 +4116,7 @@ components:
                 - classes
                 - options
                 - conversation_option
+                - index_id
             properties:
                 video_ids:
                   type: array
@@ -4124,6 +4125,10 @@ components:
                   items:
                     type: string
                     minItems: 1
+                index_id:
+                  type: string
+                  description: |
+                    The unique identifier of the index containing the videos you wish to classify.
                 page_limit:
                   type: integer
                   description: |
