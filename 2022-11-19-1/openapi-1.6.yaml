@@ -1255,7 +1255,7 @@ paths:
           - The `query_media_url` parameter with the publicly accessible URL of your image
           - The `query_media_file` parameter with a local file.
         
-        If both `query_media_url` and `query_media_file` are specified in the same request, `query_media_url` takes precedence.
+          If both `query_media_url` and `query_media_file` are specified in the same request, `query_media_url` takes precedence.
       operationId: any-to-video-search 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
