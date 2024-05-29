@@ -28,7 +28,7 @@ tags:
   - name: Tasks    
   - name: Tasks/Transfers
   - name: Search
-  - name: Multimodal search
+  - name: Any-to-video search
   - name: Classify
   - name: Generate
   - name: Text embeddings
@@ -1229,33 +1229,43 @@ paths:
           $ref: '#/components/responses/genericError'
 
 #################################
-###   Image-to-video search   ###
+###   Any-to-video search   ###
 #################################
 
   '/search-v2':
-    summary: Multimodal search
+    summary: Any-to-video search
     post:
-      summary: Perform a multimodal search request
+      summary: Perform any-to-video search requests
       description: |
-        Use this method to search for relevant matches in an index using either text or images as queries.
-        Note the following about using this endpoint:
-        - To upload a file that resides on the local file system, pass the `video_file` parameter.  It must be a stream of bytes encoded as `multipart/form-data`.
-        - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a string.
-        - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
-      operationId: multimodal-search 
+        Use this endpoint to search for relevant matches in an index using either text or images as queries.
+        
+        To perform a search using a text query:
+        - Set the `query_media_type` parameter to `text`.
+        - Use the `query_text` parameter to specify your query.
+        
+        To perform a search using an image query:
+        - Set the `query_media_type` parameter to `image`.
+        - Specify either one of the following parameters:
+          - The `query_media_url` parameter with the publicly accessible URL of your image
+          - The `query_media_file` parameter with a local file.
+        
+        If both `query_media_url` and `query_media_file` are specified in the same request, `query_media_url` takes precedence.
+      operationId: any-to-video-search 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
       tags:
-        - Multimodal search 
+        - Any-to-video search
       requestBody:
-        $ref: '#/components/requestBodies/createVideoEmbeddingTaskRequest'
+        $ref: '#/components/requestBodies/any-to-video-search'
       responses:
         '200':
-          $ref: '#/components/responses/createVideoEmbeddingTaskResponse'
+          $ref: '#/components/responses/searchResultsResponse'
         '400':
           $ref: '#/components/responses/genericError'
-
+        '429':
+          description: |
+            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 #######################
 ###   Components   ####
@@ -1361,6 +1371,25 @@ components:
     conversation_option:
       description: |
         Specifies the type of match the platform will perform. The following values are supported: `semantic` and `exact_match`. For details, see the [Conversation option](/docs/conversation-option) page.
+
+        **Default:** `semantic`
+      default: semantic
+      enum:
+      - semantic
+      - exact_match
+      type: string
+
+    conversation_option_any_to_video:
+      description: |
+        Specifies the type of match the platform performs.
+          
+        When using image queries:
+        - This parameter must be set to `semantic`.
+        
+        When using text queries, supported values are:
+        - `semantic`
+        - `exact_match`
+        For details, see the [Conversation option](/docs/conversation-option) page.
 
         **Default:** `semantic`
       default: semantic
@@ -4478,6 +4507,191 @@ components:
                   -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
                   - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video.
                 additionalProperties: {}
+
+    any-to-video-search:
+      content:
+        multipart/form-data:
+          schema:
+            required:
+              - index_id
+              - search_options
+              - query_media_type
+            type: object
+            properties:
+              query_media_type:
+                type: string
+                description: |
+                  The type of query. This parameter can have one of the following values:
+                  - `image`: Specifies that you wish to provide an image as the query.
+                  - `text`: Specifies that you wish to formulate your query as text using natural language.
+                enum:
+                  - image
+                  - text
+                example: text
+              query_media_url:
+                type: string
+                description: |
+                  The publicly accessible URL of the image you wish to use.
+              query_media_file:
+                description: |
+                  The image you wish to use as a local file.
+                type: string
+                format: binary
+              query_text:
+                type: string
+                description: |
+                  Your search query. Note that the platform supports full natural language-based search. The following examples are valid queries: "birds flying near a castle," "sun shining on the water," "chickens on the road," "an officer holding a child's hand.", "crowd cheering in the stadium."
+              index_id:
+                type: string
+                description: |
+                  The unique identifier of the index to search.
+              search_options:
+                type: array
+                items:
+                  type: string
+                minItems: 1
+                maxItems: 4
+                example:
+                  - visual
+                  - conversation
+                  - text_in_video
+                  - logo
+                default:
+                  - visual
+                  - conversation
+                  - text_in_video
+                  - logo
+                description: |
+                  An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
+
+                  **NOTES:** 
+                  - The search options you specify must be a subset of the [engine options](/docs/engine-options) used when you created the index.
+                  - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
+              adjust_confidence_level:
+                type: number
+                format: float
+                description: |
+                  This parameter specifies the strictness of the thresholds for assigning the high, medium, or low confidence levels to search results. If you use a lower value, the thresholds become more relaxed, and more search results will be classified as having high, medium, or low confidence levels. You can use this parameter to include a broader range of potentially relevant video clips, even if some results might be less precise. 
+
+                  **Min**: 0
+                  **Max**: 1
+                  **Default:** 0.5
+                default: 0.5
+                example: 0.5
+
+              group_by:
+                type: string
+                description: |
+                  Use this parameter to group or ungroup items in a response. It can take one of the following values:
+                  - `video`:  The platform will group the matching video clips in the response by video.
+                  - `clip`: The matching video clips in the response will not be grouped.
+
+                  **Default:** `clip`
+                enum:
+                  - video
+                  - clip
+                default: clip
+              threshold:
+                $ref: '#/components/schemas/threshold_search'
+              sort_option:
+                type: string
+                description: |
+                  Use this parameter to specify the sort order for the response.
+                  
+                  When performing a search, the platform determines the level of confidence that each video clip matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
+
+                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
+
+                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video clips will be sorted by the level of confidence. You can use `clip_count` only when the matching video clips are sorted by video.
+                  
+
+                  **Default:** `score`
+                enum:
+                  - score
+                  - clip_count
+                default: score
+              operator:
+                type: string
+                description: |
+                  When you perform a search specifying multiple [sources of information](/docs/search-options), you can use the this parameter to broaden or narrow your search.
+                    
+                    The following logical operators are supported:
+                    
+                    - `or`
+                    
+                    - `and`
+                    
+                    For details and examples, see the [Using multiple sources of information](/docs/search-single-queries#using-multiple-sources-of-information) section.
+
+                    
+                    **Default**: `or`.
+                example: or
+                default: or
+              conversation_option:
+                $ref: '#/components/schemas/conversation_option_any_to_video'
+              page_limit:
+                type: integer
+                description: |
+                  The number of items to return on each page. When grouping by video, this parameter represents the number of videos per page. Otherwise, it represents the maximum number of video clips per page. 
+
+                  **Max**: `50`.
+                default: 10
+              filter:
+                type: object
+                description: |
+                  For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
+                  
+                  For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
+
+                  You can also filter by any of the custom fields specified by invoking the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
+
+                  For more details and examples, see the [Filter search results based on metadata](/docs/filtering-search-results) page.
+                properties:
+                  id:
+                    type: array
+                    description: An array of strings that filters your search results based on the specified video IDs.
+                    items:
+                      type: string
+
+                  duration:
+                    type: object
+                    description: |
+                      This field filters your search results based on the duration of the video containing the segment that matches your query. 
+
+                      The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds: 
+                      ```
+                      "duration": {
+                        "gte": 600,
+                        "lte": 800
+                      }
+                      ```
+                    properties:
+                      gte:
+                        type: number
+                        format: float
+                        description: |
+                          This field specifies the minimum duration, expressed in seconds, of the video.
+                      lte:
+                        type: number
+                        format: float
+                        description: |
+                          This field specifies the maximum duration, expressed in seconds, of the video.
+
+                  width:
+                    type: number
+                    description: A numeric field that filters your search results based on width.
+                  height:
+                    type: number
+                    description: A numeric field that filters your search results based on height.
+                  size:
+                    type: number
+                    description: 'A numeric field that filters your search results based on size, expressed in bytes.'
+                  title:
+                    type: string
+                    description: A string field that filters your search results based on the title of the video.
+
+                additionalProperties: {}
+            
 
     search:
       content:
