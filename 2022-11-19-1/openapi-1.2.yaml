@@ -3509,10 +3509,12 @@ components:
                             type: string
                             description: The name of the class.
                           score:
-                            type: float
+                            type: number
+                            format: float
                             description: A number indicating the confidence level that the entire video matches the specified class.
                           duration_ratio:
-                            type: float
+                            type: number
+                            format: float
                             description: A number indicating the sum of the lengths of the matching video clips inside a video divided by the total length of the video.
                           clips:
                             type: array
@@ -3541,21 +3543,24 @@ components:
                             description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video clip matches your prompts.
                             properties:
                               max_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the maximum score. It is determined by comparing the confidence scores of each clip and selecting the highest one.
                                 
                                   **Min**: 0.
                                   **Max**: 100.
                               avg_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the average score of the matching video clips.
                                   
                                   **Min**: 0.
                                   **Max**: 100.
                               normalized_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
@@ -3621,10 +3626,12 @@ components:
                             type: string
                             description: The name of the prompt.
                           score:
-                            type: float
+                            type: number
+                            format: float
                             description: A number indicating the confidence level that the video clips match the specified class.
                           duration_ratio:
-                            type: float
+                            type: number
+                            format: float
                             description: A number indicating the sum of the lengths of the matching video clips inside a video divided by the total length of the video.
                           clips:
                             type: array
@@ -3653,21 +3660,24 @@ components:
                             description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video clip matches your prompts.
                             properties:
                               max_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the maximum score. It is determined by comparing the confidence scores of each clip and selecting the highest one.
                                 
                                   **Min**: 0.
                                   **Max**: 100.
                               avg_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the average score of the matching video clips.
                                   
                                   **Min**: 0.
                                   **Max**: 100.
                               duration_weighted_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the score of each matching video clip, weighted by its length.
 
@@ -3675,7 +3685,8 @@ components:
                                   **Max**: 100
 
                               normalized_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
@@ -3757,10 +3768,12 @@ components:
                             type: string
                             description: The name of the prompt.
                           score:
-                            type: float
+                            type: number
+                            format: float
                             description: A number indicating the confidence level that the video clips match the specified class.
                           duration_ratio:
-                            type: float
+                            type: number
+                            format: float
                             description: A number indicating the sum of the lengths of the matching video clips inside a video divided by the total length of the video.
                           clips:
                             type: array
@@ -3789,21 +3802,24 @@ components:
                             description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video clip matches your prompts.
                             properties:
                               max_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the maximum score. It is determined by comparing the confidence scores of each clip and selecting the highest one.
                                 
                                   **Min**: 0.
                                   **Max**: 100.
                               avg_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the average score of the matching video clips.
                                   
                                   **Min**: 0.
                                   **Max**: 100.
                               duration_weighted_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the score of each matching video clip, weighted by its length.
 
@@ -3811,7 +3827,8 @@ components:
                                   **Max**: 100
 
                               normalized_score:
-                                type: float
+                                type: number
+                                format: float
                                 description: |
                                   Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
@@ -4174,7 +4191,8 @@ components:
                         **Default:** 0.5
                         **Min:** 0.01
                         **Max:** 1
-                      type: float
+                      type: number
+                      format: float
                       default: 0.5
                       maximum: 1
                       minimum: 0.01
