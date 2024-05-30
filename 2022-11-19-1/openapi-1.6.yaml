@@ -4543,7 +4543,7 @@ components:
               query_media_type:
                 type: string
                 description: |
-                  Must be set to `image`` to perform an image-based search. This parameter is required for image queries.
+                  Must be set to `image` to perform an image-based search. This parameter is required for image queries.
                 enum:
                   - image
                   - text
