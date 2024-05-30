@@ -1246,7 +1246,6 @@ paths:
         Use this endpoint to search for relevant matches in an index using either text or images as queries.
         
         To perform a search using a text query:
-        - Set the `query_media_type` parameter to `text`.
         - Use the `query_text` parameter to specify your query.
         
         To perform a search using an image query:
@@ -4539,15 +4538,12 @@ components:
             required:
               - index_id
               - search_options
-              - query_media_type
             type: object
             properties:
               query_media_type:
                 type: string
                 description: |
-                  The type of query. This parameter can have one of the following values:
-                  - `image`: Specifies that you wish to provide an image as the query.
-                  - `text`: Specifies that you wish to formulate your query as text using natural language.
+                  Must be set to `image`` to perform an image-based search. This parameter is required for image queries.
                 enum:
                   - image
                   - text
@@ -4555,16 +4551,16 @@ components:
               query_media_url:
                 type: string
                 description: |
-                  The publicly accessible URL of the image you wish to use.
+                  The publicly accessible URL of the image you wish to use. This parameter required for image queries if query_media_file is not provided.
               query_media_file:
                 description: |
-                  The image you wish to use as a local file.
+                  The image you wish to use as a local file. This parameter is required for image queries if query_media_url is not provided.
                 type: string
                 format: binary
               query_text:
                 type: string
                 description: |
-                  Your search query. Note that the platform supports full natural language-based search. The following examples are valid queries: "birds flying near a castle," "sun shining on the water," "chickens on the road," "an officer holding a child's hand.", "crowd cheering in the stadium."
+                  The text query to search for. This parameter is required for text queries. Note that the platform supports full natural language-based search.
               index_id:
                 type: string
                 description: |
