@@ -3566,9 +3566,17 @@ components:
 
                                   **Min**: 0
                                   **Max**: 100
+                    page_info:
+                      $ref: '#/components/schemas/classifyPageInfo'
           example:
             data:
               - video_id: 6435651a9ab33c7198615a80
+              - page_info:
+                  limit_per_page: 10
+                  total_results: 6
+                  page_expired_at: '2023-04-12T12:02:22Z'
+                  next_page_token: '846670c9-84ff-42fd-a360-a9fae57aa736-1'
+                  prev_page_token: ''
                 classes:
                 - name: DanceTok
                   score: 96.77
