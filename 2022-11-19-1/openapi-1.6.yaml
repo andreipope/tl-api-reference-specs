@@ -874,15 +874,7 @@ paths:
       tags:
         - Text-to-video search
       description: |
-        **NOTE**: This method has been deprecated. Please update your applications to use the new [Any-to-video search](/reference/any-to-video-search) endpoint instead.
-
-        Use this method to search for relevant matches in an index.
-        
-        This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/search-retrieve-specific-page) method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
-
-        **NOTES**:
-          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
-          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        This method has been deprecated. Please update your applications to use the new [Any-to-video search](/reference/any-to-video-search) endpoint instead.
 
       operationId: make-search-request
       requestBody:
@@ -944,10 +936,6 @@ paths:
         - Text-to-video search
       description: |
         **NOTE**: This method has been deprecated. Please update your applications to use the new [Any-to-video search](/reference/any-to-video-search) endpoint instead.
-
-        Use this endpoint to retrieve a specific page of search results.
-
-        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: search-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -964,8 +952,6 @@ paths:
           $ref: '#/components/responses/searchResultsResponsePageId'
         '400':
           $ref: '#/components/responses/searchResultsError'
-
-
 
   '/search/combined/{page-token}':
     get:
