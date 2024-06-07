@@ -938,10 +938,13 @@ paths:
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
   '/search/{page-token}':
     get:
+      deprecated: true
       summary: Retrieve a specific page of search results
       tags:
         - Text-to-video search
       description: |
+        **NOTE**: This method has been deprecated. Please update your applications to use the new [Any-to-video search](/reference/any-to-video-search) endpoint instead.
+
         Use this endpoint to retrieve a specific page of search results.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
