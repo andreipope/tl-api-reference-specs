@@ -1272,6 +1272,32 @@ paths:
           description: |
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
+  '/search-v2/{page-token}':
+    get:
+      summary: Retrieve a specific page of search results
+      tags:
+        - Any-to-video search
+      description: |
+        Use this endpoint to retrieve a specific page of search results.
+
+        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+      operationId: any-to-video--retrieve-specific-page
+      parameters:
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/Content-Type'
+        - name: page-token
+          in: path
+          required: true
+          description: |
+            A token that identifies the page to retrieve.
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/searchResultsResponsePageId'
+        '400':
+          $ref: '#/components/responses/searchResultsError'
+
 #######################
 ###   Components   ####
 #######################
