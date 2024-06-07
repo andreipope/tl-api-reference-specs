@@ -27,7 +27,7 @@ tags:
   - name: Indexes/Videos
   - name: Tasks    
   - name: Tasks/Transfers
-  - name: Search
+  - name: Text-to-video search
   - name: Any-to-video search
   - name: Classify
   - name: Generate
@@ -871,7 +871,7 @@ paths:
     post:
       summary: Make a search request
       tags:
-        - Search
+        - Text-to-video search
       description: |
         Use this method to search for relevant matches in an index.
         
@@ -905,7 +905,7 @@ paths:
       summary: Make a combined search request
       operationId: combined-queries-make-search-request
       tags:
-        - Search
+        - Text-to-video search
       description: |
         Use this method to search for relevant matches in an index using combined queries.
 
@@ -937,7 +937,7 @@ paths:
     get:
       summary: Retrieve a specific page of search results
       tags:
-        - Search
+        - Text-to-video search
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
@@ -965,7 +965,7 @@ paths:
     get:
       summary: Retrieve a specific page of combined search results
       tags:
-        - Search
+        - Text-to-video search
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
