@@ -869,10 +869,13 @@ paths:
 
   '/search':
     post:
-      summary: Make a search request
+      summary: Make a text-to-video search request
+      deprecated: true
       tags:
         - Text-to-video search
       description: |
+        **NOTE**: This method has been deprecated. Please update your applications to use the new [Any-to-video search](/reference/any-to-video-search) endpoint instead.
+
         Use this method to search for relevant matches in an index.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/search-retrieve-specific-page) method of the `/search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
