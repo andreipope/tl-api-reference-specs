@@ -1233,7 +1233,7 @@ paths:
   '/search-v2':
     summary: Any-to-video search
     post:
-      summary: Perform any-to-video search requests 
+      summary: Make any-to-video search requests 
       description: |
         Use this endpoint to search for relevant matches in an index using either text or images as queries.
         
