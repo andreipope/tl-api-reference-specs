@@ -1252,7 +1252,7 @@ paths:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
       tags:
-        - Any-to-video search
+        - Text-to-video search
       requestBody:
         $ref: '#/components/requestBodies/any-to-video-search'
       responses:
