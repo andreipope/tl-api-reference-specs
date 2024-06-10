@@ -4566,7 +4566,7 @@ components:
               query_media_type:
                 type: string
                 description: |
-                  The type of media you wish to use. This parameter is required for media queries. For example, to perform an image-based search set this parameter to `image`.
+                  The type of media you wish to use. This parameter is required for media queries. For example, to perform an image-based search, set this parameter to `image`.
                 enum:
                   - image
               query_media_url:
