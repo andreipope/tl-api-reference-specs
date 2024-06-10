@@ -870,14 +870,10 @@ paths:
   '/search':
     post:
       summary: Make a text-to-video search request
-      deprecated: true
       tags:
         - Text-to-video search
       description: |
-        This method has been deprecated. Depending on your use case:
-        - If you use an HTTP client like `requests` or `axios`, update your applications to invoke the [`/search-v2`](/reference/any-to-video-search)  endpoint instead.
-        - If you use a [Twelve Labs SDK](doc:twelve-labs-sdks), update it to the latest version.
-
+        This endpoint will be deprecated. Twelve Labs recommends you use the [Any-to-video search](/reference/any-to-video-search) endpoint instead.
       operationId: make-search-request
       requestBody:
         $ref: '#/components/requestBodies/search'
@@ -932,14 +928,11 @@ paths:
             If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
   '/search/{page-token}':
     get:
-      deprecated: true
       summary: Retrieve a specific page of search results
       tags:
         - Text-to-video search
       description: |
-        This endpoint has been deprecated. Depending on your use case:
-        - If you use an HTTP client like `requests` or `axios`, update your applications to invoke the [`/search-v2`](/reference/any-to-video-search)  endpoint instead.
-        - If you use a [Twelve Labs SDK](doc:twelve-labs-sdks), update it to the latest version.
+        This endpoint will be deprecated. Twelve Labs recommends you use the [Any-to-video search](/reference/any-to-video-search) endpoint instead.
       operationId: search-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -4573,18 +4566,17 @@ components:
               query_media_type:
                 type: string
                 description: |
-                  Must be set to `image` to perform an image-based search. This parameter is required for image queries.
+                  The type of media you wish to use. This parameter must be set to `image` to perform an image-based search, and it's required for image queries.
                 enum:
                   - image
-                  - text
-                example: text
+                example: image
               query_media_url:
                 type: string
                 description: |
-                  The publicly accessible URL of the image you wish to use. This parameter required for image queries if query_media_file is not provided.
+                  The publicly accessible URL of the media file you wish to use. This parameter is required for media queries if `query_media_file` is not provided.
               query_media_file:
                 description: |
-                  The image you wish to use as a local file. This parameter is required for image queries if query_media_url is not provided.
+                  The media you wish to use as a local file. This parameter is required for image queries if `query_media_url` is not provided.
                 type: string
                 format: binary
               query_text:
@@ -4687,8 +4679,9 @@ components:
                   **Max**: `50`.
                 default: 10
               filter:
-                type: object
+                type: string
                 description: |
+                
                   For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
                   
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
@@ -4853,61 +4846,32 @@ components:
                   **Max**: `50`.
                 default: 10
               filter:
-                type: object
+                type: string
                 description: |
+                  A stringified version of an object that specifies the criteria for filtering the search results. The object properties and their values determine the filtering conditions.
+
+                  The stringified object can contain the following properties:
+                  - `id`: An array of strings that filters your search results based on the specified video IDs.
+                  - `duration`: An object that filters your search results based on the duration of the video containing the segment that matches your query. It accepts `gte` (greater than or equal to) and `lte` (less than or equal to) properties, expressed in seconds. The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds: 
+                  ```
+                  "duration": {
+                    "gte": 600,
+                    "lte": 800
+                  }
+                  ```
+                  - `width`: A numeric value that filters your search results based on the video width.
+                  - `height`: A numeric value that filters your search results based on the video height.
+                  - `size`: A numeric value that filters your search results based on the video size, expressed in bytes.
+                  - `title`: A string value that filters your search results based on the video title.
+
+                  You can also filter by any of the custom fields specified by invoking the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
+
                   For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
                   
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                  You can also filter by any of the custom fields specified by invoking the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
-
                   For more details and examples, see the [Filter search results based on metadata](/docs/filtering-search-results) page.
-                properties:
-                  id:
-                    type: array
-                    description: An array of strings that filters your search results based on the specified video IDs.
-                    items:
-                      type: string
-
-                  duration:
-                    type: object
-                    description: |
-                      This field filters your search results based on the duration of the video containing the segment that matches your query. 
-
-                      The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds: 
-                      ```
-                      "duration": {
-                        "gte": 600,
-                        "lte": 800
-                      }
-                      ```
-                    properties:
-                      gte:
-                        type: number
-                        format: float
-                        description: |
-                          This field specifies the minimum duration, expressed in seconds, of the video.
-                      lte:
-                        type: number
-                        format: float
-                        description: |
-                          This field specifies the maximum duration, expressed in seconds, of the video.
-
-                  width:
-                    type: number
-                    description: A numeric field that filters your search results based on width.
-                  height:
-                    type: number
-                    description: A numeric field that filters your search results based on height.
-                  size:
-                    type: number
-                    description: 'A numeric field that filters your search results based on size, expressed in bytes.'
-                  title:
-                    type: string
-                    description: A string field that filters your search results based on the title of the video.
-
-                additionalProperties: {}
-            
+                example: "{\"id\":[\"66284191ea717fa66a274832\"]}"      
     cloud-to-cloud-transfer:
       content:
         multipart/form-data:
