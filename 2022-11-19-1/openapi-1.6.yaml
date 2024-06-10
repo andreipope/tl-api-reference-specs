@@ -1232,16 +1232,16 @@ paths:
     post:
       summary: Make any-to-video search requests 
       description: |
-        Use this endpoint to search for relevant matches in an index using either text or images as queries.
+        Use this endpoint to search for relevant matches in an index using text or various media formats.
         
         To perform a search using a text query:
         - Use the `query_text` parameter to specify your query.
         
-        To perform a search using an image query:
-        - Set the `query_media_type` parameter to `image`.
+        To perform a search using a media query:
+        - Set the `query_media_type` parameter to the corresponding media type (example: `image`).
         - Specify either one of the following parameters:
-          - The `query_media_url` parameter with the publicly accessible URL of your image
-          - The `query_media_file` parameter with a local file.
+          - The `query_media_url` parameter with the publicly accessible URL of your media file.
+          - The `query_media_file` parameter with a local media file.
         
           If both `query_media_url` and `query_media_file` are specified in the same request, `query_media_url` takes precedence.
       operationId: any-to-video-search 
@@ -4566,7 +4566,7 @@ components:
               query_media_type:
                 type: string
                 description: |
-                  The type of media you wish to use. This parameter must be set to `image` to perform an image-based search, and it's required for image queries.
+                  The type of media you wish to use. This parameter is required for media queries. For example, to perform an image-based search set this parameter to `image`.
                 enum:
                   - image
               query_media_url:
