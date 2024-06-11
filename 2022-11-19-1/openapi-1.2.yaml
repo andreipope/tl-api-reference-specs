@@ -3606,8 +3606,6 @@ components:
               total_results: 6
               page_expired_at: '2023-04-12T12:02:22Z'
               next_page_token: '846670'
-
-
     classifyBulkResponseNew:
       description: The videos in the specified index have successfully been classified.
       content:
@@ -4572,7 +4570,7 @@ components:
                   
                   When performing a search, the platform determines the level of confidence that each video clip matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
-                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
+                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maximum value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
 
                   If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video clips will be sorted by the level of confidence. You can use `clip_count` only when the matching video clips are sorted by video.
                   
