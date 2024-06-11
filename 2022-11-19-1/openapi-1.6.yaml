@@ -1242,8 +1242,9 @@ paths:
         - Specify either one of the following parameters:
           - The `query_media_url` parameter with the publicly accessible URL of your media file.
           - The `query_media_file` parameter with a local media file.
-        
           If both `query_media_url` and `query_media_file` are specified in the same request, `query_media_url` takes precedence.
+
+        Before using a media file as a query, ensure that the file meets the [prerequisites](/docs/single-queries-prerequisites).
       operationId: any-to-video-search 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -4575,7 +4576,7 @@ components:
                   The publicly accessible URL of the media file you wish to use. This parameter is required for media queries if `query_media_file` is not provided.
               query_media_file:
                 description: |
-                  The media you wish to use as a local file. This parameter is required for image queries if `query_media_url` is not provided.
+                  The media you wish to use as a local file. This parameter is required for media queries if `query_media_url` is not provided. 
                 type: string
                 format: binary
               query_text:
@@ -4641,7 +4642,7 @@ components:
                   
                   When performing a search, the platform determines the level of confidence that each video clip matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
-                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
+                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maximum value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
 
                   If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video clips will be sorted by the level of confidence. You can use `clip_count` only when the matching video clips are sorted by video.
                   
@@ -4778,7 +4779,7 @@ components:
                   
                   When performing a search, the platform determines the level of confidence that each video clip matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
-                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maxim value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
+                  If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maximum value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
 
                   If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video clips will be sorted by the level of confidence. You can use `clip_count` only when the matching video clips are sorted by video.
                   
