@@ -103,7 +103,7 @@ paths:
       description: This method retrieves an engine.
       operationId: retrieve-engine
       tags:
-        - Engines
+        - User management
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
@@ -220,7 +220,7 @@ paths:
       description: This method retrieves a video indexing task.
       operationId: retrieve-video-indexing-task
       tags:
-        - Tasks
+        - User management
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
