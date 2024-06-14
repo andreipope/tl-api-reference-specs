@@ -190,7 +190,7 @@ paths:
       description: This method returns a list of the video indexing tasks in your account. The API returns your video indexing tasks sorted by creation date, with the newest at the top of the list.
       operationId: list-video-indexing-tasks
       tags:
-        - Tasks
+        - User management
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
