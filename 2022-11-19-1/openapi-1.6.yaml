@@ -3689,10 +3689,11 @@ components:
 
 
             page_info:
-              limit_per_page: 1
+              limit_per_page: 10
               total_results: 6
               page_expired_at: '2023-04-12T12:02:22Z'
               next_page_token: '846670'
+
     classifyBulkResponseNew:
       description: The videos in the specified index have successfully been classified.
       content:
