@@ -935,9 +935,7 @@ paths:
       description: |
         This endpoint will be deprecated. Twelve Labs recommends you use the [Any-to-video search](/reference/any-to-video-search) endpoint instead.
 
-        **NOTES**:
-        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: search-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -954,9 +952,6 @@ paths:
           $ref: '#/components/responses/searchResultsResponsePageId'
         '400':
           $ref: '#/components/responses/searchResultsError'
-        '429':
-          description: |
-            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/search/combined/{page-token}':
     get:
@@ -966,9 +961,8 @@ paths:
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
-        **NOTES**:
-        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+
       operationId: combined-queries-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -985,9 +979,6 @@ paths:
           $ref: '#/components/responses/combinedSearchSpecificPageResultsResponse'
         '400':
           $ref: '#/components/responses/searchResultsError'
-        '429':
-          description: |
-            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 ####################
 ###   Classify   ###
@@ -1055,9 +1046,7 @@ paths:
       description: |
         The `classify` and `/classify/bulk` endpoints return the first page or results. You can use this endpoint to retrieve the rest of the pages.
 
-        **NOTE**:
-        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
         
       operationId: classify-retrieve-specific-page
       tags:
@@ -1076,9 +1065,6 @@ paths:
           $ref: '#/components/responses/classifyBulkResponseNewSpecificPage'
         '400':
           $ref: '#/components/responses/genericError'
-        '429':
-          description: |
-            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 ####################
 ###   Generate   ###
@@ -1305,9 +1291,7 @@ paths:
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
-        **NOTE**:
-        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: any-to-video--retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -1324,9 +1308,6 @@ paths:
           $ref: '#/components/responses/searchResultsResponsePageId'
         '400':
           $ref: '#/components/responses/searchResultsError'
-        '429':
-          description: |
-            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 #######################
 ###   Components   ####
