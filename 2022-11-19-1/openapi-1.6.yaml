@@ -904,14 +904,13 @@ paths:
         Use this method to search for relevant matches in an index using combined queries.
 
         For clarity, the combined search feature is documented in this section. However, note that the `/search` endpoint supports all the features of the `/combined-search` endpoint.
-
-        This endpoint supports pagination and filtering.
         
         This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/combined-queries-retrieve-specific-page) method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
         - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you invoke it using one of the available [SKDs](/docs/twelve-labs-sdks). See the [Use combined queries](/docs/search-combined-queries) page for details.
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
           
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -933,6 +932,10 @@ paths:
         - Text-to-video search
       description: |
         This endpoint will be deprecated. Twelve Labs recommends you use the [Any-to-video search](/reference/any-to-video-search) endpoint instead.
+
+        **NOTES**:
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: search-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -949,6 +952,9 @@ paths:
           $ref: '#/components/responses/searchResultsResponsePageId'
         '400':
           $ref: '#/components/responses/searchResultsError'
+        '429':
+          description: |
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/search/combined/{page-token}':
     get:
@@ -958,7 +964,9 @@ paths:
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
-        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTES**:
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: combined-queries-retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -975,6 +983,9 @@ paths:
           $ref: '#/components/responses/combinedSearchSpecificPageResultsResponse'
         '400':
           $ref: '#/components/responses/searchResultsError'
+        '429':
+          description: |
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 ####################
 ###   Classify   ###
@@ -990,6 +1001,7 @@ paths:
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
         - The total number of the prompts you specify in a request must not exceed 100.
         - The total duration of the videos you classify in a request must not exceed 10 hours.
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -1017,6 +1029,7 @@ paths:
         **NOTES**: 
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page. 
         - The total number of prompts you specify in a request must not exceed 100.
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: classify-bulk
       tags:
         - Classify
@@ -1039,6 +1052,10 @@ paths:
       summary: Retrieve a specific page of results
       description: |
         The `classify` and `/classify/bulk` endpoints return the first page or results. You can use this endpoint to retrieve the rest of the pages.
+
+        **NOTE**:
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
         
       operationId: classify-retrieve-specific-page
       tags:
@@ -1057,6 +1074,9 @@ paths:
           $ref: '#/components/responses/classifyBulkResponseNewSpecificPage'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 ####################
 ###   Generate   ###
@@ -1283,7 +1303,9 @@ paths:
       description: |
         Use this endpoint to retrieve a specific page of search results.
 
-        **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        **NOTE**:
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: any-to-video--retrieve-specific-page
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -1300,6 +1322,9 @@ paths:
           $ref: '#/components/responses/searchResultsResponsePageId'
         '400':
           $ref: '#/components/responses/searchResultsError'
+        '429':
+          description: |
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 #######################
 ###   Components   ####
