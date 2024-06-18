@@ -3613,7 +3613,7 @@ components:
 
     gistResponse:
       description: |
-        The gist has successfully been generated.
+        The gist has successfully been generated. 
       headers:
         X-Ratelimit-Limit:
           schema:
