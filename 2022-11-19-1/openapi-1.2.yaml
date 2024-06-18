@@ -2107,6 +2107,27 @@ components:
 
     combinedSearchResultsResponse:
       description: Successfully performed a search request.
+      headers:
+        X-Ratelimit-Limit:
+          schema:
+            type: number
+          description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
+          example: 100
+        X-Ratelimit-Remaining:
+          schema:
+            type: number
+          description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
+          example: 99
+        X-Ratelimit-Used:
+          schema:
+            type: number
+          description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
+          example: 1
+        X-Ratelimit-Reset:
+          schema:
+            type: number
+          description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
+          example: 1718777276
       content:
         application/json:
           schema:
@@ -2256,6 +2277,27 @@ components:
 
     searchResultsResponse:
       description: Successfully performed a search request.
+      headers:
+        X-Ratelimit-Limit:
+          schema:
+            type: number
+          description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
+          example: 100
+        X-Ratelimit-Remaining:
+          schema:
+            type: number
+          description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
+          example: 99
+        X-Ratelimit-Used:
+          schema:
+            type: number
+          description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
+          example: 1
+        X-Ratelimit-Reset:
+          schema:
+            type: number
+          description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
+          example: 1718777276
       content:
         application/json:
           schema:
@@ -3138,6 +3180,27 @@ components:
 
     generateTextRepresentationResponse:
       description: The specified video has successfully been processed.
+      headers:
+        X-Ratelimit-Limit:
+          schema:
+            type: number
+          description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
+          example: 100
+        X-Ratelimit-Remaining:
+          schema:
+            type: number
+          description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
+          example: 99
+        X-Ratelimit-Used:
+          schema:
+            type: number
+          description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
+          example: 1
+        X-Ratelimit-Reset:
+          schema:
+            type: number
+          description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
+          example: 1718777276
       content:
         application/json:
           schema: 
@@ -3326,6 +3389,27 @@ components:
     summarizeResponse:
       description: |
         The specified video has successfully been summarized.
+      headers:
+        X-Ratelimit-Limit:
+          schema:
+            type: number
+          description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
+          example: 100
+        X-Ratelimit-Remaining:
+          schema:
+            type: number
+          description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
+          example: 99
+        X-Ratelimit-Used:
+          schema:
+            type: number
+          description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
+          example: 1
+        X-Ratelimit-Reset:
+          schema:
+            type: number
+          description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
+          example: 1718777276
       content:
         application/json:
           schema: 
@@ -3451,6 +3535,27 @@ components:
     gistResponse:
       description: |
         The gist has successfully been generated.
+      headers:
+        X-Ratelimit-Limit:
+          schema:
+            type: number
+          description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
+          example: 100
+        X-Ratelimit-Remaining:
+          schema:
+            type: number
+          description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
+          example: 99
+        X-Ratelimit-Used:
+          schema:
+            type: number
+          description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
+          example: 1
+        X-Ratelimit-Reset:
+          schema:
+            type: number
+          description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
+          example: 1718777276
       content:
         application/json:
           schema:
@@ -3498,6 +3603,27 @@ components:
 
     classifyResponseNew:
       description: The specified videos have successfully been classified.
+      headers:
+        X-Ratelimit-Limit:
+          schema:
+            type: number
+          description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
+          example: 100
+        X-Ratelimit-Remaining:
+          schema:
+            type: number
+          description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
+          example: 99
+        X-Ratelimit-Used:
+          schema:
+            type: number
+          description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
+          example: 1
+        X-Ratelimit-Reset:
+          schema:
+            type: number
+          description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
+          example: 1718777276
       content:
         application/json:
           schema:
@@ -3637,6 +3763,27 @@ components:
               next_page_token: '846670'
     classifyBulkResponseNew:
       description: The videos in the specified index have successfully been classified.
+      headers:
+        X-Ratelimit-Limit:
+          schema:
+            type: number
+          description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
+          example: 100
+        X-Ratelimit-Remaining:
+          schema:
+            type: number
+          description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
+          example: 99
+        X-Ratelimit-Used:
+          schema:
+            type: number
+          description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
+          example: 1
+        X-Ratelimit-Reset:
+          schema:
+            type: number
+          description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
+          example: 1718777276
       content:
         application/json:
           schema:
