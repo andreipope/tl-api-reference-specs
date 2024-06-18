@@ -874,6 +874,8 @@ paths:
         - Text-to-video search
       description: |
         This endpoint will be deprecated. Twelve Labs recommends you use the [Any-to-video search](/reference/any-to-video-search) endpoint instead.
+
+        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: make-search-request
       requestBody:
         $ref: '#/components/requestBodies/search'
@@ -887,8 +889,7 @@ paths:
           $ref: '#/components/responses/genericError'
         '429':
           description: |
-            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
-
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 
   '/search/combined':
@@ -909,9 +910,8 @@ paths:
         This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/combined-queries-retrieve-specific-page) method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
-          - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you invoke it using one of the available [SKDs](/docs/twelve-labs-sdks). See the [Use combined queries](/docs/search-combined-queries) page for details.
-          - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
-          - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you invoke it using one of the available [SKDs](/docs/twelve-labs-sdks). See the [Use combined queries](/docs/search-combined-queries) page for details.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
           
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -925,7 +925,7 @@ paths:
           $ref: '#/components/responses/genericError'
         '429':
           description: |
-            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
   '/search/{page-token}':
     get:
       summary: Retrieve a specific page of search results
@@ -987,7 +987,7 @@ paths:
         Use this method to classify a set of videos based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the [`GET`](/reference/classify-retrieve-specific-page) method of the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
 
         **NOTES**: 
-        - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
         - The total number of the prompts you specify in a request must not exceed 100.
         - The total duration of the videos you classify in a request must not exceed 10 hours.
 
@@ -1006,7 +1006,7 @@ paths:
           $ref: '#/components/responses/classify10hours'
         '429':
           description: |
-            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/classify/bulk':
     post:
@@ -1015,7 +1015,7 @@ paths:
         Use this method to classify all the videos in the specified index based on the entities or actions shown in those videos. Note that this endpoint returns the first page or results. To retrieve the rest of the pages, you must call the [`GET`](/reference/classify-retrieve-specific-page) method of the `/classify/{page_token}` endpoint passing it the token that identifies the page you want to retrieve.
 
         **NOTES**: 
-        - This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page. 
         - The total number of prompts you specify in a request must not exceed 100.
       operationId: classify-bulk
       tags:
@@ -1040,7 +1040,6 @@ paths:
       description: |
         The `classify` and `/classify/bulk` endpoints return the first page or results. You can use this endpoint to retrieve the rest of the pages.
         
-        **NOTE**: This method has a rate limit of 1 call per second for each API key. If the limit is reached, the platform returns an `HTTP 429 - Too many requests` error response.
       operationId: classify-retrieve-specific-page
       tags:
         - Classify
@@ -1058,10 +1057,6 @@ paths:
           $ref: '#/components/responses/classifyBulkResponseNewSpecificPage'
         '400':
           $ref: '#/components/responses/genericError'
-        '429':
-          description: |
-            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
-
 
 ####################
 ###   Generate   ###
@@ -1072,6 +1067,8 @@ paths:
       summary: Titles, topics, or hashtags
       description: |
         This endpoint generates concise overviews in the form of titles, topics, and hashtags representing the key elements or themes of a video.
+
+        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -1086,12 +1083,17 @@ paths:
           $ref: '#/components/responses/gistResponse'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
           
   '/summarize':
     post:
       summary: Summaries, chapters, or highlights
       description: |
         This endpoint generates summaries, chapters, or highlights for your videos. Optionally, you can provide a prompt to customize the output.
+
+        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page. 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1105,12 +1107,17 @@ paths:
           $ref: '#/components/responses/summarizeResponse'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/generate':
     post:
       summary: Open-ended texts
       description: |
         This endpoint generates open-ended texts based on your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
+
+        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1124,6 +1131,9 @@ paths:
           $ref: '#/components/responses/generateTextRepresentationResponse'
         '400':
           $ref: '#/components/responses/genericError'
+        '429':
+          description: |
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 ###########################
 ###   Text embeddings   ###
@@ -1245,6 +1255,9 @@ paths:
           If both `query_media_url` and `query_media_file` are specified in the same request, `query_media_url` takes precedence.
 
         Before using a media file as a query, ensure that the file meets the [prerequisites](/docs/single-queries-prerequisites).
+
+        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+
       operationId: any-to-video-search 
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -1260,7 +1273,7 @@ paths:
           $ref: '#/components/responses/genericError'
         '429':
           description: |
-            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/search-v2/{page-token}':
     get:
