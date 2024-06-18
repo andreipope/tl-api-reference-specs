@@ -875,7 +875,9 @@ paths:
       description: |
         This endpoint will be deprecated. Twelve Labs recommends you use the [Any-to-video search](/reference/any-to-video-search) endpoint instead.
 
-        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+        **NOTES**:
+        - When you use pagination, you will not be charged for retrieving subsequent pages of results.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: make-search-request
       requestBody:
         $ref: '#/components/requestBodies/search'
@@ -1045,7 +1047,7 @@ paths:
           $ref: '#/components/responses/genericError'
         '429':
           description: |
-            If the limit of 1 call per second is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
   '/classify/{page_token}':
     get:
