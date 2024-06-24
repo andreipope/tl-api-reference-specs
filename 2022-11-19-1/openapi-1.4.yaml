@@ -1185,7 +1185,11 @@ paths:
                       2. Text generation
                       3. Stream end
 
-                      You must process each line as a separate JSON object and handle the events accordingly.
+                      To integrate the response into your application, follow the guidelines below:
+                      - Parse each line of the response as a separate JSON object.
+                      - Check the `event_type` field to determine how to handle the event.
+                      - For `text_generation` events, process the `text` field as it arrives. Depending on your application's requirements, this may involve displaying the text incrementally, storing it for later use, or performing any tasks.
+                      - Use the `stream_start` and `stream_end` events to manage the lifecycle of your streaming session.
                     oneOf:
                       - type: object
                         title: Stream start 
