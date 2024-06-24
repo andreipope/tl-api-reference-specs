@@ -1186,62 +1186,62 @@ paths:
                       3. Stream end
 
                       You must process each line as a separate JSON object and handle the events accordingly.
-                    properties:
-                      streamed_response:
-                        oneOf:
-                          - type: object
+                    # properties:
+                    #   streamed_response:
+                    oneOf:
+                      - type: object
+                        properties:
+                          stream_start:
+                            title: Stream start
+                            description: |
+                              Indicates the beginning of the stream.
                             properties:
-                              stream_start:
-                                title: Stream start
+                              event_type:
+                                type: string
                                 description: |
-                                  Indicates the beginning of the stream.
+                                  This field is always set to `stream_start` for this event.
+                              metadata:
+                                type: object
+                                description: An object containing metadata about the stream.
                                 properties:
-                                  event_type:
+                                  generation_id:
                                     type: string
                                     description: |
-                                      This field is always set to `stream_start` for this event.
-                                  metadata:
-                                    type: object
-                                    description: An object containing metadata about the stream.
-                                    properties:
-                                      generation_id:
-                                        type: string
-                                        description: |
-                                          A unique identifier for the generation session.
-                          - type: object
+                                      A unique identifier for the generation session.
+                      - type: object
+                        properties:
+                          text_generation:  
+                            title: Text generation
+                            description: |
+                              Contains a fragment of generated text.
                             properties:
-                              text_generation:  
-                                title: Text generation
+                              event_type:
+                                type: string
                                 description: |
-                                  Contains a fragment of generated text.
-                                properties:
-                                  event_type:
-                                    type: string
-                                    description: |
-                                      This field is always set to `text_generation` for this event.
-                                  text:
-                                    type: string
-                                    description: |
-                                      A fragment of the generated text.
-                          - type: object
+                                  This field is always set to `text_generation` for this event.
+                              text:
+                                type: string
+                                description: |
+                                  A fragment of the generated text.
+                      - type: object
+                        properties:
+                          stream_end:
+                            title: Stream end
+                            description: |
+                              Indicates the end of the stream.
                             properties:
-                              stream_end:
-                                title: Stream end
+                              event_type:
+                                type: string
                                 description: |
-                                  Indicates the end of the stream.
+                                  This field is always set to `stream_end` for this event.
+                              metadata:
+                                type: object
+                                description: An object containing metadata about the stream.
                                 properties:
-                                  event_type:
+                                  generation_id:
                                     type: string
                                     description: |
-                                      This field is always set to `stream_end` for this event.
-                                  metadata:
-                                    type: object
-                                    description: An object containing metadata about the stream.
-                                    properties:
-                                      generation_id:
-                                        type: string
-                                        description: |
-                                          The same unique identifier provided in the `stream_start` event.
+                                      The same unique identifier provided in the `stream_start` event.
 
         '400':
           $ref: '#/components/responses/genericError'
