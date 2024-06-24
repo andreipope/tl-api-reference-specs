@@ -1211,7 +1211,7 @@ paths:
                       - type: object
                         title: Text generation
                         description: |
-                          Contains a fragment of generated text.
+                          Contains a fragment of generated text. Note that text fragments may be split at arbitrary points, not necessarily at word or sentence boundaries.
                         properties:
                           event_type:
                             type: string
@@ -1238,8 +1238,11 @@ paths:
                                 type: string
                                 description: |
                                   The same unique identifier provided in the `stream_start` event.
-
-        '400':
+              examples:
+                non-streamed-response:
+                  summary: Non-streamed response.
+                  id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
+                  data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
           $ref: '#/components/responses/genericError'
         '429':
           description: |
