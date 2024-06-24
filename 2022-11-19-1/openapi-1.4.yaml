@@ -1136,7 +1136,7 @@ paths:
         $ref: '#/components/requestBodies/generateTextRepresentationRequest'
       responses:
         '200':
-          description: Successful response.
+          description: The specified video has successfully been processed.
           headers:
             X-Ratelimit-Limit:
               schema:
@@ -1158,6 +1158,11 @@ paths:
                 type: number
               description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
               example: 1718777276
+            Transfer-Encoding:
+              schema:
+                type: string
+                description: The platform returns this header when the `stream` parameter is set to `true` in the request. It indicates that the response body is sent in chunks.
+                example: chunked
           content:
             application/json:
               schema:
@@ -1177,9 +1182,6 @@ paths:
                           The generated text based on the prompt you provided.
                         type: string
                         example: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
-                    # example:
-                    #   id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
-                    #   data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
                   - type: object
                     title: Streamed response
                     description: |
