@@ -1185,24 +1185,24 @@ paths:
                       3. Stream end
 
                       You must process each line as a separate JSON object and handle the events accordingly.
-                    oneOf:
-                      - type: object
-                        title: Stream start
-                        description: |
-                          Indicates the beginning of the stream.
-                        properties:
-                          event_type:
-                            type: string
-                            description: |
-                              This field is always set to `stream_start` for this event.
-                          metadata:
-                            type: object
-                            description: An object containing metadata about the stream.
-                            properties:
-                              generation_id:
-                                type: string
-                                description: |
-                                  A unique identifier for the generation session.
+                  - oneOf:
+                    - type: object
+                      title: Stream start
+                      description: |
+                        Indicates the beginning of the stream.
+                      properties:
+                        event_type:
+                          type: string
+                          description: |
+                            This field is always set to `stream_start` for this event.
+                        metadata:
+                          type: object
+                          description: An object containing metadata about the stream.
+                          properties:
+                            generation_id:
+                              type: string
+                              description: |
+                                A unique identifier for the generation session.
 
 
 
