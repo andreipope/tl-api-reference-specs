@@ -1238,16 +1238,12 @@ paths:
                                 type: string
                                 description: |
                                   The same unique identifier provided in the `stream_start` event.
-              # examples:
-              #   non-streamed-response:
-              #     summary: Non-streamed response.
-              #     id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
-              #     data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
+                # examples:
+                #   non-streamed-response:
+                #     summary: Non-streamed response.
+                #     id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
+                #     data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
 
-          $ref: '#/components/responses/genericError'
-          '429':
-            description: |
-              If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
 ###########################
 ###   Text embeddings   ###
