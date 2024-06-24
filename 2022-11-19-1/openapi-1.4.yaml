@@ -1136,7 +1136,77 @@ paths:
         $ref: '#/components/requestBodies/generateTextRepresentationRequest'
       responses:
         '200':
-          $ref: '#/components/responses/generateTextRepresentationResponse'
+          description: Successful response.
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: number
+              description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
+              example: 100
+            X-Ratelimit-Remaining:
+              schema:
+                type: number
+              description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
+              example: 99
+            X-Ratelimit-Used:
+              schema:
+                type: number
+              description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
+              example: 1
+            X-Ratelimit-Reset:
+              schema:
+                type: number
+              description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
+              example: 1718777276
+          content:
+            application/json:
+              schema:
+                oneOf: 
+                  - type: object
+                    description: |
+                      When the value of the `steam` parameter is set to `false`, the response is as follows:
+                    title: Non-streamed response.
+                    properties:
+                      id:
+                        description: |
+                          Unique identifier of the response.
+                        type: string
+                      data:
+                        description: |
+                          The generated text based on the prompt you provided.
+                        type: string
+                  - type: object
+                    description: |
+                      When the value of the `steam` parameter is set to `true`, the platform provides a streaming response in the NDJSON format.
+
+                      The stream contains three types of events:
+                      1. Stream start
+                      2. Text generation
+                      3. Stream end
+
+                      You must process each line as a separate JSON object and handle the events accordingly.
+                    properties:
+                      oneOf:
+                        type: object
+                        title: Stream start
+                        description: |
+                          Indicates the beginning of the stream.
+                        properties:
+                          event_type:
+                            type: string
+                            description: |
+                              This field is always set to `stream_start` for this event.
+                          metadata:
+                            type: object
+                            description: An object containing metadata about the stream.
+                            properties:
+                              generation_id:
+                                type: string
+                                description: |
+                                  A unique identifier for the generation session.
+
+
+
         '400':
           $ref: '#/components/responses/genericError'
         '429':
@@ -3256,46 +3326,6 @@ components:
               message:
                 type: string
                 description: A human-readable string describing the error.
-
-    generateTextRepresentationResponse:
-      description: The specified video has successfully been processed.
-      headers:
-        X-Ratelimit-Limit:
-          schema:
-            type: number
-          description: The maximum number of requests you can make per rate limit window for this endpoint. For details, see the [Rate limits](/docs/rate-limits) page.
-          example: 100
-        X-Ratelimit-Remaining:
-          schema:
-            type: number
-          description: The number of requests remaining in the current rate limit window for the specific endpoint. This value decreases with each request you make to that endpoint and resets at the start of the next rate limit window.
-          example: 99
-        X-Ratelimit-Used:
-          schema:
-            type: number
-          description: The number of requests you have made in the current rate limit window for the specific endpoint. This value increases with each request you make to that endpoint and resets to zero at the start of the next rate limit window.
-          example: 1
-        X-Ratelimit-Reset:
-          schema:
-            type: number
-          description: The time at which the current rate limit window resets, expressed in UTC epoch seconds. After this time, the values of the `X-Ratelimit-Remaining` and `X-Ratelimit-Used` parameters will be reset to their initial values for the next rate limit window.
-          example: 1718777276
-      content:
-        application/json:
-          schema: 
-            type: object
-            properties:
-              id:
-                description: |
-                  Unique identifier of the response.
-                type: string
-              data:
-                description: |
-                  The generated text based on the prompt you provided.
-                type: string
-          example:
-            id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
-            data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
             
 
     createTextEmbeddingResponse:
@@ -4319,6 +4349,17 @@ components:
                 example: 0.7
                 maximum: 1
                 minimum: 0
+              stream:
+                type: boolean
+                description: |
+                  This parameter enables streaming responses in the NDJSON format.
+                                    
+                  When set to `true`, the platform streams responses using the NDJSON (Newline Delimited JSON) format. For more information about NDJSON, see the [NDJSON specification](https://github.com/ndjson/ndjson-spec).
+
+                  **Default:** `false`
+                default: false
+                example: false
+              
 
     summarizeRequest:
       content:
