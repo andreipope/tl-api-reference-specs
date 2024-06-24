@@ -1175,6 +1175,9 @@ paths:
                         description: |
                           The generated text based on the prompt you provided.
                         type: string
+                    example:
+                      id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
+                      data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
                   - type: object
                     title: Streamed response
                     description: |
