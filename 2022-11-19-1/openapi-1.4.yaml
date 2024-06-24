@@ -1239,12 +1239,6 @@ paths:
                                 description: |
                                   The same unique identifier provided in the `stream_start` event.
 
-        '400':
-          $ref: '#/components/responses/genericError'
-        '429':
-          description: |
-            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
-
 ###########################
 ###   Text embeddings   ###
 ###########################
