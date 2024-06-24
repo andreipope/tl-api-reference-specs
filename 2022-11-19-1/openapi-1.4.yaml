@@ -1161,7 +1161,8 @@ paths:
             Transfer-Encoding:
               schema:
                 type: string
-                description: The platform returns this header when the `stream` parameter is set to `true` in the request. It indicates that the response body is sent in chunks.
+                description: The platform returns this header when the `stream` parameter is set to `true` in the request. The value is set to `chunked` and it indicates that the response body is sent in chunks.
+                default: chunked
                 example: chunked
           content:
             application/json:
