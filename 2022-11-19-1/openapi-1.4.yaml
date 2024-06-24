@@ -1176,6 +1176,7 @@ paths:
                           The generated text based on the prompt you provided.
                         type: string
                   - type: object
+                    title: Streamed response.
                     description: |
                       When the value of the `steam` parameter is set to `true`, the platform provides a streaming response in the NDJSON format.
 
@@ -1203,8 +1204,6 @@ paths:
                               type: string
                               description: |
                                 A unique identifier for the generation session.
-
-
 
         '400':
           $ref: '#/components/responses/genericError'
