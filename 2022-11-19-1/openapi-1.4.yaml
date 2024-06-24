@@ -1211,7 +1211,7 @@ paths:
                       - type: object
                         title: Text generation
                         description: |
-                          Contains a fragment of generated text. Note that text fragments may be split at arbitrary points, not necessarily at word or sentence boundaries.
+                          Contains a fragment of generated text. Note that text fragments may be split at arbitrary points, not necessarily at word or sentence boundaries.
                         properties:
                           event_type:
                             type: string
