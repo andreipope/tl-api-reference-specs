@@ -1185,9 +1185,8 @@ paths:
                       3. Stream end
 
                       You must process each line as a separate JSON object and handle the events accordingly.
-                    properties:
-                      oneOf:
-                        type: object
+                    oneOf:
+                      - type: object
                         title: Stream start
                         description: |
                           Indicates the beginning of the stream.
