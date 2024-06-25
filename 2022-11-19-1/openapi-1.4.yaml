@@ -1125,7 +1125,9 @@ paths:
       description: |
         This endpoint generates open-ended texts based on your videos, including but not limited to tables of content, action items, memos, and detailed analyses.
 
-        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+        **NOTES**:
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
+        - This endpoint supports streaming responses. For details on integrating this feature into your application, refer to the [Streaming response](/docs/streaming-responses) guide.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
