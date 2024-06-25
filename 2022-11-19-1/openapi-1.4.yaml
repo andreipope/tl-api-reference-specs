@@ -1206,7 +1206,6 @@ paths:
                             type: string
                             description: |
                               This field is always set to `stream_start` for this event.
-                            example: stream_start
                           metadata:
                             type: object
                             description: An object containing metadata about the stream.
@@ -1215,22 +1214,19 @@ paths:
                                 type: string
                                 description: |
                                   A unique identifier for the generation session.
-                                example: 2f6d0bdd-aed8-47b1-8124-3c9d8006cdc9
                       - type: object
                         title: Text generation
                         description: |
-                          Contains a fragment of generated text. Note that text fragments may be split at arbitrary points, not necessarily at word or sentence boundaries.
+                          Contains a fragment of generated text. Note that text fragments may be split at arbitrary points, not necessarily at word or sentence boundaries.
                         properties:
                           event_type:
                             type: string
                             description: |
                               This field is always set to `text_generation` for this event.
-                            example: text_generation
                           text:
                             type: string
                             description: |
                               A fragment of the generated text.
-                            example: light-hearted moments of cats
                       - type: object
                         title: Stream end
                         description: |
@@ -1240,7 +1236,6 @@ paths:
                             type: string
                             description: |
                               This field is always set to `stream_end` for this event.
-                            example: stream_end
                           metadata:
                             type: object
                             description: An object containing metadata about the stream.
@@ -1249,13 +1244,29 @@ paths:
                                 type: string
                                 description: |
                                   The same unique identifier provided in the `stream_start` event.
-                                example: 2f6d0bdd-aed8-47b1-8124-3c9d8006cdc9
               examples:
                 non-streaming-response:
                   summary: Non-streaming response
                   value:
                     id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
                     data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
+                stream-start-response:
+                  summary: Stream start
+                  value:
+                    event_type: stream_start
+                    metadata:
+                      generation_id: 2f6d0bdd-aed8-47b1-8124-3c9d8006cdc9
+                text-generation-resonse:
+                  summary: Text generation
+                  value:
+                    event_type: text_generation
+                    text: light-hearted moments of cats
+                stream-end-response:
+                  summary: Stream end
+                  value:
+                    event_type: stream_end
+                    metadata:
+                      generation_id: 2f6d0bdd-aed8-47b1-8124-3c9d8006cdc9
 
 
         '400':
