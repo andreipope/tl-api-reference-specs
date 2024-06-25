@@ -1177,12 +1177,10 @@ paths:
                         description: |
                           Unique identifier of the response.
                         type: string
-                        example: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
                       data:
                         description: |
                           The generated text based on the prompt you provided.
                         type: string
-                        example: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
                   - type: object
                     title: Streamed response
                     description: |
@@ -1252,6 +1250,14 @@ paths:
                                 description: |
                                   The same unique identifier provided in the `stream_start` event.
                                 example: 2f6d0bdd-aed8-47b1-8124-3c9d8006cdc9
+              examples:
+                non-streaming-response:
+                  summary: Non-streaming response
+                  value:
+                    id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
+                    data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
+
+
         '400':
           $ref: '#/components/responses/genericError' 
         '429':
