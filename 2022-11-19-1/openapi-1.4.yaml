@@ -4398,7 +4398,7 @@ components:
                 description: |
                   This parameter enables streaming responses in the NDJSON format.
                                     
-                  When set to `true`, the platform streams responses using the NDJSON (Newline Delimited JSON) format. For more information about NDJSON, see the [NDJSON specification](https://github.com/ndjson/ndjson-spec).
+                  When set to `true`, the platform streams responses using the <a href="https://github.com/ndjson/ndjson-spec" target="_blank">NDJSON</a> format.
 
                   **Default:** `false`
                 default: false
