@@ -4396,9 +4396,7 @@ components:
               stream:
                 type: boolean
                 description: |
-                  This parameter enables streaming responses in the NDJSON format.
-                                    
-                  When set to `true`, the platform streams responses using the <a href="https://github.com/ndjson/ndjson-spec" target="_blank">NDJSON</a> format.
+                  Set this parameter to `true` to enable streaming responses in the <a href="https://github.com/ndjson/ndjson-spec" target="_blank">NDJSON</a> format. 
 
                   **Default:** `false`
                 default: false
