@@ -1246,7 +1246,7 @@ paths:
                                   The same unique identifier provided in the `stream_start` event.
               examples:
                 non-streaming-response:
-                  summary: Non-streaming response
+                  summary: Non-streamed response
                   value:
                     id: 2a22fd17-7bd4-446a-abd6-b9382cb18f90
                     data: '1. Vlog\n2. Minnesota\n3. Mall of America\n4. Shopping haul\n5. Outdoor adventure'
