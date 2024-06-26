@@ -86,7 +86,7 @@ paths:
       #       code: |
       #         from twelvelabs import TwelveLabs
       #         client = TwelveLabs(api_key="<YOUR_API_KEY>")
-      #         engine = client.engine.retrieve('pegasus1')
+      #         engine = client.engine.retrieve('pegasus1.1')
       #         print(engine)
       #       name: Twelve Labs Python SDK
       #       install: pip install twelvelabs
@@ -95,7 +95,7 @@ paths:
       #         import { TwelveLabs } from 'twelvelabs-js';
       #         (async () => {
       #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
-      #           const engine = await client.engine.retrieve('pegasus1');
+      #           const engine = await client.engine.retrieve('pegasus1.1');
       #           console.log(engine);
       #         })();              
       #       name: Twelve Labs JS SDK
@@ -118,7 +118,7 @@ paths:
 
             - **Generative**: These engines generate text based on your videos.
 
-              - `pegasus1`
+              - `pegasus1.1`
 
             For details about the features of each engine, see the [Video understanding engines](/docs/video-understanding-engines) page.
           required: true
@@ -2964,7 +2964,7 @@ components:
                   - logo
                 addons:
                   - thumbnail
-              - engine_name: pegasus1
+              - engine_name: pegasus1.1
                 engine_options:
                   - visual
                   - conversation
@@ -3190,7 +3190,7 @@ components:
                         - logo
                       addons:
                         - thumbnail
-                    - engine_name: pegasus1
+                    - engine_name: pegasus1.1
                       engine_options:
                         - visual
                         - conversation
@@ -3208,7 +3208,7 @@ components:
                         - logo
                       addons:
                         - thumbnail
-                    - engine_name: pegasus1
+                    - engine_name: pegasus1.1
                       engine_options:
                         - visual
                         - conversation
@@ -3268,7 +3268,7 @@ components:
                   finetune: false
                   ready: true
                   updated_at: '2022-07-24 09:30:52.686 +0000 UTC'
-                - _id: pegasus1
+                - _id: pegasus1.1
                   allowed_engine_options:
                     - visual
                     - conversation
@@ -5319,7 +5319,7 @@ components:
 
                             - **Generative**: These engines generate text based on your videos.
       
-                              - `pegasus1`
+                              - `pegasus1.1`
       
                           **NOTE:** You cannot change the engines once the index has been created.
       
