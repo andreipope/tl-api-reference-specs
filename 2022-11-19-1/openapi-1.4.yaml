@@ -4995,11 +4995,13 @@ components:
                   - `size`: A numeric value that filters your search results based on the video size, expressed in bytes.
                   - `title`: A string value that filters your search results based on the video title.
 
-                  You can also filter by any of the custom fields specified by invoking the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
-
                   For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
                   
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
+
+                  To enable filtering by custom fields:
+                  1. Add metadata to your video by calling the the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint
+                  2. Use the custom fields as filter criteria in your queries. For example, to return only videos where a custom field named `needsReview` of type boolean is `true`, use: `"needs_review": true`.
 
                   For more details and examples, see the [Filter search results based on metadata](/docs/filtering-search-results) page.
                 example: "{\"id\":[\"66284191ea717fa66a274832\"]}"                  
@@ -5120,7 +5122,9 @@ components:
                   
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                  You can also filter by any of the custom fields specified by invoking the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint.  The following example returns only the videos for which a custom field named `needsReview` of type `boolean` is set to `true`: `"needs_review": true`.
+                  To enable filtering by custom fields:
+                  1. Add metadata to your video by calling the the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint
+                  2. Use the custom fields as filter criteria in your queries. For example, to return only videos where a custom field named `needsReview` of type boolean is `true`, use: `"needs_review": true`.
 
                   For more details and examples, see the [Filter search results based on metadata](/docs/filtering-search-results) page.
                 properties:
