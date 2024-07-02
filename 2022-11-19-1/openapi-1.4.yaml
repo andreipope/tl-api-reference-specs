@@ -30,7 +30,7 @@ tags:
   - name: Text-to-video search
   - name: Any-to-video search
   - name: Classify
-  - name: Generate
+  - name: Generate text from video
   - name: Text embeddings
   - name: Video embeddings
 
