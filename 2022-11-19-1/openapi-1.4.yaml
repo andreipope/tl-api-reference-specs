@@ -4338,7 +4338,6 @@ components:
             type: object
             required:
               - engine_name
-              - text
             properties:
               engine_name:
                 type: string
@@ -4357,6 +4356,22 @@ components:
 
                   **Example**: "Man with a dog crossing the street"
                 example: Man with a dog crossing the street 
+              image_file:
+                type: string
+                format: binary
+                description: The image for which you wish to create an embedding.
+              image_url:
+                type: string
+                format: uri
+                description: The publicly accessible URL of the image for which you wish to create an embedding.
+              audio_file:
+                type: string
+                format: binary
+                description: The auddio file for which you wish to create an embedding.
+              audio_url:
+                type: string
+                format: uri
+                description: The publicly accessible URL of the audio file for which you wish to create an embedding.
               text_truncate:
                 type: string
                 description: |
@@ -4369,7 +4384,14 @@ components:
                     **Default**: `end`
                 default: end
                 example: end
-
+            oneOf:
+              - required: [text]
+              - oneOf:
+                  - required: [image_file]
+                  - required: [image_url]
+              - oneOf:
+                  - required: [audio_file]
+                  - required: [audio_url]
                   
 
 
