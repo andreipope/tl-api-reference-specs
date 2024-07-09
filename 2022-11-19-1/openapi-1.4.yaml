@@ -4334,13 +4334,23 @@ components:
                 type: string
                 format: uri
                 description: |
-                  The publicly accessible URL of the image for which you wish to create an embedding.
-
+                  The publicly accessible URL of the image for which you wish to create an embedding. This parameter is required for image embeddings if `image_file` is not provided.
               image_file:
                 type: string
                 format: binary
                 description: |
-                  The image file for which you wish to create an embedding.
+                  The image file for which you wish to create an embedding as a local file. This parameter is required for image embeddings if `image_url` is not provided.
+
+              audio_url:
+                type: string
+                format: uri
+                description: |
+                  The publicly accessible URL of the audio file for which you wish to creae an emebdding. This parameter is required for audio embeddings if `audio_file` is not provided.
+              audio_file:
+                type: string
+                format: binary
+                description: |
+                  The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
 
     generateTextRepresentationRequest:
       required: true
