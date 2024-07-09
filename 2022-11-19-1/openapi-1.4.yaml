@@ -4336,31 +4336,41 @@ components:
         multipart/form-data:
           schema: 
             type: object
+            required:
+              - engine_name
+            properties:
+              engine_name:
+                type: string
+                description: |
+                  The name of the engine you want to use. The following engines are available:
+                    - `Marengo-retrieval-2.6`
+                example: Marengo-retrieval-2.6
+                default: Marengo-retrieval-2.6
+              text:
+                type: string
+                description: Text input for text embeddings
+              image_file:
+                type: string
+                format: binary
+                description: Image file input for image embeddings
+              image_url:
+                type: string
+                format: uri
+                description: Image URL input for image embeddings
+              audio_file:
+                type: string
+                format: binary
+                description: Audio file input for audio embeddings
+              audio_url:
+                type: string
+                format: uri
+                description: Audio URL input for audio embeddings
             oneOf:
-              - type: object
-                title: Text embedding
-                properties:
-                  text:
-                    type: string
-                required: [text]
-              - type: object
-                title: Image embedding
-                properties:
-                  image_file:
-                    type: string
-                    format: binary
-                  image_url:
-                    type: string
-                    format: uri
-              - type: object
-                title: Audio embedding
-                properties:
-                  audio_file:
-                    type: string
-                    format: binary
-                  video_url:
-                    type: string
-                    format: uri
+              - required: [text]
+              - required: [image_file]
+              - required: [image_url]
+              - required: [audio_file]
+              - required: [audio_url]
 
             # required:
             #   - engine_name
