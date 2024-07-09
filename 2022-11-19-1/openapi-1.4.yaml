@@ -4356,7 +4356,7 @@ components:
 
                   **Example**: "Man with a dog crossing the street"
                 example: Man with a dog crossing the street 
-              image_embedding:
+              Image embedding:
                 title: Image embedding
                 oneOf:
                   - type: object
