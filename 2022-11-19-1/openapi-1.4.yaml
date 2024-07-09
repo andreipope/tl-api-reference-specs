@@ -4293,6 +4293,8 @@ components:
                 example: clip
 
     createSyncEmbeddingRequest:
+      description: |
+        Specify the parameters below to create a text, audio, or image embedding.
       required: true
       content:
         multipart/form-data:
