@@ -4342,25 +4342,24 @@ components:
                   text:
                     type: string
                 required: [text]
-              - oneOf:
-                - type: object
-                  title: Image embedding
-                  properties:
-                    image_file:
-                      type: string
-                      format: binary
-                    image_url:
-                      type: string
-                      format: uri
-                - type: object
-                  title: Audio embedding
-                  properties:
-                    audio_file:
-                      type: string
-                      format: binary
-                    video_url:
-                      type: string
-                      format: uri
+              - type: object
+                title: Image embedding
+                properties:
+                  image_file:
+                    type: string
+                    format: binary
+                  image_url:
+                    type: string
+                    format: uri
+              - type: object
+                title: Audio embedding
+                properties:
+                  audio_file:
+                    type: string
+                    format: binary
+                  video_url:
+                    type: string
+                    format: uri
 
             # required:
             #   - engine_name
