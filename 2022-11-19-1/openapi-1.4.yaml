@@ -2257,7 +2257,7 @@ components:
               - type: visual
               video_id: 639963a1ce36463e0199c8c7
               confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/516.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=9e991f972f8a1baa647d7460685d99e20c4a27408406a972a4baf173a10b0102
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/516.jpeg
               modules:
               - type: visual
                 confidence: high
@@ -2268,7 +2268,7 @@ components:
               - type: visual
               video_id: 639963a1ce36463e0199c8c7
               confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/12.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=cd6b29e8723d51f71823dbd01c8edd252e49a8b231aca218f844e745e6b4e83a
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/12.jpeg
               modules:
               - type: visual
                 confidence: high
@@ -2279,7 +2279,7 @@ components:
               - type: visual
               video_id: 6399637ace36463e0199c8c6
               confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/764.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=4cb4392044330b76bca5e6b167ef4c3b9e04a3bcc0ca5e1af188005edbca21b7
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/764.jpeg
               modules:
               - type: visual
                 confidence: high
@@ -2290,7 +2290,7 @@ components:
               - type: visual
               video_id: 6399637ace36463e0199c8c6
               confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/253.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134943Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=75ddcff5ed8f14d400e21cb211440edc986a6d0320e4538a7ab2d1df4918ea43
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/253.jpeg
               modules:
               - type: visual
                 confidence: high
@@ -2301,7 +2301,7 @@ components:
               - type: visual
               video_id: 639963a1ce36463e0199c8c7
               confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/294.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134944Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0a0882611208dbbdc836090426c95deb422c34ed41a3cb0ed56b78227c51c243
+              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/294.jpeg
               modules:
               - type: visual
                 confidence: high
