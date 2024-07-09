@@ -4336,9 +4336,10 @@ components:
         multipart/form-data:
           schema: 
             type: object
-            title: Text embedding
             oneOf:
-              - properties:
+              - type: object
+                title: Text embedding
+                properties:
                   text:
                     type: string
                 required: [text]
