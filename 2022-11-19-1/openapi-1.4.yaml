@@ -4348,29 +4348,58 @@ components:
                 default: Marengo-retrieval-2.6
               text:
                 type: string
-                description: Text input for text embeddings
-              image_file:
-                type: string
-                format: binary
-                description: Image file input for image embeddings
-              image_url:
-                type: string
-                format: uri
-                description: Image URL input for image embeddings
-              audio_file:
-                type: string
-                format: binary
-                description: Audio file input for audio embeddings
-              audio_url:
-                type: string
-                format: uri
-                description: Audio URL input for audio embeddings
-            oneOf:
-              - required: [text]
-              - required: [image_file]
-              - required: [image_url]
-              - required: [audio_file]
-              - required: [audio_url]
+                description: |
+                  The text for which you want to create an embedding.
+
+                  **NOTE**:
+                  Text embeddings are limited to 77 tokens. If the text exceeds this limit, the platform truncates it according to the value of the `text_truncate` parameter described below.
+
+                  **Example**: "Man with a dog crossing the street"
+                example: Man with a dog crossing the street 
+              image_embedding:
+                title: Image embedding
+                oneOf:
+                  - type: object
+                    properties:
+                      image_url:
+                        type: string
+                        format: uri
+                        description: |
+                          The publicly accessible URL of the image for which you wish to create an ambedding.
+                  - type: object
+                    properties:
+                      image_file:
+                        type: string
+                        format: binary
+                        description: |
+                          The image file for which you wish to create an ambedding.            
+
+            # oneOf:
+            #   - type: object
+            #     title: Text embedding
+            #     properties:
+            #       text:
+            #         type: string
+            #     required: [text]
+            #   - type: object
+            #     title: Image embedding
+            #     properties:
+            #       image_file:
+            #         type: string
+            #         format: binary
+            #         description: |
+            #       image_url:
+            #         type: string
+            #         format: uri
+            #   - type: object
+            #     title: Audio embedding
+            #     properties:
+            #       audio_file:
+            #         type: string
+            #         format: binary
+            #       video_url:
+            #         type: string
+            #         format: uri
 
             # required:
             #   - engine_name
