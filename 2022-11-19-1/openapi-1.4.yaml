@@ -4336,31 +4336,32 @@ components:
         multipart/form-data:
           schema: 
             type: object
+            title: Text embedding
             oneOf:
               - properties:
                   text:
                     type: string
                 required: [text]
-              - properties:
-                  image_file:
-                    type: string
-                    format: binary
-                required: [image_file]
-              - properties:
-                  image_url:
-                    type: string
-                    format: uri
-                required: [image_url]
-              - properties:
-                  audio_file:
-                    type: string
-                    format: binary
-                required: [audio_file]
-              - properties:
-                  audio_url:
-                    type: string
-                    format: uri
-                required: [audio_url]
+              - oneOf:
+                - type: object
+                  title: Image embedding
+                  properties:
+                    image_file:
+                      type: string
+                      format: binary
+                    image_url:
+                      type: string
+                      format: uri
+                - type: object
+                  title: Audio embedding
+                  properties:
+                    audio_file:
+                      type: string
+                      format: binary
+                    video_url:
+                      type: string
+                      format: uri
+
             # required:
             #   - engine_name
             # properties:
