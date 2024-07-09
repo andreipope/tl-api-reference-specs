@@ -31,7 +31,7 @@ tags:
   - name: Any-to-video search
   - name: Classify
   - name: Generate text from video
-  - name: Text embeddings
+  - name: Text, image, and audio embeddings
   - name: Video embeddings
 
 paths:
@@ -1172,7 +1172,7 @@ paths:
                 oneOf: 
                   - type: object
                     description: |
-                      When the value of the `steam` parameter is set to `false`, the response is as follows:
+                      When the value of the `stream` parameter is set to `false`, the response is as follows:
                     title: Non-streamed response
                     properties:
                       id:
@@ -1186,7 +1186,7 @@ paths:
                   - type: object
                     title: Streamed response
                     description: |
-                      When the value of the `steam` parameter is set to `true`, the platform provides a streaming response in the NDJSON format.
+                      When the value of the `stream` parameter is set to `true`, the platform provides a streaming response in the NDJSON format.
 
                       The stream contains three types of events:
                       1. Stream start
@@ -1275,27 +1275,28 @@ paths:
           $ref: '#/components/responses/genericError' 
         '429':
           description: |
-            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.                             
-###########################
-###   Text embeddings   ###
-###########################
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
+
+############################################
+###   Text, image, and audio embeddings  ###
+############################################
 
   '/embed':
     post:
-      summary: Create text embeddings
+      summary: Create text, image, and audio embeddings
       description: |
-        This endpoint creates text embeddings.
-      operationId: create-text-enbedding
+        This endpoint creates text, image, and audio embeddings.
+      operationId: create-text-image-audio-embedding
       tags:
-        - Text embeddings
+        - Text, image, and audio embeddings
       requestBody:
-        $ref: '#/components/requestBodies/createTextEmbeddingRequest'
+        $ref: '#/components/requestBodies/createSyncEmbeddingRequest'
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
       responses:
         '200':
-          $ref: '#/components/responses/createTextEmbeddingResponse'
+          $ref: '#/components/responses/createSyncEmbeddingResponse'
         '400':
           $ref: '#/components/responses/genericError'
 
@@ -3391,7 +3392,7 @@ components:
                 description: A human-readable string describing the error.
             
 
-    createTextEmbeddingResponse:
+    createSyncEmbeddingResponse:
       description: |
         A text embedding has successfully been created.
       content:
@@ -4329,7 +4330,7 @@ components:
                 default: clip
                 example: clip
 
-    createTextEmbeddingRequest:
+    createSyncEmbeddingRequest:
       required: true
       content:
         multipart/form-data:

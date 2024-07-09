@@ -1172,7 +1172,7 @@ paths:
                 oneOf: 
                   - type: object
                     description: |
-                      When the value of the `steam` parameter is set to `false`, the response is as follows:
+                      When the value of the `stream` parameter is set to `false`, the response is as follows:
                     title: Non-streamed response
                     properties:
                       id:
@@ -1186,7 +1186,7 @@ paths:
                   - type: object
                     title: Streamed response
                     description: |
-                      When the value of the `steam` parameter is set to `true`, the platform provides a streaming response in the NDJSON format.
+                      When the value of the `stream` parameter is set to `true`, the platform provides a streaming response in the NDJSON format.
 
                       The stream contains three types of events:
                       1. Stream start
