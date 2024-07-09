@@ -4360,6 +4360,7 @@ components:
                 title: Image embedding
                 oneOf:
                   - type: object
+                    title: Image URL
                     properties:
                       image_url:
                         type: string
@@ -4367,6 +4368,7 @@ components:
                         description: |
                           The publicly accessible URL of the image for which you wish to create an ambedding.
                   - type: object
+                    title: Image file
                     properties:
                       image_file:
                         type: string
