@@ -4336,62 +4336,87 @@ components:
         multipart/form-data:
           schema: 
             type: object
-            required:
-              - engine_name
-            properties:
-              engine_name:
-                type: string
-                description: |
-                  The name of the engine you want to use. The following engines are available:
-                    - `Marengo-retrieval-2.6`
-                example: Marengo-retrieval-2.6
-                default: Marengo-retrieval-2.6
-              text:
-                type: string
-                description: |
-                  The text for which you want to create an embedding.
-
-                  **NOTE**:
-                  Text embeddings are limited to 77 tokens. If the text exceeds this limit, the platform truncates it according to the value of the `text_truncate` parameter described below.
-
-                  **Example**: "Man with a dog crossing the street"
-                example: Man with a dog crossing the street 
-              image_file:
-                type: string
-                format: binary
-                description: The image for which you wish to create an embedding.
-              image_url:
-                type: string
-                format: uri
-                description: The publicly accessible URL of the image for which you wish to create an embedding.
-              audio_file:
-                type: string
-                format: binary
-                description: The auddio file for which you wish to create an embedding.
-              audio_url:
-                type: string
-                format: uri
-                description: The publicly accessible URL of the audio file for which you wish to create an embedding.
-              text_truncate:
-                type: string
-                description: |
-                  Specifies how the platform truncates text that exceeds 77 tokens to fit the maximum length allowed for an embedding.
-                  This parameter can take one of the following values:
-                    - `start`: The platform will truncate the start of the provided text.
-                    - `end`: The platform will truncate the end of the provided text.
-                    - `none`: The platform will return an error if the text is longer than the maximum token limit.
-
-                    **Default**: `end`
-                default: end
-                example: end
             oneOf:
-              - required: [text]
-              - oneOf:
-                  - required: [image_file]
-                  - required: [image_url]
-              - oneOf:
-                  - required: [audio_file]
-                  - required: [audio_url]
+              - properties:
+                  text:
+                    type: string
+                required: [text]
+              - properties:
+                  image_file:
+                    type: string
+                    format: binary
+                required: [image_file]
+              - properties:
+                  image_url:
+                    type: string
+                    format: uri
+                required: [image_url]
+              - properties:
+                  audio_file:
+                    type: string
+                    format: binary
+                required: [audio_file]
+              - properties:
+                  audio_url:
+                    type: string
+                    format: uri
+                required: [audio_url]
+            # required:
+            #   - engine_name
+            # properties:
+            #   engine_name:
+            #     type: string
+            #     description: |
+            #       The name of the engine you want to use. The following engines are available:
+            #         - `Marengo-retrieval-2.6`
+            #     example: Marengo-retrieval-2.6
+            #     default: Marengo-retrieval-2.6
+            #   text:
+            #     type: string
+            #     description: |
+            #       The text for which you want to create an embedding.
+
+            #       **NOTE**:
+            #       Text embeddings are limited to 77 tokens. If the text exceeds this limit, the platform truncates it according to the value of the `text_truncate` parameter described below.
+
+            #       **Example**: "Man with a dog crossing the street"
+            #     example: Man with a dog crossing the street 
+              # image_file:
+              #   type: string
+              #   format: binary
+              #   description: The image for which you wish to create an embedding.
+              # image_url:
+              #   type: string
+              #   format: uri
+              #   description: The publicly accessible URL of the image for which you wish to create an embedding.
+              # audio_file:
+              #   type: string
+              #   format: binary
+              #   description: The auddio file for which you wish to create an embedding.
+              # audio_url:
+              #   type: string
+              #   format: uri
+              #   description: The publicly accessible URL of the audio file for which you wish to create an embedding.
+              # text_truncate:
+              #   type: string
+              #   description: |
+              #     Specifies how the platform truncates text that exceeds 77 tokens to fit the maximum length allowed for an embedding.
+              #     This parameter can take one of the following values:
+              #       - `start`: The platform will truncate the start of the provided text.
+              #       - `end`: The platform will truncate the end of the provided text.
+              #       - `none`: The platform will return an error if the text is longer than the maximum token limit.
+
+              #       **Default**: `end`
+              #   default: end
+              #   example: end
+            # oneOf:
+            #   - required: [text]
+            #   - oneOf:
+            #       - required: [image_file]
+            #       - required: [image_url]
+            #   - oneOf:
+            #       - required: [audio_file]
+            #       - required: [audio_url]
                   
 
 
