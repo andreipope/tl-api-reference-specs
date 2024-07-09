@@ -13,9 +13,9 @@ info:
   contact:
     name: Twelve Labs Support
     email: support@twelvelabs.io
-  version: 1.2.0 
+  version: 1.2.0
 servers:
-  - url: 'https://api.twelvelabs.io/v1.2'
+  - url: "https://api.twelvelabs.io/v1.2"
 
 ################
 ###   Tags   ###
@@ -25,7 +25,7 @@ tags:
   - name: Engines
   - name: Indexes
   - name: Indexes/Videos
-  - name: Tasks    
+  - name: Tasks
   - name: Tasks/Transfers
   - name: Text-to-video search
   - name: Any-to-video search
@@ -35,13 +35,12 @@ tags:
   - name: Video embeddings
 
 paths:
+  ###################
+  ###   Engines   ###
+  ###################
 
-###################
-###   Engines   ###
-###################
-
-  '/engines':
-    summary:  Engines
+  "/engines":
+    summary: Engines
     get:
       summary: List engines
       # x-readme:
@@ -61,7 +60,7 @@ paths:
       #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
       #           const engines = await client.engine.list();
       #           console.log(engines);
-      #         })();              
+      #         })();
       #       name: Twelve Labs JS SDK
       #       install: yarn add twelvelabs-js
       description: This method lists all the engines that are available in your account.
@@ -69,15 +68,15 @@ paths:
       tags:
         - Engines
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       responses:
-        '200':
-          $ref: '#/components/responses/getEnginesResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/getEnginesResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-  '/engines/{engine-id}':
+  "/engines/{engine-id}":
     get:
       summary: Retrieve an engine
       # x-readme:
@@ -97,7 +96,7 @@ paths:
       #           const client = new TwelveLabs({ apiKey: '<YOUR_API_KEY>' });
       #           const engine = await client.engine.retrieve('pegasus1.1');
       #           console.log(engine);
-      #         })();              
+      #         })();
       #       name: Twelve Labs JS SDK
       #       install: yarn add twelvelabs-js
       description: This method retrieves an engine.
@@ -105,8 +104,8 @@ paths:
       tags:
         - Engines
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: engine-id
           in: path
           description: |
@@ -126,14 +125,14 @@ paths:
             type: string
             example: marengo2.6
       responses:
-        '200':
-          $ref: '#/components/responses/getEngineResponse'
-        '404':
-          $ref: '#/components/responses/notFound'
+        "200":
+          $ref: "#/components/responses/getEngineResponse"
+        "404":
+          $ref: "#/components/responses/notFound"
 
-#################
-###   Tasks   ###
-#################
+  #################
+  ###   Tasks   ###
+  #################
 
   /tasks:
     post:
@@ -160,7 +159,7 @@ paths:
       #             file: '<YOUR_FILE_NAME' # Example'./assets/1.mp4',
       #           });
       #           console.log(`Task id=${task.id}`);
-      #         })();              
+      #         })();
       #       name: Twelve Labs JS SDK
       #       install: yarn add twelvelabs-js
       description: |
@@ -175,16 +174,16 @@ paths:
       tags:
         - Tasks
       requestBody:
-        $ref: '#/components/requestBodies/createVideoIndexingTask'
+        $ref: "#/components/requestBodies/createVideoIndexingTask"
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/multipart'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/multipart"
       responses:
-        '200':
-          $ref: '#/components/responses/createVideoIndexingTaskResponse'
-        '400':
-          $ref: '#/components/responses/insufficientFunds'
-    
+        "200":
+          $ref: "#/components/responses/createVideoIndexingTaskResponse"
+        "400":
+          $ref: "#/components/responses/insufficientFunds"
+
     get:
       summary: List video indexing tasks
       description: This method returns a list of the video indexing tasks in your account. The API returns your video indexing tasks sorted by creation date, with the newest at the top of the list.
@@ -192,29 +191,29 @@ paths:
       tags:
         - Tasks
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/page_limit'
-        - $ref: '#/components/parameters/sort_by'
-        - $ref: '#/components/parameters/sort_option'
-        - $ref: '#/components/parameters/_id'
-        - $ref: '#/components/parameters/index_id'
-        - $ref: '#/components/parameters/filename'
-        - $ref: '#/components/parameters/duration'
-        - $ref: '#/components/parameters/width'
-        - $ref: '#/components/parameters/height'
-        - $ref: '#/components/parameters/created_at'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/estimated_time'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/page_limit"
+        - $ref: "#/components/parameters/sort_by"
+        - $ref: "#/components/parameters/sort_option"
+        - $ref: "#/components/parameters/_id"
+        - $ref: "#/components/parameters/index_id"
+        - $ref: "#/components/parameters/filename"
+        - $ref: "#/components/parameters/duration"
+        - $ref: "#/components/parameters/width"
+        - $ref: "#/components/parameters/height"
+        - $ref: "#/components/parameters/created_at"
+        - $ref: "#/components/parameters/updated_at"
+        - $ref: "#/components/parameters/estimated_time"
 
       responses:
-        '200':
-          $ref: '#/components/responses/getVideoIndexingTasksResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-  
-  '/tasks/{task_id}':
+        "200":
+          $ref: "#/components/responses/getVideoIndexingTasksResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
+  "/tasks/{task_id}":
     get:
       summary: Retrieve a video indexing task
       description: This method retrieves a video indexing task.
@@ -222,8 +221,8 @@ paths:
       tags:
         - Tasks
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: task_id
           in: path
           description: |
@@ -232,10 +231,10 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/getVideoIndexingTaskResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/getVideoIndexingTaskResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
     delete:
       summary: Delete a video indexing task
       description: |
@@ -247,8 +246,8 @@ paths:
       tags:
         - Tasks
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: task_id
           in: path
           description: |
@@ -257,12 +256,12 @@ paths:
           schema:
             type: string
       responses:
-        '204':
-          $ref: '#/components/responses/noContentResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "204":
+          $ref: "#/components/responses/noContentResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-  '/tasks/status':
+  "/tasks/status":
     get:
       summary: Retrieve tasks by status
       description: This method retrieves the number video indexing tasks in each status for the specified index.
@@ -270,8 +269,8 @@ paths:
       tags:
         - Tasks
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index_id
           in: query
           description: The unique identifier of the index for which you want to retrieve the number video indexing tasks in each status.
@@ -279,39 +278,39 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/retrieveSummaryVideoIndexingTaskResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-  
+        "200":
+          $ref: "#/components/responses/retrieveSummaryVideoIndexingTaskResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
   ###########################
   ###   Tasks/Transfers   ###
   ###########################
 
-  '/tasks/transfers':
+  "/tasks/transfers":
     post:
       summary: Make a cloud-to-cloud transfer
       description: |
         This method makes a cloud-to-cloud transfer.
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/multipart'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/multipart"
       operationId: cloud-to-cloud-transfer
       tags:
         - Tasks/Transfers
       requestBody:
-        $ref: '#/components/requestBodies/cloud-to-cloud-transfer'
+        $ref: "#/components/requestBodies/cloud-to-cloud-transfer"
       responses:
-        '204':
-          $ref: '#/components/responses/noContentResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "204":
+          $ref: "#/components/responses/noContentResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
   ####################################
   ###   Tasks/External Providers   ###
   ####################################
-  
-  '/tasks/external-provider':
+
+  "/tasks/external-provider":
     post:
       summary: Upload videos from external providers
       description: |
@@ -320,20 +319,20 @@ paths:
       tags:
         - Tasks
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
+        - $ref: "#/components/parameters/x-api-key"
       requestBody:
-        $ref: '#/components/requestBodies/upload-external-provider'
+        $ref: "#/components/requestBodies/upload-external-provider"
       responses:
-        '201':
-          $ref: '#/components/responses/createVideoIndexingTaskResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "201":
+          $ref: "#/components/responses/createVideoIndexingTaskResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-###################
-###   Indexes   ###
-###################
+  ###################
+  ###   Indexes   ###
+  ###################
 
-  '/indexes':
+  "/indexes":
     post:
       summary: Create an index
       description: |
@@ -343,15 +342,15 @@ paths:
       tags:
         - Indexes
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       requestBody:
-        $ref: '#/components/requestBodies/createIndex'
+        $ref: "#/components/requestBodies/createIndex"
       responses:
-        '201':
-          $ref: '#/components/responses/createIndexResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "201":
+          $ref: "#/components/responses/createIndexResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
     get:
       summary: List indexes
       description: |
@@ -361,12 +360,12 @@ paths:
       tags:
         - Indexes
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/page_limit'
-        - $ref: '#/components/parameters/sort_by'
-        - $ref: '#/components/parameters/sort_option'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/page_limit"
+        - $ref: "#/components/parameters/sort_by"
+        - $ref: "#/components/parameters/sort_option"
         - name: _id
           in: query
           description: Filter by the unique identifier of an index.
@@ -391,7 +390,7 @@ paths:
           in: query
           description: |
             Filter by the engine family. This parameter can take one of the following values: `marengo` or `pegasus`. You can specify a single value.
-          schema: 
+          schema:
             type: string
           required: false
         - name: index_options
@@ -404,14 +403,14 @@ paths:
           schema:
             type: string
           example: index_options=visual,conversation
-          
+
       responses:
-        '200':
-          $ref: '#/components/responses/getIndexesResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-  
-  '/indexes/{index-id}':
+        "200":
+          $ref: "#/components/responses/getIndexesResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
+  "/indexes/{index-id}":
     get:
       summary: Retrieve an index
       description: |
@@ -420,8 +419,8 @@ paths:
       tags:
         - Indexes
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -430,10 +429,10 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/getIndexResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/getIndexResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
     put:
       summary: Update an index
       description: |
@@ -443,8 +442,8 @@ paths:
       tags:
         - Indexes
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -453,12 +452,12 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: '#/components/requestBodies/updateIndex'
+        $ref: "#/components/requestBodies/updateIndex"
       responses:
-        '204':
-          $ref: '#/components/responses/noContentResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "204":
+          $ref: "#/components/responses/noContentResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
     delete:
       summary: Delete an index
       description: This method deletes the specified index and all the videos within it. This action cannot be undone.
@@ -466,8 +465,8 @@ paths:
       tags:
         - Indexes
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -476,16 +475,16 @@ paths:
           schema:
             type: string
       responses:
-        '204':
-          $ref: '#/components/responses/noContentResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "204":
+          $ref: "#/components/responses/noContentResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-##########################
-###   indexes/videos   ###
-##########################
+  ##########################
+  ###   indexes/videos   ###
+  ##########################
 
-  '/indexes/{index-id}/videos':
+  "/indexes/{index-id}/videos":
     get:
       summary: List videos
       operationId: list-videos
@@ -494,12 +493,12 @@ paths:
       tags:
         - Indexes/Videos
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/page_limit'
-        - $ref: '#/components/parameters/sort_by'
-        - $ref: '#/components/parameters/sort_option'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/page_limit"
+        - $ref: "#/components/parameters/sort_by"
+        - $ref: "#/components/parameters/sort_option"
         - name: index-id
           in: path
           description: The unique identifier of the index for which the API will retrieve the videos.
@@ -589,19 +588,19 @@ paths:
           schema:
             type: object
             propertyNames:
-              pattern: '^[A-Za-z][A-Za-z0-9]*$'  # Parameter names
+              pattern: "^[A-Za-z][A-Za-z0-9]*$" # Parameter names
             additionalProperties:
-              pattern: '^[A-Za-z][A-Za-z0-9]*$'
+              pattern: "^[A-Za-z][A-Za-z0-9]*$"
           style: form
           explode: true
 
       responses:
-        '200':
-          $ref: '#/components/responses/getVideoVectorsResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/getVideoVectorsResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-  '/indexes/{index-id}/videos/{video-id}':
+  "/indexes/{index-id}/videos/{video-id}":
     get:
       summary: Retrieve video information
       description: This method retrieves information about the specified video.
@@ -609,8 +608,8 @@ paths:
       tags:
         - Indexes/Videos
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -626,10 +625,10 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/getVideoVectorResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/getVideoVectorResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
     put:
       summary: Update video information
       description: Use this method to update the title and the metadata of a video.
@@ -637,8 +636,8 @@ paths:
       tags:
         - Indexes/Videos
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -654,13 +653,13 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: '#/components/requestBodies/update-video-vector'
+        $ref: "#/components/requestBodies/update-video-vector"
 
       responses:
-        '204':
-          $ref: '#/components/responses/noContentResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "204":
+          $ref: "#/components/responses/noContentResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
     delete:
       summary: Delete video information
       operationId: delete-video-information
@@ -669,8 +668,8 @@ paths:
       description: |
         This method deletes all the information about the specified video This action cannot be undone.
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -686,12 +685,12 @@ paths:
           schema:
             type: string
       responses:
-        '204':
-          $ref: '#/components/responses/noContentResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "204":
+          $ref: "#/components/responses/noContentResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-  '/indexes/{index-id}/videos/{video-id}/transcription':
+  "/indexes/{index-id}/videos/{video-id}/transcription":
     get:
       summary: Retrieve a transcription
       description: This method retrieves a transcription of the spoken words.
@@ -699,8 +698,8 @@ paths:
       tags:
         - Indexes/Videos
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -730,13 +729,12 @@ paths:
           schema:
             type: number
       responses:
-        '200':
-          $ref: '#/components/responses/retrieveTranscriptionResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/retrieveTranscriptionResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-
-  '/indexes/{index-id}/videos/{video-id}/text-in-video':
+  "/indexes/{index-id}/videos/{video-id}/text-in-video":
     get:
       summary: Retrieve text recognized in video (OCR)
       description: This method retrieves text recognized in video (OCR).
@@ -744,8 +742,8 @@ paths:
       tags:
         - Indexes/Videos
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -775,12 +773,12 @@ paths:
           schema:
             type: number
       responses:
-        '200':
-          $ref: '#/components/responses/retrieveOcrResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/retrieveOcrResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-  '/indexes/{index-id}/videos/{video-id}/logo':
+  "/indexes/{index-id}/videos/{video-id}/logo":
     get:
       summary: Extract logos
       description: Use this method to identify the presence of brand logos within your videos.
@@ -789,8 +787,8 @@ paths:
       tags:
         - Indexes/Videos
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index-id
           in: path
           description: |
@@ -820,13 +818,12 @@ paths:
           schema:
             type: number
       responses:
-        '200':
-          $ref: '#/components/responses/retrieveLogoResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-  
+        "200":
+          $ref: "#/components/responses/retrieveLogoResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-  '/indexes/{index_id}/videos/{video_id}/thumbnail':
+  "/indexes/{index_id}/videos/{video_id}/thumbnail":
     get:
       summary: Retrieve a thumbnail
       description: To use this feature, you must enable thumbnail generation for the index to which the video has been uploaded. For details, see the [Create an index](/reference/create-index) section.
@@ -834,8 +831,8 @@ paths:
       tags:
         - Indexes/Videos
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: index_id
           in: path
           description: |
@@ -858,16 +855,16 @@ paths:
           schema:
             type: number
       responses:
-        '200':
-          $ref: '#/components/responses/retrieveThumbnailResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/retrieveThumbnailResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-##################
-###   Search   ###
-##################
+  ##################
+  ###   Search   ###
+  ##################
 
-  '/search':
+  "/search":
     post:
       summary: Make a text-to-video search request
       tags:
@@ -880,21 +877,20 @@ paths:
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: make-search-request
       requestBody:
-        $ref: '#/components/requestBodies/search'
+        $ref: "#/components/requestBodies/search"
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       responses:
-        '200':
-          $ref: '#/components/responses/searchResultsResponse' 
-        '400':
-          $ref: '#/components/responses/genericError'
-        '429':
+        "200":
+          $ref: "#/components/responses/searchResultsResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+        "429":
           description: |
             If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-
-  '/search/combined':
+  "/search/combined":
     post:
       x-readme:
         explorer-enabled: false
@@ -906,28 +902,28 @@ paths:
         Use this method to search for relevant matches in an index using combined queries.
 
         For clarity, the combined search feature is documented in this section. However, note that the `/search` endpoint supports all the features of the `/combined-search` endpoint.
-        
+
         This method returns the first page of results. To retrieve the subsequent pages, you must call the [`GET`](/reference/combined-queries-retrieve-specific-page) method of the `/combined-search/{page-token}` endpoint, passing it the unique identifier of the page you want to retrieve.
 
         **NOTES**:
         - Twelve Labs Inc. has disabled calling this method from this page to avoid confusion and recommends you invoke it using one of the available [SKDs](/docs/twelve-labs-sdks). See the [Use combined queries](/docs/search-combined-queries) page for details.
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
-          
+
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       requestBody:
-        $ref: '#/components/requestBodies/combinedSearch'
+        $ref: "#/components/requestBodies/combinedSearch"
       responses:
-        '200':
-          $ref: '#/components/responses/combinedSearchResultsResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-        '429':
+        "200":
+          $ref: "#/components/responses/combinedSearchResultsResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+        "429":
           description: |
             If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
-  '/search/{page-token}':
+  "/search/{page-token}":
     get:
       summary: Retrieve a specific page of search results
       tags:
@@ -938,8 +934,8 @@ paths:
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: search-retrieve-specific-page
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: page-token
           in: path
           required: true
@@ -948,12 +944,12 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/searchResultsResponsePageId'
-        '400':
-          $ref: '#/components/responses/searchResultsError'
+        "200":
+          $ref: "#/components/responses/searchResultsResponsePageId"
+        "400":
+          $ref: "#/components/responses/searchResultsError"
 
-  '/search/combined/{page-token}':
+  "/search/combined/{page-token}":
     get:
       summary: Retrieve a specific page of combined search results
       tags:
@@ -965,8 +961,8 @@ paths:
 
       operationId: combined-queries-retrieve-specific-page
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: page-token
           in: path
           required: true
@@ -975,16 +971,16 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/combinedSearchSpecificPageResultsResponse'
-        '400':
-          $ref: '#/components/responses/searchResultsError'
+        "200":
+          $ref: "#/components/responses/combinedSearchSpecificPageResultsResponse"
+        "400":
+          $ref: "#/components/responses/searchResultsError"
 
-####################
-###   Classify   ###
-####################
+  ####################
+  ###   Classify   ###
+  ####################
 
-  '/classify':
+  "/classify":
     post:
       summary: Classify a set of videos
       description: |
@@ -997,23 +993,23 @@ paths:
         - When you use pagination, you will not be charged for retrieving subsequent pages of results.
 
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       operationId: classify-video
       tags:
         - Classify
       requestBody:
-        $ref: '#/components/requestBodies/classifyRequestNew'
+        $ref: "#/components/requestBodies/classifyRequestNew"
       responses:
-        '200':
-          $ref: '#/components/responses/classifyResponseNew'
-        '400':
-          $ref: '#/components/responses/classify10hours'
-        '429':
+        "200":
+          $ref: "#/components/responses/classifyResponseNew"
+        "400":
+          $ref: "#/components/responses/classify10hours"
+        "429":
           description: |
             If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-  '/classify/bulk':
+  "/classify/bulk":
     post:
       summary: Classify all the videos in an index
       description: |
@@ -1027,33 +1023,33 @@ paths:
       tags:
         - Classify
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       requestBody:
-        $ref: '#/components/requestBodies/classifyRequestBulkNew'
+        $ref: "#/components/requestBodies/classifyRequestBulkNew"
       responses:
-        '200':
-          $ref: '#/components/responses/classifyBulkResponseNew'
-        '400':
-          $ref: '#/components/responses/genericError'
-        '429':
+        "200":
+          $ref: "#/components/responses/classifyBulkResponseNew"
+        "400":
+          $ref: "#/components/responses/genericError"
+        "429":
           description: |
             If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-  '/classify/{page_token}':
+  "/classify/{page_token}":
     get:
       summary: Retrieve a specific page of results
       description: |
         The `classify` and `/classify/bulk` endpoints return the first page or results. You can use this endpoint to retrieve the rest of the pages.
 
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
-        
+
       operationId: classify-retrieve-specific-page
       tags:
         - Classify
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: page_token
           description: A token that identifies the page to retrieve.
           in: path
@@ -1061,16 +1057,16 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/classifyBulkResponseNewSpecificPage'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/classifyBulkResponseNewSpecificPage"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-####################
-###   Generate   ###
-####################
+  ####################
+  ###   Generate   ###
+  ####################
 
-  '/gist':
+  "/gist":
     post:
       summary: Titles, topics, or hashtags
       description: |
@@ -1079,47 +1075,47 @@ paths:
         **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
 
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       operationId: generate-gist
       tags:
         - Generate text from video
       requestBody:
-        $ref: '#/components/requestBodies/gistRequest'
+        $ref: "#/components/requestBodies/gistRequest"
       responses:
-        '200':
-          $ref: '#/components/responses/gistResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-        '429':
+        "200":
+          $ref: "#/components/responses/gistResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+        "429":
           description: |
             If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
-          
-  '/summarize':
+
+  "/summarize":
     post:
       summary: Summaries, chapters, or highlights
       description: |
         This endpoint generates summaries, chapters, or highlights for your videos. Optionally, you can provide a prompt to customize the output.
 
-        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page. 
+        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       operationId: summarize
       tags:
         - Generate text from video
       requestBody:
-        $ref: '#/components/requestBodies/summarizeRequest'
+        $ref: "#/components/requestBodies/summarizeRequest"
       responses:
-        '200':
-          $ref: '#/components/responses/summarizeResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-        '429':
+        "200":
+          $ref: "#/components/responses/summarizeResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+        "429":
           description: |
             If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-  '/generate':
+  "/generate":
     post:
       summary: Open-ended texts
       description: |
@@ -1129,15 +1125,15 @@ paths:
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
         - This endpoint supports streaming responses. For details on integrating this feature into your application, refer to the [Streaming response](/docs/streaming-responses) guide.
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
       operationId: generate-text-representation
       tags:
         - Generate text from video
       requestBody:
-        $ref: '#/components/requestBodies/generateTextRepresentationRequest'
+        $ref: "#/components/requestBodies/generateTextRepresentationRequest"
       responses:
-        '200':
+        "200":
           description: The specified video has successfully been processed.
           headers:
             X-Ratelimit-Limit:
@@ -1163,13 +1159,13 @@ paths:
             Transfer-Encoding:
               schema:
                 type: string
-                description: The platform returns this header when the `stream` parameter is set to `true` in the request. It indicates that the response body is sent in chunks. 
+                description: The platform returns this header when the `stream` parameter is set to `true` in the request. It indicates that the response body is sent in chunks.
                 default: chunked
                 example: chunked
           content:
             application/json:
               schema:
-                oneOf: 
+                oneOf:
                   - type: object
                     description: |
                       When the value of the `stream` parameter is set to `false`, the response is as follows:
@@ -1200,7 +1196,7 @@ paths:
                       - Use the `stream_start` and `stream_end` events to manage the lifecycle of your streaming session.
                     oneOf:
                       - type: object
-                        title: Stream start 
+                        title: Stream start
                         description: |
                           Indicates the beginning of the stream.
                         properties:
@@ -1270,18 +1266,17 @@ paths:
                     metadata:
                       generation_id: 2f6d0bdd-aed8-47b1-8124-3c9d8006cdc9
 
-
-        '400':
-          $ref: '#/components/responses/genericError' 
-        '429':
+        "400":
+          $ref: "#/components/responses/genericError"
+        "429":
           description: |
             If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-############################################
-###   Text, image, and audio embeddings  ###
-############################################
+  ############################################
+  ###   Text, image, and audio embeddings  ###
+  ############################################
 
-  '/embed':
+  "/embed":
     post:
       summary: Create text, image, and audio embeddings
       description: |
@@ -1290,26 +1285,26 @@ paths:
       tags:
         - Text, image, and audio embeddings
       requestBody:
-        $ref: '#/components/requestBodies/createSyncEmbeddingRequest'
+        $ref: "#/components/requestBodies/createSyncEmbeddingRequest"
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/multipart'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/multipart"
       responses:
-        '200':
-          $ref: '#/components/responses/createSyncEmbeddingResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/createSyncEmbeddingResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-############################
-###   Video embeddings   ###
-############################
+  ############################
+  ###   Video embeddings   ###
+  ############################
 
-  '/embed/tasks':
+  "/embed/tasks":
     post:
       summary: Create a video embedding task
       description: |
         This method creates a new video embedding task that uploads a video to the platform and creates one or multiple embeddings.
-        
+
         Note the following about using this endpoint:
         - To upload a file that resides on the local file system, pass the video_file parameter.  It must be a stream of bytes encoded as `multipart/form-data`.
         - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a string.
@@ -1322,19 +1317,19 @@ paths:
         - **Video and audio formats**: The video files must be encoded in the video and audio formats listed on the [FFmpeg Formats Documentation](https://ffmpeg.org/ffmpeg-formats.html)  page. For videos in other formats, contact us at [support@twelvelabs.io](mailto:support@twelvelabs.io).
       operationId: create-video-embeding-task
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/multipart'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/multipart"
       tags:
         - Video embeddings
       requestBody:
-        $ref: '#/components/requestBodies/createVideoEmbeddingTaskRequest'
+        $ref: "#/components/requestBodies/createVideoEmbeddingTaskRequest"
       responses:
-        '200':
-          $ref: '#/components/responses/createVideoEmbeddingTaskResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-    
-  '/embed/tasks/{task_id}/status':
+        "200":
+          $ref: "#/components/responses/createVideoEmbeddingTaskResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
+  "/embed/tasks/{task_id}/status":
     get:
       summary: Retrieve the status of a video embedding task
       description: |
@@ -1346,49 +1341,49 @@ paths:
         - `failed`: This status indicates that the task could not be completed as expected, and the embeddings haven't been created.
       operationId: retrieve-video-embeding-task
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-        - $ref: '#/components/parameters/video-embedding-task-id'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/video-embedding-task-id"
       tags:
         - Video embeddings
       responses:
-        '200':
-          $ref: '#/components/responses/retrieveVideoEmbeddingTaskStatusResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-    
-  '/embed/tasks/{task_id}':
+        "200":
+          $ref: "#/components/responses/retrieveVideoEmbeddingTaskStatusResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
+  "/embed/tasks/{task_id}":
     get:
       summary: Retrieve video embeddings
       description: |
         This method retrieves embeddings for a specific video embedding task. Ensure the task status is `ready` before invoking this method. Refer to the [Retrieve a video embedding](/reference/retrieve-video-embeding-task) task page for instructions on checking the task status.
       operationId: retrieve-video-embeding
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
-        - $ref: '#/components/parameters/video-embedding-task-id'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/video-embedding-task-id"
       tags:
         - Video embeddings
       responses:
-        '200':
-          $ref: '#/components/responses/retrieveVideoEmbeddingResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+        "200":
+          $ref: "#/components/responses/retrieveVideoEmbeddingResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
-#################################
-###   Any-to-video search   ###
-#################################
+  #################################
+  ###   Any-to-video search   ###
+  #################################
 
-  '/search-v2':
+  "/search-v2":
     summary: Any-to-video search
     post:
-      summary: Make any-to-video search requests 
+      summary: Make any-to-video search requests
       description: |
         Use this endpoint to search for relevant matches in an index using text or various media formats.
-        
+
         To perform a search using a text query:
         - Use the `query_text` parameter to specify your query.
-        
+
         To perform a search using a media query:
         - Set the `query_media_type` parameter to the corresponding media type (example: `image`).
         - Specify either one of the following parameters:
@@ -1400,24 +1395,24 @@ paths:
 
         **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
 
-      operationId: any-to-video-search 
+      operationId: any-to-video-search
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/multipart'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/multipart"
       tags:
         - Any-to-video search
       requestBody:
-        $ref: '#/components/requestBodies/any-to-video-search'
+        $ref: "#/components/requestBodies/any-to-video-search"
       responses:
-        '200':
-          $ref: '#/components/responses/searchResultsResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
-        '429':
+        "200":
+          $ref: "#/components/responses/searchResultsResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+        "429":
           description: |
             If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
 
-  '/search-v2/{page-token}':
+  "/search-v2/{page-token}":
     get:
       summary: Retrieve a specific page of search results
       tags:
@@ -1428,8 +1423,8 @@ paths:
         **NOTE**: When you use pagination, you will not be charged for retrieving subsequent pages of results.
       operationId: any-to-video--retrieve-specific-page
       parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
         - name: page-token
           in: path
           required: true
@@ -1438,10 +1433,10 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          $ref: '#/components/responses/searchResultsResponsePageId'
-        '400':
-          $ref: '#/components/responses/searchResultsError'
+        "200":
+          $ref: "#/components/responses/searchResultsResponsePageId"
+        "400":
+          $ref: "#/components/responses/searchResultsError"
 
 #######################
 ###   Components   ####
@@ -1449,17 +1444,16 @@ paths:
 
 components:
   schemas:
-
     end_time:
       type: number
       description: |
-        The end time of the matching video clip, expressed in seconds.  
+        The end time of the matching video clip, expressed in seconds.
 
     start_time:
       type: number
       description: |
         The start time of the matching video clip, expressed in seconds.
-    
+
     score_search_terms:
       type: string
       description: |
@@ -1490,23 +1484,22 @@ components:
           Each element is a dictionary.
         type: object
         properties:
-            type:
-              type: string
-              description: |
-                The source of information for which the video clip matched your search terms. It can take one of the following values: `conversation`, `visual`,  `text_in_video`, and `logo`.
-            confidence:
-              type: string
-              description: |
-                The confidence level that the result is accurate.
+          type:
+            type: string
+            description: |
+              The source of information for which the video clip matched your search terms. It can take one of the following values: `conversation`, `visual`,  `text_in_video`, and `logo`.
+          confidence:
+            type: string
+            description: |
+              The confidence level that the result is accurate.
 
     thumbnail_url:
       type: string
       description: |
         If thumbnail generation has been enabled for this index, the platform returns a string representing the URL of the thumbnail. Note that the URL expires in one hour.
 
-
     total_results:
-      description: The total number of results. 
+      description: The total number of results.
       type: integer
 
     page:
@@ -1522,7 +1515,7 @@ components:
       description: The maximum number of items on each page.
 
     total_inner_matches:
-      type: integer 
+      type: integer
       description: |
         When grouping by video, the platform return this field that shows the total number of video clips matching your query.
 
@@ -1551,8 +1544,8 @@ components:
         **Default:** `semantic`
       default: semantic
       enum:
-      - semantic
-      - exact_match
+        - semantic
+        - exact_match
       type: string
 
     conversation_option_any_to_video:
@@ -1561,7 +1554,7 @@ components:
           
         When using image queries:
         - This parameter must be set to `semantic`.
-        
+
         When using text queries, supported values are:
         - `semantic`
         - `exact_match`
@@ -1570,8 +1563,8 @@ components:
         **Default:** `semantic`
       default: semantic
       enum:
-      - semantic
-      - exact_match
+        - semantic
+        - exact_match
       type: string
 
     include_clips:
@@ -1581,7 +1574,7 @@ components:
         **Default:** false
       default: false
       type: boolean
-    
+
     classes:
       type: array
       required:
@@ -1590,15 +1583,14 @@ components:
       description: |
         An array of objects containing the names and the definitions of entities or actions that the platform must identify.
       items:
-        $ref: '#/components/schemas/classesObject'
+        $ref: "#/components/schemas/classesObject"
       minItems: 1
 
-      
     classesObject:
       type: object
       required:
-      - name
-      - prompts
+        - name
+        - prompts
       properties:
         name:
           type: string
@@ -1607,10 +1599,10 @@ components:
           description: |
             An array of strings that specifies what the class contains. The platform will classify your videos based on this array. Note that the total number of prompts you specify in a request must not exceed 100.
           example:
-          - Truck
-            Sedan
-            SUV
-            Convertible
+            - Truck
+              Sedan
+              SUV
+              Convertible
           items:
             type: string
           minItems: 1
@@ -1621,9 +1613,9 @@ components:
             If set, overides the options for this class.
           items:
             enum:
-            - conversation
-            - text_in_video
-            - visual
+              - conversation
+              - text_in_video
+              - visual
             type: string
           minItems: 1
           type: array
@@ -1632,16 +1624,15 @@ components:
             If set, overides the conversation option for this class.
           default: semantic
           enum:
-          - semantic
-          - exact_match
+            - semantic
+            - exact_match
           type: string
-
 
     labels:
       description: |
         An array of objects containing the names and the definitions of entities or actions that the platform must identify.
       items:
-        $ref: '#/components/schemas/classifyLabel'
+        $ref: "#/components/schemas/classifyLabel"
       minItems: 1
       type: array
 
@@ -1650,10 +1641,10 @@ components:
         An array that specifies the sources of information the platform uses when it categorizes a video. For details, see the [Search options](/docs/search-options) page.
       items:
         enum:
-        - conversation
-        - text_in_video
-        - visual
-        - logo
+          - conversation
+          - text_in_video
+          - visual
+          - logo
         type: string
       minItems: 1
       type: array
@@ -1663,9 +1654,9 @@ components:
         An array that specifies the sources of information the platform uses when it categorizes a video. For details, see the [Search options](/docs/search-options) page.
       items:
         enum:
-        - conversation
-        - text_in_video
-        - visual
+          - conversation
+          - text_in_video
+          - visual
         type: string
       minItems: 1
       type: array
@@ -1677,12 +1668,12 @@ components:
         **Default:** `low`
       default: low
       enum:
-      - high
-      - medium
-      - low
-      - none
+        - high
+        - medium
+        - low
+        - none
       type: string
-    
+
     threshold_search:
       description: |
         Use this parameter to filter on the level of confidence that the results match your query.
@@ -1690,10 +1681,10 @@ components:
         **Default:** `low`
       default: low
       enum:
-      - high
-      - medium
-      - low
-      - none
+        - high
+        - medium
+        - low
+        - none
       type: string
 
     thresholdClassifyNew:
@@ -1713,22 +1704,22 @@ components:
           description: |
             A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
         limit_per_page:
-          $ref: '#/components/schemas/limit_per_page_simple'
+          $ref: "#/components/schemas/limit_per_page_simple"
         next_page_token:
-          $ref: '#/components/schemas/next_page_token' 
+          $ref: "#/components/schemas/next_page_token"
         prev_page_token:
           type: string
           description: |
             The unique identifier of the previous page. If this is the first page, the API returns an empty string.
         total_results:
-          $ref: '#/components/schemas/total_results' 
+          $ref: "#/components/schemas/total_results"
       type: object
 
     classifyLabel:
       type: object
       required:
-      - name
-      - prompts
+        - name
+        - prompts
       properties:
         name:
           description: A string representing the name you want to give this label.
@@ -1738,22 +1729,20 @@ components:
           description: |
             An array of strings that specifies what the label contains.
           example:
-          - Truck
-            Sedan
-            SUV
-            Convertible
+            - Truck
+              Sedan
+              SUV
+              Convertible
           items:
             type: string
           minItems: 1
           type: array
 
-
-
     classifyLabelResult:
       description: |
         An array containing information about the video clips that match the the prompts you've specified.
       properties:
-        classes: 
+        classes:
           description: |
             An array of objects containing information about each of the matching video clips. This field is included in the response only when you set the value of the `include_clips` parameter to `true`.
           items:
@@ -1761,7 +1750,7 @@ components:
           type: array
 
         confidence:
-          $ref: '#/components/schemas/max_confidence'
+          $ref: "#/components/schemas/max_confidence"
         duration:
           description: The total duration of the matching video clips.
           type: number
@@ -1773,16 +1762,14 @@ components:
           description: The name of the label.
           type: string
 
-
-
     classifyClip:
       name: clasifyClip
       description: An array containing information about the video clips that match the label you've specified.
       properties:
         confidence:
-          $ref: '#/components/schemas/confidence'
+          $ref: "#/components/schemas/confidence"
         end:
-          $ref: '#/components/schemas/end_time'
+          $ref: "#/components/schemas/end_time"
         score:
           type: number
           description: |
@@ -1794,13 +1781,13 @@ components:
           type: string
           description: Indicates the prompt that the platform used.
         start:
-          $ref: '#/components/schemas/start_time'
+          $ref: "#/components/schemas/start_time"
         thumbnail_url:
-          $ref: '#/components/schemas/thumbnail_url'
+          $ref: "#/components/schemas/thumbnail_url"
       type: object
 
     engine:
-      description: 'Engine object'
+      description: "Engine object"
       title: Engine
       type: object
       properties:
@@ -1835,8 +1822,8 @@ components:
           description: A boolean specifying whether this engine is ready to be used.
       example:
         id: marengo2.6
-        created_at: '2023-04-12 11:49:26.663 +0000 UTC'
-        updated_at: '2023-04-12 11:49:26.663 +0000 UTC'
+        created_at: "2023-04-12 11:49:26.663 +0000 UTC"
+        updated_at: "2023-04-12 11:49:26.663 +0000 UTC"
         allowed_index_options:
           - visual
           - text_in_video
@@ -1905,7 +1892,6 @@ components:
                 items:
                   type: string
 
-
     videoIndexingTask:
       title: Video Indexing Task
       type: object
@@ -1916,7 +1902,7 @@ components:
             A string representing the unique identifier of the task. It is assigned by the platform when a new task is created.
         created_at:
           type: string
-          description: 'A string indicating the date and time, in the RFC 3339 format, that the task was created.'
+          description: "A string indicating the date and time, in the RFC 3339 format, that the task was created."
         updated_at:
           type: string
           description: |
@@ -2009,10 +1995,9 @@ components:
           height: 360
           size: 65749715
 
-
-######################
-###   Parameters   ###
-######################
+  ######################
+  ###   Parameters   ###
+  ######################
 
   parameters:
     video-embedding-task-id:
@@ -2037,7 +2022,7 @@ components:
       in: header
       description: |
         Your API key.
-        
+
         **NOTE:** You can find your API key on the <a href="https://api.twelvelabs.io/dashboard" target="_blank">Dashboard</a> page.
       required: true
       schema:
@@ -2066,7 +2051,7 @@ components:
       in: query
       description: |
         The number of items to return on each page.
-        
+
         **Default**: `10`.
         **Max**: `50`.
       schema:
@@ -2103,7 +2088,7 @@ components:
       name: _id
       in: query
       description: |
-        Filter by the unique identifier of a video indexing task. 
+        Filter by the unique identifier of a video indexing task.
       schema:
         type: string
       required: false
@@ -2172,13 +2157,11 @@ components:
         type: string
       required: false
 
-
-#####################
-###   Responses   ###
-#####################
+  #####################
+  ###   Responses   ###
+  #####################
 
   responses:
-
     searchResultsResponsePageId:
       description: Successfully retrieved the specified page of search results.
       content:
@@ -2193,11 +2176,11 @@ components:
                   type: object
                   properties:
                     score:
-                      $ref: '#/components/schemas/score_search_terms'
+                      $ref: "#/components/schemas/score_search_terms"
                     start:
-                      $ref: '#/components/schemas/start_time'
+                      $ref: "#/components/schemas/start_time"
                     end:
-                      $ref: '#/components/schemas/end_time'
+                      $ref: "#/components/schemas/end_time"
                     video_id:
                       type: string
                       description: A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
@@ -2215,11 +2198,11 @@ components:
                             type: string
                             description: For `conversation` and `text_in_video`, the API returns a transcription of the spoken words or the text that matches your search query.
                     confidence:
-                      $ref: '#/components/schemas/confidence'
+                      $ref: "#/components/schemas/confidence"
                     thumbnail_url:
-                      $ref: '#/components/schemas/thumbnail_url'
+                      $ref: "#/components/schemas/thumbnail_url"
                     modules:
-                      $ref: '#/components/schemas/modules'
+                      $ref: "#/components/schemas/modules"
               page_info:
                 type: object
                 description: An object that provides information about pagination.
@@ -2227,7 +2210,7 @@ components:
                   limit_per_page:
                     type: integer
                     description: |
-                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video clips per page. 
+                      The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video clips per page.
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
@@ -2236,87 +2219,85 @@ components:
                     description: |
                       The total number of results. When grouping by video, this field represents the total number of video clips matching your query. Otherwise , this field represents the total number of videos.
                   total_inner_matches:
-                    $ref: '#/components/schemas/total_inner_matches'
+                    $ref: "#/components/schemas/total_inner_matches"
                   next_page_token:
-                    $ref: '#/components/schemas/next_page_token'
+                    $ref: "#/components/schemas/next_page_token"
                   prev_page_token:
                     type: string
                     description: The unique identifier of the previous page.
               search_pool:
-                $ref: '#/components/schemas/search_pool'
+                $ref: "#/components/schemas/search_pool"
           example:
             search_pool:
               total_count: 13
               total_duration: 8731
               index_id: 639961c9e219c90227c371a2
             data:
-            - score: 85.08
-              start: 515.4375
-              end: 527
-              metadata:
-              - type: visual
-              video_id: 639963a1ce36463e0199c8c7
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/516.jpeg
-              modules:
-              - type: visual
+              - score: 85.08
+                start: 515.4375
+                end: 527
+                metadata:
+                  - type: visual
+                video_id: 639963a1ce36463e0199c8c7
                 confidence: high
-            - score: 85.05
-              start: 11.5125
-              end: 23.140625
-              metadata:
-              - type: visual
-              video_id: 639963a1ce36463e0199c8c7
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/12.jpeg
-              modules:
-              - type: visual
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/516.jpeg
+                modules:
+                  - type: visual
+                    confidence: high
+              - score: 85.05
+                start: 11.5125
+                end: 23.140625
+                metadata:
+                  - type: visual
+                video_id: 639963a1ce36463e0199c8c7
                 confidence: high
-            - score: 85.05
-              start: 763.7708333333334
-              end: 782.0625
-              metadata:
-              - type: visual
-              video_id: 6399637ace36463e0199c8c6
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/764.jpeg
-              modules:
-              - type: visual
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/12.jpeg
+                modules:
+                  - type: visual
+                    confidence: high
+              - score: 85.05
+                start: 763.7708333333334
+                end: 782.0625
+                metadata:
+                  - type: visual
+                video_id: 6399637ace36463e0199c8c6
                 confidence: high
-            - score: 84.95
-              start: 252.2421875
-              end: 278.15625
-              metadata:
-              - type: visual
-              video_id: 6399637ace36463e0199c8c6
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/253.jpeg
-              modules:
-              - type: visual
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/764.jpeg
+                modules:
+                  - type: visual
+                    confidence: high
+              - score: 84.95
+                start: 252.2421875
+                end: 278.15625
+                metadata:
+                  - type: visual
+                video_id: 6399637ace36463e0199c8c6
                 confidence: high
-            - score: 84.95
-              start: 293.75
-              end: 302.47499999999997
-              metadata:
-              - type: visual
-              video_id: 639963a1ce36463e0199c8c7
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/294.jpeg
-              modules:
-              - type: visual
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/253.jpeg
+                modules:
+                  - type: visual
+                    confidence: high
+              - score: 84.95
+                start: 293.75
+                end: 302.47499999999997
+                metadata:
+                  - type: visual
+                video_id: 639963a1ce36463e0199c8c7
                 confidence: high
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/294.jpeg
+                modules:
+                  - type: visual
+                    confidence: high
             page_info:
               limit_per_page: 10
               total_results: 195
-              page_expired_at: '2022-12-22T13:49:44Z'
+              page_expired_at: "2022-12-22T13:49:44Z"
               next_page_token: cdfb7ca8-9316-4518-af82-8cadbe934474-2
               prev_page_token: cdfb7ca8-9316-4518-af82-8cadbe934474-0
             type: search_create_token
 
-
     noContentResponse:
       description: If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
-
 
     combinedSearchResultsResponse:
       description: Successfully performed a search request.
@@ -2354,34 +2335,34 @@ components:
                   type: object
                   properties:
                     score:
-                      $ref: '#/components/schemas/score_search_terms'
+                      $ref: "#/components/schemas/score_search_terms"
                     start:
-                      $ref: '#/components/schemas/start_time'
+                      $ref: "#/components/schemas/start_time"
                     end:
-                      $ref: '#/components/schemas/end_time'
+                      $ref: "#/components/schemas/end_time"
                     video_id:
                       type: string
                       description: |
                         A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     confidence:
-                      $ref: '#/components/schemas/confidence'
+                      $ref: "#/components/schemas/confidence"
                     thumbnail_url:
-                      $ref: '#/components/schemas/thumbnail_url'
+                      $ref: "#/components/schemas/thumbnail_url"
               page_info:
                 type: object
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    $ref: '#/components/schemas/limit_per_page_simple'
+                    $ref: "#/components/schemas/limit_per_page_simple"
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
                   total_results:
-                    $ref: '#/components/schemas/total_results'
+                    $ref: "#/components/schemas/total_results"
                   next_page_token:
-                    $ref: '#/components/schemas/next_page_token'
+                    $ref: "#/components/schemas/next_page_token"
               search_pool:
-                $ref: '#/components/schemas/search_pool'
+                $ref: "#/components/schemas/search_pool"
           example:
             search_pool:
               total_count: 11
@@ -2412,7 +2393,6 @@ components:
               page_expired_at: 2022-12-18T07:25:53Z
               next_page_token: 4849bbc1-0f10-4ab1-9f10-9cfaf6e62311-1
 
-
     combinedSearchSpecificPageResultsResponse:
       description: Successfully performed a search request.
       content:
@@ -2428,34 +2408,34 @@ components:
                   type: object
                   properties:
                     score:
-                      $ref: '#/components/schemas/score_search_terms'
+                      $ref: "#/components/schemas/score_search_terms"
                     start:
-                      $ref: '#/components/schemas/start_time'
+                      $ref: "#/components/schemas/start_time"
                     end:
-                      $ref: '#/components/schemas/end_time'
+                      $ref: "#/components/schemas/end_time"
                     video_id:
                       type: string
                       description: |
                         A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                     confidence:
-                      $ref: '#/components/schemas/confidence'
+                      $ref: "#/components/schemas/confidence"
                     thumbnail_url:
-                      $ref: '#/components/schemas/thumbnail_url'
+                      $ref: "#/components/schemas/thumbnail_url"
               page_info:
                 type: object
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    $ref: '#/components/schemas/limit_per_page_simple'
+                    $ref: "#/components/schemas/limit_per_page_simple"
                   page_expired_at:
                     type: string
                     description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
                   total_results:
-                    $ref: '#/components/schemas/total_results'
+                    $ref: "#/components/schemas/total_results"
                   next_page_token:
-                    $ref: '#/components/schemas/next_page_token'
+                    $ref: "#/components/schemas/next_page_token"
               search_pool:
-                $ref: '#/components/schemas/search_pool'
+                $ref: "#/components/schemas/search_pool"
           example:
             search_pool:
               total_count: 11
@@ -2486,7 +2466,6 @@ components:
               page_expired_at: 2022-12-18T12:34:24Z
               next_page_token: 3d1aea54-feba-4cee-a308-48c24c241427-2
               prev_page_token: 3d1aea54-feba-4cee-a308-48c24c241427-0
-
 
     searchResultsResponse:
       description: Successfully performed a search request.
@@ -2524,11 +2503,11 @@ components:
                   type: object
                   properties:
                     score:
-                      $ref: '#/components/schemas/score_search_terms'
+                      $ref: "#/components/schemas/score_search_terms"
                     start:
-                      $ref: '#/components/schemas/start_time'
+                      $ref: "#/components/schemas/start_time"
                     end:
-                      $ref: '#/components/schemas/end_time'
+                      $ref: "#/components/schemas/end_time"
                     video_id:
                       type: string
                       description: A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
@@ -2546,11 +2525,11 @@ components:
                             type: string
                             description: For `conversation` and `text_in_video`, the API returns a transcription of the spoken words or the text that matches your search query.
                     confidence:
-                      $ref: '#/components/schemas/confidence'
+                      $ref: "#/components/schemas/confidence"
                     thumbnail_url:
-                      $ref: '#/components/schemas/thumbnail_url'
+                      $ref: "#/components/schemas/thumbnail_url"
                     modules:
-                      $ref: '#/components/schemas/modules'
+                      $ref: "#/components/schemas/modules"
               page_info:
                 type: object
                 description: An object that provides information about pagination.
@@ -2565,67 +2544,67 @@ components:
                   total_results:
                     type: integer
                     description: |
-                      The total number of results. When grouping by video, this field represents the total number of video clips matching your query. Otherwise , this field represents the total number of videos. 
+                      The total number of results. When grouping by video, this field represents the total number of video clips matching your query. Otherwise , this field represents the total number of videos.
                   total_inner_matches:
-                    $ref: '#/components/schemas/total_inner_matches'
+                    $ref: "#/components/schemas/total_inner_matches"
                   next_page_token:
-                    $ref: '#/components/schemas/next_page_token'
+                    $ref: "#/components/schemas/next_page_token"
               search_pool:
-                $ref: '#/components/schemas/search_pool'
+                $ref: "#/components/schemas/search_pool"
           example:
             search_pool:
               total_count: 13
               total_duration: 8731
               index_id: 639961c9e219c90227c371a2
             data:
-            - score: 85.75
-              start: 238.75
-              end: 259.62109375
-              metadata:
-              - type: visual
-              video_id: 639963a1ce36463e0199c8c7
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/239.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=ded5986fa30922e264a1e5fd64d1d0e216778d204645b2fdfb2cea765d297d5c
-              modules:
-              - type: visual
+              - score: 85.75
+                start: 238.75
+                end: 259.62109375
+                metadata:
+                  - type: visual
+                video_id: 639963a1ce36463e0199c8c7
                 confidence: high
-            - score: 85.7
-              start: 392.58125
-              end: 410.5
-              metadata:
-              - type: visual
-              video_id: 639963a1ce36463e0199c8c7
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/393.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=bd143ac27f13e7024191ae793b5ab8a1decde47d889d157e84d7be11083a64d3
-              modules:
-              - type: visual
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/239.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=ded5986fa30922e264a1e5fd64d1d0e216778d204645b2fdfb2cea765d297d5c
+                modules:
+                  - type: visual
+                    confidence: high
+              - score: 85.7
+                start: 392.58125
+                end: 410.5
+                metadata:
+                  - type: visual
+                video_id: 639963a1ce36463e0199c8c7
                 confidence: high
-            - score: 85.65
-              start: 50.21875
-              end: 64.34375
-              metadata:
-              - type: visual
-              video_id: 639963a1ce36463e0199c8c7
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/51.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=2cff1948607cf211a88a90dfbbe01963bab9e71a8f3e20ab8893031cc986634e
-              modules:
-              - type: visual
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/393.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=bd143ac27f13e7024191ae793b5ab8a1decde47d889d157e84d7be11083a64d3
+                modules:
+                  - type: visual
+                    confidence: high
+              - score: 85.65
+                start: 50.21875
+                end: 64.34375
+                metadata:
+                  - type: visual
+                video_id: 639963a1ce36463e0199c8c7
                 confidence: high
-            - score: 85.57
-              start: 0
-              end: 10.46875
-              metadata:
-              - type: visual
-              video_id: 6399637ace36463e0199c8c6
-              confidence: high
-              thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/1.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=d1db854a0ed064860dba6bf2b4e2296e058c75b92d66a357b8894ff268756966
-              modules:
-              - type: visual
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/639963a1ce36463e0199c8c7/51.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=2cff1948607cf211a88a90dfbbe01963bab9e71a8f3e20ab8893031cc986634e
+                modules:
+                  - type: visual
+                    confidence: high
+              - score: 85.57
+                start: 0
+                end: 10.46875
+                metadata:
+                  - type: visual
+                video_id: 6399637ace36463e0199c8c6
                 confidence: high
+                thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6399637ace36463e0199c8c6/1.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20221222%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221222T134403Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=d1db854a0ed064860dba6bf2b4e2296e058c75b92d66a357b8894ff268756966
+                modules:
+                  - type: visual
+                    confidence: high
             page_info:
               limit_per_page: 10
               total_results: 195
-              page_expired_at: '2022-12-22T13:44:03Z'
+              page_expired_at: "2022-12-22T13:44:03Z"
               next_page_token: b84a9a99-e1af-4927-9faa-fdde8c555d38-1
 
     retrieveTranscriptionResponse:
@@ -2660,12 +2639,11 @@ components:
             data:
               - end: 8.86
                 start: 4.34
-                value: 'Hello?'
+                value: "Hello?"
               - end: 10.95
                 start: 9.56
-                value: ' Yeah,'
+                value: " Yeah,"
             index_id: 61e165b061c43d6d9b73627b
-
 
     retrieveLogoResponse:
       description: The request has been completed successfully.
@@ -2686,10 +2664,10 @@ components:
                   type: object
                   properties:
                     start:
-                      description: 'The start of the time range, expressed in seconds.'
+                      description: "The start of the time range, expressed in seconds."
                       type: number
                     end:
-                      description: 'The end of the time range, expressed in seconds.'
+                      description: "The end of the time range, expressed in seconds."
                       type: number
                     value:
                       description: |
@@ -2727,10 +2705,10 @@ components:
                   type: object
                   properties:
                     start:
-                      description: 'The start of the time range, expressed in seconds.'
+                      description: "The start of the time range, expressed in seconds."
                       type: number
                     end:
-                      description: 'The end of the time range, expressed in seconds.'
+                      description: "The end of the time range, expressed in seconds."
                       type: number
                     value:
                       description: |
@@ -2765,7 +2743,7 @@ components:
                 description: A string representing the URL of the thumbnail. Note that the URL expires in one hour.
           example:
             thumbnail: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6320748774fed2f3511f2a92/10.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20220914%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220914T075213Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=46b3bac13fb8b022313244780c238cb6bfc53eddcbee3be23a8d2dd22d99543e
-  
+
     getVideoVectorsResponse:
       description: The video vectors in the specified index have successfully been retrieved.
       content:
@@ -2776,25 +2754,25 @@ components:
                 type: array
                 description: An array that contains up to `page_limit` videos.
                 items:
-                  $ref: '#/components/schemas/videoVector'
+                  $ref: "#/components/schemas/videoVector"
               page_info:
                 type: object
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    $ref: '#/components/schemas/limit_per_page_simple'
+                    $ref: "#/components/schemas/limit_per_page_simple"
                   page:
-                    $ref: '#/components/schemas/page'
+                    $ref: "#/components/schemas/page"
                   total_page:
-                    $ref: '#/components/schemas/total_page'
+                    $ref: "#/components/schemas/total_page"
                   total_results:
-                    $ref: '#/components/schemas/total_results'
+                    $ref: "#/components/schemas/total_results"
 
             example:
               data:
                 - _id: 62a17bf847f5678267ec10cc
-                  created_at: '2022-06-09T04:50:00.879Z'
-                  estimated_time: '2022-06-09T04:55:53.746Z'
+                  created_at: "2022-06-09T04:50:00.879Z"
+                  estimated_time: "2022-06-09T04:55:53.746Z"
                   index_id: 62a0906d47f5678267ec10a6
                   metadata:
                     duration: 531.998133
@@ -2802,10 +2780,10 @@ components:
                     height: 400
                     width: 854
                   status: ready
-                  updated_at: '2022-06-09T04:55:57.256Z'
+                  updated_at: "2022-06-09T04:55:57.256Z"
                 - _id: 62a17bce47f5678267ec10c6
-                  created_at: '2022-06-09T04:49:20.001Z'
-                  estimated_time: '2022-06-09T04:53:59.772Z'
+                  created_at: "2022-06-09T04:49:20.001Z"
+                  estimated_time: "2022-06-09T04:53:59.772Z"
                   index_id: 62a0906d47f5678267ec10a6
                   metadata:
                     duration: 741.875
@@ -2813,7 +2791,7 @@ components:
                     height: 480
                     width: 854
                   status: ready
-                  updated_at: '2022-06-09T04:54:10.345Z'
+                  updated_at: "2022-06-09T04:54:10.345Z"
               page_info:
                 limit_per_page: 10
                 page: 1
@@ -2826,13 +2804,13 @@ components:
         application/json:
           schema:
             properties:
-              _id: 
+              _id:
                 type: string
                 description: The unique identifier of the video.
               created_at:
                 type: string
                 description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was created.
-              updated_at: 
+              updated_at:
                 type: string
                 description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the corresponding video indexing task was last updated. The platform updates this field every time the corresponding video indexing task transitions to a different state.
               indexed_at:
@@ -2888,7 +2866,6 @@ components:
                 status: COMPLETE
                 updated_at: 2024-01-16T07:59:40.879Z
 
-
     getIndexResponse:
       description: The specified index has successfully been retrieved.
       content:
@@ -2935,7 +2912,7 @@ components:
                       type: array
                       description: |
                         An array of strings that contains the engines options enabled for this engine.
-      
+
                         **NOTES**:
                         - The engine options cannot be changed once the index has been created.
                         - The types of searches you can perform on this index are a subset of the engine options.
@@ -2951,9 +2928,9 @@ components:
           example:
             _id: 62d9bafa90077fc60af827a0
             index_name: myIndex
-            created_at: '2024-01-09T11:11:20.463Z'
-            updated_at: '2024-01-09T11:17:15.296Z'
-            expires_at: '2024-04-08T11:11:20.463Z'
+            created_at: "2024-01-09T11:11:20.463Z"
+            updated_at: "2024-01-09T11:17:15.296Z"
+            expires_at: "2024-04-08T11:11:20.463Z"
             video_count: 12
             total_duration: 8716.8969
             engines:
@@ -2970,7 +2947,6 @@ components:
                   - visual
                   - conversation
 
-
     getVideoIndexingTasksResponse:
       description: The video indexing tasks have successfully been retrieved.
       content:
@@ -2981,25 +2957,25 @@ components:
                 type: array
                 description: An array that contains up to `page_limit` tasks.
                 items:
-                  $ref: '#/components/schemas/videoIndexingTask'
+                  $ref: "#/components/schemas/videoIndexingTask"
               page_info:
                 description: |
                   An object that provides information about pagination.
                 type: object
                 properties:
                   limit_per_page:
-                    $ref: '#/components/schemas/limit_per_page_simple'
+                    $ref: "#/components/schemas/limit_per_page_simple"
                   page:
-                    $ref: '#/components/schemas/page'
+                    $ref: "#/components/schemas/page"
                   total_page:
-                    $ref: '#/components/schemas/total_page'
+                    $ref: "#/components/schemas/total_page"
                   total_results:
-                    $ref: '#/components/schemas/total_results'
+                    $ref: "#/components/schemas/total_results"
           example:
             data:
               - _id: 62a17bf847f5678267ec10cc
-                created_at: '2022-06-09T04:50:00.879Z'
-                estimated_time: '2022-06-09T04:55:53.746Z'
+                created_at: "2022-06-09T04:50:00.879Z"
+                estimated_time: "2022-06-09T04:55:53.746Z"
                 index_id: 62a0906d47f5678267ec10a6
                 metadata:
                   duration: 531.998133
@@ -3007,10 +2983,10 @@ components:
                   height: 400
                   width: 854
                 status: ready
-                updated_at: '2022-06-09T04:55:57.256Z'
+                updated_at: "2022-06-09T04:55:57.256Z"
               - _id: 62a17bce47f5678267ec10c6
-                created_at: '2022-06-09T04:49:20.001Z'
-                estimated_time: '2022-06-09T04:53:59.772Z'
+                created_at: "2022-06-09T04:49:20.001Z"
+                estimated_time: "2022-06-09T04:53:59.772Z"
                 index_id: 62a0906d47f5678267ec10a6
                 metadata:
                   duration: 741.875
@@ -3018,7 +2994,7 @@ components:
                   height: 480
                   width: 854
                 status: ready
-                updated_at: '2022-06-09T04:54:10.345Z'
+                updated_at: "2022-06-09T04:54:10.345Z"
             page_info:
               limit_per_page: 10
               page: 1
@@ -3043,7 +3019,7 @@ components:
                 description: A value indicating the number of video indexing tasks for which the status is `validating`.
               pending:
                 type: integer
-                description:  A value indicating the number of video indexing tasks for which the status is `pending`.
+                description: A value indicating the number of video indexing tasks for which the status is `pending`.
               failed:
                 type: integer
                 description: A value indicating the number of video indexing tasks for which the status is `failed`.
@@ -3051,14 +3027,13 @@ components:
                 type: integer
                 description: A value indicating the total number of video indexing tasks in the specified index.
           example:
-              index_id: 635be12062c8def3b96b2616
-              ready: 7
-              validating: 2
-              pending: 0
-              indexing: 1
-              failed: 0
-              total_result: 10
-
+            index_id: 635be12062c8def3b96b2616
+            ready: 7
+            validating: 2
+            pending: 0
+            indexing: 1
+            failed: 0
+            total_result: 10
 
     getVideoIndexingTaskResponse:
       description: The specified video indexing task has successfully been retrieved.
@@ -3149,7 +3124,6 @@ components:
               status: COMPLETE
               updated_at: 2024-01-16T07:59:40.879Z
 
-
     getIndexesResponse:
       description: The indexes have successfully been retrieved.
       content:
@@ -3160,26 +3134,26 @@ components:
                 type: array
                 description: An array that contains up to `page_limit` indexes.
                 items:
-                  $ref: '#/components/schemas/index'
+                  $ref: "#/components/schemas/index"
               page_info:
                 type: object
                 description: An object that provides information about pagination.
                 properties:
                   limit_per_page:
-                    $ref: '#/components/schemas/limit_per_page_simple'
+                    $ref: "#/components/schemas/limit_per_page_simple"
                   page:
-                    $ref: '#/components/schemas/page'
+                    $ref: "#/components/schemas/page"
                   total_page:
-                    $ref: '#/components/schemas/total_page'
+                    $ref: "#/components/schemas/total_page"
                   total_results:
-                    $ref: '#/components/schemas/total_results'
+                    $ref: "#/components/schemas/total_results"
             example:
               data:
                 - _id: 62d85fe7340fa665f1fda5dd
                   index_name: index-01
-                  created_at: '2024-01-09T11:11:20.463Z'
-                  updated_at: '2024-01-09T11:17:15.296Z'
-                  expires_at: '2024-04-08T11:11:20.463Z'
+                  created_at: "2024-01-09T11:11:20.463Z"
+                  updated_at: "2024-01-09T11:17:15.296Z"
+                  expires_at: "2024-04-08T11:11:20.463Z"
                   video_count: 2
                   total_duration: 1363.76
                   engines:
@@ -3197,9 +3171,9 @@ components:
                         - conversation
                 - _id: 62d858ee340fa665f1fda5d8
                   index_name: index-02
-                  created_at: '2024-01-09T11:11:20.463Z'
-                  updated_at: '2024-01-09T11:17:15.296Z'
-                  expires_at: '2024-04-08T11:11:20.463Z'
+                  created_at: "2024-01-09T11:11:20.463Z"
+                  updated_at: "2024-01-09T11:17:15.296Z"
+                  expires_at: "2024-04-08T11:11:20.463Z"
                   video_count: 1
                   total_duration: 579.12
                   engines:
@@ -3234,7 +3208,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/engine'
+            $ref: "#/components/schemas/engine"
     getEnginesResponse:
       description: The engines have successfully been retrieved.
       content:
@@ -3245,40 +3219,40 @@ components:
                 type: array
                 description: An array that contains the `engine` objects.
                 items:
-                  $ref: '#/components/schemas/engine'
+                  $ref: "#/components/schemas/engine"
             example:
-                - _id: marengo2.6
-                  allowed_engine_options:
-                    - visual
-                    - text_in_video
-                    - conversation
-                    - logo
-                  author: twelve_labs
-                  created_at: '2022-07-24 09:30:52.683 +0000 UTC'
-                  finetune: false
-                  ready: true
-                  updated_at: '2022-07-24 09:30:52.683 +0000 UTC'
-                - _id: marengo2
-                  allowed_index_options:
-                    - visual
-                    - text_in_video
-                    - conversation
-                    - logo
-                  author: twelve_labs
-                  created_at: '2022-07-24 09:30:52.686 +0000 UTC'
-                  finetune: false
-                  ready: true
-                  updated_at: '2022-07-24 09:30:52.686 +0000 UTC'
-                - _id: pegasus1.1
-                  allowed_engine_options:
-                    - visual
-                    - conversation
-                  author: twelve_labs
-                  created_at: '2023-04-12 11:49:26.663 +0000 UTC'
-                  finetune: false
-                  ready: true
-                  updated_at: '2023-04-12 11:49:26.663 +0000 UTC'
-                
+              - _id: marengo2.6
+                allowed_engine_options:
+                  - visual
+                  - text_in_video
+                  - conversation
+                  - logo
+                author: twelve_labs
+                created_at: "2022-07-24 09:30:52.683 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2022-07-24 09:30:52.683 +0000 UTC"
+              - _id: marengo2
+                allowed_index_options:
+                  - visual
+                  - text_in_video
+                  - conversation
+                  - logo
+                author: twelve_labs
+                created_at: "2022-07-24 09:30:52.686 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2022-07-24 09:30:52.686 +0000 UTC"
+              - _id: pegasus1.1
+                allowed_engine_options:
+                  - visual
+                  - conversation
+                author: twelve_labs
+                created_at: "2023-04-12 11:49:26.663 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2023-04-12 11:49:26.663 +0000 UTC"
+
     createIndexResponse:
       description: An index has successfully been created
       content:
@@ -3290,7 +3264,7 @@ components:
                 description: Represents the unique identifier of the `index` object.
             example:
               _id: 62d85fe7340fa665f1fda5dd
-    
+
     searchResultsError:
       description: The request has failed.
       content:
@@ -3320,19 +3294,17 @@ components:
                 type: string
                 description: |
                   A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
-              message: 
+              message:
                 type: string
                 description: |
                   A human-readable string describing the error, intended to be suitable for display in a user interface.
-              docs_url: 
+              docs_url:
                 type: string
                 description: |
                   The URL of the relevant documentation page.
           example:
             code: insufficient_funds
-            message: Not enough free credit. Please register a payment method or contact sales@twelvelabs.io. 
-
-
+            message: Not enough free credit. Please register a payment method or contact sales@twelvelabs.io.
 
     classify10hours:
       description: The request has failed.
@@ -3345,11 +3317,11 @@ components:
                 type: string
                 description: |
                   A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
-              message: 
+              message:
                 type: string
                 description: |
                   A human-readable string describing the error, intended to be suitable for display in a user interface.
-              docs_url: 
+              docs_url:
                 type: string
                 description: |
                   The URL of the relevant documentation page.
@@ -3368,11 +3340,11 @@ components:
                 type: string
                 description: |
                   A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
-              message: 
+              message:
                 type: string
                 description: |
                   A human-readable string describing the error, intended to be suitable for display in a user interface.
-              docs_url: 
+              docs_url:
                 type: string
                 description: |
                   The URL of the relevant documentation page.
@@ -3390,7 +3362,6 @@ components:
               message:
                 type: string
                 description: A human-readable string describing the error.
-            
 
     createSyncEmbeddingResponse:
       description: |
@@ -3406,7 +3377,7 @@ components:
                 type: string
               text_embedding:
                 description: |
-                  An object that contains a field named `float` which is an array of floating point numbers representing the embedding. 
+                  An object that contains a field named `float` which is an array of floating point numbers representing the embedding.
                 type: object
                 properties:
                   float:
@@ -3441,7 +3412,7 @@ components:
               status:
                 type: string
                 description: |
-                  A string indicating the status of the video indexing task. 
+                  A string indicating the status of the video indexing task.
               video_embeddings:
                 type: array
                 description: |
@@ -3469,7 +3440,7 @@ components:
                         - `clip`: Indicates that this embedding is for a specific segment.
                     embedding:
                       description: |
-                        An object that contains a field named `float` which represents the embedding. 
+                        An object that contains a field named `float` which represents the embedding.
                       type: object
                       properties:
                         float:
@@ -3491,7 +3462,7 @@ components:
                   float:
                     - -0.060086973
                     - 0.016479108
-            
+
               - start_offset_sec: 6
                 end_offset_sec: 12
                 embedding_scope: "clip"
@@ -3499,7 +3470,7 @@ components:
                   float:
                     - -0.056660935
                     - 0.012404642
-            
+
               - start_offset_sec: 12
                 end_offset_sec: 18
                 embedding_scope: "clip"
@@ -3529,7 +3500,7 @@ components:
               status:
                 type: string
                 description: |
-                  A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`. 
+                  A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`.
               engine_name:
                 type: string
                 description: |
@@ -3539,7 +3510,6 @@ components:
             engine_name: Marengo-retrieval-2.6
             status: processing
 
-  
     createVideoEmbeddingTaskResponse:
       description: |
         A video embedding task has successfully been created.
@@ -3555,9 +3525,6 @@ components:
                   - Retrieve the embedding by invoking the  `GET` method of the `/embed/tasks/{task_id}` endpoint.
           example:
             _id: 66419a20c70bb578439bd8f4
-
-
-
 
     summarizeResponse:
       description: |
@@ -3585,8 +3552,8 @@ components:
           example: 1718777276
       content:
         application/json:
-          schema: 
-            oneOf: 
+          schema:
+            oneOf:
               - type: object
                 description: |
                   When the value of the `type` parameter is set to `summary`, the response is as follows:
@@ -3617,7 +3584,7 @@ components:
                     description: |
                       An array that contains details about the detected chapters and their content.
                     type: array
-                    items: 
+                    items:
                       type: object
                       description: |
                         An object that contains details about a chapter. Each chapter has a unique number, start time, end time, title, and summary.
@@ -3693,7 +3660,7 @@ components:
                         highlight_summary:
                           type: string
                           description: |
-                              A brief description that captures the essence of this part of the video.
+                            A brief description that captures the essence of this part of the video.
 
                     example:
                       - start: 0
@@ -3707,7 +3674,7 @@ components:
 
     gistResponse:
       description: |
-        The gist has successfully been generated. 
+        The gist has successfully been generated.
       headers:
         X-Ratelimit-Limit:
           schema:
@@ -3811,7 +3778,7 @@ components:
                       type: string
                     classes:
                       type: array
-                      description: An array that contains information about the classes that were detected in your video. 
+                      description: An array that contains information about the classes that were detected in your video.
                       items:
                         type: object
                         properties:
@@ -3828,14 +3795,14 @@ components:
                             description: A number indicating the sum of the lengths of the matching video clips inside a video divided by the total length of the video.
                           clips:
                             type: array
-                            description:  An array containing details information about the video clips that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                            description: An array containing details information about the video clips that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
                             items:
                               type: object
                               properties:
                                 start:
-                                  $ref: '#/components/schemas/start_time'
+                                  $ref: "#/components/schemas/start_time"
                                 end:
-                                  $ref: '#/components/schemas/end_time'
+                                  $ref: "#/components/schemas/end_time"
                                 score:
                                   type: number
                                   description: |
@@ -3847,7 +3814,7 @@ components:
                                   type: string
                                   description: Indicates the prompt that the platform used.
                                 thumbnail_url:
-                                  $ref: '#/components/schemas/thumbnail_url'
+                                  $ref: "#/components/schemas/thumbnail_url"
                           detailed_scores:
                             type: object
                             description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video clip matches your prompts.
@@ -3857,7 +3824,7 @@ components:
                                 format: float
                                 description: |
                                   Represents the maximum score. It is determined by comparing the confidence scores of each clip and selecting the highest one.
-                                
+
                                   **Min**: 0.
                                   **Max**: 100.
                               avg_score:
@@ -3865,7 +3832,7 @@ components:
                                 format: float
                                 description: |
                                   Represents the average score of the matching video clips.
-                                  
+
                                   **Min**: 0.
                                   **Max**: 100.
                               normalized_score:
@@ -3877,60 +3844,59 @@ components:
                                   **Min**: 0
                                   **Max**: 100
               page_info:
-                $ref: '#/components/schemas/classifyPageInfo'
+                $ref: "#/components/schemas/classifyPageInfo"
           example:
             data:
               - video_id: 6435651a9ab33c7198615a80
                 classes:
-                - name: DanceTok
-                  score: 96.77
-                  duration_ratio: 1
-                  clips:
-                    - start: 167
-                      end: 170
-                      score: 9
-                      option: text_in_video
-                      prompt: Dance tutorial
-                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643d1b389ab33c7198616774/168.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230520%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230520T122303Z&X-Amz-Expires=604799&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=1e46088f00cd47d834eab5f2b942ca578a952c74cedbf278227857534d307606
-                    - start: 165.63
-                      end: 172.75
-                      score: 83.4
-                      option: visual
-                      prompt: Dance group
-                      thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643d1b389ab33c7198616774/166.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230520%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230520T122303Z&X-Amz-Expires=604799&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a31bf0b6a88ba972cc0ed3b055e08fd3b1ec8054b0c1274ac425719e3b7afb7e
-                  detailed_scores:
-                    max_score: 86.37
-                    avg_score: 71.61
-                    normalized_score: 100
+                  - name: DanceTok
+                    score: 96.77
+                    duration_ratio: 1
+                    clips:
+                      - start: 167
+                        end: 170
+                        score: 9
+                        option: text_in_video
+                        prompt: Dance tutorial
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643d1b389ab33c7198616774/168.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230520%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230520T122303Z&X-Amz-Expires=604799&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=1e46088f00cd47d834eab5f2b942ca578a952c74cedbf278227857534d307606
+                      - start: 165.63
+                        end: 172.75
+                        score: 83.4
+                        option: visual
+                        prompt: Dance group
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643d1b389ab33c7198616774/166.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230520%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230520T122303Z&X-Amz-Expires=604799&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=a31bf0b6a88ba972cc0ed3b055e08fd3b1ec8054b0c1274ac425719e3b7afb7e
+                    detailed_scores:
+                      max_score: 86.37
+                      avg_score: 71.61
+                      normalized_score: 100
               - video_id: 643564b39ab33c7198615a7f
                 classes:
-                - name: DanceTok
-                  score: 95.46863419938227
-                  duration_ratio: 0.99
-                  clips:
-                  - start: 473.09375
-                    end: 595.09375
-                    score: 84.92
-                    option: visual
-                    prompt: Dance tutorial
-                    thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/474.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=07fd122f6ea7305012ece1c1c46bcfbf0e7997f8e74418ce6a8e7ed030381090
-                  - start: 369.09375
-                    end: 371.09375
-                    score: 56.52
-                    option: visual
-                    prompt: Dance group
-                    thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/370.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0cb1d1ed7a99f4b3bb78d331a8865c9d7d7d9b1a441013517956c7fc61b8c460
-                  detailed_scores:
-                    max_score: 86.37
-                    avg_score: 71.61
-                    normalized_score: 100
-
+                  - name: DanceTok
+                    score: 95.46863419938227
+                    duration_ratio: 0.99
+                    clips:
+                      - start: 473.09375
+                        end: 595.09375
+                        score: 84.92
+                        option: visual
+                        prompt: Dance tutorial
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/474.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=07fd122f6ea7305012ece1c1c46bcfbf0e7997f8e74418ce6a8e7ed030381090
+                      - start: 369.09375
+                        end: 371.09375
+                        score: 56.52
+                        option: visual
+                        prompt: Dance group
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/370.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0cb1d1ed7a99f4b3bb78d331a8865c9d7d7d9b1a441013517956c7fc61b8c460
+                    detailed_scores:
+                      max_score: 86.37
+                      avg_score: 71.61
+                      normalized_score: 100
 
             page_info:
               limit_per_page: 10
               total_results: 6
-              page_expired_at: '2023-04-12T12:02:22Z'
-              next_page_token: '846670'
+              page_expired_at: "2023-04-12T12:02:22Z"
+              next_page_token: "846670"
 
     classifyBulkResponseNew:
       description: The videos in the specified index have successfully been classified.
@@ -3962,7 +3928,7 @@ components:
             properties:
               data:
                 type: array
-                description: An array that contains the response. 
+                description: An array that contains the response.
                 items:
                   type: object
                   properties:
@@ -3971,7 +3937,7 @@ components:
                       type: string
                     classes:
                       type: array
-                      description: An array that contains information about the classes that were detected in your videos. 
+                      description: An array that contains information about the classes that were detected in your videos.
                       items:
                         type: object
                         properties:
@@ -3988,14 +3954,14 @@ components:
                             description: A number indicating the sum of the lengths of the matching video clips inside a video divided by the total length of the video.
                           clips:
                             type: array
-                            description:  An array containing details information about the video clips that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                            description: An array containing details information about the video clips that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
                             items:
                               type: object
                               properties:
                                 start:
-                                  $ref: '#/components/schemas/start_time'
+                                  $ref: "#/components/schemas/start_time"
                                 end:
-                                  $ref: '#/components/schemas/end_time'
+                                  $ref: "#/components/schemas/end_time"
                                 score:
                                   type: number
                                   description: |
@@ -4007,7 +3973,7 @@ components:
                                   type: string
                                   description: Indicates the prompt that the platform used.
                                 thumbnail_url:
-                                  $ref: '#/components/schemas/thumbnail_url'
+                                  $ref: "#/components/schemas/thumbnail_url"
                           detailed_scores:
                             type: object
                             description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video clip matches your prompts.
@@ -4017,7 +3983,7 @@ components:
                                 format: float
                                 description: |
                                   Represents the maximum score. It is determined by comparing the confidence scores of each clip and selecting the highest one.
-                                
+
                                   **Min**: 0.
                                   **Max**: 100.
                               avg_score:
@@ -4025,7 +3991,7 @@ components:
                                 format: float
                                 description: |
                                   Represents the average score of the matching video clips.
-                                  
+
                                   **Min**: 0.
                                   **Max**: 100.
                               duration_weighted_score:
@@ -4046,61 +4012,59 @@ components:
                                   **Min**: 0
                                   **Max**: 100
               page_info:
-                $ref: '#/components/schemas/classifyPageInfo'
+                $ref: "#/components/schemas/classifyPageInfo"
           example:
             data:
-            - video_id: 6435651a9ab33c7198615a80
-              classes:
-              - name: DanceTok
-                score: 96.77333333333335
-                duration_ratio: 1
-                clips:
-                - start: 711.8125
-                  end: 774.15625
-                  score: 86.37
-                  option: visual
-                  prompt: Dance competition
-                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/712.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=94defeefcebaa10e7b60390b8a564a582ffa273535b1f74b97ae8324a3775afa
-                - start: 207.425
-                  end: 214.46875
-                  score: 46.77
-                  option: visual
-                  prompt: Dance tutorial
-                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/208.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=aeaa1f38ee2fff2502ccc1719e96417eadc6a2ac915318b7f0818c544155663b
-                detailed_scores:
-                  max_score: 86.37
-                  avg_score: 71.61
-                  normalized_score: 100
-            - video_id: 643564b39ab33c7198615a7f
-              classes:
-              - name: DanceTok
-                score: 95.46
-                duration_ratio: 0.99
-                clips:
-                - start: 473.09375
-                  end: 595.09375
-                  score: 84.92
-                  option: visual
-                  prompt: Dance tutorial
-                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/474.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=07fd122f6ea7305012ece1c1c46bcfbf0e7997f8e74418ce6a8e7ed030381090
-                - start: 369.09375
-                  end: 371.09375
-                  score: 56.52
-                  option: visual
-                  prompt: Dance group
-                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/370.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0cb1d1ed7a99f4b3bb78d331a8865c9d7d7d9b1a441013517956c7fc61b8c460
-                detailed_scores:
-                  max_score: 86.37
-                  avg_score: 71.61
-                  normalized_score: 100
+              - video_id: 6435651a9ab33c7198615a80
+                classes:
+                  - name: DanceTok
+                    score: 96.77333333333335
+                    duration_ratio: 1
+                    clips:
+                      - start: 711.8125
+                        end: 774.15625
+                        score: 86.37
+                        option: visual
+                        prompt: Dance competition
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/712.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=94defeefcebaa10e7b60390b8a564a582ffa273535b1f74b97ae8324a3775afa
+                      - start: 207.425
+                        end: 214.46875
+                        score: 46.77
+                        option: visual
+                        prompt: Dance tutorial
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/208.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=aeaa1f38ee2fff2502ccc1719e96417eadc6a2ac915318b7f0818c544155663b
+                    detailed_scores:
+                      max_score: 86.37
+                      avg_score: 71.61
+                      normalized_score: 100
+              - video_id: 643564b39ab33c7198615a7f
+                classes:
+                  - name: DanceTok
+                    score: 95.46
+                    duration_ratio: 0.99
+                    clips:
+                      - start: 473.09375
+                        end: 595.09375
+                        score: 84.92
+                        option: visual
+                        prompt: Dance tutorial
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/474.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=07fd122f6ea7305012ece1c1c46bcfbf0e7997f8e74418ce6a8e7ed030381090
+                      - start: 369.09375
+                        end: 371.09375
+                        score: 56.52
+                        option: visual
+                        prompt: Dance group
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/370.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0cb1d1ed7a99f4b3bb78d331a8865c9d7d7d9b1a441013517956c7fc61b8c460
+                    detailed_scores:
+                      max_score: 86.37
+                      avg_score: 71.61
+                      normalized_score: 100
             page_info:
               limit_per_page: 10
               total_results: 6
-              page_expired_at: '2023-04-12T12:02:22Z'
-              next_page_token: ''
-              prev_page_token: '' 
-
-
+              page_expired_at: "2023-04-12T12:02:22Z"
+              next_page_token: ""
+              prev_page_token: ""
 
     classifyBulkResponseNewSpecificPage:
       description: The videos in the specified index have successfully been classified.
@@ -4111,7 +4075,7 @@ components:
             properties:
               data:
                 type: array
-                description: An array that contains the response. 
+                description: An array that contains the response.
                 items:
                   type: object
                   properties:
@@ -4120,7 +4084,7 @@ components:
                       type: string
                     classes:
                       type: array
-                      description: An array that contains information about the classes that were detected in your videos. 
+                      description: An array that contains information about the classes that were detected in your videos.
                       items:
                         type: object
                         properties:
@@ -4137,14 +4101,14 @@ components:
                             description: A number indicating the sum of the lengths of the matching video clips inside a video divided by the total length of the video.
                           clips:
                             type: array
-                            description:  An array containing details information about the video clips that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
+                            description: An array containing details information about the video clips that match the prompts you've specified. The platform returns this array when you set the value of the `include_clips` parameter to `true` in the body of the request.
                             items:
                               type: object
                               properties:
                                 start:
-                                  $ref: '#/components/schemas/start_time'
+                                  $ref: "#/components/schemas/start_time"
                                 end:
-                                  $ref: '#/components/schemas/end_time'
+                                  $ref: "#/components/schemas/end_time"
                                 score:
                                   type: number
                                   description: |
@@ -4156,7 +4120,7 @@ components:
                                   type: string
                                   description: Indicates the prompt that the platform used.
                                 thumbnail_url:
-                                  $ref: '#/components/schemas/thumbnail_url'
+                                  $ref: "#/components/schemas/thumbnail_url"
                           detailed_scores:
                             type: object
                             description: When you set the value of the `show_detailed_score` parameter to `true` in the body of the request, the platform returns detailed information that helps you determine the likelihood that this video clip matches your prompts.
@@ -4166,7 +4130,7 @@ components:
                                 format: float
                                 description: |
                                   Represents the maximum score. It is determined by comparing the confidence scores of each clip and selecting the highest one.
-                                
+
                                   **Min**: 0.
                                   **Max**: 100.
                               avg_score:
@@ -4174,7 +4138,7 @@ components:
                                 format: float
                                 description: |
                                   Represents the average score of the matching video clips.
-                                  
+
                                   **Min**: 0.
                                   **Max**: 100.
                               duration_weighted_score:
@@ -4195,65 +4159,63 @@ components:
                                   **Min**: 0
                                   **Max**: 100
               page_info:
-                $ref: '#/components/schemas/classifyPageInfo'
+                $ref: "#/components/schemas/classifyPageInfo"
           example:
             data:
-            - video_id: 6435651a9ab33c7198615a80
-              classes:
-              - name: DanceTok
-                score: 96.77333333333335
-                duration_ratio: 1
-                clips:
-                - start: 711.8125
-                  end: 774.15625
-                  score: 86.37
-                  option: visual
-                  prompt: Dance competition
-                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/712.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=94defeefcebaa10e7b60390b8a564a582ffa273535b1f74b97ae8324a3775afa
-                - start: 207.425
-                  end: 214.46875
-                  score: 46.77
-                  option: visual
-                  prompt: Dance tutorial
-                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/208.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=aeaa1f38ee2fff2502ccc1719e96417eadc6a2ac915318b7f0818c544155663b
-                detailed_scores:
-                  max_score: 86.37
-                  avg_score: 71.61
-                  normalized_score: 100
-            - video_id: 643564b39ab33c7198615a7f
-              classes:
-              - name: DanceTok
-                score: 95.46
-                duration_ratio: 0.99
-                clips:
-                - start: 473.09375
-                  end: 595.09375
-                  score: 84.92
-                  option: visual
-                  prompt: Dance tutorial
-                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/474.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=07fd122f6ea7305012ece1c1c46bcfbf0e7997f8e74418ce6a8e7ed030381090
-                - start: 369.09375
-                  end: 371.09375
-                  score: 56.52
-                  option: visual
-                  prompt: Dance group
-                  thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/370.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0cb1d1ed7a99f4b3bb78d331a8865c9d7d7d9b1a441013517956c7fc61b8c460
-                detailed_scores:
-                  max_score: 86.37
-                  avg_score: 71.61
-                  normalized_score: 100
+              - video_id: 6435651a9ab33c7198615a80
+                classes:
+                  - name: DanceTok
+                    score: 96.77333333333335
+                    duration_ratio: 1
+                    clips:
+                      - start: 711.8125
+                        end: 774.15625
+                        score: 86.37
+                        option: visual
+                        prompt: Dance competition
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/712.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=94defeefcebaa10e7b60390b8a564a582ffa273535b1f74b97ae8324a3775afa
+                      - start: 207.425
+                        end: 214.46875
+                        score: 46.77
+                        option: visual
+                        prompt: Dance tutorial
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/6435651a9ab33c7198615a80/208.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=aeaa1f38ee2fff2502ccc1719e96417eadc6a2ac915318b7f0818c544155663b
+                    detailed_scores:
+                      max_score: 86.37
+                      avg_score: 71.61
+                      normalized_score: 100
+              - video_id: 643564b39ab33c7198615a7f
+                classes:
+                  - name: DanceTok
+                    score: 95.46
+                    duration_ratio: 0.99
+                    clips:
+                      - start: 473.09375
+                        end: 595.09375
+                        score: 84.92
+                        option: visual
+                        prompt: Dance tutorial
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/474.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=07fd122f6ea7305012ece1c1c46bcfbf0e7997f8e74418ce6a8e7ed030381090
+                      - start: 369.09375
+                        end: 371.09375
+                        score: 56.52
+                        option: visual
+                        prompt: Dance group
+                        thumbnail_url: https://project-one-thumbnail.s3.us-west-2.amazonaws.com/643564b39ab33c7198615a7f/370.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYRWJPOVHXE5SJ77T%2F20230412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230412T115721Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=0cb1d1ed7a99f4b3bb78d331a8865c9d7d7d9b1a441013517956c7fc61b8c460
+                    detailed_scores:
+                      max_score: 86.37
+                      avg_score: 71.61
+                      normalized_score: 100
             page_info:
               limit_per_page: 10
               total_results: 6
-              page_expired_at: '2023-04-12T12:02:22Z'
-              next_page_token: '490d1751-ee0c-4b19-b9af-bb7498ecd348-1'
-              prev_page_token: '490d1751-ee0c-4b19-b9af-bb7498ecd348-0'
+              page_expired_at: "2023-04-12T12:02:22Z"
+              next_page_token: "490d1751-ee0c-4b19-b9af-bb7498ecd348-1"
+              prev_page_token: "490d1751-ee0c-4b19-b9af-bb7498ecd348-0"
 
-      
-      
-##########################
-###   Request Bodies   ###
-##########################
+  ##########################
+  ###   Request Bodies   ###
+  ##########################
 
   requestBodies:
     createVideoEmbeddingTaskRequest:
@@ -4295,7 +4257,7 @@ components:
                 format: float
                 description: |
                   The end offset in seconds from the beginning of the video where processing should stop.
-                  
+
                   Ensure the following when you specify this parameter:
                   - The end offset does not exceed the total duration of the video file.
                   - The end offset is greater than the start offset.
@@ -4334,7 +4296,7 @@ components:
       required: true
       content:
         multipart/form-data:
-          schema: 
+          schema:
             type: object
             required:
               - engine_name
@@ -4346,130 +4308,45 @@ components:
                     - `Marengo-retrieval-2.6`
                 example: Marengo-retrieval-2.6
                 default: Marengo-retrieval-2.6
-              Text embedding:
-                title: Text embedding
-                properties:
-                  text:
-                    type: string
-                    description: |
-                      The text for which you want to create an embedding.
 
-                      **NOTE**:
-                      Text embeddings are limited to 77 tokens. If the text exceeds this limit, the platform truncates it according to the value of the `text_truncate` parameter described below.
+              text:
+                type: string
+                description: |
+                  The text for which you want to create an embedding.
 
-                      **Example**: "Man with a dog crossing the street"
-                    example: Man with a dog crossing the street 
-              Image embedding:
-                title: Image embedding
-                oneOf:
-                  - type: object
-                    title: Image URL
-                    properties:
-                      image_url:
-                        type: string
-                        format: uri
-                        description: |
-                          The publicly accessible URL of the image for which you wish to create an ambedding.
-                  - type: object
-                    title: Image file
-                    properties:
-                      image_file:
-                        type: string
-                        format: binary
-                        description: |
-                          The image file for which you wish to create an ambedding.            
+                  **NOTE**:
+                  Text embeddings are limited to 77 tokens. If the text exceeds this limit, the platform truncates it according to the value of the `text_truncate` parameter described below.
 
-            # oneOf:
-            #   - type: object
-            #     title: Text embedding
-            #     properties:
-            #       text:
-            #         type: string
-            #     required: [text]
-            #   - type: object
-            #     title: Image embedding
-            #     properties:
-            #       image_file:
-            #         type: string
-            #         format: binary
-            #         description: |
-            #       image_url:
-            #         type: string
-            #         format: uri
-            #   - type: object
-            #     title: Audio embedding
-            #     properties:
-            #       audio_file:
-            #         type: string
-            #         format: binary
-            #       video_url:
-            #         type: string
-            #         format: uri
+                  **Example**: "Man with a dog crossing the street"
+                example: Man with dog crossing the steet
+              text_truncate:
+                type: string
+                description: |
+                  Specifies how the platform truncates text that exceeds 77 tokens to fit the maximum length allowed for an embedding.
+                  This parameter can take one of the following values:
+                  - `start`: The platform will truncate the start of the provided text.
+                  - `end`: The platform will truncate the end of the provided text.
+                  - `none`: The platform will return an error if the text is longer than the maximum token limit.
+                  **Default**: `end`
+                default: end
+                example: end
+              image_url:
+                type: string
+                format: uri
+                description: |
+                  The publicly accessible URL of the image for which you wish to create an embedding.
 
-            # required:
-            #   - engine_name
-            # properties:
-            #   engine_name:
-            #     type: string
-            #     description: |
-            #       The name of the engine you want to use. The following engines are available:
-            #         - `Marengo-retrieval-2.6`
-            #     example: Marengo-retrieval-2.6
-            #     default: Marengo-retrieval-2.6
-            #   text:
-            #     type: string
-            #     description: |
-            #       The text for which you want to create an embedding.
-
-            #       **NOTE**:
-            #       Text embeddings are limited to 77 tokens. If the text exceeds this limit, the platform truncates it according to the value of the `text_truncate` parameter described below.
-
-            #       **Example**: "Man with a dog crossing the street"
-            #     example: Man with a dog crossing the street 
-              # image_file:
-              #   type: string
-              #   format: binary
-              #   description: The image for which you wish to create an embedding.
-              # image_url:
-              #   type: string
-              #   format: uri
-              #   description: The publicly accessible URL of the image for which you wish to create an embedding.
-              # audio_file:
-              #   type: string
-              #   format: binary
-              #   description: The auddio file for which you wish to create an embedding.
-              # audio_url:
-              #   type: string
-              #   format: uri
-              #   description: The publicly accessible URL of the audio file for which you wish to create an embedding.
-              # text_truncate:
-              #   type: string
-              #   description: |
-              #     Specifies how the platform truncates text that exceeds 77 tokens to fit the maximum length allowed for an embedding.
-              #     This parameter can take one of the following values:
-              #       - `start`: The platform will truncate the start of the provided text.
-              #       - `end`: The platform will truncate the end of the provided text.
-              #       - `none`: The platform will return an error if the text is longer than the maximum token limit.
-
-              #       **Default**: `end`
-              #   default: end
-              #   example: end
-            # oneOf:
-            #   - required: [text]
-            #   - oneOf:
-            #       - required: [image_file]
-            #       - required: [image_url]
-            #   - oneOf:
-            #       - required: [audio_file]
-            #       - required: [audio_url]
-                  
-
+              image_file:
+                type: string
+                format: binary
+                description: |
+                  The image file for which you wish to create an embedding.
 
     generateTextRepresentationRequest:
       required: true
       content:
         application/json:
-          schema: 
+          schema:
             type: object
             required:
               - video_id
@@ -4487,7 +4364,7 @@ components:
                     - Even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
                     - Your prompts can be instructive or descriptive, or you can also phrase them as questions. 
                     - The maximum length of a prompt is 1500 characters.
-                
+
                   **Examples**:
                     
                     - Based on this video, I want to generate five keywords for SEO (Search Engine Optimization).
@@ -4513,7 +4390,6 @@ components:
                   **Default:** `false`
                 default: false
                 example: false
-              
 
     summarizeRequest:
       content:
@@ -4537,15 +4413,15 @@ components:
                     - `highlight`: A chronologically ordered list of the most important events within a video. Unlike chapters, highlights only capture the key moments, providing a snapshot of the video's main topics. For each highlight, the platform returns its starting and end times, measured in seconds from the beginning of the video, a title, and a brief description that captures the essence of this part of the video.
 
               prompt:
-                  type: string
-                  description: |
-                    Use this field to provide context for the summarization task, such as the target audience, style, tone of voice, and purpose.
+                type: string
+                description: |
+                  Use this field to provide context for the summarization task, such as the target audience, style, tone of voice, and purpose.
 
-                    **NOTES**:
-                      - Your prompts can be instructive or descriptive, or you can also phrase them as questions.
-                      - The maximum length of a prompt is 1500 characters.
+                  **NOTES**:
+                    - Your prompts can be instructive or descriptive, or you can also phrase them as questions.
+                    - The maximum length of a prompt is 1500 characters.
 
-                    **Example**: Generate a summary of this video for a social media post, up to two sentences.
+                  **Example**: Generate a summary of this video for a social media post, up to two sentences.
               temperature:
                 type: number
                 format: float
@@ -4565,7 +4441,7 @@ components:
         aplication/json:
           schema:
             type: object
-            required: 
+            required:
               - video_id
               - types
             properties:
@@ -4598,94 +4474,92 @@ components:
           schema:
             type: object
             required:
-                - video_ids
-                - classes
-                - options
-                - conversation_option
+              - video_ids
+              - classes
+              - options
+              - conversation_option
             properties:
-                video_ids:
-                  type: array
-                  description: |
-                    An array containing the unique identifiers of the videos that you want to classify.
-                  items:
-                    type: string
-                    minItems: 1
-                page_limit:
-                  type: integer
-                  description: |
-                    The number of items to return on each page.
+              video_ids:
+                type: array
+                description: |
+                  An array containing the unique identifiers of the videos that you want to classify.
+                items:
+                  type: string
+                  minItems: 1
+              page_limit:
+                type: integer
+                description: |
+                  The number of items to return on each page.
 
-                    **Default:** 10
-                    **Min:** 1
-                    **Max:** 50
-                  default: 10
-                  example: 10
-                include_clips:
-                  $ref: '#/components/schemas/include_clips'
-                threshold: 
-                  description: |
-                    An object that allows you to filter the results.
-                  type: object
-                  properties:
-                    min_video_score:
-                      description: |
-                        The video score represents the confidence level that a video matches the specified class. Use this field to specify the minimum value for the video score. The platform returns only the results for which the value of the `classes.score` field in the response is greater than or equal to `min_video_score`.
-                        
-                        **Default:** 75
-                        **Min:** 1
-                        **Max:** 100
-                      type: number
-                      default: 75
-                      maximum: 100
-                      minimum: 1
-                      example: 75
-                    
-                    min_clip_score:
-                      description: |
-                        The clip score represents the confidence level that a clip matches the specified class. Use this field to specify the minimum value for the clip score. The platform returns only the results for which the value of the `classes.clips.score` field is greater than or equal to `min_clip_score`.
-                        
-                        **Default:** 30
-                        **Min:** 1
-                        **Max:** 10
-                      type: number
-                      default: 30
-                      maximum: 100
-                      minimum: 1
-                      example: 30
+                  **Default:** 10
+                  **Min:** 1
+                  **Max:** 50
+                default: 10
+                example: 10
+              include_clips:
+                $ref: "#/components/schemas/include_clips"
+              threshold:
+                description: |
+                  An object that allows you to filter the results.
+                type: object
+                properties:
+                  min_video_score:
+                    description: |
+                      The video score represents the confidence level that a video matches the specified class. Use this field to specify the minimum value for the video score. The platform returns only the results for which the value of the `classes.score` field in the response is greater than or equal to `min_video_score`.
 
-                    min_duration_ratio:
-                      description: | 
-                        The duration ratio represents the sum of the lengths of the matching video clips inside a video divided by the total length of the video. Use this field to specify the minimum value for the duration ratio. The platform will return only the results for which the value of the `classes.duration_ratio` field is greater than or equal to `min_duration_ratio`.
-                        
-                        **Default:** 0.5
-                        **Min:** 0.01
-                        **Max:** 1
-                      type: number
-                      format: float
-                      default: 0.5
-                      maximum: 1
-                      minimum: 0.01
-                      example: 0.5
+                      **Default:** 75
+                      **Min:** 1
+                      **Max:** 100
+                    type: number
+                    default: 75
+                    maximum: 100
+                    minimum: 1
+                    example: 75
 
-                show_detailed_score:
-                  type: boolean
-                  default: false
-                  description: |
-                    Set this parameter to `true` to specify that the platform should return a detailed score for each matching video clip. A detailed score contains the following information:
+                  min_clip_score:
+                    description: |
+                      The clip score represents the confidence level that a clip matches the specified class. Use this field to specify the minimum value for the clip score. The platform returns only the results for which the value of the `classes.clips.score` field is greater than or equal to `min_clip_score`.
 
-                    - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching clip and selecting the highest one.
-                    - **Average score**: Represents the average score of the matching video clips.
-                    - **Normalized score**: Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
+                      **Default:** 30
+                      **Min:** 1
+                      **Max:** 10
+                    type: number
+                    default: 30
+                    maximum: 100
+                    minimum: 1
+                    example: 30
 
-                options:
-                  $ref: '#/components/schemas/options_classify'
-                conversation_option:
-                  $ref: '#/components/schemas/conversation_option'
-                classes:
-                  $ref: '#/components/schemas/classes'
+                  min_duration_ratio:
+                    description: |
+                      The duration ratio represents the sum of the lengths of the matching video clips inside a video divided by the total length of the video. Use this field to specify the minimum value for the duration ratio. The platform will return only the results for which the value of the `classes.duration_ratio` field is greater than or equal to `min_duration_ratio`.
 
+                      **Default:** 0.5
+                      **Min:** 0.01
+                      **Max:** 1
+                    type: number
+                    format: float
+                    default: 0.5
+                    maximum: 1
+                    minimum: 0.01
+                    example: 0.5
 
-                    
+              show_detailed_score:
+                type: boolean
+                default: false
+                description: |
+                  Set this parameter to `true` to specify that the platform should return a detailed score for each matching video clip. A detailed score contains the following information:
+
+                  - **Maximum score**: Represents the maximum score. It is determined by comparing the confidence scores of each matching clip and selecting the highest one.
+                  - **Average score**: Represents the average score of the matching video clips.
+                  - **Normalized score**: Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
+
+              options:
+                $ref: "#/components/schemas/options_classify"
+              conversation_option:
+                $ref: "#/components/schemas/conversation_option"
+              classes:
+                $ref: "#/components/schemas/classes"
+
     classifyRequestBulkNew:
       content:
         application/json:
@@ -4710,9 +4584,9 @@ components:
                   **Min:** 1
                   **Max:** 50
               include_clips:
-                $ref: '#/components/schemas/include_clips'
-              threshold: 
-                $ref: '#/components/schemas/thresholdClassifyNew'
+                $ref: "#/components/schemas/include_clips"
+              threshold:
+                $ref: "#/components/schemas/thresholdClassifyNew"
               show_detailed_score:
                 type: boolean
                 default: false
@@ -4725,11 +4599,11 @@ components:
                   - **Normalized score**: Represents the probability distribution of classes in the results, determined using the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank">Softmax function</a>.
 
               options:
-                $ref: '#/components/schemas/options_classify'
+                $ref: "#/components/schemas/options_classify"
               conversation_option:
-                $ref: '#/components/schemas/conversation_option'
+                $ref: "#/components/schemas/conversation_option"
               classes:
-                $ref: '#/components/schemas/classes'
+                $ref: "#/components/schemas/classes"
 
     combinedSearch:
       content:
@@ -4773,8 +4647,8 @@ components:
                   **Default:** `semantic`
                 default: semantic
                 enum:
-                - semantic
-                - exact_match
+                  - semantic
+                  - exact_match
                 type: string
               adjust_confidence_level:
                 type: number
@@ -4790,7 +4664,7 @@ components:
               query:
                 type: object
                 description: |
-                  
+
                   Use the `query` parameter to build combined queries.
 
                   For details about building combined queries, see the [Combined queries](/docs/search-combined-queries) page.
@@ -4818,8 +4692,8 @@ components:
                       If set, overrides the conversation option for this query.
                     default: semantic
                     enum:
-                    - semantic
-                    - exact_match
+                      - semantic
+                      - exact_match
                     type: string
 
                   proximity:
@@ -4840,60 +4714,60 @@ components:
                     default: 0
 
               filter:
-                  description: |
-                    Use this parameter to filter your search results by metadata.
+                description: |
+                  Use this parameter to filter your search results by metadata.
 
-                    For string fields, the filter parameter returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
+                  For string fields, the filter parameter returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
 
-                    For numeric fields, the filter parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
+                  For numeric fields, the filter parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
-                    To enable filtering by custom fields:
-                    1. Add metadata to your video by calling the the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint
-                    2. Use the custom fields as filter criteria in your queries. For example, to return only videos where a custom field named `needsReview` of type boolean is `true`, use: `"needs_review": true`.
-                  properties:
-                    id:
-                      type: array
-                      description: An array of strings that filters your search results based on the specified video IDs.
-                      items:
-                        type: string
-
-                    duration:
-                      type: object
-                      description: |
-                        This field filters your search results based on the duration of the video containing the segment that matches your query. 
-
-                        The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds: 
-                        ```
-                        "duration": {
-                          "gte": 600,
-                          "lte": 800
-                        }
-                        ```
-                      properties:
-                        gte:
-                          type: number
-                          format: float
-                          description: |
-                            This field specifies the minimum duration, expressed in seconds, of the video.
-                        lte:
-                          type: number
-                          format: float
-                          description: |
-                            This field specifies the maximum duration, expressed in seconds, of the video.
-
-                    width:
-                      type: number
-                      description: A numeric field that filters your search results based on width.
-                    height:
-                      type: number
-                      description: A numeric field that filters your search results based on height.
-                    size:
-                      type: number
-                      description: 'A numeric field that filters your search results based on size, expressed in bytes.'
-                    title:
+                  To enable filtering by custom fields:
+                  1. Add metadata to your video by calling the the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint
+                  2. Use the custom fields as filter criteria in your queries. For example, to return only videos where a custom field named `needsReview` of type boolean is `true`, use: `"needs_review": true`.
+                properties:
+                  id:
+                    type: array
+                    description: An array of strings that filters your search results based on the specified video IDs.
+                    items:
                       type: string
-                      description: A string field that filters your search results based on the title of the video.
-                  additionalProperties: {}
+
+                  duration:
+                    type: object
+                    description: |
+                      This field filters your search results based on the duration of the video containing the segment that matches your query. 
+
+                      The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds: 
+                      ```
+                      "duration": {
+                        "gte": 600,
+                        "lte": 800
+                      }
+                      ```
+                    properties:
+                      gte:
+                        type: number
+                        format: float
+                        description: |
+                          This field specifies the minimum duration, expressed in seconds, of the video.
+                      lte:
+                        type: number
+                        format: float
+                        description: |
+                          This field specifies the maximum duration, expressed in seconds, of the video.
+
+                  width:
+                    type: number
+                    description: A numeric field that filters your search results based on width.
+                  height:
+                    type: number
+                    description: A numeric field that filters your search results based on height.
+                  size:
+                    type: number
+                    description: "A numeric field that filters your search results based on size, expressed in bytes."
+                  title:
+                    type: string
+                    description: A string field that filters your search results based on the title of the video.
+                additionalProperties: {}
               page_limit:
                 type: number
                 description: |
@@ -4903,28 +4777,27 @@ components:
                   **Max**: `50`
                 default: 10
               threshold:
-                $ref: '#/components/schemas/threshold_search'
+                $ref: "#/components/schemas/threshold_search"
     classifyRequest:
       content:
         application/json:
           schema:
             type: object
             required:
-            - labels
-            - options
-            - video_id
+              - labels
+              - options
+              - video_id
             properties:
               conversation_option:
-                $ref: '#/components/schemas/conversation_option'
+                $ref: "#/components/schemas/conversation_option"
               include_clips:
-                $ref: '#/components/schemas/include_clips'
+                $ref: "#/components/schemas/include_clips"
               labels:
-                $ref: '#/components/schemas/labels'
+                $ref: "#/components/schemas/labels"
               options:
-                $ref: '#/components/schemas/options'
+                $ref: "#/components/schemas/options"
               threshold:
-                $ref: '#/components/schemas/threshold'
-
+                $ref: "#/components/schemas/threshold"
 
     update-video-vector:
       content:
@@ -4967,7 +4840,7 @@ components:
                   The publicly accessible URL of the media file you wish to use. This parameter is required for media queries if `query_media_file` is not provided.
               query_media_file:
                 description: |
-                  The media you wish to use as a local file. This parameter is required for media queries if `query_media_url` is not provided. 
+                  The media you wish to use as a local file. This parameter is required for media queries if `query_media_url` is not provided.
                 type: string
                 format: binary
               query_text:
@@ -5025,18 +4898,18 @@ components:
                   - clip
                 default: clip
               threshold:
-                $ref: '#/components/schemas/threshold_search'
+                $ref: "#/components/schemas/threshold_search"
               sort_option:
                 type: string
                 description: |
                   Use this parameter to specify the sort order for the response.
-                  
+
                   When performing a search, the platform determines the level of confidence that each video clip matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
                   If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maximum value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
 
                   If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video clips will be sorted by the level of confidence. You can use `clip_count` only when the matching video clips are sorted by video.
-                  
+
 
                   **Default:** `score`
                 enum:
@@ -5061,7 +4934,7 @@ components:
                 example: or
                 default: or
               conversation_option:
-                $ref: '#/components/schemas/conversation_option_any_to_video'
+                $ref: "#/components/schemas/conversation_option_any_to_video"
               page_limit:
                 type: integer
                 description: |
@@ -5089,7 +4962,7 @@ components:
                   - `title`: A string value that filters your search results based on the video title.
 
                   For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
-                  
+
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
                   To enable filtering by custom fields:
@@ -5097,7 +4970,7 @@ components:
                   2. Use the custom fields as filter criteria in your queries. For example, to return only videos where a custom field named `needsReview` of type boolean is `true`, use: `"needs_review": true`.
 
                   For more details and examples, see the [Filter search results based on metadata](/docs/filtering-search-results) page.
-                example: "{\"id\":[\"66284191ea717fa66a274832\"]}"                  
+                example: '{"id":["66284191ea717fa66a274832"]}'
 
     search:
       content:
@@ -5164,18 +5037,18 @@ components:
                   - clip
                 default: clip
               threshold:
-                $ref: '#/components/schemas/threshold_search'
+                $ref: "#/components/schemas/threshold_search"
               sort_option:
                 type: string
                 description: |
                   Use this parameter to specify the sort order for the response.
-                  
+
                   When performing a search, the platform determines the level of confidence that each video clip matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
 
                   If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maximum value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
 
                   If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video clips will be sorted by the level of confidence. You can use `clip_count` only when the matching video clips are sorted by video.
-                  
+
 
                   **Default:** `score`
                 enum:
@@ -5200,7 +5073,7 @@ components:
                 example: or
                 default: or
               conversation_option:
-                $ref: '#/components/schemas/conversation_option'
+                $ref: "#/components/schemas/conversation_option"
               page_limit:
                 type: integer
                 description: |
@@ -5212,7 +5085,7 @@ components:
                 type: object
                 description: |
                   For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
-                  
+
                   For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
 
                   To enable filtering by custom fields:
@@ -5259,7 +5132,7 @@ components:
                     description: A numeric field that filters your search results based on height.
                   size:
                     type: number
-                    description: 'A numeric field that filters your search results based on size, expressed in bytes.'
+                    description: "A numeric field that filters your search results based on size, expressed in bytes."
                   title:
                     type: string
                     description: A string field that filters your search results based on the title of the video.
@@ -5320,7 +5193,7 @@ components:
                 type: string
                 description: |
                   The URL of the video that you wish to upload.
-              
+
     createVideoIndexingTask:
       required: true
       content:
@@ -5368,7 +5241,7 @@ components:
 
                   **Default:** `false`
                 default: false
-                  
+
     updateIndex:
       content:
         application/json:
@@ -5382,87 +5255,85 @@ components:
                 description: |
                   The name of the index.
 
-
     createIndex:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - engines
-                - index_name
-              properties:
-                index_name:
-                  type: string
-                  description: |
-                    The name of the index. Make sure you use a succinct and descriptive name.
-                engines:
-                  type: array
-                  description: |
-                    An array that specifies the [video understanding engines](/docs/video-understanding-engines) and the [engine options](/docs/engine-options) to be enabled for this index. This determines how the platform processes your videos.
-                  items:
-                    type: object
-                    required:
-                      - engine_name
-                      - engine_options
-                    properties:
-                      engine_name:
-                        type: string
-                        description: |
-                          The name of the engine. The following engines are available:
-                            
-                            - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
-
-                              - `marengo2.6`
-
-                            - **Generative**: These engines generate text based on your videos.
-      
-                              - `pegasus1.1`
-      
-                          **NOTE:** You cannot change the engines once the index has been created.
-      
-                          For more details, see the [Video understanding engines](/docs/video-understanding-engines) page.
-                      engine_options:
-                        type: array
-                        description: |
-                          An array that specifies how the platform will process the videos uploaded to this index. For more details, see the [Engine options](/docs/engine-options) page.
-
-                          **NOTES:**
-                          - When using the Marengo family of video understanding engines, specify any combination of the available engine options - `visual`, `conversation`, `text_in_video`, and `logo`.
-                          - When using the Pegasus family of video understanding engines, specify one or both of the following engine options: `visual` and `conversation`.
-                        items:
-                          type: string
-                        minItems: 1
-                        maxItems: 4
-                addons:
-                  type: array
-                  description: |
-                    An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
-                    - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data#retrieve-thumbnails).
-
-                    If you don't provide this parameter, no add-ons will be enabled.
-
-                    **NOTES:**
-                      - You can only enable addons when using the Marengo video understanding engine.
-                      - You cannot disable an add-on once the index has been created.
-                  items:
-                    type: string
-                  minItems: 1
-                  maxItems: 1
-            example:
-              index_name: myIndex
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - engines
+              - index_name
+            properties:
+              index_name:
+                type: string
+                description: |
+                  The name of the index. Make sure you use a succinct and descriptive name.
               engines:
-                - engine_name: marengo2.6
-                  engine_options:
-                    - visual
-                    - conversation
-                    - text_in_video
-                    - logo
-                  addons:
-                    - thumbnail
-                - engine_name: pagasus1.0
-                  engine_options:
-                    - visual
-                    - conversation
-                    
+                type: array
+                description: |
+                  An array that specifies the [video understanding engines](/docs/video-understanding-engines) and the [engine options](/docs/engine-options) to be enabled for this index. This determines how the platform processes your videos.
+                items:
+                  type: object
+                  required:
+                    - engine_name
+                    - engine_options
+                  properties:
+                    engine_name:
+                      type: string
+                      description: |
+                        The name of the engine. The following engines are available:
+                          
+                          - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
+
+                            - `marengo2.6`
+
+                          - **Generative**: These engines generate text based on your videos.
+
+                            - `pegasus1.1`
+
+                        **NOTE:** You cannot change the engines once the index has been created.
+
+                        For more details, see the [Video understanding engines](/docs/video-understanding-engines) page.
+                    engine_options:
+                      type: array
+                      description: |
+                        An array that specifies how the platform will process the videos uploaded to this index. For more details, see the [Engine options](/docs/engine-options) page.
+
+                        **NOTES:**
+                        - When using the Marengo family of video understanding engines, specify any combination of the available engine options - `visual`, `conversation`, `text_in_video`, and `logo`.
+                        - When using the Pegasus family of video understanding engines, specify one or both of the following engine options: `visual` and `conversation`.
+                      items:
+                        type: string
+                      minItems: 1
+                      maxItems: 4
+              addons:
+                type: array
+                description: |
+                  An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
+                  - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data#retrieve-thumbnails).
+
+                  If you don't provide this parameter, no add-ons will be enabled.
+
+                  **NOTES:**
+                    - You can only enable addons when using the Marengo video understanding engine.
+                    - You cannot disable an add-on once the index has been created.
+                items:
+                  type: string
+                minItems: 1
+                maxItems: 1
+          example:
+            index_name: myIndex
+            engines:
+              - engine_name: marengo2.6
+                engine_options:
+                  - visual
+                  - conversation
+                  - text_in_video
+                  - logo
+                addons:
+                  - thumbnail
+              - engine_name: pagasus1.0
+                engine_options:
+                  - visual
+                  - conversation
