@@ -1282,7 +1282,7 @@ paths:
       description: |
         This endpoint creates embedings for text, image, and audio.
 
-        Before creating an embeding, ensure that the necessary prerequisites are met:
+        Before creating an embeding, ensure that the necessary prerequisites are met: 
         - [Text embedding prerequisites](/docs/create-text-embeddings#prerequisites)
         - [Image embedding prerequisites](/create-image-embeddings#prerequisites)
         - [Audio embedding prerequisites](/create-audio-embeddings#prerequisites)
