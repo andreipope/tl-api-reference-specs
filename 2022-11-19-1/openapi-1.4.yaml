@@ -1280,7 +1280,7 @@ paths:
     post:
       summary: Create emeddings for text, image, and audio 
       description: |
-        This endpoint creates embedings for text, image, and audio.
+        This endpoint creates embedings for text, image, and audio. 
 
         Before creating an embeding, ensure that the necessary prerequisites are met: 
         - [Text embedding prerequisites](/docs/create-text-embeddings#prerequisites)
