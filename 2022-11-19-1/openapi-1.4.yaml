@@ -3389,7 +3389,7 @@ components:
 
     createSyncEmbeddingResponse:
       description: |
-        A text embedding has successfully been created.
+        A text embedding has successfully been created. 
       content:
         application/json:
           schema:
