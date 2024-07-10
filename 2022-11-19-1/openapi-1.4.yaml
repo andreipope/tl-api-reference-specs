@@ -1278,9 +1278,32 @@ paths:
 
   "/embed":
     post:
-      summary: Create text, image, and audio embeddings
+      summary: Create emeddings for text, image, and audio 
       description: |
-        This endpoint creates text, image, and audio embeddings.
+        This endpoint creates embedings for text, image, and audio.
+
+        Before creating an embeding, ensure that all the prerequisites are met.
+
+        **Common parameters**:
+        For all embedding types, set the following parameter:
+        - `engine_name`: Specify the name of the video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
+
+        **Text**:
+        To create text embeddings:
+        - Set the `text` parameter to the text for which you want to create an embedding.
+        - _(Optional)_ Use the `text_truncate` parameter to specify how the platform should truncate text that exceeds 77 tokens.
+
+        **Image**:
+        To create an embedding for an image, provide the image using one of the following parameters:
+        - `image_url`: A publicly accessible URL of your image file.
+        - `image_file`: A local image file.
+        **NOTE**: If you specify both `image_url` and `image_file`, the platform uses `image_url`.
+
+        **Audio**:
+        To create an embedding for an audio, provide the audio using one of the following parameters:
+        - `audio_url`: A publicly accessible URL of your audio file.
+        - `audio_file`: A local audio file.
+        **NOTE**: If you specify both `audio_url` and `audio_file`, the API uses `audio_url`.
       operationId: create-text-image-audio-embedding
       tags:
         - Text, image, and audio embeddings
@@ -4293,8 +4316,6 @@ components:
                 example: clip
 
     createSyncEmbeddingRequest:
-      description: |
-        Specify the parameters below to create a text, audio, or image embedding.
       required: true
       content:
         multipart/form-data:
@@ -4314,7 +4335,7 @@ components:
               text:
                 type: string
                 description: |
-                  The text for which you want to create an embedding.
+                  The text for which you wish to create an embedding.
 
                   **NOTE**:
                   Text embeddings are limited to 77 tokens. If the text exceeds this limit, the platform truncates it according to the value of the `text_truncate` parameter described below.
