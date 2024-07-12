@@ -1,0 +1,410 @@
+x-readme:
+  samples-languages:
+    - "http"
+    - "curl"
+    - "python"
+    - "go"
+    - "node"
+openapi: 3.1.0
+info:
+  title: Core resources
+  description: |
+    Core resources.
+  contact:
+    name: Twelve Labs Support
+    email: support@twelvelabs.io
+  version: 1.2.0
+servers:
+  - url: "https://api.twelvelabs.io/v1.2"
+
+
+################
+###   Tags   ###
+################
+
+tags:
+  - name: Engines
+  - name: Indexes
+
+paths:
+  ###################
+  ###   Engines   ###
+  ###################
+
+  "/engines":
+    summary: Engines
+    get:
+      summary: List engines
+      description: This method lists all the engines that are available in your account.
+      operationId: list-engines
+      tags:
+        - Engines
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+      responses:
+        "200":
+          $ref: "#/components/responses/getEnginesResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
+  "/engines/{engine-id}":
+    get:
+      summary: Retrieve an engine
+      description: This method retrieves an engine.
+      operationId: retrieve-engine
+      tags:
+        - Engines
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - name: engine-id
+          in: path
+          description: |
+            The identifier of the engine to retrieve. The following engines are available:
+                            
+            - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
+
+              - `marengo2.6`
+
+            - **Generative**: These engines generate text based on your videos.
+
+              - `pegasus1.1`
+
+            For details about the features of each engine, see the [Video understanding engines](/docs/video-understanding-engines) page.
+          required: true
+          schema:
+            type: string
+            example: marengo2.6
+      responses:
+        "200":
+          $ref: "#/components/responses/getEngineResponse"
+        "404":
+          $ref: "#/components/responses/notFound"
+
+  "/indexes":
+
+    post:
+      summary: Create an index
+      description: |
+        This method creates an index.
+
+      operationId: create-index
+      tags:
+        - Indexes
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+      requestBody:
+        $ref: "#/components/requestBodies/createIndex"
+      responses:
+        "201":
+          $ref: "#/components/responses/createIndexResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
+components:
+  schemas:
+
+    engine:
+      description: "Engine object"
+      title: Engine
+      type: object
+      properties:
+        _id:
+          type: string
+          description: |
+            A string representing the identifier of the engine.
+        allowed_engine_options:
+          type: array
+          description: |
+            An array of strings representing the supported engine options for each engine. For details, see the [Engine options](/docs/engine-options) page.
+          items:
+            type: string
+        author:
+          type: string
+          description: |
+            A string indicating who created the index.
+        created_at:
+          type: string
+          description: |
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the engine was created.
+        updated_at:
+          type: string
+          description: |
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the engine was updated.
+        finetune:
+          type: boolean
+          description: |
+            A boolean indicating whether this engine supports fine-tunning.
+        ready:
+          type: boolean
+          description: A boolean specifying whether this engine is ready to be used.
+      example:
+        id: marengo2.6
+        created_at: "2023-04-12 11:49:26.663 +0000 UTC"
+        updated_at: "2023-04-12 11:49:26.663 +0000 UTC"
+        allowed_index_options:
+          - visual
+          - text_in_video
+          - conversation
+          - logo
+        author: twelve_labs
+        finetune: false
+        ready: true
+
+    index:
+      title: Index
+      description: |
+        An index groups one or more videos stored as vectors and is the most granular level at which you can perform a search.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: A string representing the unique identifier of the index. It is assigned by the API when an index is created.
+        created_at:
+          type: string
+          description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index was created.
+        updated_at:
+          type: string
+          description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index has been updated.
+        expires_at:
+          type: string
+          description: |
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, when your index will expire.
+
+            If you're on the Free plan, the platform retains your index data for 90 days from creation. After this period, the platform deletes your index data, and this action cannot be undone. To continue using your index beyond this period, consider upgrading to the Developer plan, which offers unlimited index retention. For details, see the [Upgrade your plan](/docs/manage-your-plan#upgrade-your-plan) section.
+
+            If you're on the Developer plan, this field is set to `null`, indicating no expiration.
+        index_name:
+          type: string
+          description: A string representing the name of the index.
+        total_duration:
+          type: number
+          description: A number representing the total duration, in seconds, of the videos in the index.
+        video_count:
+          type: number
+          description: The number of videos uploaded to this index.
+        engines:
+          type: array
+          description: An array containing the list of video understanding engines enabled for this index.
+          items:
+            type: object
+            properties:
+              engine_name:
+                type: string
+                description: A string representing the name of the engine
+              engine_options:
+                type: array
+                description: |
+                  An array of strings that contains the engines options enabled for this engine.
+
+                  **NOTES**:
+                  - The engine options cannot be changed once the index has been created.
+                  - The types of searches you can perform on this index are a subset of the engine options.
+
+                  Twelve Labs currently supports the following engine options: `visual`, `conversation`, `text_in_video`, and `logo`. For more details, see the [Engine Options](/docs/engine-options) page.
+                items:
+                  type: string
+              addons:
+                type: array
+                description: The list of add-ons that are enabled for this engine.
+                items:
+                  type: string
+
+
+  parameters:
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: Must be set to `application/json`.
+      required: true
+      schema:
+        type: string
+        default: application/json
+    x-api-key:
+      name: x-api-key
+      in: header
+      description: |
+        Your API key.
+
+        **NOTE:** You can find your API key on the <a href="https://api.twelvelabs.io/dashboard" target="_blank">Dashboard</a> page.
+      required: true
+      schema:
+        type: string
+
+  #####################
+  ###   Responses   ###
+  #####################
+
+  responses:
+    getEngineResponse:
+      description: The specified engine has successfully been retrieved
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/engine"
+    getEnginesResponse:
+      description: The engines have successfully been retrieved.
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                description: An array that contains the `engine` objects.
+                items:
+                  $ref: "#/components/schemas/engine"
+            example:
+              - _id: marengo2.6
+                allowed_engine_options:
+                  - visual
+                  - text_in_video
+                  - conversation
+                  - logo
+                author: twelve_labs
+                created_at: "2022-07-24 09:30:52.683 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2022-07-24 09:30:52.683 +0000 UTC"
+              - _id: marengo2
+                allowed_index_options:
+                  - visual
+                  - text_in_video
+                  - conversation
+                  - logo
+                author: twelve_labs
+                created_at: "2022-07-24 09:30:52.686 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2022-07-24 09:30:52.686 +0000 UTC"
+              - _id: pegasus1.1
+                allowed_engine_options:
+                  - visual
+                  - conversation
+                author: twelve_labs
+                created_at: "2023-04-12 11:49:26.663 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2023-04-12 11:49:26.663 +0000 UTC"
+
+    notFound:
+      description: The specifed resource does not exist.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: |
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: A human-readable string describing the error.
+
+
+    genericError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: |
+                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: |
+                  A human-readable string describing the error, intended to be suitable for display in a user interface.
+              docs_url:
+                type: string
+                description: |
+                  The URL of the relevant documentation page.
+
+  requestBodies:
+    createIndex:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - engines
+              - index_name
+            properties:
+              index_name:
+                type: string
+                description: |
+                  The name of the index. Make sure you use a succinct and descriptive name.
+              engines:
+                type: array
+                description: |
+                  An array that specifies the [video understanding engines](/docs/video-understanding-engines) and the [engine options](/docs/engine-options) to be enabled for this index. This determines how the platform processes your videos.
+                items:
+                  type: object
+                  required:
+                    - engine_name
+                    - engine_options
+                  properties:
+                    engine_name:
+                      type: string
+                      description: |
+                        The name of the engine. The following engines are available:
+                          
+                          - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
+
+                            - `marengo2.6`
+
+                          - **Generative**: These engines generate text based on your videos.
+
+                            - `pegasus1.1`
+
+                        **NOTE:** You cannot change the engines once the index has been created.
+
+                        For more details, see the [Video understanding engines](/docs/video-understanding-engines) page.
+                    engine_options:
+                      type: array
+                      description: |
+                        An array that specifies how the platform will process the videos uploaded to this index. For more details, see the [Engine options](/docs/engine-options) page.
+
+                        **NOTES:**
+                        - When using the Marengo family of video understanding engines, specify any combination of the available engine options - `visual`, `conversation`, `text_in_video`, and `logo`.
+                        - When using the Pegasus family of video understanding engines, specify one or both of the following engine options: `visual` and `conversation`.
+                      items:
+                        type: string
+                      minItems: 1
+                      maxItems: 4
+              addons:
+                type: array
+                description: |
+                  An array specifying which add-ons should be enabled. Each entry in the array is an addon, and the following values are supported:
+                  - `thumbnail`: Enables [thumbnail generation](/docs/extract-video-data#retrieve-thumbnails).
+
+                  If you don't provide this parameter, no add-ons will be enabled.
+
+                  **NOTES:**
+                    - You can only enable addons when using the Marengo video understanding engine.
+                    - You cannot disable an add-on once the index has been created.
+                items:
+                  type: string
+                minItems: 1
+                maxItems: 1
+          example:
+            index_name: myIndex
+            engines:
+              - engine_name: marengo2.6
+                engine_options:
+                  - visual
+                  - conversation
+                  - text_in_video
+                  - logo
+                addons:
+                  - thumbnail
+              - engine_name: pagasus1.0
+                engine_options:
+                  - visual
+                  - conversation
+  
