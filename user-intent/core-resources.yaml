@@ -288,6 +288,18 @@ components:
                 ready: true
                 updated_at: "2023-04-12 11:49:26.663 +0000 UTC"
 
+    createIndexResponse:
+      description: An index has successfully been created
+      content:
+        application/json:
+          schema:
+            properties:
+              _id:
+                type: string
+                description: Represents the unique identifier of the `index` object.
+            example:
+              _id: 62d85fe7340fa665f1fda5dd
+
     notFound:
       description: The specifed resource does not exist.
       content:
