@@ -1278,7 +1278,7 @@ paths:
 
   "/embed":
     post:
-      summary: Create emeddings for text, image, and audio 
+      summary: Create embeddings for text, image, and audio 
       description: |
         This endpoint creates embedings for text, image, and audio. 
 
