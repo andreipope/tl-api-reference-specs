@@ -4383,7 +4383,7 @@ components:
                 format: binary
                 description: |
                   The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
-              audio_truncate:
+              audio_truncate: 
                 type: string
                 description: |
                   Specifies how the platform truncates audio files that exceed 10 seconds to fit the maximum length allowed for an embedding.
