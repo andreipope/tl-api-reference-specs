@@ -2889,7 +2889,7 @@ components:
                   name:
                     type: string
                     description: |
-                      A string representing the title of the video.
+                      A string representing the name of the channel that uploaded the video.
                   url:
                     type: string
                     description: |
