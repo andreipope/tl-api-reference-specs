@@ -2052,7 +2052,7 @@ components:
       description: |
         Your API key.
 
-        **NOTE:** You can find your API key on the <a href="https://playground.twelvelabs.io/dashboard" target="_blank">Dashboard</a> page.
+        **NOTE:** You can find your API key on the <a href="https://playground.twelvelabs.io/dashboard/api-key" target="_blank">API Key</a> page.
       required: true
       schema:
         type: string
