@@ -4926,27 +4926,21 @@ components:
                 description: |
                   The unique identifier of the index to search.
               search_options:
-                type: array
-                items:
-                  type: string
-                minItems: 1
-                maxItems: 4
-                example:
-                  - visual
-                  - conversation
-                  - text_in_video
-                  - logo
-                default:
-                  - visual
-                  - conversation
-                  - text_in_video
-                  - logo
+                type: string
+                enum: [visual, conversation, text_in_video, logo]
                 description: |
-                  An array that specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
+                  Specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
 
                   **NOTES:** 
                   - The search options you specify must be a subset of the [engine options](/docs/engine-options) used when you created the index.
                   - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
+
+                  Example:
+                  To search using both visual and audio cues, include this parameter twice in the request as shown below:
+                  ```JSON
+                  --form search_options=visual \
+                  --form search_options=conversation \
+                  ```
               adjust_confidence_level:
                 type: number
                 format: float
