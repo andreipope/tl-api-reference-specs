@@ -4935,7 +4935,7 @@ components:
                   type: string
                   enum: [visual, conversation, text_in_video, logo]
                 description: |
-                  Specifies the [sources of information](/docs/search-options) the platform uses when performing a search. You must include the `search_options` parameter separately for each desired source of information. Do not pass as an array or stringified list.
+                  Specifies the [sources of information](/docs/search-options) the platform uses when performing a search. You must include the `search_options` parameter separately for each desired source of information.
 
                   **NOTES:** 
                   - The search options you specify must be a subset of the [engine options](/docs/engine-options) used when you created the index.
