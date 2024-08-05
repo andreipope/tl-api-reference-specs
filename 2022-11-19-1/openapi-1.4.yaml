@@ -4896,6 +4896,10 @@ components:
     any-to-video-search:
       content:
         multipart/form-data:
+          encoding:
+            search_options:
+              style: form
+              explode: true
           schema:
             required:
               - index_id
@@ -4926,8 +4930,10 @@ components:
                 description: |
                   The unique identifier of the index to search.
               search_options:
-                type: string
-                enum: [visual, conversation, text_in_video, logo]
+                type: array
+                items:
+                  type: string
+                  enum: [visual, conversation, text_in_video, logo]
                 description: |
                   Specifies the sources of information the platform uses when performing a search. For details, see the [Search options](/docs/search-options) page.
 
