@@ -18,14 +18,6 @@ servers:
   - url: "https://api.twelvelabs.io/v1.2"
 
 
-################
-###   Tags   ###
-################
-
-tags:
-  - name: Engines
-  - name: Indexes
-
 paths:
   ###################
   ###   Engines   ###
@@ -37,8 +29,8 @@ paths:
       summary: List engines
       description: This method lists all the engines that are available in your account.
       operationId: list-engines
-      tags:
-        - Engines
+      # tags:
+      #   - Engines
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
