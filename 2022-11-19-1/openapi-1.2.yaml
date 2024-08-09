@@ -2869,23 +2869,23 @@ components:
                   updated_at:
                     type: string
                     description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the encoding status was last updated.
-              source:
-                type: object
-                description: |
-                  An object that contains information about the source of the video. The platform returns this object only for videos uploaded from an external provider like YouTube.
-                properties:
-                  type:
-                    type: string
-                    description: |
-                      A string indicating the source of the video (example: "youtube").
-                  name:
-                    type: string
-                    description: |
-                      A string representing the name of the channel that uploaded the video.
-                  url:
-                    type: string
-                    description: |
-                      A string representing the URL of the video
+              # source:
+              #   type: object
+              #   description: |
+              #     An object that contains information about the source of the video. The platform returns this object only for videos uploaded from an external provider like YouTube.
+              #   properties:
+              #     type:
+              #       type: string
+              #       description: |
+              #         A string indicating the source of the video (example: "youtube").
+              #     name:
+              #       type: string
+              #       description: |
+              #         A string representing the name of the channel that uploaded the video.
+              #     url:
+              #       type: string
+              #       description: |
+              #         A string representing the URL of the video
 
 
             example:
@@ -2905,10 +2905,10 @@ components:
                   - https://d2cp8xx7n5vxnu.cloudfront.net/6298aa0b535db125bf6e1d10/64902a28fb01304dd47be3cb/thumbnails/c924f34a-144e-41df-bf2a-c693703fa134.0000001.jpg
                 status: COMPLETE
                 updated_at: 2024-01-16T07:59:40.879Z
-              source:
-                type: youtube
-                name: Here Be Barr
-                url: https://www.youtube.com/watch?v=1JJfWnAryrM
+              # source:
+              #   type: youtube
+              #   name: Here Be Barr
+              #   url: https://www.youtube.com/watch?v=1JJfWnAryrM
 
 
     getIndexResponse:
