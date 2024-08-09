@@ -1,0 +1,244 @@
+x-readme:
+  samples-languages:
+    - "http"
+    - "curl"
+    - "python"
+    - "go"
+    - "node"
+openapi: 3.1.0
+info:
+  title: Manage engines
+  description: |
+    This API allows you to manage the engines available in your account.
+  contact:
+    name: Twelve Labs Support
+    email: support@twelvelabs.io
+  version: 1.2.0
+servers:
+  - url: "https://api.twelvelabs.io/v1.2"
+
+
+################
+###   Tags   ###
+################
+
+tags:
+  - name: Engines
+  - name: Indexes
+
+paths:
+  ###################
+  ###   Engines   ###
+  ###################
+
+  "/engines":
+    summary: Engines
+    get:
+      summary: List engines
+      description: This method lists all the engines that are available in your account.
+      operationId: list-engines
+      tags:
+        - Engines
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+      responses:
+        "200":
+          $ref: "#/components/responses/getEnginesResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
+  "/engines/{engine-id}":
+    get:
+      summary: Retrieve an engine
+      description: This method retrieves an engine.
+      operationId: retrieve-engine
+      tags:
+        - Engines
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - name: engine-id
+          in: path
+          description: |
+            The identifier of the engine to retrieve. The following engines are available:
+                            
+            - **Embedding**: These engines are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
+
+              - `marengo2.6`
+
+            - **Generative**: These engines generate text based on your videos.
+
+              - `pegasus1.1`
+
+            For details about the features of each engine, see the [Video understanding engines](/docs/video-understanding-engines) page.
+          required: true
+          schema:
+            type: string
+            example: marengo2.6
+      responses:
+        "200":
+          $ref: "#/components/responses/getEngineResponse"
+        "404":
+          $ref: "#/components/responses/notFound"
+
+components:
+  schemas:
+
+    engine:
+      description: "Engine object"
+      title: Engine
+      type: object
+      properties:
+        _id:
+          type: string
+          description: |
+            A string representing the identifier of the engine.
+        allowed_engine_options:
+          type: array
+          description: |
+            An array of strings representing the supported engine options for each engine. For details, see the [Engine options](/docs/engine-options) page.
+          items:
+            type: string
+        author:
+          type: string
+          description: |
+            A string indicating who created the index.
+        created_at:
+          type: string
+          description: |
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the engine was created.
+        updated_at:
+          type: string
+          description: |
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the engine was updated.
+        finetune:
+          type: boolean
+          description: |
+            A boolean indicating whether this engine supports fine-tunning.
+        ready:
+          type: boolean
+          description: A boolean specifying whether this engine is ready to be used.
+      example:
+        id: marengo2.6
+        created_at: "2023-04-12 11:49:26.663 +0000 UTC"
+        updated_at: "2023-04-12 11:49:26.663 +0000 UTC"
+        allowed_index_options:
+          - visual
+          - text_in_video
+          - conversation
+          - logo
+        author: twelve_labs
+        finetune: false
+        ready: true
+
+  parameters:
+    Content-Type:
+      name: Content-Type
+      in: header
+      description: Must be set to `application/json`.
+      required: true
+      schema:
+        type: string
+        default: application/json
+    x-api-key:
+      name: x-api-key
+      in: header
+      description: |
+        Your API key.
+
+        **NOTE:** You can find your API key on the <a href="https://api.twelvelabs.io/dashboard" target="_blank">Dashboard</a> page.
+      required: true
+      schema:
+        type: string
+
+  #####################
+  ###   Responses   ###
+  #####################
+
+  responses:
+    getEngineResponse:
+      description: The specified engine has successfully been retrieved
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/engine"
+    getEnginesResponse:
+      description: The engines have successfully been retrieved.
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                description: An array that contains the `engine` objects.
+                items:
+                  $ref: "#/components/schemas/engine"
+            example:
+              - _id: marengo2.6
+                allowed_engine_options:
+                  - visual
+                  - text_in_video
+                  - conversation
+                  - logo
+                author: twelve_labs
+                created_at: "2022-07-24 09:30:52.683 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2022-07-24 09:30:52.683 +0000 UTC"
+              - _id: marengo2
+                allowed_index_options:
+                  - visual
+                  - text_in_video
+                  - conversation
+                  - logo
+                author: twelve_labs
+                created_at: "2022-07-24 09:30:52.686 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2022-07-24 09:30:52.686 +0000 UTC"
+              - _id: pegasus1.1
+                allowed_engine_options:
+                  - visual
+                  - conversation
+                author: twelve_labs
+                created_at: "2023-04-12 11:49:26.663 +0000 UTC"
+                finetune: false
+                ready: true
+                updated_at: "2023-04-12 11:49:26.663 +0000 UTC"
+
+    notFound:
+      description: The specifed resource does not exist.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: |
+                  Represents the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: A human-readable string describing the error.
+
+
+    genericError:
+      description: The request has failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: |
+                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
+              message:
+                type: string
+                description: |
+                  A human-readable string describing the error, intended to be suitable for display in a user interface.
+              docs_url:
+                type: string
+                description: |
+                  The URL of the relevant documentation page.
