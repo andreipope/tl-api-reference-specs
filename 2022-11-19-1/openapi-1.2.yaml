@@ -1922,7 +1922,7 @@ components:
             A string indicating the date and time, in the RFC 3339 format, that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
         status:
           type: string
-          description: A string indicating the status of the video indexing task.
+          description: A string indicating the status of the video indexing task. See the [Tasks](/reference/tasks) page for a list of possible statuses.
         estimated_time:
           type: string
           description: |
@@ -3108,7 +3108,7 @@ components:
                 description: A string representing the unique identifier of the video associated with the specified video indexing task. The API returns this field only when the value of the `status` field is `ready`.
               status:
                 type: string
-                description: A string indicating the status of the video indexing task.
+                description: A string indicating the status of the video indexing task. See the [Tasks](/reference/tasks) page for a list of possible statuses.
               metadata:
                 type: object
                 description: An object that contains details about the video.
@@ -3463,7 +3463,7 @@ components:
               status:
                 type: string
                 description: |
-                  A string indicating the status of the video indexing task. 
+                  A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`.
               video_embeddings:
                 type: array
                 description: |
