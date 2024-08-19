@@ -1920,7 +1920,7 @@ components:
         estimated_time:
           type: string
           description: |
-            A string indicating the estimated date and time, in the RFC 3339 format, that the video is ready to be searched.
+            A string indicating the estimated completion date and time of the video indexing task, in the RFC 3339 format.
         index_id:
           type: string
           description: |
@@ -1958,7 +1958,7 @@ components:
         _id:
           type: string
           description: |
-            A string representing the unique identifier of a video. The platform creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed, and it's ready to be searched. Note that video IDs are different from task IDs.
+            A string representing the unique identifier of a video. The platform creates a new `video_vector` object and assigns it a unique identifier when the video has successfully been indexed. Note that video IDs are different from task IDs.
         created_at:
           type: string
           description: |
@@ -2160,7 +2160,7 @@ components:
       name: estimated_time
       in: query
       description: |
-        Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task is ready to be searched.
+        Filter by the estimated completion date and time of the video indexing task, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format.
       schema:
         type: string
       required: false
@@ -3087,10 +3087,10 @@ components:
                 description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
               estimated_time:
                 type: string
-                description: A string indicating the estimated date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video is ready to be searched.
+                description: A string indicating the estimated completion date and time of the video indexing process, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format.
               index_id:
                 type: string
-                description: A string pointing to the index to which the video is assigned.
+                description: A string representing the unique identifier of index to which the video is uploaded.
               video_id:
                 type: string
                 description: A string representing the unique identifier of the video associated with the specified video indexing task. The API returns this field only when the value of the `status` field is `ready`.
