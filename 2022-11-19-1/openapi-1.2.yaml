@@ -1879,23 +1879,17 @@ components:
           description: The number of videos uploaded to this index.
         engines:
           type: array
-          description: An array containing the list of video understanding engines enabled for this index.
+          description: An array containing the list of [video understanding engines](/docs/video-understanding-engines) enabled for this index.
           items:
             type: object
             properties:
               engine_name:
                 type: string
-                description: A string representing the name of the engine
+                description: A string representing the name of the engine.
               engine_options:
                 type: array
                 description: |
-                  An array of strings that contains the engines options enabled for this engine.
-
-                  **NOTES**:
-                  - The engine options cannot be changed once the index has been created.
-                  - The types of searches you can perform on this index are a subset of the engine options.
-
-                  Twelve Labs currently supports the following engine options: `visual`, `conversation`, `text_in_video`, and `logo`. For more details, see the [Engine Options](/docs/engine-options) page.
+                  An array of strings that contains the [engine options](/docs/engine-options) enabled for this engine.
                 items:
                   type: string
               addons:
