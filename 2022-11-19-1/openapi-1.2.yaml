@@ -1970,7 +1970,7 @@ components:
         indexed_at:
           type: string
           description: |
-            A string indicating the date and time, in the RFC 3339 format, that the video has finished indexing.
+            A string indicating the date and time, in the RFC 3339 format, that the video indexing task has been completed.
         metadata:
           type: object
           description: |
@@ -2632,7 +2632,7 @@ components:
                 description: The unique identifier of the video.
               data:
                 type: array
-                description: An array of objects that contains the transcription. For each time range for which the platform finds spoken words, it returns an object that contains the fields below. If the platform doesn't find any spoken words, the data field is set to `None`.
+                description: An array of objects that contains the transcription. For each time range for which the platform finds spoken words, it returns an object that contains the fields below. If the platform doesn't find any spoken words, the `data` field is set to `None`.
                 items:
                   type: object
                   properties:
@@ -2830,7 +2830,7 @@ components:
                 description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the corresponding video indexing task was last updated. The platform updates this field every time the corresponding video indexing task transitions to a different state.
               indexed_at:
                 type: string
-                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video has finished indexing.
+                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task has been completed.
               metadata:
                 type: object
                 description: An object that contains the information about the video.
