@@ -171,6 +171,8 @@ paths:
         - To provide a transcription file, you must set the `provide_transcription` parameter to `true` and specify at least one of the `transcription_file` and `transcription_url` parameters:
           - Use the `transcription_file` parameter to provide a transcription from the local file system. It must be a stream of bytes encoded as `multipart/form-data`.
           - Use the `transcription_url` parameter to provide a transcription file from a publicly accessible URL. It must be a `string`.
+
+        **NOTE**: The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
       operationId: create-video-indexing-task
       tags:
         - Tasks
@@ -1319,6 +1321,8 @@ paths:
         - **File size**: Must not exceed 2 GB.
         - **Video resolution**: Must be greater or equal than 360p and less or equal than 4K.
         - **Video and audio formats**: The video files must be encoded in the video and audio formats listed on the [FFmpeg Formats Documentation](https://ffmpeg.org/ffmpeg-formats.html)  page. For videos in other formats, contact us at [support@twelvelabs.io](mailto:support@twelvelabs.io).
+
+        **NOTE**: The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
       operationId: create-video-embeding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
