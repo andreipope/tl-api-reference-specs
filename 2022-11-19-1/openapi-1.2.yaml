@@ -172,7 +172,9 @@ paths:
           - Use the `transcription_file` parameter to provide a transcription from the local file system. It must be a stream of bytes encoded as `multipart/form-data`.
           - Use the `transcription_url` parameter to provide a transcription file from a publicly accessible URL. It must be a `string`.
 
-        **NOTE**: The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
+        **NOTES**:
+        - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
+        - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: create-video-indexing-task
       tags:
         - Tasks
