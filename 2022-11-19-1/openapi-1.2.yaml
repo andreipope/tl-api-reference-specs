@@ -22,17 +22,17 @@ servers:
 ################
 
 tags:
-  - name: Engines
-  - name: Indexes
-  - name: Indexes/Videos
-  - name: Tasks    
-  - name: Tasks/Transfers
+  - name: Manage engines
+  - name: Manage indexes
+  - name: Upload videos
+  - name: Manage videos
   - name: Text-to-video search
   - name: Any-to-video search
   - name: Classify
+  - name: Create text embeddings
+  - name: Create video embeddings
   - name: Generate text from video
-  - name: Text embeddings
-  - name: Video embeddings
+  - name: Extract video data
 
 paths:
 
@@ -67,7 +67,7 @@ paths:
       description: This method lists all the engines that are available in your account.
       operationId: list-engines
       tags:
-        - Engines
+        - Manage engines
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -103,7 +103,7 @@ paths:
       description: This method retrieves an engine.
       operationId: retrieve-engine
       tags:
-        - Engines
+        - Manage engines
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -177,7 +177,7 @@ paths:
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: create-video-indexing-task
       tags:
-        - Tasks
+        - Upload videos
       requestBody:
         $ref: '#/components/requestBodies/createVideoIndexingTask'
       parameters:
@@ -194,7 +194,7 @@ paths:
       description: This method returns a list of the video indexing tasks in your account. The API returns your video indexing tasks sorted by creation date, with the newest at the top of the list.
       operationId: list-video-indexing-tasks
       tags:
-        - Tasks
+        - Upload videos
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -224,7 +224,7 @@ paths:
       description: This method retrieves a video indexing task.
       operationId: retrieve-video-indexing-task
       tags:
-        - Tasks
+        - Upload videos
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -249,7 +249,7 @@ paths:
         - If the status of your video indexing task is `ready`, you must first delete the video vector associated with your video indexing task by calling the [`DELETE`](/reference/delete-video-information) method of the `/indexes/videos` endpoint.
       operationId: delete-video-indexing-task
       tags:
-        - Tasks
+        - Upload videos
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -272,7 +272,7 @@ paths:
       description: This method retrieves the number video indexing tasks in each status for the specified index.
       operationId: video-indexing-tasks-by-status
       tags:
-        - Tasks
+        - Upload videos
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -302,7 +302,7 @@ paths:
         - $ref: '#/components/parameters/multipart'
       operationId: cloud-to-cloud-transfer
       tags:
-        - Tasks/Transfers
+        - Upload videos
       requestBody:
         $ref: '#/components/requestBodies/cloud-to-cloud-transfer'
       responses:
@@ -345,7 +345,7 @@ paths:
 
       operationId: create-index
       tags:
-        - Indexes
+        - Manage indexes
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -363,7 +363,7 @@ paths:
 
       operationId: list-indexes
       tags:
-        - Indexes
+        - Manage indexes
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -422,7 +422,7 @@ paths:
         This method retrieves details about the specified index.
       operationId: retrieve-index
       tags:
-        - Indexes
+        - Manage indexes
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -445,7 +445,7 @@ paths:
 
       operationId: update-index
       tags:
-        - Indexes
+        - Manage indexes
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -468,7 +468,7 @@ paths:
       description: This method deletes the specified index and all the videos within it. This action cannot be undone.
       operationId: delete-index
       tags:
-        - Indexes
+        - Manage indexes
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -496,7 +496,7 @@ paths:
       description: |
         This method returns a list of the videos in the specified index. By default, the API returns your videos sorted by creation date, with the newest at the top of the list.
       tags:
-        - Indexes/Videos
+        - Manage videos
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -611,7 +611,7 @@ paths:
       description: This method retrieves information about the specified video.
       operationId: retrieve-video-information
       tags:
-        - Indexes/Videos
+        - Manage videos
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -639,7 +639,7 @@ paths:
       description: Use this method to update the title and the metadata of a video.
       operationId: update-video-information
       tags:
-        - Indexes/Videos
+        - Manage videos
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -669,7 +669,7 @@ paths:
       summary: Delete video information
       operationId: delete-video-information
       tags:
-        - Indexes/Videos
+        - Manage videos
       description: |
         This method deletes all the information about the specified video This action cannot be undone.
       parameters:
@@ -701,7 +701,7 @@ paths:
       description: This method retrieves a transcription of the spoken words.
       operationId: retrieve-transcription
       tags:
-        - Indexes/Videos
+        - Extract video data
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -746,7 +746,7 @@ paths:
       description: This method retrieves text recognized in video (OCR).
       operationId: retrieve-ocr
       tags:
-        - Indexes/Videos
+        - Extract video data
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -791,7 +791,7 @@ paths:
 
       operationId: identify-logos
       tags:
-        - Indexes/Videos
+        - Extract video data
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -836,7 +836,7 @@ paths:
       description: To use this feature, you must enable thumbnail generation for the index to which the video has been uploaded. For details, see the [Create an index](/reference/create-index) section.
       operationId: retrieve-thumbnail
       tags:
-        - Indexes/Videos
+        - Extract video data
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1291,7 +1291,7 @@ paths:
         This endpoint creates text embeddings.
       operationId: create-text-enbedding
       tags:
-        - Text embeddings
+        - Create text embeddings
       requestBody:
         $ref: '#/components/requestBodies/createTextEmbeddingRequest'
       parameters:
@@ -1330,7 +1330,7 @@ paths:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
       tags:
-        - Video embeddings
+        - Create video embeddings
       requestBody:
         $ref: '#/components/requestBodies/createVideoEmbeddingTaskRequest'
       responses:
@@ -1355,7 +1355,7 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
         - $ref: '#/components/parameters/video-embedding-task-id'
       tags:
-        - Video embeddings
+        - Create video embeddings
       responses:
         '200':
           $ref: '#/components/responses/retrieveVideoEmbeddingTaskStatusResponse'
@@ -1373,7 +1373,7 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
         - $ref: '#/components/parameters/video-embedding-task-id'
       tags:
-        - Video embeddings
+        - Create video embeddings
       responses:
         '200':
           $ref: '#/components/responses/retrieveVideoEmbeddingResponse'
