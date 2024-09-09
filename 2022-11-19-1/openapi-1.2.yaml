@@ -3514,12 +3514,10 @@ components:
                   video_embedding_scope:
                     type: array
                     description: |
-                      An array of strings that contains the scope enabled for this task.
+                      The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
                     items:
                       type: string
                       enum: [clip, video]
-                      description: |
-                        The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
                   duration:
                     type: number
                     format: float
@@ -3603,12 +3601,10 @@ components:
                   video_embedding_scope:
                     type: array
                     description: |
-                      An array of strings that contains the scope enabled for this task.
+                      The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
                     items:
                       type: string
                       enum: [clip, video]
-                      description: |
-                        The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
                   duration:
                     type: number
                     format: float
