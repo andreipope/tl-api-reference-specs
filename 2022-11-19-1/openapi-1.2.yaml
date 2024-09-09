@@ -3510,7 +3510,7 @@ components:
                       The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
                   video_clip_length:
                     type: number
-                    description: The length of the video in seconds.
+                    description: The duration for each clip in seconds.
                   video_embedding_scope:
                     type: array
                     description: |
@@ -3597,7 +3597,7 @@ components:
                       The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
                   video_clip_length:
                     type: number
-                    description: The length of the video in seconds.
+                    description: The  duration for each clip in seconds.
                   video_embedding_scope:
                     type: array
                     description: |
