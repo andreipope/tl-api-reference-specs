@@ -3521,7 +3521,7 @@ components:
                   duration:
                     type: number
                     format: float
-                    description: The total duration of the video in seconds.
+                    description: The total duration of the video in seconds. 
           example:
             _id: "663e16ac4d11aff765088b3a"
             engine_name: "Marengo-retrieval-2.6"
