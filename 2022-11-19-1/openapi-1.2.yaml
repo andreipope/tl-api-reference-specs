@@ -3495,6 +3495,35 @@ components:
                           items:
                             type: number
                             format: float
+              metadata:
+                type: object
+                description: |
+                  An object containing metadata about the video.
+                properties:
+                  video_filename:
+                    type: string
+                    description: |
+                      The name of the video file. The platform returns this field when you upload a video from your local file system.
+                  video_url:
+                    type: string
+                    description: |
+                      The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
+                  video_clip_length:
+                    type: number
+                    description: The length of the video in seconds.
+                  video_embedding_scope:
+                    type: array
+                    description: |
+                      An array of strings that contains the scope enabled for this task.
+                    items:
+                      type: string
+                      enum: [clip, video]
+                      description: |
+                        The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
+                  duration:
+                    type: number
+                    format: float
+                    description: The total duration of the video in seconds.
           example:
             _id: "663e16ac4d11aff765088b3a"
             engine_name: "Marengo-retrieval-2.6"
@@ -3530,6 +3559,11 @@ components:
                   float:
                     - -0.05971131
                     - -0.00859428
+            metadata:
+              video_filename: 01.mp4
+              video_clip_length: 6
+              video_embedding_scope: [clip, video]
+              duration: 18
 
     retrieveVideoEmbeddingTaskStatusResponse:
       description: |
@@ -3550,10 +3584,45 @@ components:
                 type: string
                 description: |
                   The name of the engine the platform uses to create the embeddings.
+              metadata:
+                type: object
+                description: |
+                  An object containing metadata about the video.
+                properties:
+                  video_filename:
+                    type: string
+                    description: |
+                      The name of the video file. The platform returns this field when you upload a video from your local file system.
+                  video_url:
+                    type: string
+                    description: |
+                      The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
+                  video_clip_length:
+                    type: number
+                    description: The length of the video in seconds.
+                  video_embedding_scope:
+                    type: array
+                    description: |
+                      An array of strings that contains the scope enabled for this task.
+                    items:
+                      type: string
+                      enum: [clip, video]
+                      description: |
+                        The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
+                  duration:
+                    type: number
+                    format: float
+                    description: The total duration of the video in seconds.
+                  
           example:
             _id: 6641c0efc70bb578439bd909
             engine_name: Marengo-retrieval-2.6
             status: processing
+            metadata:
+              video_filename: 01.mp4
+              video_clip_length: 6
+              video_embedding_scope: [clip, video]
+              duration: 18
 
   
     createVideoEmbeddingTaskResponse:
