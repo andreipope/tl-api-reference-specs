@@ -3510,7 +3510,7 @@ components:
                       The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
                   video_clip_length:
                     type: number
-                    description: The duration for each clip in seconds.
+                    description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
                   video_embedding_scope:
                     type: array
                     description: |
@@ -3597,7 +3597,7 @@ components:
                       The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
                   video_clip_length:
                     type: number
-                    description: The  duration for each clip in seconds.
+                    description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
                   video_embedding_scope:
                     type: array
                     description: |
