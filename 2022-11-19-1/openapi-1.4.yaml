@@ -1473,6 +1473,56 @@ paths:
 
 components:
   schemas:
+    EmbeddingResponse:
+      type: object
+      properties:
+        engine_name:
+          type: string
+          description: The name ofhe video understanding engine the platform has used to create this embedding.
+      oneOf:
+        - $ref: '#/components/schemas/AudioEmbeddingResponse'
+        - $ref: '#/components/schemas/ImageEmbeddingResponse'
+        - $ref: '#/components/schemas/TextEmbeddingResponse'
+    
+    AudioEmbeddingResponse:
+      type: object
+      required:
+        - audio_embedding
+      properties:
+        audio_embedding:
+          $ref: '#/components/schemas/EmbeddingResult'
+    
+    ImageEmbeddingResponse:
+      type: object
+      required:
+        - image_embedding
+      properties:
+        image_embedding:
+          $ref: '#/components/schemas/EmbeddingResult'
+
+    TextEmbeddingResponse:
+      type: object
+      required:
+        - text_embedding
+      properties:
+        text_embedding:
+          $ref: '#/components/schemas/EmbeddingResult'
+          
+    EmbeddingResult:
+      type: object
+      properties:
+        error_message:
+          type: string
+          description: Error message if embedding generation failed.
+        float:
+          type: array
+          items:
+            type: number
+            format: float
+          description: An array of floating point numbers representing the embedding.
+        is_success:
+          type: boolean
+          description: This field indicates whether the embedding generation was successful.
     end_time:
       type: number
       description: |
@@ -3419,24 +3469,7 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              engine_name:
-                description: |
-                  The name of the engine the platform has used to create this embedding.
-                type: string
-              text_embedding:
-                description: |
-                  An object that contains a field named `float` which is an array of floating point numbers representing the embedding.
-                type: object
-                properties:
-                  float:
-                    description: |
-                      An array of floating point numbers representing the embedding. Note that the example response was truncated for brevity.
-                    type: array
-                    items:
-                      type: number
-                      format: float
+            $ref: '#/components/schemas/EmbeddingResponse'
             example:
               engine_name: Marengo-retrieval-2.6
               text_embedding:
@@ -4404,17 +4437,17 @@ components:
                 format: binary
                 description: |
                   The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
-              audio_truncate: 
-                type: string
-                description: |
-                  Specifies how the platform truncates audio files that exceed 10 seconds to fit the maximum length allowed for an embedding.
-                  This parameter can take one of the following values:
-                  - `start`: The platform will truncate the start of the provided audio file.
-                  - `end`: The platform will truncate the end of the provided audio file.
-                  - `none`: The platform will return an error if the audio file is longer than the maximum limit.
-                  **Default**: `end`
-                default: end
-                example: end
+              # audio_truncate: 
+              #   type: string
+              #   description: |
+              #     Specifies how the platform truncates audio files that exceed 10 seconds to fit the maximum length allowed for an embedding.
+              #     This parameter can take one of the following values:
+              #     - `start`: The platform will truncate the start of the provided audio file.
+              #     - `end`: The platform will truncate the end of the provided audio file.
+              #     - `none`: The platform will return an error if the audio file is longer than the maximum limit.
+              #     **Default**: `end`
+              #   default: end
+              #   example: end
 
     generateTextRepresentationRequest:
       required: true
