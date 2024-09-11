@@ -1486,7 +1486,7 @@ components:
     
     AudioEmbeddingResponse:
       type: object
-      title: Audio embedding
+      title: Audio embedding 
       required:
         - audio_embedding
       properties:
