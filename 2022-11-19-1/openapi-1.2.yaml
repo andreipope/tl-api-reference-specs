@@ -4427,7 +4427,6 @@ components:
                   The name of the engine you want to use. The following engines are available:
                     - `Marengo-retrieval-2.6`
                 example: Marengo-retrieval-2.6
-                default: Marengo-retrieval-2.6
               text:
                 type: string
                 description: |
@@ -4698,6 +4697,7 @@ components:
                   **Default:** 10
                   **Min:** 1
                   **Max:** 50
+                default: 10
               include_clips:
                 $ref: '#/components/schemas/include_clips'
               threshold: 
@@ -4746,11 +4746,6 @@ components:
                   minItems: 1
                   maxItems: 4
                 example:
-                  - visual
-                  - conversation
-                  - text_in_video
-                  - logo
-                default:
                   - visual
                   - conversation
                   - text_in_video
