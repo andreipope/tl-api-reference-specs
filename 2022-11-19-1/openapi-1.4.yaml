@@ -1486,6 +1486,7 @@ components:
     
     AudioEmbeddingResponse:
       type: object
+      title: Audio embedding
       required:
         - audio_embedding
       properties:
@@ -1494,6 +1495,7 @@ components:
     
     ImageEmbeddingResponse:
       type: object
+      title: Image embedding
       required:
         - image_embedding
       properties:
@@ -1502,6 +1504,7 @@ components:
 
     TextEmbeddingResponse:
       type: object
+      title: Text embedding
       required:
         - text_embedding
       properties:
