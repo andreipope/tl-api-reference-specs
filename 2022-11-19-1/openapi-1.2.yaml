@@ -2021,12 +2021,12 @@ components:
               engine_options:
                 type: array
                 description: |
-                  An array of strings that contains the [engine options](/docs/engine-options) enabled for this engine.
+                  An array of strings that contains the [engine options](/docs/engine-options) enabled for this index.
                 items:
                   type: string
               addons:
                 type: array
-                description: The list of the add-ons that are enabled for this engine.
+                description: The list of the add-ons that are enabled for this index.
                 items:
                   type: string
 
@@ -3183,12 +3183,12 @@ components:
                     engine_options:
                       type: array
                       description: |
-                        An array of strings that contains the [engines options](/docs/engine-options) enabled for this engine.
+                        An array of strings that contains the [engines options](/docs/engine-options) enabled for this index.
                       items:
                         type: string
                     addons:
                       type: array
-                      description: The list of add-ons that are enabled for this engine.
+                      description: The list of add-ons that are enabled for this index.
                       items:
                         type: string
           example:
