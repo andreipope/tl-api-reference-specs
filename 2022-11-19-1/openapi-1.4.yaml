@@ -1357,6 +1357,25 @@ paths:
           $ref: "#/components/responses/createVideoEmbeddingTaskResponse"
         "400":
           $ref: "#/components/responses/genericError"
+    get:
+      summary: List video embedding tasks
+      description: |
+        This method returns a list of the video embedding tasks in your account. The API returns your video indexing tasks sorted by creation date, with the newest at the top of the list.
+      operationId: list-video-embedding-tasks
+      tags:
+          - Video embeddings
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/started_at"
+        - $ref: "#/components/parameters/ended_at"
+        - $ref: "#/components/parameters/embedding_tasks_filter_status"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/page_limit"
+      responses:
+        "200":
+          $ref: "#/components/responses/listVideoEmbeddingTasksResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
 
   "/embed/tasks/{task_id}/status":
     get:
@@ -1974,6 +1993,50 @@ components:
                 items:
                   type: string
 
+    videoEmbeddingTask:
+      title: Video Embedding Task
+      type: object
+      properties:
+        _id:
+          type: string
+          description: |
+            A string representing the unique identifier of the task. It is assigned by the platform when a new task is created.
+        created_at:
+          type: string
+          description: A string indicating the date and time, in the RFC 3339 format, that the video embedding task was created.
+        engine_name:
+          type: string
+          description: A string representing the name of the video understanding engine the platform uses to create the embeddings.
+        metadata:
+          type: object
+          description: An object containing metadata about the video.
+          properties:
+            video_filename:
+              type: string
+              description: |
+                The name of the video file. The platform returns this field when you upload a video from your local file system.
+            video_url:
+              type: string
+              description: |
+                The URL of the video. The platform returns this field when you upload a video from a publicly accessible URL.
+            video_clip_length:
+              type: number
+              description: |
+                The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the `POST` method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
+            video_embedding_scope:
+              type: array
+              description: |
+                The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
+              items:
+                type: string
+                enum: [clip, video]
+            duration:
+              type: number
+              description: The total duration of the video in seconds.
+        status:
+          type: string
+          description: | 
+            A string indicating the status of the video embedding task. It can take one of the following values: `processing`, `ready`, or `failed`.
     videoIndexingTask:
       title: Video Indexing Task
       type: object
@@ -2238,7 +2301,27 @@ components:
       schema:
         type: string
       required: false
-
+    ended_at:
+      name: ended_at
+      description: Specifies the end time of the period for which to retrieve embedding tasks. Use the RFC 3339 format - "YYYY-MM-DDTHH:MM:SSZ".
+      in: query
+      schema:
+        type: string
+      required: false
+    started_at:
+      name: started_at
+      description: Specifies the start time of the period for which to retrieve embedding tasks. Use the RFC 3339 format - "YYYY-MM-DDTHH:MM:SSZ".
+      in: query
+      schema:
+        type: string
+      required: false
+    embedding_tasks_filter_status:
+      name: status
+      description: Filters video embedding tasks by their current status. Possible values are `processing`, `ready`, or `failed``.
+      in: query
+      schema:
+        type: string
+      required: false
   #####################
   ###   Responses   ###
   #####################
@@ -3494,7 +3577,7 @@ components:
               engine_name:
                 type: string
                 description: |
-                  The name of the engine the platform uses to create the embeddings.
+                  The name of the video understanding engine the platform uses to create the embeddings.
               status:
                 type: string
                 description: |
@@ -3571,6 +3654,33 @@ components:
                   float:
                     - -0.05971131
                     - -0.00859428
+
+    listVideoEmbeddingTasksResponse:
+      description: |
+        A list of video embedding tasks has successfully been retrieved.
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                type: array
+                description: |
+                  An array that contains up to `page_limit` video embedding tasks.
+                items:
+                  $ref: "#/components/schemas/videoEmbeddingTask"
+              page_info:
+                description: |
+                  An object that provides information about pagination.
+                type: object
+                properties:
+                  limit_per_page:
+                    $ref: "#/components/schemas/limit_per_page_simple"
+                  page:
+                    $ref: "#/components/schemas/page"
+                  total_page:
+                    $ref: "#/components/schemas/total_page"
+                  total_results:
+                    $ref: "#/components/schemas/total_results"
 
     retrieveVideoEmbeddingTaskStatusResponse:
       description: |
