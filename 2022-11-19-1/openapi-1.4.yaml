@@ -2000,16 +2000,56 @@ components:
         _id:
           type: string
           description: |
-            A string representing the unique identifier of the task. It is assigned by the platform when a new task is created.
-        created_at:
-          type: string
-          description: A string indicating the date and time, in the RFC 3339 format, that the video embedding task was created.
+            The unique identifier of the video embedding task.
         engine_name:
           type: string
-          description: A string representing the name of the video understanding engine the platform uses to create the embeddings.
+          description: |
+            The name of the engine the platform uses to create the embeddings.
+        status:
+          type: string
+          description: |
+            A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`.
+        video_embeddings:
+          type: array
+          description: |
+            An array of objects containing your embeddings.
+          items:
+            type: object
+            description: |
+              Each object corresponds to an embedding and has the following fields:
+            properties:
+              start_offset_sec:
+                type: number
+                format: float
+                description: |
+                  The start time of the video segment for this embedding. If the embedding scope is `video`, this field equals `0`.
+              end_offset_sec:
+                type: number
+                format: float
+                description: |
+                  The end time of the video segment for this embedding. If the embedding scope is `video`, this field equals the duration of the video.
+              embedding_scope:
+                type: string
+                description: |
+                  Indicates the scope of this embedding. It can take the following values:
+                  - `video`: Indicates that this embedding if for the entire video.
+                  - `clip`: Indicates that this embedding is for a specific segment.
+              embedding:
+                description: |
+                  An object that contains a field named `float` which represents the embedding. 
+                type: object
+                properties:
+                  float:
+                    description: |
+                      An array of floating point numbers representing the embedding. Note that the example response was truncated for brevity.
+                    type: array
+                    items:
+                      type: number
+                      format: float
         metadata:
           type: object
-          description: An object containing metadata about the video.
+          description: |
+            An object containing metadata about the video.
           properties:
             video_filename:
               type: string
@@ -2018,11 +2058,10 @@ components:
             video_url:
               type: string
               description: |
-                The URL of the video. The platform returns this field when you upload a video from a publicly accessible URL.
+                The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
             video_clip_length:
               type: number
-              description: |
-                The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the `POST` method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
+              description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
             video_embedding_scope:
               type: array
               description: |
@@ -2032,11 +2071,10 @@ components:
                 enum: [clip, video]
             duration:
               type: number
-              description: The total duration of the video in seconds.
-        status:
-          type: string
-          description: | 
-            A string indicating the status of the video embedding task. It can take one of the following values: `processing`, `ready`, or `failed`.
+              format: float
+              description: The total duration of the video in seconds. 
+
+  
     videoIndexingTask:
       title: Video Indexing Task
       type: object
@@ -2317,7 +2355,7 @@ components:
       required: false
     embedding_tasks_filter_status:
       name: status
-      description: Filters video embedding tasks by their current status. Possible values are `processing`, `ready`, or `failed``.
+      description: Filters video embedding tasks by their current status. Possible values are `processing`, `ready`, or `failed`.
       in: query
       schema:
         type: string
