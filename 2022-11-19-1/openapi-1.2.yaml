@@ -2342,7 +2342,9 @@ components:
       description: |
         Filter by width.
       schema:
-        type: integer
+        oneOf:
+          - type: integer
+          - type: string
       required: false
     height:
       name: height
