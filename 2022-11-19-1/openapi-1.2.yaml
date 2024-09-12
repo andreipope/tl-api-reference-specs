@@ -33,6 +33,7 @@ tags:
   - name: Create video embeddings
   - name: Generate text from video
   - name: Extract video data
+  - name: Create text, image, and audio embeddings
 
 paths:
 
@@ -1279,7 +1280,58 @@ paths:
           $ref: '#/components/responses/genericError' 
         '429':
           description: |
-            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.                             
+            If the rate limit is reached, the platform returns an `HTTP 429 - Too many requests` error response. The response body is empty.
+            
+#############################################
+###   Text, image, and audio embeddings   ###
+#############################################
+  "/embed-new":
+    post:
+      summary: Create embeddings for text, image, and audio 
+      description: |
+        This endpoint creates embedings for text, image, and audio. 
+
+        Before creating an embeding, ensure that the necessary prerequisites are met: 
+        - [Text embedding prerequisites](/docs/create-text-embeddings#prerequisites)
+        - [Image embedding prerequisites](/create-image-embeddings#prerequisites)
+        - [Audio embedding prerequisites](/create-audio-embeddings#prerequisites)
+
+        **Common parameters**:   
+        For all embedding types, set the following parameter:
+        - `engine_name`: Specify the name of the video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
+
+        **Text embeddings**:
+        To create text embeddings, provide the following parameters:
+        - `text`: The text for which you want to create an embedding.
+        - _(Optional)_ `text_truncate`: Specify how the platform should truncate text that exceeds 77 tokens.
+
+        **Image embeddings**:
+        To create an embedding for an image, provide the image using one of the following parameters:
+        - `image_url`: A publicly accessible URL of your image file.
+        - `image_file`: A local image file.
+        **NOTE**: If you specify both the `image_url` and `image_file` parameters in the same request, the `image_url` parameter takes precedence over `image_file`.
+
+        **Audio embeddings**:
+        To create an embedding for an audio file, provide the audio file using one of the following parameters:
+        - `audio_url`: A publicly accessible URL of your audio file.
+        - `audio_file`: A local audio file.
+        **NOTE**: If you specify both the `audio_url` and `audio_file` parameters in the same request, the `audio_url` parameter takes precedence over `audio_file`.
+
+
+      operationId: create-text-image-audio-embedding
+      tags:
+        - Create text, image, and audio embeddings
+      requestBody:
+        $ref: "#/components/requestBodies/createSyncEmbeddingRequest"
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/multipart"
+      responses:
+        "200":
+          $ref: "#/components/responses/createSyncEmbeddingResponse"
+        "400":
+          $ref: "#/components/responses/genericError"
+
 ###########################
 ###   Text embeddings   ###
 ###########################
@@ -1454,6 +1506,60 @@ paths:
 
 components:
   schemas:
+
+    EmbeddingResponse:
+      type: object
+      properties:
+        engine_name:
+          type: string
+          description: The name ofhe video understanding engine the platform has used to create this embedding.
+      oneOf:
+        - $ref: '#/components/schemas/AudioEmbeddingResponse'
+        - $ref: '#/components/schemas/ImageEmbeddingResponse'
+        - $ref: '#/components/schemas/TextEmbeddingResponse'
+    
+    AudioEmbeddingResponse:
+      type: object
+      title: Audio embedding 
+      required:
+        - audio_embedding
+      properties:
+        audio_embedding:
+          $ref: '#/components/schemas/EmbeddingResult'
+    
+    ImageEmbeddingResponse:
+      type: object
+      title: Image embedding
+      required:
+        - image_embedding
+      properties:
+        image_embedding:
+          $ref: '#/components/schemas/EmbeddingResult'
+
+    TextEmbeddingResponse:
+      type: object
+      title: Text embedding
+      required:
+        - text_embedding
+      properties:
+        text_embedding:
+          $ref: '#/components/schemas/EmbeddingResult'
+          
+    EmbeddingResult:
+      type: object
+      properties:
+        error_message:
+          type: string
+          description: Error message if embedding generation failed.
+        float:
+          type: array
+          items:
+            type: number
+            format: float
+          description: An array of floating point numbers representing the embedding.
+        is_success:
+          type: boolean
+          description: This field indicates whether the embedding generation was successful.
 
     end_time:
       type: number
@@ -3439,6 +3545,19 @@ components:
                   - 0.021137852
                   - -0.015733518
 
+    createSyncEmbeddingResponse:
+      description: |
+        A text embedding has successfully been created. 
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EmbeddingResponse'
+            example:
+              engine_name: Marengo-retrieval-2.6
+              text_embedding:
+                float:
+                  - 0.021137852
+                  - -0.015733518
     retrieveVideoEmbeddingResponse:
       description: |
         Video embeddings have successfully been retrieved.
@@ -4337,6 +4456,81 @@ components:
 ##########################
 
   requestBodies:
+
+    createSyncEmbeddingRequest:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            required:
+              - engine_name
+            properties:
+              engine_name:
+                type: string
+                description: |
+                  The name of the engine you want to use. The following engines are available:
+                    - `Marengo-retrieval-2.6`
+                example: Marengo-retrieval-2.6
+                default: Marengo-retrieval-2.6
+              
+              text:
+                type: string
+                description: |
+                  The text for which you wish to create an embedding.
+
+                  **NOTE**:
+                  Text embeddings are limited to 77 tokens. If the text exceeds this limit, the platform truncates it according to the value of the `text_truncate` parameter described below.
+
+                  **Example**: "Man with a dog crossing the street"
+                example: Man with dog crossing the steet
+              text_truncate:
+                type: string
+                description: |
+                  Specifies how the platform truncates text that exceeds 77 tokens to fit the maximum length allowed for an embedding.
+                  This parameter can take one of the following values:
+                  - `start`: The platform will truncate the start of the provided text.
+                  - `end`: The platform will truncate the end of the provided text.
+                  - `none`: The platform will return an error if the text is longer than the maximum token limit.
+                  **Default**: `end`
+                default: end
+                example: end
+
+
+              image_url:
+                type: string
+                format: uri
+                description: |
+                  The publicly accessible URL of the image for which you wish to create an embedding. This parameter is required for image embeddings if `image_file` is not provided.
+              image_file:
+                type: string
+                format: binary
+                description: |
+                  The image file for which you wish to create an embedding as a local file. This parameter is required for image embeddings if `image_url` is not provided.
+
+
+              audio_url:
+                type: string
+                format: uri
+                description: |
+                  The publicly accessible URL of the audio file for which you wish to creae an emebdding. This parameter is required for audio embeddings if `audio_file` is not provided.
+              audio_file:
+                type: string
+                format: binary
+                description: |
+                  The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
+              # audio_truncate: 
+              #   type: string
+              #   description: |
+              #     Specifies how the platform truncates audio files that exceed 10 seconds to fit the maximum length allowed for an embedding.
+              #     This parameter can take one of the following values:
+              #     - `start`: The platform will truncate the start of the provided audio file.
+              #     - `end`: The platform will truncate the end of the provided audio file.
+              #     - `none`: The platform will return an error if the audio file is longer than the maximum limit.
+              #     **Default**: `end`
+              #   default: end
+              #   example: end
+
     createVideoEmbeddingTaskRequest:
       content:
         multipart/form-data:
