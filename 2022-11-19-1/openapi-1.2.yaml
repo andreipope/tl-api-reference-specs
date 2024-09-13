@@ -5398,25 +5398,17 @@ components:
               filter:
                 type: string
                 description: |
-                  A stringified version of an object that specifies the criteria for filtering the search results. The object properties and their values determine the filtering conditions.
+                  This parameter accepts a stringified object to filter search results:
+                  - For string fields: Use the exact match operator (`=`) to return results that exactly equal the specified value. Syntax: `"field": "value"`.
+                  - For numeric fields: Use either exact match (`=`) or comparison operators (`gte`, `lte`) for arithmetic comparisons Syntax: `"field": number` or `"field": { "gte": number, "lte": number }`.
 
-                  The stringified object can contain the following properties:
-                  - `id`: An array of strings that filters your search results based on the specified video IDs.
-                  - `duration`: An object that filters your search results based on the duration of the video containing the segment that matches your query. It accepts `gte` (greater than or equal to) and `lte` (less than or equal to) properties, expressed in seconds. The following example filters search results to include only the segments from videos with a duration greater than or equal to 600 seconds and less than or equal to 800 seconds: 
-                    ```
-                    "duration": {
-                      "gte": 600,
-                      "lte": 800
-                    }
-                    ```
-                  - `width`: A numeric value that filters your search results based on the video width.
-                  - `height`: A numeric value that filters your search results based on the video height.
-                  - `size`: A numeric value that filters your search results based on the video size, expressed in bytes.
-                  - `title`: A string value that filters your search results based on the video title.
-
-                  For string fields, the filter `parameter` returns only the results that equal the value you specify. The following example filters on the videos whose title is "Animal Encounters part 1": `"title": "Animal Encounters part 1"`.
-                  
-                  For numeric fields, the `filter` parameter returns the results that match based on the arithmetic comparison. The following example filters on the videos whose height is greater than or equal to 400 and less than or equal to 500: `"height": { "gte": 400, "lte": 500 }`.
+                  The filter object can contain the following properties:
+                  - `id`: An array of strings to filter by specific video IDs. Example: `"id": ["video1", "video2"]`.
+                  - `duration`: An object to filter your search results based on the duration of the video containing the segment that matches your query. Example: `"duration": { "gte": 600, "lte": 800 }`.
+                  - `width`: A numeric value to filter by video width. Example: `"width": 1920` or `"width": { "gte": 1280, "lte": 1920 }`
+                  - `height`: A numeric value to filter by video height. Example: `"height": 1080` or `"height": { "gte": 720, "lte": 1080 }`.
+                  - `size`: A numeric value to filter by video size in bytes. Example: `"size": 1048576` or `"size": { "gte": 1048576, "lte": 5242880 }`.
+                  - `title`: A string value to filter by video title. Example: `"title": "Animal Encounters part 1"`.
 
                   To enable filtering by custom fields:
                   1. Add metadata to your video by calling the the [`PUT`](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint
