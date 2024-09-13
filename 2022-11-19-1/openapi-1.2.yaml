@@ -584,7 +584,7 @@ paths:
         - name: updated_at
           in: query
           description: |
-            This filter applies only to videos updated using the [`PUT`](/reference/update-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. It filter videos by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks that were last updated on the specified date at or after the given time.
+            This filter applies only to videos updated using the [`PUT`](/reference/update-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. It filters videos by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks that were last updated on the specified date at or after the given time.
           required: false
           schema:
             type: string
