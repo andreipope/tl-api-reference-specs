@@ -409,7 +409,22 @@ paths:
           schema:
             type: string
           example: index_options=visual,conversation
-          
+        - name: created_at
+          in: query
+          description: |
+            Filter indexes by the creation date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the indexes that were created on the specified date at or after the given time.
+          schema:
+            type: string
+          required: false
+          example: 2024-08-16T16:53:59Z
+        - name: updated_at
+          in: query
+          description: |
+            Filter indexes by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the indexes that were last updated on the specified date at or after the given time.
+          schema:
+            type: string
+          required: false
+          example: 2024-08-16T16:55:59Z
       responses:
         '200':
           $ref: '#/components/responses/getIndexesResponse'
@@ -562,25 +577,24 @@ paths:
         - name: created_at
           in: query
           description: |
-            Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was created.
+            Filter videos by the creation date and time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the videos whose indexing tasks were created on the specified date at or after the given time.
           required: false
           schema:
             type: string
         - name: updated_at
           in: query
           description: |
-            Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was updated.
+            This filter applies only to videos updated using the [`PUT`](/reference/update-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. It filter videos by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks that were last updated on the specified date at or after the given time.
           required: false
           schema:
             type: string
         - name: indexed_at
           in: query
           description: |
-            Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task has been completed.
+            Filter videos by the completion time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the videos whose indexing tasks were completed on the specified date at or after the given time. 
           required: false
           schema:
             type: string
-
         - name: metadata # Arbitrary name that won't be included in the request URL.
           in: query
           description: |
@@ -2356,7 +2370,7 @@ components:
       name: created_at
       in: query
       description: |
-        Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was created.
+        Filter video indexing tasks by the creation date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks that were created on the specified date at or after the given time.
       schema:
         type: string
       required: false
@@ -2364,7 +2378,7 @@ components:
       name: updated_at
       in: query
       description: |
-        Filter by the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was updated.
+        Filter video indexing tasks by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks that were updated on the specified date at or after the given time.
       schema:
         type: string
       required: false
@@ -2372,7 +2386,7 @@ components:
       name: estimated_time
       in: query
       description: |
-        Filter by the estimated completion date and time of the video indexing task, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format.
+        Filter video indexing tasks by the estimated completion date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks estimated to be completed on the specified date at or after the given time.
       schema:
         type: string
       required: false
