@@ -412,7 +412,7 @@ paths:
         - name: created_at
           in: query
           description: |
-            Filter indexes by the creation date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the indexes that were created on the specified date at or after the given time.
+            Filter indexes by the creation date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the indexes that were created on the specified date at or after the given time.
           schema:
             type: string
           required: false
@@ -420,7 +420,7 @@ paths:
         - name: updated_at
           in: query
           description: |
-            Filter indexes by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the indexes that were last updated on the specified date at or after the given time.
+            Filter indexes by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the indexes that were last updated on the specified date at or after the given time.
           schema:
             type: string
           required: false
@@ -577,21 +577,21 @@ paths:
         - name: created_at
           in: query
           description: |
-            Filter videos by the creation date and time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the videos whose indexing tasks were created on the specified date at or after the given time.
+            Filter videos by the creation date and time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the videos whose indexing tasks were created on the specified date at or after the given time.
           required: false
           schema:
             type: string
         - name: updated_at
           in: query
           description: |
-            This filter applies only to videos updated using the [`PUT`](/reference/update-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. It filters videos by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks that were last updated on the specified date at or after the given time. 
+            This filter applies only to videos updated using the [`PUT`](/reference/update-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. It filters videos by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the video indexing tasks that were last updated on the specified date at or after the given time. 
           required: false
           schema:
             type: string
         - name: indexed_at
           in: query
           description: |
-            Filter videos by the completion time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the videos whose indexing tasks were completed on the specified date at or after the given time. 
+            Filter videos by the completion time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the videos whose indexing tasks were completed on the specified date at or after the given time. 
           required: false
           schema:
             type: string
@@ -1856,7 +1856,7 @@ components:
         page_expired_at:
           type: string
           description: |
-            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the page expires.
         limit_per_page:
           $ref: '#/components/schemas/limit_per_page_simple'
         next_page_token:
@@ -1966,11 +1966,11 @@ components:
         created_at:
           type: string
           description: |
-            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the engine was created.
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the engine was created.
         updated_at:
           type: string
           description: |
-            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the engine was updated.
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the engine was updated.
         finetune:
           type: boolean
           description: |
@@ -2002,14 +2002,14 @@ components:
           description: A string representing the unique identifier of the index. It is assigned by the API when an index is created.
         created_at:
           type: string
-          description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index was created.
+          description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the index was created.
         updated_at:
           type: string
-          description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index has been updated.
+          description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the index has been updated.
         expires_at:
           type: string
           description: |
-            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, when your index will expire.
+            A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), when your index will expire.
 
             If you're on the Free plan, the platform retains your index data for 90 days from creation. After this period, the platform deletes your index data, and this action cannot be undone. To continue using your index beyond this period, consider upgrading to the Developer plan, which offers unlimited index retention. For details, see the [Upgrade your plan](/docs/manage-your-plan#upgrade-your-plan) section.
 
@@ -2135,18 +2135,18 @@ components:
             A string representing the unique identifier of the task. It is assigned by the platform when a new task is created.
         created_at:
           type: string
-          description: 'A string indicating the date and time, in the RFC 3339 format, that the task was created.'
+          description: 'A string indicating the date and time, in the RFC [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the task was created.'
         updated_at:
           type: string
           description: |
-            A string indicating the date and time, in the RFC 3339 format, that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
+            A string indicating the date and time, in the RFC [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
         status:
           type: string
           description: A string indicating the status of the video indexing task. See the [Tasks](/reference/tasks) page for a list of possible statuses.
         estimated_time:
           type: string
           description: |
-            A string indicating the estimated completion date and time of the video indexing task, in the RFC 3339 format.
+            A string indicating the estimated completion date and time of the video indexing task, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ").
         index_id:
           type: string
           description: |
@@ -2188,15 +2188,15 @@ components:
         created_at:
           type: string
           description: |
-            A string indicating the date and time, in the RFC 3339 format, that the video indexing task was created.
+            A string indicating the date and time, in the RFC [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the video indexing task was created.
         updated_at:
           type: string
           description: |
-            A string indicating the date and time, in the RFC 3339 format, that the video indexing task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
+            A string indicating the date and time, in the RFC [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the video indexing task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
         indexed_at:
           type: string
           description: |
-            A string indicating the date and time, in the RFC 3339 format, that the video indexing task has been completed.
+            A string indicating the date and time, in the RFC [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the video indexing task has been completed.
         metadata:
           type: object
           description: |
@@ -2297,8 +2297,8 @@ components:
       in: query
       description: |
         The field to sort on. The following options are available:
-        - `updated_at`: Sorts by the time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, when the item was updated.
-        - `created_at`: Sorts by the time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, when the item was created.
+        - `updated_at`: Sorts by the time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), when the item was updated.
+        - `created_at`: Sorts by the time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), when the item was created.
 
         **Default**: `created_at`.
       schema:
@@ -2370,7 +2370,7 @@ components:
       name: created_at
       in: query
       description: |
-        Filter video indexing tasks by the creation date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks that were created on the specified date at or after the given time.
+        Filter video indexing tasks by the creation date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the video indexing tasks that were created on the specified date at or after the given time.
       schema:
         type: string
       required: false
@@ -2378,7 +2378,7 @@ components:
       name: updated_at
       in: query
       description: |
-        Filter video indexing tasks by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks that were updated on the specified date at or after the given time.
+        Filter video indexing tasks by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the video indexing tasks that were updated on the specified date at or after the given time.
       schema:
         type: string
       required: false
@@ -2386,7 +2386,7 @@ components:
       name: estimated_time
       in: query
       description: |
-        Filter video indexing tasks by the estimated completion date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. The platform returns the video indexing tasks estimated to be completed on the specified date at or after the given time.
+        Filter video indexing tasks by the estimated completion date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the video indexing tasks estimated to be completed on the specified date at or after the given time.
       schema:
         type: string
       required: false
@@ -2394,7 +2394,7 @@ components:
     ended_at:
       name: ended_at
       description: |
-        Retrieve the video embedding tasks created after a specific time. When specifying the time, use the  [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format: "YYYY-MM-DDTHH:MM:SSZ". 
+        Retrieve the video embedding tasks created after a specific time. When specifying the time, use the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). 
       in: query
       schema:
         type: string
@@ -2402,7 +2402,7 @@ components:
     started_at:
       name: started_at
       description: |
-        Retrieve the video embedding tasks created after a specific time. When specifying the time, use the  [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format: "YYYY-MM-DDTHH:MM:SSZ".
+        Retrieve the video embedding tasks created after a specific time. When specifying the time, use the  [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ").
       in: query
       schema:
         type: string
@@ -2472,7 +2472,8 @@ components:
                       The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video clips per page. 
                   page_expired_at:
                     type: string
-                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
+                    description: |
+                      A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the page expires.
                   total_results:
                     type: integer
                     description: |
@@ -2617,7 +2618,7 @@ components:
                     $ref: '#/components/schemas/limit_per_page_simple'
                   page_expired_at:
                     type: string
-                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
+                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the page expires.
                   total_results:
                     $ref: '#/components/schemas/total_results'
                   next_page_token:
@@ -2691,7 +2692,7 @@ components:
                     $ref: '#/components/schemas/limit_per_page_simple'
                   page_expired_at:
                     type: string
-                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
+                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the page expires.
                   total_results:
                     $ref: '#/components/schemas/total_results'
                   next_page_token:
@@ -2803,7 +2804,7 @@ components:
                       The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video clips per page.
                   page_expired_at:
                     type: string
-                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the page expires.
+                    description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the page expires.
                   total_results:
                     type: integer
                     description: |
@@ -3073,13 +3074,13 @@ components:
                 description: The unique identifier of the video.
               created_at:
                 type: string
-                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task was created.
+                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the video indexing task was created.
               updated_at: 
                 type: string
-                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the corresponding video indexing task was last updated. The platform updates this field every time the corresponding video indexing task transitions to a different state.
+                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the corresponding video indexing task was last updated. The platform updates this field every time the corresponding video indexing task transitions to a different state.
               indexed_at:
                 type: string
-                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the video indexing task has been completed.
+                description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the video indexing task has been completed.
               metadata:
                 type: object
                 description: An object that contains the information about the video.
@@ -3111,7 +3112,7 @@ components:
                     description: A string representing the encoding status of the video file from its original format to a streamable format.
                   updated_at:
                     type: string
-                    description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the encoding status was last updated.
+                    description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the encoding status was last updated.
               # source:
               #   type: object
               #   description: |
@@ -3165,14 +3166,14 @@ components:
                 description: A string representing the unique identifier of the index. It is assigned by the API when an index is created.
               created_at:
                 type: string
-                description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index was created.
+                description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the index was created.
               updated_at:
                 type: string
-                description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the index has been updated.
+                description: A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the index has been updated.
               expires_at:
                 type: string
                 description: |
-                  A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, when your index will expire.
+                  A string representing the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format "YYYY-MM-DDTHH:mm:ssZ", when your index will expire.
 
                   If you're on the Free plan, the platform retains your index data for 90 days from creation. After this period, the platform deletes your index data, and this action cannot be undone. To continue using your index beyond this period, consider upgrading to the Developer plan, which offers unlimited index retention. For details, see the [Upgrade your plan](/docs/manage-your-plan#upgrade-your-plan) section.
 
@@ -3330,13 +3331,13 @@ components:
                 description: The unique identifier of the video indexing task.
               created_at:
                 type: string
-                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the task object has been created.
+                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the task object has been created.
               updated_at:
                 type: string
-                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
+                description: A string indicating the date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the task object was last updated. The platform updates this field every time the video indexing task transitions to a different state.
               estimated_time:
                 type: string
-                description: A string indicating the estimated completion date and time of the video indexing process, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format.
+                description: A string indicating the estimated completion date and time of the video indexing process, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ").
               index_id:
                 type: string
                 description: A string representing the unique identifier of index to which the video is uploaded.
@@ -3375,7 +3376,7 @@ components:
                     description: A string representing the encoding status of the video file from its original format to a streamable format.
                   updated_at:
                     type: string
-                    description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format, that the encoding status was last updated.
+                    description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the encoding status was last updated.
               process:
                 type: object
                 description: If your video has not yet finished indexing, the platform returns the current progress of the indexing operation.
