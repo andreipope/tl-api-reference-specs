@@ -2393,14 +2393,16 @@ components:
 
     ended_at:
       name: ended_at
-      description: Retrieve the video embedding tasks created after a specific time. When specifying the time, use the  [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format: "YYYY-MM-DDTHH:MM:SSZ".
+      description: |
+        Retrieve the video embedding tasks created after a specific time. When specifying the time, use the  [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format: "YYYY-MM-DDTHH:MM:SSZ".
       in: query
       schema:
         type: string
       required: false
     started_at:
       name: started_at
-      description: Retrieve the video embedding tasks created after a specific time. When specifying the time, use the  [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format: "YYYY-MM-DDTHH:MM:SSZ".
+      description: |
+        Retrieve the video embedding tasks created after a specific time. When specifying the time, use the  [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format: "YYYY-MM-DDTHH:MM:SSZ".
       in: query
       schema:
         type: string
