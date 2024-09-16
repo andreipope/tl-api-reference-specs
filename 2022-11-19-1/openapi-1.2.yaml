@@ -1303,7 +1303,7 @@ paths:
     post:
       summary: Create embeddings for text, image, and audio 
       description: |
-        This endpoint creates embedings for text, image, and audio. 
+        This method creates embedings for text, image, and audio. Note that you can create multiple types of embeddings in a single API call.
 
         Before creating an embeding, ensure that the necessary prerequisites are met: 
         - [Text embedding prerequisites](/docs/create-text-embeddings#prerequisites)
@@ -1311,11 +1311,11 @@ paths:
         - [Audio embedding prerequisites](/create-audio-embeddings#prerequisites)
 
         **Common parameters**:   
-        For all embedding types, set the following parameter:
+        For all types of embedding, set the following parameter:
         - `engine_name`: Specify the name of the video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
 
         **Text embeddings**:
-        To create text embeddings, provide the following parameters:
+        To create an embedding for text, provide the following parameters:
         - `text`: The text for which you want to create an embedding.
         - _(Optional)_ `text_truncate`: Specify how the platform should truncate text that exceeds 77 tokens.
 
@@ -1548,7 +1548,7 @@ components:
         engine_name:
           type: string
           description: The name ofhe video understanding engine the platform has used to create this embedding.
-      oneOf:
+      anyOf:
         - $ref: '#/components/schemas/AudioEmbeddingResponse'
         - $ref: '#/components/schemas/ImageEmbeddingResponse'
         - $ref: '#/components/schemas/TextEmbeddingResponse'
