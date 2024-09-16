@@ -1329,6 +1329,7 @@ paths:
         To create an embedding for an audio file, provide the audio file using one of the following parameters:
         - `audio_url`: A publicly accessible URL of your audio file.
         - `audio_file`: A local audio file.
+        - _(Optional)_ `audio_truncate`: Specify how the platform should truncate the embeddings for audio files that exceed 10 seconds.
         **NOTE**: If you specify both the `audio_url` and `audio_file` parameters in the same request, the `audio_url` parameter takes precedence over `audio_file`.
 
 
