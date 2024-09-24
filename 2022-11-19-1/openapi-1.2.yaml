@@ -1305,7 +1305,7 @@ paths:
       summary: Create embeddings for text, image, and audio 
       description: |
         This method creates embedings for text, image, and audio.
-        You can create multiple types of embeddings in a single API call.
+        You can create multiple types of embeddings in a single API call. 
         
         Before you create an embedding, ensure that the following prerequisites are met: 
         - [Text embedding prerequisites](/docs/create-text-embeddings#prerequisites)
