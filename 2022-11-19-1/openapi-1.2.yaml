@@ -168,7 +168,7 @@ paths:
         Use this method to create a new video indexing task that uploads and indexes a video. The video you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
         Note the following about creating a new video indexing task:
         - To upload a file that resides on the local file system, pass the `video_file` parameter. It must be a stream of bytes encoded as `multipart/form-data`.
-        - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a `string`.
+        - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a `string`. 
         - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
         - To provide a transcription file, you must set the `provide_transcription` parameter to `true` and specify at least one of the `transcription_file` and `transcription_url` parameters:
           - Use the `transcription_file` parameter to provide a transcription from the local file system. It must be a stream of bytes encoded as `multipart/form-data`.
