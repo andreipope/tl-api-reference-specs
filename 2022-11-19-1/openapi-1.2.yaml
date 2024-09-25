@@ -315,13 +315,11 @@ paths:
 
   '/tasks/transfers/import/{integration-id}':
     post:
-      summary: Automated transfers - Import videos
+      summary: Import videos
       description: |
-        This method imports the videos from the specified integration.
+        This method imports the videos from the specified integration. The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
 
-        **NOTES**:
-        - This feature is available only with a paid plan. If you're on the Free plan, see the [Upgrade your plan](/docs/manage-your-plan#upgrade-your-plan) section for details.
-        - Before using this feature, you must set up an integration. For details, see the TODO page.
+
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
@@ -345,7 +343,7 @@ paths:
 
   '/tasks/transfers/import/{integration-id}/status':
     get:
-      summary: Automated transfersRetrieve the status of your imported videos
+      summary: Retrieve the status of your imported videos
       description: This method retrieves the status of your imported videos.
       parameters:
         - $ref: "#/components/parameters/x-api-key"
@@ -367,7 +365,7 @@ paths:
   
   '/task/transfers/import/{integration-id}/logs':
     get:
-      summary: Automated transfers - Retrieve the import logs for a specific integration
+      summary: Retrieve the import logs for a specific integration
       description: This endpoint returns a list of import logs for the specified integration, including details about any failed files.
       parameters:
         - $ref: "#/components/parameters/x-api-key"
