@@ -319,6 +319,8 @@ paths:
       description: |
         This method imports the videos from the specified integration. The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
 
+        **NOTE**: Before using this feature, you must set up an integration. For details, see the TODO page.
+
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
