@@ -313,6 +313,80 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
 
+  '/tasks/transfers/import/{integration-id}':
+    post:
+      summary: Automated transfers - Import videos
+      description: |
+        This method imports the videos from the specified integration.
+
+        **NOTES**:
+        - This feature is available only with a paid plan. If you're on the Free plan, see the [Upgrade your plan](/docs/manage-your-plan#upgrade-your-plan) section for details.
+        - Before using this feature, you must set up an integration. For details, see the TODO page.
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - name: integration-id
+          in: path
+          required: true
+          schema: 
+            type: string
+            description: The unique identifier of the integration for which you want to import videos.
+      operationId: cloud-to-cloud-import-videos
+      requestBody: 
+        $ref: "#/components/requestBodies/cloud-to-cloud-import-videos-request"
+      tags:
+        - Upload videos
+      responses:
+        '200':
+          $ref: '#/components/responses/cloud-to-cloud-import-videos-response'
+        '400':
+          $ref: '#/components/responses/genericError'
+        
+
+  '/tasks/transfers/import/{integration-id}/status':
+    get:
+      summary: Automated transfersRetrieve the status of your imported videos
+      description: This method retrieves the status of your imported videos.
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - name: integration-id
+          in: path
+          required: true
+          schema:
+            type: string
+            description: The unique identifier of the integration for which you want to retrieve the status of your imported videos.
+      operationId: cloud-to-cloud-retrieve-status
+      tags:
+        - Upload videos
+      responses:
+        '200':
+          $ref: '#/components/responses/cloud-to-cloud-retrieve-status-response'
+        '400':
+          $ref: '#/components/responses/genericError'
+  
+  '/task/transfers/import/{integration-id}/logs':
+    get:
+      summary: Automated transfers - Retrieve the import logs for a specific integration
+      description: This endpoint returns a list of import logs for the specified integration, including details about any failed files.
+      parameters:
+        - $ref: "#/components/parameters/x-api-key"
+        - $ref: "#/components/parameters/Content-Type"
+        - name: integration-id
+          in: path
+          required: true
+          schema:
+            type: string
+            description: The unique identifier of the integration for which you want to retrieve the import logs.
+      operationId: cloud-to-cloud-retrieve-import-logs
+      tags:
+        - Upload videos
+      responses:
+        '200':
+          $ref: '#/components/responses/cloud-to-cloud-retrieve-import-logs-response'
+        '400':
+          $ref: '#/components/responses/genericError'
+
   ####################################
   ###   Tasks/External Providers   ###
   ####################################
@@ -1539,6 +1613,89 @@ paths:
 components:
   schemas:
 
+    ImportLog:
+      type: object
+      properties:
+        index_id:
+          type: string
+          description: The unique identifier of the index associated with this import.
+        index_name:
+          type: string
+          description: The name of the index associated with this import.
+        import_timestamp:
+          type: string
+          format: date-time
+          description: The date and time when the import was initiated.
+        status:
+          type: object
+          description: Counts of files in different statuses. See the [Task object](/reference/the-task-object) page for details on each status.
+          properties:
+            ready:
+              type: integer
+            validating:
+              type: integer
+            queued:
+              type: integer
+            pending:
+              type: integer
+            indexing:
+              type: integer
+            failed:
+              type: integer
+          required: 
+            -  ready
+            -  validating
+            -  queued
+            -  pending
+            -  indexing
+            -  failed
+        failed_files:
+          type: array
+          description: An array containing the video files that failed to import, along with details about the error.
+          items:
+            type: object
+            properties:
+              filename:
+                type: string
+                description: The name of the video file that failed to import.
+              error:
+                type: object
+                description: Details about the error that occurred during import.
+                properties:
+                  code:
+                    type: string
+                    description: An error code.
+                  message:
+                    type: string
+                    description: A human-readable error message.
+                required:
+                  - code
+                  - message
+            required:
+              - index_id
+              - index_name
+              - import_timestamp
+              - status
+              - failed_files
+            
+    VideoItem:
+      type: object
+      properties:
+        video_id:
+          type: string
+          description: The unique identifier of the video.
+        filename:
+          type: string
+          description: The name of the video file.
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time when the video was created.
+      required: 
+        -  video_id
+        - filename
+        - created_at
+
     EmbeddingResponse:
       type: object
       properties:
@@ -2419,6 +2576,50 @@ components:
 
   responses:
 
+    cloud-to-cloud-retrieve-import-logs-response:
+      description: The import logs have successfully been retrieved.
+      content:
+        application/json:
+          schema: 
+            type: object
+            properties:
+              data:
+                type: array
+                description: An array that contains the import logs.
+                items:
+                  $ref: '#/components/schemas/ImportLog'
+          example:
+            data:
+              - index_id: "66ed1ed7046a96796303a06f"
+                index_name: "my sample index"
+                import_timestamp: "2024-09-24T13:22:00Z"
+                status:
+                  ready: 5
+                  validating: 2
+                  pending: 1
+                  indexing: 3
+                  failed: 2
+                  queued: 0
+                failed_files:
+                  - filename: "VIDEO_3.mp4"
+                    error:
+                      code: "ERROR_CODE"
+                      message: "Error message"
+              - index_id: "66ed1ed7046a96796303a06f"
+                index_name: "my sample index"
+                import_timestamp: "2024-09-22T13:22:00Z"
+                status:
+                  ready: 10
+                  validating: 0
+                  pending: 0
+                  indexing: 0
+                  failed: 3
+                  queued: 0
+                failed_files:
+                  - filename: "VIDEO_3.mp4"
+                    error:
+                      code: "ERROR_CODE"
+                      message: "Error message"
     searchResultsResponsePageId:
       description: Successfully retrieved the specified page of search results.
       content:
@@ -3614,7 +3815,6 @@ components:
             example:
               code: parameter_invalid
               message: The total duration(seconds) 3760 of videos exceeds the limit.
-
     genericError:
       description: The request has failed.
       content:
@@ -4613,7 +4813,87 @@ components:
               prev_page_token: '490d1751-ee0c-4b19-b9af-bb7498ecd348-0'
 
       
-      
+    cloud-to-cloud-import-videos-response:
+      description: |
+        The specified videos have successfully been imported.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              task_ids:
+                type: array
+                items:
+                  type: string
+                description: An array of task IDs corresponding to the imported videos.
+            required:
+              - task_ids
+          example:
+            task_ids:
+              - 66f282c0bf05a522ec5040f4
+              - 66f282c0bf05a522ec5040f5
+              - 66f282c0bf05a522ec5040f6
+
+    cloud-to-cloud-retrieve-status-response:
+      description: |
+        The status of your video indexing tasks has successfully been retrieved. See the [Task object](/reference/the-task-object) page for details on each status.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              not_imported:
+                type: array
+                items:
+                  type: string
+                description: An array of filenames that haven't yet been imported.
+              validating:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoItem'
+                description: An array of videos that are being validated.
+              pending:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoItem'
+                description: An array of videos that are pending.
+              queued:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoItem'
+                description: An array of videos that are queued for import.
+              indexing:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoItem'
+                description: An array of videos that are being indexed.
+              ready:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoItem'
+                description: An array of videos that have successfully been imported.
+              failed:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VideoItem'
+                description: An array of videos that failed to import.
+          example:
+            not_imported:
+              - "NEW_VIDEO_1.mp4"
+              - "NEW_VIDEO_2.mp4"
+            ready:
+              - video_id: "VIDEO_ID_1"
+                filename: "VIDEO_1.mp4"
+                created_at: "2024-09-24T13:22:00Z"
+              - video_id: "VIDEO_ID_2"
+                filename: "VIDEO_2.mp4"
+                created_at: "2024-09-24T13:22:00Z"
+            pending:
+              - video_id: "VIDEO_ID_3"
+                filename: "VIDEO_3.mp4"
+                created_at: "2024-09-24T13:22:00Z"
+
+
 ##########################
 ###   Request Bodies   ###
 ##########################
@@ -5632,6 +5912,37 @@ components:
 
                 type: string
                 format: binary
+
+    cloud-to-cloud-import-videos-request:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - index_id
+            properties:
+              index_id:
+                type: string
+                description: |
+                  The unique identifier of the index to which the videos are being uploaded.
+              incremental_sync:
+                type: boolean
+                description: |
+                  A boolean value that specifies whether or not incremental sync is enabled. If set to `false`, the platfrm will synchronize all the files in the bucket.
+                  
+                  **Default**: `true`.
+                default: true
+              user_metadata:
+                type: object
+                description: |
+                  Metadata that helps you categorize your videos. You can specify a list of keys and values. Keys must be of type `string`, and values can be of the following types: `string`, `integer`, `float` or `boolean`.
+                  
+                  **NOTES:**
+                  -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
+                  - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video.
+                additionalProperties: {}
+                  
 
     upload-external-provider:
       required: true
