@@ -344,8 +344,8 @@ paths:
 
   '/tasks/transfers/import/{integration-id}/status':
     get:
-      summary: Retrieve the status of your imported videos
-      description: This method retrieves the status of your imported videos.
+      summary: Retrieve integration import status
+      description: This method retrieves the current status of video imports for a specific integration. The method returns an object containing lists of videos grouped by their import status.
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
@@ -5938,7 +5938,8 @@ components:
                   Metadata that helps you categorize your videos. You can specify a list of keys and values. Keys must be of type `string`, and values can be of the following types: `string`, `integer`, `float` or `boolean`.
                   
                   **NOTES:**
-                  -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
+                  - The metadata you specify when calling this method applies to all videos imported in this request.
+                  -  If you want to store other types of data such as objects or arrays, you must convert your data into string values.
                   - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video.
                 additionalProperties: {}
                   
