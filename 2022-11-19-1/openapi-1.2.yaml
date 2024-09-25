@@ -319,7 +319,6 @@ paths:
       description: |
         This method imports the videos from the specified integration. The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
 
-
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
@@ -329,7 +328,7 @@ paths:
           schema: 
             type: string
             description: The unique identifier of the integration for which you want to import videos.
-      operationId: cloud-to-cloud-import-videos
+      operationId: automated-uploads-import-videos
       requestBody: 
         $ref: "#/components/requestBodies/cloud-to-cloud-import-videos-request"
       tags:
@@ -354,7 +353,7 @@ paths:
           schema:
             type: string
             description: The unique identifier of the integration for which you want to retrieve the status of your imported videos.
-      operationId: cloud-to-cloud-retrieve-status
+      operationId: automated-uploads-retrieve-status
       tags:
         - Upload videos
       responses:
@@ -376,7 +375,7 @@ paths:
           schema:
             type: string
             description: The unique identifier of the integration for which you want to retrieve the import logs.
-      operationId: cloud-to-cloud-retrieve-import-logs
+      operationId: automated-uploads-retrieve-import-logs
       tags:
         - Upload videos
       responses:
