@@ -367,7 +367,7 @@ paths:
   '/task/transfers/import/{integration-id}/logs':
     get:
       summary: Retrieve the import logs for a specific integration
-      description: This endpoint returns a list of import logs for the specified integration, including details about any failed files.
+      description: This endpoint returns a list of import logs for the specified integration, including details about any failed uploads.
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
