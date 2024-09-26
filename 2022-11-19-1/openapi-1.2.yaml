@@ -1407,6 +1407,8 @@ paths:
       summary: List video embedding tasks
       description: |
         This method returns a list of the video embedding tasks in your account. The API returns your video indexing tasks sorted by creation date, with the newest at the top of the list.
+        
+        **NOTE**: Video embeddings are stored for seven days and are deleted after the 7-day retention period. When you invoke this method without specifying the `started_at` and `ended_at` parameters, the platform returns the video embedding tasks created within the last seven days.
       operationId: list-video-embedding-tasks
       tags:
           - Create video embeddings
