@@ -2060,10 +2060,15 @@ components:
           type: string
           description: |
             A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`.
+        created_at:
+          type: string
+          format: date-time
+          description: |
+            The date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the video embedding task was created.
         video_embeddings:
           type: array
           description: |
-            An array of objects containing your embeddings.
+            An array of objects containing your embeddings. This object is returned only if the platform has finished processing your video and the status of the video embedding task is `ready`.
           items:
             type: object
             description: |
@@ -3846,6 +3851,43 @@ components:
                     $ref: "#/components/schemas/total_page"
                   total_results:
                     $ref: "#/components/schemas/total_results"
+          example:
+            data:
+              - _id: "66f537778d9641fe5a0d101f"
+                engine_name: "Marengo-retrieval-2.6"
+                status: "processing"
+                created_at: "2024-09-26T10:29:19.968Z"
+                metadata:
+                  video_filename: ""
+                  video_clip_length: 6
+                  video_embedding_scope:
+                    - "clip"
+                  duration: 13.4400001
+              - _id: "66f535874bd2802fc13293f4"
+                engine_name: "Marengo-retrieval-2.6"
+                status: "processing"
+                created_at: "2024-09-26T10:21:04.157Z"
+                metadata:
+                  video_filename: ""
+                  video_clip_length: 6
+                  video_embedding_scope:
+                    - "clip"
+                  duration: 13.4400001
+              - _id: "66f534fd4bd2802fc13293ee"
+                engine_name: "Marengo-retrieval-2.6"
+                status: "processing"
+                created_at: "2024-09-26T10:18:44.866Z"
+                metadata:
+                  video_filename: ""
+                  video_clip_length: 6
+                  video_embedding_scope:
+                    - "clip"
+                  duration: 13.4400001
+            page_info:
+              page: 1
+              limit_per_page: 10
+              total_page: 1
+              total_results: 3
 
     retrieveVideoEmbeddingTaskStatusResponse:
       description: |
