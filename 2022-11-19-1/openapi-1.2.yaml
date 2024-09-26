@@ -1584,7 +1584,7 @@ components:
       properties:
         error_message:
           type: string
-          description: Error message if embedding generation failed.
+          description: Error message if the embedding generation failed.
         float:
           type: array
           items:
