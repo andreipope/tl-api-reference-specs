@@ -330,7 +330,7 @@ paths:
           schema: 
             type: string
             description: The unique identifier of the integration for which you want to import videos.
-      operationId: automated-uploads-import-videos
+      operationId: cloud-to-cloud-import-videos
       requestBody: 
         $ref: "#/components/requestBodies/cloud-to-cloud-import-videos-request"
       tags:
@@ -355,7 +355,7 @@ paths:
           schema:
             type: string
             description: The unique identifier of the integration for which you want to retrieve the status of your imported videos.
-      operationId: automated-uploads-retrieve-status
+      operationId: cloud-to-cloud-retrieve-status
       tags:
         - Upload videos
       responses:
@@ -377,7 +377,7 @@ paths:
           schema:
             type: string
             description: The unique identifier of the integration for which you want to retrieve the import logs.
-      operationId: automated-uploads-retrieve-import-logs
+      operationId: cloud-to-cloud-retrieve-import-logs
       tags:
         - Upload videos
       responses:
