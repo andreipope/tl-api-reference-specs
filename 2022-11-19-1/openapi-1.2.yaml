@@ -1313,7 +1313,7 @@ paths:
         - [Audio embeddings](/docs/create-audio-embeddings#prerequisites)
 
         **Common parameters**:   
-        For all types of embeddings, set the following parameter::
+        For all types of embeddings, set the following parameter:
         - `engine_name`: Specify the name of the video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
 
         **Text embeddings**:
@@ -4699,6 +4699,7 @@ components:
                   - `start`: The platform will truncate the start of the provided text.
                   - `end`: The platform will truncate the end of the provided text.
                   - `none`: The platform will return an error if the text is longer than the maximum token limit.
+                  
                   **Default**: `end`
                 default: end
                 example: end
