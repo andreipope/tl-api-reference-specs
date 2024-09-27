@@ -4713,24 +4713,24 @@ components:
                 format: binary
                 description: |
                   The image file for which you wish to create an embedding as a local file. This parameter is required for image embeddings if `image_url` is not provided.
-              Audio content:
-                oneOf:
-                  - type: object
-                    title: Audio content
-                    properties:
-                      audio_url:
-                        type: string
-                        format: uri
-                        description: |
-                          The publicly accessible URL of the audio file for which you wish to creae an emebdding. This parameter is required for audio embeddings if `audio_file` is not provided.
-                      audio_file:
-                        type: string
-                        format: binary
-                        description: |
-                          The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
-                    required:
-                      - audio_url
-                      - audio_file
+              # Audio content:
+              #   oneOf:
+              #     - type: object
+              #       title: Audio content
+              #       properties:
+              audio_url:
+                type: string
+                format: uri
+                description: |
+                  The publicly accessible URL of the audio file for which you wish to creae an emebdding. This parameter is required for audio embeddings if `audio_file` is not provided.
+              audio_file:
+                type: string
+                format: binary
+                description: |
+                  The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
+                    # required:
+                    #   - audio_url
+                    #   - audio_file
               audio_truncate: 
                 type: string
                 description: |
