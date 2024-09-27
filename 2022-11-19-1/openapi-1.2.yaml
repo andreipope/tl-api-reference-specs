@@ -1307,12 +1307,6 @@ paths:
         This method creates embedings for text, image, and audio content.
         You can create multiple types of embeddings in a single API call.
 
-        The following table lists the available models for generating text embeddings and their key characteristics:
-
-        | Model                 | Description                                                                      | Dimensions | Max tokens | Similarity metric |
-        | --------------------- | -------------------------------------------------------------------------------- | ---------- | ---------- | ----------------- |
-        | Marengo-retrieval-2.6 | Use this model to create embeddings that you can use in various downstream tasks | 1024       | 77         | Cosine similarity |
-
         **NOTE**: The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
         
         Before you create an embedding, ensure that the following prerequisites are met: 
@@ -1570,6 +1564,7 @@ components:
     AudioEmbeddingResponse:
       type: object
       title: Audio embedding 
+      description: The platform generates embeddings with 1024 dimensions and uses cosine similarity as its metric.
       required:
         - audio_embedding
       properties:
@@ -1578,6 +1573,7 @@ components:
     
     ImageEmbeddingResponse:
       type: object
+      description: The platform generates embeddings with 1024 dimensions and uses cosine similarity as its metric.
       title: Image embedding
       required:
         - image_embedding
@@ -1588,6 +1584,7 @@ components:
     TextEmbeddingResponse:
       type: object
       title: Text embedding
+      descruption: The platform generates embeddings with 1024 dimensions and uses cosine similarity as its metric.
       required:
         - text_embedding
       properties:
