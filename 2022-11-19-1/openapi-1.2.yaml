@@ -4713,11 +4713,11 @@ components:
                 format: binary
                 description: |
                   The image file for which you wish to create an embedding as a local file. This parameter is required for image embeddings if `image_url` is not provided.
-              audio:
+              audio_content:
                 anyOf:
                   - type: object
-                    summary: Audio file
-                    title: Audio file
+                    summary: Audio content (summary)
+                    title: Audio content (title)
                     properties:
                       audio_url:
                         type: string
