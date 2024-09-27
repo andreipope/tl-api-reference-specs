@@ -4703,8 +4703,6 @@ components:
                   **Default**: `end`
                 default: end
                 example: end
-
-
               image_url:
                 type: string
                 format: uri
@@ -4715,16 +4713,20 @@ components:
                 format: binary
                 description: |
                   The image file for which you wish to create an embedding as a local file. This parameter is required for image embeddings if `image_url` is not provided.
-              audio_url:
-                type: string
-                format: uri
-                description: |
-                  The publicly accessible URL of the audio file for which you wish to creae an emebdding. This parameter is required for audio embeddings if `audio_file` is not provided.
-              audio_file:
-                type: string
-                format: binary
-                description: |
-                  The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
+              audio:
+                anyOf:
+                  - type: object
+                    properties:
+                      audio_url:
+                        type: string
+                        format: uri
+                        description: |
+                          The publicly accessible URL of the audio file for which you wish to creae an emebdding. This parameter is required for audio embeddings if `audio_file` is not provided.
+                      audio_file:
+                        type: string
+                        format: binary
+                        description: |
+                          The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
               audio_truncate: 
                 type: string
                 description: |
