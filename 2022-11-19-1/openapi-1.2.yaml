@@ -1389,9 +1389,11 @@ paths:
         **NOTES**:
         - The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
         - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
-        
-        Note the following about uploading video files:
-        - To upload a file that resides on the local file system, pass the video_file parameter.  It must be a stream of bytes encoded as `multipart/form-data`.
+
+
+        When you upload a video, you have two options: uploading from your local file system or specifying a publicly accessible URL. The following points outline the requirements for each method:
+
+        - To upload a file that resides on the local file system, pass the video_file parameter. It must be a stream of bytes encoded as `multipart/form-data`.
         - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a string.
         - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
 
