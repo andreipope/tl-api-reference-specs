@@ -4714,7 +4714,7 @@ components:
                 description: |
                   The image file for which you wish to create an embedding as a local file. This parameter is required for image embeddings if `image_url` is not provided.
               Audio content:
-                anyOf:
+                oneOf:
                   - type: object
                     title: Audio content
                     properties:
