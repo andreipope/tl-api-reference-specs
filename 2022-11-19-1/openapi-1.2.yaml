@@ -4723,9 +4723,6 @@ components:
                 format: binary
                 description: |
                   The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
-                    # required:
-                    #   - audio_url
-                    #   - audio_file
               audio_truncate: 
                 type: string
                 description: |
