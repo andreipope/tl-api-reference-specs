@@ -1306,6 +1306,8 @@ paths:
       description: |
         This method creates embedings for text, image, and audio content.
         You can create multiple types of embeddings in a single API call. 
+
+        **NOTE**: The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
         
         Before you create an embedding, ensure that the following prerequisites are met: 
         - [Text embeddings](/docs/create-text-embeddings#prerequisites)
@@ -1358,6 +1360,8 @@ paths:
       summary: Create text embeddings
       description: |
         This endpoint creates text embeddings.
+
+        **NOTE**: The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
       operationId: create-text-embedding
       tags:
         - Create text embeddings
@@ -1381,14 +1385,17 @@ paths:
       summary: Create a video embedding task
       description: |
         This method creates a new video embedding task that uploads a video to the platform and creates one or multiple video embeddings. Video embeddings are stored for seven days and are deleted after the 7-day retention period.
+
+        **NOTES**:
+        - The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
+        - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
         
-        Note the following about using this endpoint:
+        Note the following about uploading video files:
         - To upload a file that resides on the local file system, pass the video_file parameter.  It must be a stream of bytes encoded as `multipart/form-data`.
         - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a string.
         - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
 
         The videos for which you wish to generate embeddings must meet the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
-        **NOTE**: The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
       operationId: create-video-embeding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
