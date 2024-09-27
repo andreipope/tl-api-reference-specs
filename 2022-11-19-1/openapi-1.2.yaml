@@ -4717,7 +4717,7 @@ components:
                 anyOf:
                   - type: object
                     summary: Audio content (summary)
-                    title: Audio content (title)
+                    title: Audio content (title) 
                     properties:
                       audio_url:
                         type: string
