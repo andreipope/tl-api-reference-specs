@@ -1564,7 +1564,6 @@ components:
     AudioEmbeddingResponse:
       type: object
       title: Audio embedding 
-      description: The platform generates embeddings with 1024 dimensions and uses cosine similarity as its metric.
       required:
         - audio_embedding
       properties:
@@ -1573,7 +1572,6 @@ components:
     
     ImageEmbeddingResponse:
       type: object
-      description: The platform generates embeddings with 1024 dimensions and uses cosine similarity as its metric.
       title: Image embedding
       required:
         - image_embedding
@@ -1584,7 +1582,6 @@ components:
     TextEmbeddingResponse:
       type: object
       title: Text embedding
-      descruption: The platform generates embeddings with 1024 dimensions and uses cosine similarity as its metric.
       required:
         - text_embedding
       properties:
@@ -1602,7 +1599,7 @@ components:
           items:
             type: number
             format: float
-          description: An array of floating point numbers representing the embedding.
+          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks.
         is_success:
           type: boolean
           description: This field indicates whether the embedding generation was successful.
@@ -2109,7 +2106,7 @@ components:
                 properties:
                   float:
                     description: |
-                      An array of floating point numbers representing the embedding. Note that the example response was truncated for brevity.
+                      An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                     type: array
                     items:
                       type: number
@@ -3688,7 +3685,7 @@ components:
                 properties:
                   float:
                     description: |
-                      An array of floating point numbers representing the embedding. Note that the example response was truncated for brevity.
+                      An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                     type: array
                     items:
                       type: number
@@ -3764,7 +3761,7 @@ components:
                       properties:
                         float:
                           description: |
-                            An array of floating point numbers representing the embedding. Note that the example response was truncated for brevity.
+                            An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                           type: array
                           items:
                             type: number
