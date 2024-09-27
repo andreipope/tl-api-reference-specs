@@ -4716,7 +4716,7 @@ components:
               Audio content:
                 anyOf:
                   - type: object
-                    title: Provide audio content as a local file or a publicly accessible URL 
+                    title: Provide audio content as a local file or a publicly accessible URL  
                     properties:
                       audio_url:
                         type: string
