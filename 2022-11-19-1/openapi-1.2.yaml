@@ -1600,6 +1600,8 @@ components:
             type: number
             format: float
           description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks.
+          minItems: 1024
+          maxItems: 1024
         is_success:
           type: boolean
           description: This field indicates whether the embedding generation was successful.
@@ -2101,16 +2103,16 @@ components:
                   - `clip`: Indicates that this embedding is for a specific segment.
               embedding:
                 description: |
-                  An object that contains a field named `float` which represents the embedding. 
+                  An object that contains an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                 type: object
                 properties:
                   float:
-                    description: |
-                      An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                     type: array
                     items:
                       type: number
                       format: float
+                    minItems: 1024
+                    maxItems: 1024
         metadata:
           type: object
           description: |
@@ -3680,16 +3682,16 @@ components:
                 type: string
               text_embedding:
                 description: |
-                  An object that contains a field named `float` which is an array of floating point numbers representing the embedding. 
+                  An object that contains an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                 type: object
                 properties:
                   float:
-                    description: |
-                      An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                     type: array
                     items:
                       type: number
                       format: float
+                    minItems: 1024
+                    maxItems: 1024
             example:
               engine_name: Marengo-retrieval-2.6
               text_embedding:
@@ -3756,16 +3758,16 @@ components:
                         - `clip`: Indicates that this embedding is for a specific segment.
                     embedding:
                       description: |
-                        An object that contains a field named `float` which represents the embedding. 
+                        An object that contains an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                       type: object
                       properties:
                         float:
-                          description: |
-                            An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                           type: array
                           items:
                             type: number
                             format: float
+                          minItems: 1024
+                          maxItems: 1024
               metadata:
                 type: object
                 description: |
