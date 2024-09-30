@@ -1314,6 +1314,8 @@ paths:
         - [Image embeddings](/docs/create-image-embeddings#prerequisites)
         - [Audio embeddings](/docs/create-audio-embeddings#prerequisites)
 
+        Below are the parameters you must specify for different types of embeddings:
+        
         **Common parameters**:   
         For all types of embeddings, set the following parameter:
         - `engine_name`: Specify the name of the video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
