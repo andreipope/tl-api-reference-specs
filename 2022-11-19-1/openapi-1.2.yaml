@@ -1590,6 +1590,7 @@ components:
           
     EmbeddingResult:
       type: object
+      description: An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
       properties:
         error_message:
           type: string
@@ -1599,7 +1600,6 @@ components:
           items:
             type: number
             format: float
-          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks.
           minItems: 1024
           maxItems: 1024
         is_success:
