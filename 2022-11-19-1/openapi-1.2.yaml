@@ -5939,7 +5939,7 @@ components:
               incremental_import:
                 type: boolean
                 description: |
-                  A boolean value that specifies whether or not incremental sync is enabled. If set to `false`, the platfrm will synchronize all the files in the bucket.
+                  Specifies whether or not incremental sync is enabled. If set to `false`, the platfrm will synchronize all the files in the bucket.
                   
                   **Default**: `true`.
                 default: true
