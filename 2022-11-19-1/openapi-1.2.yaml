@@ -355,6 +355,19 @@ paths:
           schema:
             type: string
             description: The unique identifier of the integration for which you want to retrieve the status of your imported videos.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                index_id:
+                  type: string
+                  description: The unique identifier of the index for which you want to retrieve the status of your imported videos.
+              required:
+                - index_id 
+
       operationId: cloud-to-cloud-retrieve-status
       tags:
         - Upload videos
