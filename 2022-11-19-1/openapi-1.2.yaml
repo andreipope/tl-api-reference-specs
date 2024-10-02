@@ -4844,18 +4844,20 @@ components:
           schema:
             type: object
             properties:
-              task_ids:
+              videos:
                 type: array
                 items:
-                  type: string
-                description: An array of task IDs corresponding to the imported videos.
-            required:
-              - task_ids
-          example:
-            task_ids:
-              - 66f282c0bf05a522ec5040f4
-              - 66f282c0bf05a522ec5040f5
-              - 66f282c0bf05a522ec5040f6
+                  type: object
+                  properties:
+                    video_id:
+                      type: string
+                      description: The unique identifier of the imported video.
+                      example: "66fcee250f9f7bcce21915a2"
+                    filename:
+                      type: string
+                      description: The filename of the imported video.
+                      example: "1.mp4"
+                description: A list of successfully imported videos.
 
     cloud-to-cloud-retrieve-status-response:
       description: |
