@@ -383,7 +383,13 @@ paths:
   '/task/transfers/import/{integration-id}/logs':
     get:
       summary: Retrieve import logs
-      description: This endpoint returns a list of import logs for the specified integration, including details about any failed uploads.
+      description: |
+        This endpoint returns a chronological list of import operations for the specified integration.
+        The list is sorted by creation date, with the oldest imports first. Each item in the list contains:
+        - The number of videos in each status
+        - Detailed error information for failed uploads, including filenames and error messages.
+
+        Use this endpoint to track import progress and troubleshoot potential issues across multiple operations.
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
