@@ -317,9 +317,11 @@ paths:
     post:
       summary: Import videos
       description: |
-        This method imports the videos from the specified integration. The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
-
-        **NOTE**: Before importing videos, you must set up an integration. For details, see the TODO page.
+        This method imports the videos from the specified integration to a designated index.
+        **NOTES**:
+        - Before importing videos, you must set up an integration. For details, see the [Set up an integration](/docs/1-set-up-an-integration) page.
+        - The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
+        - After initiating the import of a set of videos, check the import status. Use the `GET` method of the `/tasks/transfers/import/{integration-id}/status` endpoint to check the status of the import. 
 
       parameters:
         - $ref: "#/components/parameters/x-api-key"
