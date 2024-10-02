@@ -345,7 +345,7 @@ paths:
   '/tasks/transfers/import/{integration-id}/status':
     get:
       summary: Retrieve import status
-      description: This method retrieves the current status of video imports for a specific index and integration. The method returns an object containing lists of videos grouped by their import status.
+      description: This method retrieves the current status of video imports for a specific index and integration. The method returns an object containing lists of videos grouped by their import status. 
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
