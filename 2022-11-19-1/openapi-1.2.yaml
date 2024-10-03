@@ -1701,7 +1701,7 @@ components:
         created_at:
           type: string
           format: date-time
-          description: The date and time when the video was created.
+          description: The date and time when the video was added to the import process.
       required: 
         -  video_id
         - filename
@@ -1720,7 +1720,7 @@ components:
         created_at:
           type: string
           format: date-time
-          description: The date and time when the video was created.
+          description: The date and time when the video was added to the import process.
         error_message:
           type: string
           description: A human-readable error message.
