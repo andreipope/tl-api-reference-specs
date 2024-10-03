@@ -320,7 +320,7 @@ paths:
         An import represents the process of uploading and indexing all videos from the specified integration. This method initiates an asynchronous import and returns an array representing the videos the platform will import. The actual uploading and indexing of videos occur asynchronously after you invoke this method. To monitor the status of each upload, use the [`GET`](/reference/cloud-to-cloud-retrieve-status) method of the `/tasks/transfers/import/{integration-id}/status` endpoint.  
 
         **NOTES**:
-        - Before importing videos, you must set up an integration. For details, see the [Set up an integration](/docs/1-set-up-an-integration) page.
+        - Before importing videos, you must set up an integration. For details, see the [Set up an integration](/docs/1-set-up-an-integration) page. 
         - The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
 
       parameters:
