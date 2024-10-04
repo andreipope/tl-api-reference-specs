@@ -628,6 +628,7 @@ paths:
       operationId: retrieve-video-information
       tags:
         - Manage videos
+        - Create video embeddings
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -645,6 +646,15 @@ paths:
           required: true
           schema:
             type: string
+        - name: embed 
+          in: query
+          description: |
+            Set this parameter to ' true ' to retrieve the video embedding in the response. The video must be indexed with the Marengo video understanding engine version 2.6 or later. For details on enabling this engine for an index, see [Create an index](/reference/create-index).
+            **Default**: `false`.
+          required: false
+          schema:
+            type: boolean
+            default: false
       responses:
         '200':
           $ref: '#/components/responses/getVideoVectorResponse'
