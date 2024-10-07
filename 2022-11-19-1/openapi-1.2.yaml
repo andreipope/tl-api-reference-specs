@@ -2078,7 +2078,7 @@ components:
         engine_name:
           type: string
           description: |
-            The name of the engine the platform uses to create the embeddings.
+            The name of the video understanding engine the platform used to create the embedding.
         status:
           type: string
           description: |
@@ -3146,7 +3146,7 @@ components:
                 properties:
                   engine_name:
                     type: string
-                    description: The name of the engine the platform uses to create the embeddings.
+                    description: The name of the video understanding engine the platform used to create the embedding.
                   video_embeddings:
                     type: array
                     description: |
@@ -3759,7 +3759,7 @@ components:
               engine_name:
                 type: string
                 description: |
-                  The name of the engine the platform uses to create the embeddings.
+                  The name of the video understanding engine the platform used to create the embedding.
               status:
                 type: string
                 description: |
@@ -3951,7 +3951,7 @@ components:
               engine_name:
                 type: string
                 description: |
-                  The name of the engine the platform uses to create the embeddings.
+                  The name of the video understanding engine the platform used to create the embedding.
               metadata:
                 type: object
                 description: |
