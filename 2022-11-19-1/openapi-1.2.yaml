@@ -3143,14 +3143,15 @@ components:
                     description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the encoding status was last updated.
               embedding:
                 type: object
+                description: Contains the embedding and associated metadata. The platform returns this field when the `embed` query parameter is set to `true` in the request.
                 properties:
                   engine_name:
                     type: string
-                    description: The name of the video understanding engine the platform used to create the embedding.
+                    description: The name of the video understanding engine used to create the embedding.
                   video_embeddings:
                     type: array
                     description: |
-                      An object that contains an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                      An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                     items:
                       type: number
                       format: float
