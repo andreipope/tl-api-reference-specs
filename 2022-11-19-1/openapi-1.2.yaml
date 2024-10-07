@@ -299,7 +299,7 @@ paths:
       summary: Make a cloud-to-cloud transfer
       description: |
 
-        **NOTE**: This endpoint will be deprecated. Twelve Labs recommends you use the [Import videos](/reference/cloud-to-cloud-import-videos) endpoint instead.
+        **IMPORTANT**: This endpoint will be deprecated. Twelve Labs recommends you use the [Import videos](/reference/cloud-to-cloud-import-videos) endpoint instead.
 
         Use this endpoint to make cloud-to-cloud transfers. The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
       parameters:
