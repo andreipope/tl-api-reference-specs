@@ -298,7 +298,10 @@ paths:
     post:
       summary: Make a cloud-to-cloud transfer
       description: |
-        This method makes a cloud-to-cloud transfer. The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
+
+        **NOTE**: This endpoint will be deprecated. Twelve Labs recommends you use the [Import videos](/reference/cloud-to-cloud-import-videos) endpoint instead.
+
+        Use this endpoint to make cloud-to-cloud transfers. The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
