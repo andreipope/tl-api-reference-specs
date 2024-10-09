@@ -1588,8 +1588,26 @@ components:
         - text_embedding
       properties:
         text_embedding:
-          $ref: '#/components/schemas/EmbeddingResult'
-          
+          $ref: '#/components/schemas/TextEmbeddingResult'
+
+    TextEmbeddingResult:
+      type: object
+      description: An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+      properties:
+        error_message:
+          type: string
+          description: Error message if the embedding generation failed.
+        float:
+          type: array
+          items:
+            type: number
+            format: float
+          minItems: 1024
+          maxItems: 1024
+        is_success:
+          type: boolean
+          description: This field indicates whether the embedding generation was successful.
+
     EmbeddingResult:
       type: object
       description: An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
@@ -1607,6 +1625,53 @@ components:
         is_success:
           type: boolean
           description: This field indicates whether the embedding generation was successful.
+        metadata:
+          type: object
+          description: |
+            Metadata about the embedding.
+          oneOf:
+            - required: [input_url]
+            - required: [input_filename]
+          properties:
+            input_url:
+              type: string
+              description: |
+                The URL of the video file used to generate the embedding.
+            input_filename:
+              type: string
+              description: |
+                The name of the video file used to generate the embedding.
+
+    # EmbeddingResult:
+    #   type: object
+    #   description: An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+    #   properties:
+    #     error_message:
+    #       type: string
+    #       description: Error message if the embedding generation failed.
+    #     float:
+    #       type: array
+    #       items:
+    #         type: number
+    #         format: float
+    #       minItems: 1024
+    #       maxItems: 1024
+    #     is_success:
+    #       type: boolean
+    #       description: This field indicates whether the embedding generation was successful.
+    #     metadata:
+    #       type: object
+    #       description: |
+    #         Metadata about the embedding.
+    #       properties:
+    #         input_url:
+    #           type: string
+    #           description: |
+    #             The URL of the video file used to generate the embedding.
+    #         input_filename:
+    #           type: string
+    #           description: |
+    #             The name of the video file used to generate the embedding.
 
     end_time:
       type: number
