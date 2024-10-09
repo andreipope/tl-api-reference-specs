@@ -1628,7 +1628,7 @@ components:
         metadata:
           type: object
           description: |
-            Metadata about the embedding.
+            Metadata about the embedding. 
           properties:
             input_url:
               type: string
