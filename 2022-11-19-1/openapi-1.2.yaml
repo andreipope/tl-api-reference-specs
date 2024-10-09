@@ -4002,8 +4002,8 @@ components:
                 type: string
                 description: |
                   The unique identifier of the video embedding task. You can use the identifier to:
-                  - Retrieve the status of your task by invoking the `GET` method of the `/embed/tasks/{task_id}/status` endpoint.
-                  - Retrieve the embedding by invoking the  `GET` method of the `/embed/tasks/{task_id}` endpoint.
+                  - Retrieve the status of your task by invoking the [`GET`](/reference/retrieve-video-embeding-task) method of the `/embed/tasks/{task_id}/status` endpoint.
+                  - Retrieve the embedding by invoking the  [`GET`](/reference/retrieve-video-embeding) method of the `/embed/tasks/{task_id}` endpoint.
           example:
             _id: 66419a20c70bb578439bd8f4
 
