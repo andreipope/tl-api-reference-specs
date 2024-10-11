@@ -1424,7 +1424,7 @@ paths:
     get:
       summary: List video embedding tasks
       description: |
-        This method returns a list of the video embedding tasks in your account. The platform returns your video embedding tasks sorted by creation date, with the newest at the top of the list.
+        This method returns a list of the video embedding tasks in your account. The platform returns your video embedding tasks sorted by creation date, with the newest at the top of the list. 
         
         **NOTES**:
         - Video embeddings are stored for seven days
