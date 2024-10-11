@@ -1390,7 +1390,7 @@ paths:
     post:
       summary: Create a video embedding task
       description: |
-        This method creates a new video embedding task that uploads a video to the platform and creates one or multiple video embeddings. Video embeddings are stored for seven days and are deleted after the 7-day retention period.
+        This method creates a new video embedding task that uploads a video to the platform and creates one or multiple video embeddings. Video embeddings are stored for seven days and are deleted after the 7-day retention period.   
 
         Ensure your video meets the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
 
