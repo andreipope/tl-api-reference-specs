@@ -170,7 +170,7 @@ paths:
         
         Upload options:
         - Local file: Use the `video_file` parameter (`multipart/form-data`).
-        - Publicly accessible URL: Use the `video_url` parameter (`string`).
+        - Publicly accessible URL: Use the `video_url` parameter (`string`).   
 
         _(Optional)_ Provide a transcription:
         - Set the `provide_transcription` parameter to `true`. Specify one of the following:
