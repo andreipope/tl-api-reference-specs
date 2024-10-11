@@ -182,7 +182,7 @@ paths:
         **NOTES**:
         - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
-        
+
       operationId: create-video-indexing-task
       tags:
         - Upload videos
@@ -1392,7 +1392,7 @@ paths:
     post:
       summary: Create a video embedding task
       description: |
-        This method creates a new video embedding task that uploads a video to the platform and creates one or multiple video embeddings. Video embeddings are stored for seven days and are deleted after the 7-day retention period.
+        This method creates a new video embedding task that uploads a video to the platform and creates one or multiple video embeddings.
 
         Ensure your video meets the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
 
@@ -1404,6 +1404,7 @@ paths:
 
         **NOTES**:
         - The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
+        - Video embeddings are stored for seven days.
         - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
 
       operationId: create-video-embeding-task
@@ -1425,7 +1426,9 @@ paths:
       description: |
         This method returns a list of the video embedding tasks in your account. The platform returns your video embedding tasks sorted by creation date, with the newest at the top of the list.
         
-        **NOTE**: Video embeddings are stored for seven days and are deleted after the 7-day retention period. When you invoke this method without specifying the `started_at` and `ended_at` parameters, the platform returns all the video embedding tasks created within the last seven days.
+        **NOTES**:
+        - Video embeddings are stored for seven days
+        -When you invoke this method without specifying the `started_at` and `ended_at` parameters, the platform returns all the video embedding tasks created within the last seven days.
       operationId: list-video-embedding-tasks
       tags:
           - Create video embeddings
