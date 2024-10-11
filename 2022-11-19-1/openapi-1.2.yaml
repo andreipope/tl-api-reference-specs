@@ -176,6 +176,7 @@ paths:
         - Set the `provide_transcription` parameter to `true`. Specify one of the following:
           - **Local file**: Use the `transcription_file` parameter.
           - **Publicly accessible URL**: Use the `transcription_url` parameter.
+        
         Specify at least one option for both video and transcription uploads; if you provide both options, the URL parameter (`video_url` or `transcription_url`) takes precedence. 
 
         **NOTES**:
@@ -1390,13 +1391,14 @@ paths:
     post:
       summary: Create a video embedding task
       description: |
-        This method creates a new video embedding task that uploads a video to the platform and creates one or multiple video embeddings. Video embeddings are stored for seven days and are deleted after the 7-day retention period.   
+        This method creates a new video embedding task that uploads a video to the platform and creates one or multiple video embeddings. Video embeddings are stored for seven days and are deleted after the 7-day retention period.
 
         Ensure your video meets the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
 
         Upload options:
         - **Local file**: Use `video_file` parameter
         - **Publicly accessible URL**: Use `video_url` parameter.
+        
         Specify at least one option. If both are provided, video_url takes precedence.
 
         **NOTES**:
