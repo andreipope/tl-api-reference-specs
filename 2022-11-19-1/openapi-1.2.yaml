@@ -1396,7 +1396,7 @@ paths:
 
         Ensure your video meets the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
 
-        Upload options:
+        Upload options: 
         - **Local file**: Use `video_file` parameter
         - **Publicly accessible URL**: Use `video_url` parameter.
         
