@@ -169,17 +169,17 @@ paths:
         Ensure your video meets the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
         
         Upload options:
-        - Local file: Use the `video_file` parameter (`multipart/form-data`).
-        - Publicly accessible URL: Use the `video_url` parameter (`string`).   
+        - Local file: Use the `video_file` parameter.
+        - Publicly accessible URL: Use the `video_url` parameter.   
 
         _(Optional)_ Provide a transcription:
         - Set the `provide_transcription` parameter to `true`. Specify one of the following:
           - Local file: Use the `transcription_file` parameter.
-          - Publicly accessible URL: Use the `transcription_url` parameter.    
+          - Publicly accessible URL: Use the `transcription_url` parameter.
+        Specify at least one option for both video and transcription uploads; if you provide both options, the URL parameter (`video_url` or `transcription_url`) takes precedence. 
 
         **NOTES**:
         - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
-        - Specify at least one option for both video and transcription uploads; if you provide both options, the URL parameter (`video_url` or `transcription_url`) takes precedence.
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       operationId: create-video-indexing-task
       tags:
@@ -1392,18 +1392,17 @@ paths:
       description: |
         This method creates a new video embedding task that uploads a video to the platform and creates one or multiple video embeddings. Video embeddings are stored for seven days and are deleted after the 7-day retention period.
 
+        Ensure your video meets the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
+
+        Upload options:
+        - Local file: Use `video_file` parameter
+        - Publicly accessible URL: Use `video_url` parameter.
+        Specify at least one option. If both are provided, video_url takes precedence.
+
         **NOTES**:
         - The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
         - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
 
-
-        When you upload a video, you have two options: uploading from your local file system or specifying a publicly accessible URL. The following points outline the requirements for each method:
-
-        - To upload a file that resides on the local file system, pass the video_file parameter. It must be a stream of bytes encoded as `multipart/form-data`.
-        - To upload a file from a publicly accessible URL, pass the `video_url` parameter with the URL of your video. It must be a string.
-        - You must specify at least one of the `video_file` and `video_url` parameters. If you specify both the `video_url` and `video_file` parameters in the same request, the `video_url` parameter takes precedence over `video_file`.
-
-        The videos for which you wish to generate embeddings must meet the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
       operationId: create-video-embeding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
