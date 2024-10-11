@@ -169,13 +169,13 @@ paths:
         Ensure your video meets the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
         
         Upload options:
-        - Local file: Use the `video_file` parameter.
-        - Publicly accessible URL: Use the `video_url` parameter.   
+        - **Local file**: Use the `video_file` parameter.
+        - **Publicly accessible URL**: Use the `video_url` parameter.   
 
         _(Optional)_ Provide a transcription:
         - Set the `provide_transcription` parameter to `true`. Specify one of the following:
-          - Local file: Use the `transcription_file` parameter.
-          - Publicly accessible URL: Use the `transcription_url` parameter.
+          - **Local file**: Use the `transcription_file` parameter.
+          - **Publicly accessible URL**: Use the `transcription_url` parameter.
         Specify at least one option for both video and transcription uploads; if you provide both options, the URL parameter (`video_url` or `transcription_url`) takes precedence. 
 
         **NOTES**:
@@ -1395,8 +1395,8 @@ paths:
         Ensure your video meets the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
 
         Upload options:
-        - Local file: Use `video_file` parameter
-        - Publicly accessible URL: Use `video_url` parameter.
+        - **Local file**: Use `video_file` parameter
+        - **Publicly accessible URL**: Use `video_url` parameter.
         Specify at least one option. If both are provided, video_url takes precedence.
 
         **NOTES**:
