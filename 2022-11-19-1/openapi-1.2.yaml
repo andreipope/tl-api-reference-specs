@@ -1400,7 +1400,7 @@ paths:
         - **Local file**: Use `video_file` parameter
         - **Publicly accessible URL**: Use `video_url` parameter.
         
-        Specify at least one option. If both are provided, video_url takes precedence.
+        Specify at least one option. If both are provided, `video_url` takes precedence.
 
         **NOTES**:
         - The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
