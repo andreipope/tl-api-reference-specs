@@ -175,7 +175,7 @@ paths:
         _(Optional)_ Provide a transcription:
         - Set the `provide_transcription` parameter to `true`. Specify one of the following:
           - Local file: Use the `transcription_file` parameter.
-          - Publicly accessible URL: Use the `transcription_url` parameter.
+          - Publicly accessible URL: Use the `transcription_url` parameter.    
 
         **NOTES**:
         - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
