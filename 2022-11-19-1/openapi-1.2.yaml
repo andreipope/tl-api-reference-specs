@@ -166,7 +166,7 @@ paths:
       #       install: yarn add twelvelabs-js
       description: |
         This method creates a video indexing task that uploads and indexes a video.
-        Ensure your video meets the requirementsin the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page
+        Ensure your video meets the requirementsin the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.  
         
         Upload options:
         - Local file: Use the `video_file` parameter (`multipart/form-data`).
