@@ -172,15 +172,8 @@ paths:
         - **Local file**: Use the `video_file` parameter.
         - **Publicly accessible URL**: Use the `video_url` parameter.   
 
-        _(Optional)_ Provide a transcription:
-        - Set the `provide_transcription` parameter to `true`. Specify one of the following:
-          - **Local file**: Use the `transcription_file` parameter.
-          - **Publicly accessible URL**: Use the `transcription_url` parameter.
-        
-        Specify at least one option for both video and transcription uploads; if you provide both options, the URL parameter (`video_url` or `transcription_url`) takes precedence. 
-
         **NOTES**:
-        - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
+        - The platform supports video URLs that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
         - This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
 
       operationId: create-video-indexing-task
