@@ -4760,17 +4760,6 @@ components:
                 format: binary
                 description: |
                   The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
-              audio_truncate: 
-                type: string
-                description: |
-                  Specifies how the platform truncates audio files that exceed 10 seconds to fit the maximum length allowed for an embedding.
-                  This parameter can take one of the following values:
-                  - `start`: The platform will truncate the start of the provided audio file.
-                  - `end`: The platform will truncate the end of the provided audio file.
-                  - `none`: The platform will return an error if the audio file is longer than the maximum limit.
-                  **Default**: `end`
-                default: end
-                example: end
 
     createVideoEmbeddingTaskRequest:
       content:
