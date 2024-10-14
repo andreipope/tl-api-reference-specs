@@ -1558,18 +1558,13 @@ components:
         anyOf:
             $ref: '#/components/schemas/TextEmbeddingRequest'
             oneOf:
-              - $ref: '#/components/schemas/AudioEmbeddingRequest'
-              - $ref: '#/components/schemas/ImageEmbeddingRequest'  
+              - anyOf:
+                - $ref: '#/components/schemas/AudioEmbeddingUrl'
+                - $ref: '#/components/schemas/AudioEmbeddingFile'
+              - anyOf:
+                - $ref: '#/components/schemas/ImageEmbeddingUrl'
+                - $ref: '#/components/schemas/ImageEmbeddingFile'
 
-    CombinedEmbeddingRequest:
-      allOf:
-        - $ref: '#/components/schemas/TextEmbeddingRequest'
-        - anyOf:
-          - $ref: '#/components/schemas/AudioEmbeddingUrl'
-          - $ref: '#/components/schemas/AudioEmbeddingFile'
-        - anyOf:
-          - $ref: '#/components/schemas/ImageEmbeddingUrl'
-          - $ref: '#/components/schemas/ImageEmbeddingFile'
     TextEmbeddingRequest:
       title: Text embedding
       type: object
