@@ -1304,9 +1304,6 @@ paths:
       summary: Create embeddings for text, image, and audio 
       description: |
         This method creates embedings for text, image, and audio content.
-        You can create multiple types of embeddings in a single API call.
-
-        **NOTE**: The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
         
         Before you create an embedding, ensure that the following prerequisites are met: 
         - [Text embeddings](/docs/create-text-embeddings#prerequisites)
@@ -1327,12 +1324,10 @@ paths:
           - `audio_url`: Publicly accessible URL of your audio file.
           - `audio_file`: Local audio file.
 
-
-
-
-
-
-
+        **NOTES**:
+        - The “Marengo-Retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
+        - You can create multiple types of embeddings in a single API call.
+        - Audio embeddings combine generic sound and human speech in a single embedding. For videos with transcriptions, you can [retrieve transcriptions](/reference/retrieve-transcription) and then [create text embeddings](/reference/create-text-embedding) from these transcriptions.
 
       operationId: create-text-image-audio-embedding
       tags:
