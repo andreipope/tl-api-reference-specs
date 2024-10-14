@@ -1566,6 +1566,7 @@ components:
         - $ref: '#/components/schemas/AudioEmbeddingRequest'
         - $ref: '#/components/schemas/ImageEmbeddingRequest'
     TextEmbeddingRequest:
+      title: Text embedding
       type: object
       required:
         - text
