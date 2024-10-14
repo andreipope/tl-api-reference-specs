@@ -1558,7 +1558,7 @@ components:
         anyOf:
           oneOf:
             - $ref: '#/components/schemas/TextEmbeddingRequest'
-            - $ref: '#/components/schemas/AudioEmbeddingRequest'
+            - $ref: '#/components/schemas/AudioEmbeddingRequest'  
 
     CombinedEmbeddingRequest:
       allOf:
