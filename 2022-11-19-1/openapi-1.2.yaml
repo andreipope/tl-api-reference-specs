@@ -2129,7 +2129,7 @@ components:
                   - `clip`: Indicates that this embedding is for a specific segment.
               embedding:
                 description: |
-                  An object that contains an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                  An object that contains, among other fields, an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                 type: object
                 properties:
                   float:
@@ -2139,33 +2139,39 @@ components:
                       format: float
                     minItems: 1024
                     maxItems: 1024
-        metadata:
-          type: object
-          description: |
-            An object containing metadata about the video.
-          properties:
-            video_filename:
-              type: string
-              description: |
-                The name of the video file. The platform returns this field when you upload a video from your local file system.
-            video_url:
-              type: string
-              description: |
-                The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
-            video_clip_length:
-              type: number
-              description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
-            video_embedding_scope:
-              type: array
-              description: |
-                The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
-              items:
-                type: string
-                enum: [clip, video]
-            duration:
-              type: number
-              format: float
-              description: The total duration of the video in seconds. 
+                  error_message:
+                    type: string
+                    description: Error message if the embedding generation failed.
+                  is_success:
+                    type: boolean
+                    description: This field indicates whether the embedding generation was successful.
+                  metadata:
+                    type: object
+                    description: |
+                      An object containing metadata about the video.
+                    properties:
+                      video_filename:
+                        type: string
+                        description: |
+                          The name of the video file. The platform returns this field when you upload a video from your local file system.
+                      video_url:
+                        type: string
+                        description: |
+                          The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
+                      video_clip_length:
+                        type: number
+                        description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
+                      video_embedding_scope:
+                        type: array
+                        description: |
+                          The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
+                        items:
+                          type: string
+                          enum: [clip, video]
+                      duration_mins:
+                        type: number
+                        format: float
+                        description: The total duration of the video in seconds. 
 
     videoIndexingTask:
       title: Video Indexing Task
