@@ -1315,7 +1315,7 @@ paths:
 
         Parameters for embeddings:
         - **Common parameters**:
-          - `engine_name``: The video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
+          - `engine_name`: The video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
         - **Text embeddings**:
           - `text`: Text for which to create an embedding.
         - **Image embeddings**:
