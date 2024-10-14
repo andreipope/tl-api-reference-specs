@@ -1555,11 +1555,13 @@ components:
           description: |
             The name of the engine you want to use. The following engines are available:
             - `Marengo-retrieval-2.6`
-          allOf: 
-            - $ref: '#/components/schemas/TextEmbeddingRequest'
-            - $ref: '#/components/schemas/AudioEmbeddingRequest'
-            - $ref: '#/components/schemas/ImageEmbeddingRequest'
-
+        allOf: 
+          $ref: '#/components/schemas/CombinedEmbeddingRequest'
+    CombinedEmbeddingRequest:
+      allOf:
+        - $ref: '#/components/schemas/TextEmbeddingRequest'
+        - $ref: '#/components/schemas/AudioEmbeddingRequest'
+        - $ref: '#/components/schemas/ImageEmbeddingRequest'
     TextEmbeddingRequest:
       type: object
       required:
