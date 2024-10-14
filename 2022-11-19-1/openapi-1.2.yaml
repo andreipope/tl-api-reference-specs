@@ -1557,11 +1557,13 @@ components:
             - `Marengo-retrieval-2.6`
         anyOf:
             $ref: '#/components/schemas/TextEmbeddingRequest'
-            oneOf:
-              - anyOf:
+            anyOf:
+              - oneOf:
+                - title: Audio embedding
                 - $ref: '#/components/schemas/AudioEmbeddingUrl'
                 - $ref: '#/components/schemas/AudioEmbeddingFile'
-              - anyOf:
+              - oneOf:
+                - title: Image embedding
                 - $ref: '#/components/schemas/ImageEmbeddingUrl'
                 - $ref: '#/components/schemas/ImageEmbeddingFile'
 
