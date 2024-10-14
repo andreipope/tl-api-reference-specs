@@ -1313,29 +1313,25 @@ paths:
         - [Image embeddings](/docs/create-image-embeddings#prerequisites)
         - [Audio embeddings](/docs/create-audio-embeddings#prerequisites)
 
-        Below are the parameters you must specify for different types of embeddings:
-        
-        **Common parameters**:   
-        For all types of embeddings, set the following parameter:
-        - `engine_name`: Specify the name of the video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
+        Parameters for embeddings:
+        - **Common parameters**:
+          - `engine_name``: The video understanding engine you want to use. Example: "Marengo-retrieval-2.6".
+        - **Text embeddings**:
+          - `text`: Text for which to create an embedding.
+        - **Image embeddings**:
+          Provide one of the following:
+          - `image_url`: Publicly accessible URL of your image file.
+          - `image_file`:  Local image file.
+        - **Audio embeddings**:
+          Provide one of the following:
+          - `audio_url`: Publicly accessible URL of your audio file.
+          - `audio_file`: Local audio file.
 
-        **Text embeddings**:
-        To create an embedding for text, provide these parameters:
-        - `text`: The text for which to create an embedding.
-        - (Optional) `text_truncate`: Specify how to truncate text that exceeds 77 tokens.
 
-        **Image embeddings**:
-        To create an embedding for an image, provide the image by using one of these parameters:
-        - `image_url`: A publicly accessible URL of your image file.
-        - `image_file`: A local image file.
-        **NOTE**: If you specify both the `image_url` and `image_file` parameters in the same request, the `image_url` parameter takes precedence.
 
-        **Audio embeddings**:
-        To create an embedding for an audio file, provide the audio file using one of the following parameters:
-        - `audio_url`: A publicly accessible URL of your audio file.
-        - `audio_file`: A local audio file.
-        - _(Optional)_ `audio_truncate`: Specify how to truncate the embeddings for audio files that exceed 10 seconds.
-        **NOTE**: If you specify both the `audio_url` and `audio_file` parameters in the same request, the `audio_url` parameter takes precedence over `audio_file`.
+
+
+
 
 
       operationId: create-text-image-audio-embedding
@@ -1390,8 +1386,8 @@ paths:
         Ensure your video meets the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
 
         Upload options: 
-        - **Local file**: Use `video_file` parameter
-        - **Publicly accessible URL**: Use `video_url` parameter.
+        - **Local file**: Use the `video_file` parameter
+        - **Publicly accessible URL**: Use the `video_url` parameter.
         
         Specify at least one option. If both are provided, `video_url` takes precedence.
 
