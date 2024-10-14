@@ -3755,6 +3755,10 @@ components:
                 type: string
                 description: |
                   The unique identifier of the video embedding task.
+              created_at:
+                type: string
+                description: |
+                  The date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"), that the video embedding task was created.
               engine_name:
                 type: string
                 description: |
@@ -3790,7 +3794,7 @@ components:
                         - `clip`: Indicates that this embedding is for a specific segment.
                     embedding:
                       description: |
-                        An object that contains an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                        An object that contains, among other fields, an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                       type: object
                       properties:
                         float:
@@ -3800,6 +3804,13 @@ components:
                             format: float
                           minItems: 1024
                           maxItems: 1024
+                        is_success:
+                          type: boolean
+                          description: This field indicates whether the embedding generation was successful.
+                        error_message:
+                          type: string
+                          description: |
+                            Error message if the embedding generation failed.
               metadata:
                 type: object
                 description: |
