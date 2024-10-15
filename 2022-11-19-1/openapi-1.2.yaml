@@ -1435,7 +1435,7 @@ paths:
       description: |
         This method retrieves the status of a video embedding task. Check the task status of a video embedding task to determine when you can retrieve the embedding.
 
-        Each video embedding task represents a request to upload and create one or multiple embeddings. A task can have one of the following statuses:
+        A task can have one of the following statuses:
         - `processing`: The platform is creating the embeddings.
         - `ready`:  Processing is complete. Retrieve the embeddings by invoking the [`GET`](/reference/retrieve-video-embeding) method of the `/embed/tasks/{task_id} endpoint`.
         - `failed`: The task could not be completed, and the embeddings haven't been created.
