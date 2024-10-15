@@ -1433,12 +1433,12 @@ paths:
     get:
       summary: Retrieve the status of a video embedding task
       description: |
-        This method retrieves the status of a video embedding task.
+        This method retrieves the status of a video embedding task. Check the task status of a video embedding task to determine when you can retrieve the embedding.
 
-        Each video embedding task represents a request to upload and create one or multiple embeddings. A task starts when you begin uploading a video by calling the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint, and can have one of the following statuses:
-        - `processing`: This status indicates that the embeddings are being created.
-        - `ready`: This status indicates that the platform has finished processing your video, and you can retrieve the embeddings by invoking the [`GET`](/reference/retrieve-video-embeding) method on the `/embed/tasks/{task_id} endpoint`.
-        - `failed`: This status indicates that the task could not be completed as expected, and the embeddings haven't been created.
+        Each video embedding task represents a request to upload and create one or multiple embeddings. A task can have one of the following statuses:
+        - `processing`: The platform is creating the embeddings.
+        - `ready`:  Processing is complete. Retrieve the embeddings by invoking the [`GET`](/reference/retrieve-video-embeding) method of the `/embed/tasks/{task_id} endpoint`.
+        - `failed`: The task could not be completed, and the embeddings haven't been created.
       operationId: retrieve-video-embeding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
