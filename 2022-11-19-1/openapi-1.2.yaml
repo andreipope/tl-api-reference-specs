@@ -1479,16 +1479,16 @@ paths:
     post:
       summary: Make any-to-video search requests 
       description: |
-        Use this endpoint to search for relevant matches in an index using text or various media formats.
+        Use this endpoint to search for relevant matches in an index using text or various media queries.
         
-        To perform a search using a text query:
+        **Text queries**:
         - Use the `query_text` parameter to specify your query.
         
-        To perform a search using a media query:
+        **Media queries**:
         - Set the `query_media_type` parameter to the corresponding media type (example: `image`).
         - Specify either one of the following parameters:
-          - The `query_media_url` parameter with the publicly accessible URL of your media file.
-          - The `query_media_file` parameter with a local media file.
+          - `query_media_url`: Publicly accessible URL of your media file.
+          - `query_media_file`: Local media file.
           If both `query_media_url` and `query_media_file` are specified in the same request, `query_media_url` takes precedence.
 
         Before using a media file as a query, ensure that the file meets the [prerequisites](/docs/single-queries-prerequisites).
