@@ -1551,6 +1551,7 @@ components:
         engine_name:
           type: string
           description: The name ofhe video understanding engine the platform has used to create this embedding.
+          example: Marengo-retrieval-2.6
       anyOf:
         - $ref: '#/components/schemas/AudioEmbeddingResponse'
         - $ref: '#/components/schemas/ImageEmbeddingResponse'
@@ -1559,11 +1560,19 @@ components:
     AudioEmbeddingResponse:
       type: object
       title: Audio embedding 
-      required:
-        - audio_embedding
       properties:
         audio_embedding:
-          $ref: '#/components/schemas/EmbeddingResult'
+          $ref: '#/components/schemas/AudioEmbeddingResult'
+      example:
+        audio_embedding:
+          segments:
+            - start_offset_sec: 0
+              float: [-0.042632885, 0.014312328, 0.029209055]
+        is_success: true
+        metadata:
+          input_filename: "01.mp3"
+
+
     
     ImageEmbeddingResponse:
       type: object
@@ -1600,6 +1609,52 @@ components:
         is_success:
           type: boolean
           description: This field indicates whether the embedding generation was successful.
+    
+    AudioEmbeddingResult:
+      type: object
+      properties:
+        segments:
+          type: array
+          description: |
+            An array that contains your embeddings.
+          items:
+            $ref: '#/components/schemas/Segment'
+        is_success:
+          type: boolean
+          description: This field indicates whether the embedding generation was successful.
+        error_message:
+          type: string
+          description: Error message if the embedding generation failed.
+        metadata:
+          type: object
+          description: |
+            Metadata about the embedding. 
+          properties:
+            input_url:
+              type: string
+              description: |
+                The URL of the audio file used to generate the embedding. Present if a URL was provided in the request.
+            input_filename:
+              type: string
+              description: |
+                The name of the audio file used to generate the embedding. Present if a file was provided in the request.
+  
+    
+    Segment:
+      type: object
+      description: |
+        An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+      properties:
+        float:
+          type: array
+          items:
+            type: number
+            format: float
+          minItems: 1024
+          maxItems: 1024
+        start_offset_sec:
+          type: number
+          description: The start time of the audio segment for this embedding.
 
     EmbeddingResult:
       type: object
