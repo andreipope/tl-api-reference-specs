@@ -1616,7 +1616,7 @@ components:
         segments:
           type: array
           description: |
-            An array that contains your embeddings.
+            An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
           items:
             $ref: '#/components/schemas/Segment'
         is_success:
@@ -1642,8 +1642,6 @@ components:
     
     Segment:
       type: object
-      description: |
-        An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
       properties:
         float:
           type: array
