@@ -1612,11 +1612,13 @@ components:
     
     AudioEmbeddingResult:
       type: object
+      description: |
+        An object that contains, among other fields, an array named `segments`. Each item of the `segments` array corresponds to an embedding.
       properties:
         segments:
           type: array
           description: |
-            An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+            An object that contains the embedding and its start time.
           items:
             $ref: '#/components/schemas/Segment'
         is_success:
@@ -1645,6 +1647,7 @@ components:
       properties:
         float:
           type: array
+          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
           items:
             type: number
             format: float
