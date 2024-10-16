@@ -4837,6 +4837,12 @@ components:
                 format: binary
                 description: |
                   The audio file for which you wish to create an embedding as a local file. This parameter is required for audio embeddings if `audio_url` is not provided.
+              audio_start_offset_sec:
+                type: number
+                description: |
+                  Specifies the start time, in seconds, from which the platform generates the audio embeddings. This parameter allows you to skip the initial portion of the audio during processing.
+                  **Default**: `0`.
+                default: 0
 
     createVideoEmbeddingTaskRequest:
       content:
