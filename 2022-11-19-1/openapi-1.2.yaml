@@ -1594,13 +1594,15 @@ components:
 
     TextEmbeddingResult:
       type: object
-      description: An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+      description: An object containing the generated embedding vector and associated information.
       properties:
         error_message:
           type: string
           description: Error message if the embedding generation failed.
         float:
           type: array
+          description: |
+            An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
           items:
             type: number
             format: float
@@ -1659,13 +1661,14 @@ components:
 
     EmbeddingResult:
       type: object
-      description: An object that contains, among other fields, an array of 1024 floating point numbers named `float` representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+      description: An object containing the generated embedding vector and associated information.
       properties:
         error_message:
           type: string
           description: Error message if the embedding generation failed.
         float:
           type: array
+          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
           items:
             type: number
             format: float
@@ -2185,11 +2188,13 @@ components:
                   - `clip`: Indicates that this embedding is for a specific segment.
               embedding:
                 description: |
-                  An object that contains, among other fields, an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                  An object containing the generated embedding vector and associated information.
                 type: object
                 properties:
                   float:
                     type: array
+                    description: |
+                      An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                     items:
                       type: number
                       format: float
