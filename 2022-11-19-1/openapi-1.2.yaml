@@ -2184,8 +2184,8 @@ components:
                 type: string
                 description: |
                   Indicates the scope of this embedding. It can take the following values:
-                  - `video`: Indicates that this embedding if for the entire video.
-                  - `clip`: Indicates that this embedding is for a specific segment.
+                  - `video`: This embedding if for the entire video.
+                  - `clip`: This embedding is for a specific segment.
               embedding:
                 description: |
                   An object containing the generated embedding vector and associated information.
@@ -2225,10 +2225,9 @@ components:
             video_embedding_scope:
               type: array
               description: |
-                The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
+                The scope of the video embedding. It can take one of the following values: ['clip'] or ['clip', 'video'].
               items:
                 type: string
-                enum: [clip, video]
             duration_mins:
               type: number
               format: float
@@ -3851,8 +3850,8 @@ components:
                       type: string
                       description: |
                         Indicates the scope of this embedding. It can take the following values:
-                        - `video`: Indicates that this embedding if for the entire video.
-                        - `clip`: Indicates that this embedding is for a specific segment.
+                        - `video`: This embedding if for the entire video.
+                        - `clip`: This embedding is for a specific segment.
                     embedding:
                       description: |
                         An object that contains, among other fields, an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
@@ -3891,10 +3890,9 @@ components:
                   video_embedding_scope:
                     type: array
                     description: |
-                      The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
+                      The scope of the video embedding. It can take one of the following values: ['clip'] or ['clip', 'video'].
                     items:
                       type: string
-                      enum: [clip, video]
                   duration:
                     type: number
                     format: float
@@ -4042,10 +4040,9 @@ components:
                   video_embedding_scope:
                     type: array
                     description: |
-                      The scope of the video embedding. It can contain one or both of the following values: `clip` and `video`.
+                      The scope of the video embedding. It can take one of the following values: ['clip'] or ['clip', 'video'].
                     items:
                       type: string
-                      enum: [clip, video]
                   duration:
                     type: number
                     format: float
@@ -4902,11 +4899,11 @@ components:
               video_embedding_scope:
                 type: string
                 description: |
-                  Defines the scope of the video embedding generation. You can specify one or both of the following values:
-                  - `clip`: Use this value to create embeddings for each video segment of `video_clip_length` seconds, from `video_start_offset_sec` to `video_end_offset_sec`.
-                  - `video`: Use this value to create an embedding for the entire video.
+                  Defines the scope of video embedding generation. Valid values are the following:
+                  - `clip`: Creates embeddings for each video segment of `video_clip_length` seconds, from `video_start_offset_sec` to `video_end_offset_sec`.
+                  - `clip` and `video`: Creates embeddings for video segments and the entire video.
 
-                  To create both embeddings for specific video segments and for the entire video, include this parameter twice in the request as shown below:
+                  To create embeddings for segments and the entire video in the same request, include this parameter twice as shown below:
 
                   ```json
                   --form video_embedding_scope=clip \
