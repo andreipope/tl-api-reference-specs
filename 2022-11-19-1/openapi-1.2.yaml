@@ -2225,7 +2225,7 @@ components:
             video_embedding_scope:
               type: array
               description: |
-                The scope of the video embedding. It can take one of the following values: ['clip'] or ['clip', 'video'].
+                The scope you've specified in the request. It can take one of the following values: ['clip'] or ['clip', 'video'].
               items:
                 type: string
             duration_mins:
@@ -3890,7 +3890,7 @@ components:
                   video_embedding_scope:
                     type: array
                     description: |
-                      The scope of the video embedding. It can take one of the following values: ['clip'] or ['clip', 'video'].
+                      The scope you've specified in the request. It can take one of the following values: ['clip'] or ['clip', 'video'].
                     items:
                       type: string
                   duration:
