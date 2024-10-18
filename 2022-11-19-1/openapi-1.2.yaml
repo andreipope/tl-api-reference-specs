@@ -3168,7 +3168,7 @@ components:
                         float: 
                           type: array
                           description: |
-                            An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                            An array of 1024 floating point numbers representing the embeddings for each individual segment. Each segment is between 2 and 10 seconds. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
                           items:
                             type: number
                             format: float
