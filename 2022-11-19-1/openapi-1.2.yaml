@@ -3852,25 +3852,33 @@ components:
                         Indicates the scope of this embedding. It can take the following values:
                         - `video`: This embedding if for the entire video.
                         - `clip`: This embedding is for a specific segment.
-                    embedding:
+                    float:
+                      type: array
                       description: |
-                        An object that contains, among other fields, an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-                      type: object
-                      properties:
-                        float:
-                          type: array
-                          items:
-                            type: number
-                            format: float
-                          minItems: 1024
-                          maxItems: 1024
-                        is_success:
-                          type: boolean
-                          description: This field indicates whether the embedding generation was successful.
-                        error_message:
-                          type: string
-                          description: |
-                            Error message if the embedding generation failed.
+                        An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                      items:
+                        type: number
+                        format: float
+                      minItems: 1024
+                    # embedding:
+                    #   description: |
+                    #     An object that contains, among other fields, an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                    #   type: object
+                    #   properties:
+                    #     float:
+                    #       type: array
+                    #       items:
+                    #         type: number
+                    #         format: float
+                    #       minItems: 1024
+                    #       maxItems: 1024
+                    #     is_success:
+                    #       type: boolean
+                    #       description: This field indicates whether the embedding generation was successful.
+                    #     error_message:
+                    #       type: string
+                    #       description: |
+                    #         Error message if the embedding generation failed.
               metadata:
                 type: object
                 description: |
@@ -3913,25 +3921,21 @@ components:
               - start_offset_sec: 6
                 end_offset_sec: 12
                 embedding_scope: "clip"
-                embedding:
-                  float:
-                    - -0.056660935
-                    - 0.012404642
-            
+                float:
+                  - -0.056660935
+                  - 0.012404642
               - start_offset_sec: 12
                 end_offset_sec: 18
                 embedding_scope: "clip"
-                embedding:
-                  float:
-                    - -0.05971131
-                    - -0.00859428
+                float:
+                  - -0.05971131
+                  - -0.00859428
               - start_offset_sec: 0
                 end_offset_sec: 18
                 embedding_scope: "video"
-                embedding:
-                  float:
-                    - -0.05971131
-                    - -0.00859428
+                float:
+                  - -0.05971131
+                  - -0.00859428
             metadata:
               input_filename: 01.mp4
               video_clip_length: 6
