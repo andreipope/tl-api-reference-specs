@@ -1299,7 +1299,7 @@ paths:
 #############################################
 ###   Text, image, and audio embeddings   ###
 #############################################
-  "/embed-new":
+  "/embed":
     post:
       summary: Create embeddings for text, image, and audio 
       description: |
@@ -1347,26 +1347,26 @@ paths:
 ###   Text embeddings   ###
 ###########################
 
-  '/embed':
-    post:
-      summary: Create text embeddings
-      description: |
-        This endpoint creates text embeddings.
+  # '/embed':
+  #   post:
+  #     summary: Create text embeddings
+  #     description: |
+  #       This endpoint creates text embeddings.
 
-        **NOTE**: The “Marengo-retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
-      operationId: create-text-embedding
-      tags:
-        - Create text embeddings
-      requestBody:
-        $ref: '#/components/requestBodies/createTextEmbeddingRequest'
-      parameters:
-        - $ref: '#/components/parameters/x-api-key'
-        - $ref: '#/components/parameters/multipart'
-      responses:
-        '200':
-          $ref: '#/components/responses/createTextEmbeddingResponse'
-        '400':
-          $ref: '#/components/responses/genericError'
+  #       **NOTE**: The “Marengo-retrieval-2.6” video understanding engine generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
+  #     operationId: create-text-embedding
+  #     tags:
+  #       - Create text embeddings
+  #     requestBody:
+  #       $ref: '#/components/requestBodies/createTextEmbeddingRequest'
+  #     parameters:
+  #       - $ref: '#/components/parameters/x-api-key'
+  #       - $ref: '#/components/parameters/multipart'
+  #     responses:
+  #       '200':
+  #         $ref: '#/components/responses/createTextEmbeddingResponse'
+  #       '400':
+  #         $ref: '#/components/responses/genericError'
 
 ############################
 ###   Video embeddings   ###
