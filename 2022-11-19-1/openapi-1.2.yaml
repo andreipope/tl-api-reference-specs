@@ -290,9 +290,9 @@ paths:
         '400':
           $ref: '#/components/responses/genericError'
   
-  ###########################
-  ###   Tasks/Transfers   ###
-  ###########################
+  ##############################
+  ###   Tasks/Integrations   ###
+  ##############################
 
   '/tasks/transfers':
     post:
@@ -353,7 +353,7 @@ paths:
   '/tasks/transfers/import/{integration-id}/status':
     get:
       summary: Retrieve import status
-      description: This method retrieves the current status for each video from a specified integration and index. It returns an object containing lists of videos grouped by their status.   
+      description: This method retrieves the current status for each video from a specified integration and index. It returns an object containing lists of videos grouped by status.   
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
