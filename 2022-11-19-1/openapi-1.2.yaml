@@ -1605,15 +1605,6 @@ components:
             An object that contains the embedding.
           items:
             $ref: '#/components/schemas/Segment'
-        float:
-          type: array
-          description: |
-            An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-          items:
-            type: number
-            format: float
-          minItems: 1024
-          maxItems: 1024
     
     AudioEmbeddingResult:
       type: object
