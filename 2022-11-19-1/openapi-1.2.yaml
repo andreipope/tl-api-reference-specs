@@ -1594,11 +1594,17 @@ components:
 
     TextEmbeddingResult:
       type: object
-      description: An object containing the generated embedding vector and associated information.
+      description: An object containing the generated embedding vector or an error message.
       properties:
         error_message:
           type: string
           description: Error message if the embedding generation failed.
+        segments:
+          type: array
+          description: |
+            An object that contains the embedding.
+          items:
+            $ref: '#/components/schemas/Segment'
         float:
           type: array
           description: |
@@ -1608,9 +1614,6 @@ components:
             format: float
           minItems: 1024
           maxItems: 1024
-        is_success:
-          type: boolean
-          description: This field indicates whether the embedding generation was successful.
     
     AudioEmbeddingResult:
       type: object
