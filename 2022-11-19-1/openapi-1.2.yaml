@@ -1659,9 +1659,8 @@ components:
             format: float
           minItems: 1024
           maxItems: 1024
-        start_offset_sec:
-          type: number
-          description: The start time of the audio segment for this embedding.
+
+          
     AudioSegment:
       type: object
       properties:
