@@ -1580,7 +1580,7 @@ components:
         - image_embedding
       properties:
         image_embedding:
-          $ref: '#/components/schemas/EmbeddingResult'
+          $ref: '#/components/schemas/ImageEmbeddingResult'
 
     TextEmbeddingResponse:
       type: object
@@ -1632,68 +1632,21 @@ components:
               type: string
               description: |
                 The name of the audio file used to generate the embedding. Present if a file was provided in the request.
-  
-                AudioSegment:
-                  type: object
-                  properties:
-                    float:
-                      type: array
-                      description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-                      items:
-                        type: number
-                        format: float
-                      minItems: 1024
-                      maxItems: 1024
-                    start_offset_sec:
-                      type: number
-                      description: The start time of the audio segment for this embedding.
 
-    TextSegment:
-      type: object
-      properties:
-        float:
-          type: array
-          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-          items:
-            type: number
-            format: float
-          minItems: 1024
-          maxItems: 1024
 
-          
-    AudioSegment:
-      type: object
-      properties:
-        float:
-          type: array
-          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-          items:
-            type: number
-            format: float
-          minItems: 1024
-          maxItems: 1024
-        start_offset_sec:
-          type: number
-          description: The start time of the audio segment for this embedding.
-
-    EmbeddingResult:
+    ImageEmbeddingResult:
       type: object
       description: An object containing the generated embedding vector and associated information.
       properties:
         error_message:
           type: string
           description: Error message if the embedding generation failed.
-        float:
+        segments:
           type: array
-          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+          description: |
+            An object that contains the embedding and its start time.
           items:
-            type: number
-            format: float
-          minItems: 1024
-          maxItems: 1024
-        is_success:
-          type: boolean
-          description: This field indicates whether the embedding generation was successful.
+            $ref: '#/components/schemas/ImageSegment'
         metadata:
           type: object
           description: |
@@ -1707,6 +1660,48 @@ components:
               type: string
               description: |
                 The name of the video file used to generate the embedding. Present if a file was provided in the request.
+
+    TextSegment:
+      type: object
+      properties:
+        float:
+          type: array
+          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+          items:
+            type: number
+            format: float
+          minItems: 1024
+          maxItems: 1024
+
+
+    AudioSegment:
+      type: object
+      properties:
+        float:
+          type: array
+          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+          items:
+            type: number
+            format: float
+          minItems: 1024
+          maxItems: 1024
+        start_offset_sec:
+          type: number
+          description: The start time, in seconds, from which the platform generated the audio embedding.
+
+    ImageSegment:
+      type: object
+      properties:
+        float:
+          type: array
+          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+          items:
+            type: number
+            format: float
+          minItems: 1024
+          maxItems: 1024
+
+
 
     end_time:
       type: number
