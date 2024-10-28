@@ -3752,38 +3752,6 @@ components:
               message:
                 type: string
                 description: A human-readable string describing the error.
-            
-
-    createTextEmbeddingResponse:
-      description: |
-        A text embedding has successfully been created.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              engine_name:
-                description: |
-                  The name of the engine the platform has used to create this embedding.
-                type: string
-              text_embedding:
-                description: |
-                  An object that contains an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-                type: object
-                properties:
-                  float:
-                    type: array
-                    items:
-                      type: number
-                      format: float
-                    minItems: 1024
-                    maxItems: 1024
-            example:
-              engine_name: Marengo-retrieval-2.6
-              text_embedding:
-                float:
-                  - 0.021137852
-                  - -0.015733518
 
     createSyncEmbeddingResponse:
       description: |
@@ -3795,9 +3763,10 @@ components:
             example:
               engine_name: Marengo-retrieval-2.6
               text_embedding:
-                float:
-                  - 0.021137852
-                  - -0.015733518
+                segments:
+                  - float:
+                    - 0.021137852
+                    - -0.015733518
     retrieveVideoEmbeddingResponse:
       description: |
         Video embeddings have successfully been retrieved.
