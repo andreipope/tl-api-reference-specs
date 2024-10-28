@@ -628,7 +628,6 @@ paths:
       operationId: retrieve-video-information
       tags:
         - Manage videos
-        - Create video embeddings
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
