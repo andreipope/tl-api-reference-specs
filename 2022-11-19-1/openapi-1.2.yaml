@@ -3808,120 +3808,162 @@ components:
                 type: string
                 description: |
                   A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`.
-              video_embeddings:
-                type: array
-                description: |
-                  An array of objects containing your embeddings.
-                items:
-                  type: object
-                  description: |
-                    Each object corresponds to an embedding and has the following fields:
-                  properties:
-                    start_offset_sec:
-                      type: number
-                      format: float
-                      description: |
-                        The start time of the video segment for this embedding. If the embedding scope is `video`, this field equals `0`.
-                    end_offset_sec:
-                      type: number
-                      format: float
-                      description: |
-                        The end time of the video segment for this embedding. If the embedding scope is `video`, this field equals the duration of the video.
-                    embedding_scope:
-                      type: string
-                      description: |
-                        Indicates the scope of this embedding. It can take the following values:
-                        - `video`: This embedding if for the entire video.
-                        - `clip`: This embedding is for a specific segment.
-                    float:
-                      type: array
-                      description: |
-                        An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-                      items:
-                        type: number
-                        format: float
-                      minItems: 1024
-                    # embedding:
-                    #   description: |
-                    #     An object that contains, among other fields, an array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-                    #   type: object
-                    #   properties:
-                    #     float:
-                    #       type: array
-                    #       items:
-                    #         type: number
-                    #         format: float
-                    #       minItems: 1024
-                    #       maxItems: 1024
-                    #     is_success:
-                    #       type: boolean
-                    #       description: This field indicates whether the embedding generation was successful.
-                    #     error_message:
-                    #       type: string
-                    #       description: |
-                    #         Error message if the embedding generation failed.
-              metadata:
+              video_embedding:
                 type: object
                 description: |
-                  An object containing metadata about the video.
+                  An object containing the generated embedding vectors and their metadata.
                 properties:
-                  input_filename:
-                    type: string
+                  metadata:
+                    type: object
                     description: |
-                      The name of the video file. The platform returns this field when you upload a video from your local file system.
-                  input_url:
-                    type: string
-                    description: |
-                      The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
-                  video_clip_length:
-                    type: number
-                    description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
-                  video_embedding_scope:
+                      An object containing metadata about the video.
+                    properties:
+                      input_filename:
+                        type: string
+                        description: |
+                          The name of the video file. The platform returns this field when you upload a video from your local file system.
+                      input_url:
+                        type: string
+                        description: |
+                          The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
+                      video_clip_length:
+                        type: number
+                        description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
+                      video_embedding_scope:
+                        type: array
+                        description: |
+                          The scope you've specified in the request. It can take one of the following values: ['clip'] or ['clip', 'video'].
+                        items:
+                          type: string
+                      duration:
+                        type: number
+                        format: float
+                        description: The total duration of the video in seconds. 
+                  segments:
                     type: array
                     description: |
-                      The scope you've specified in the request. It can take one of the following values: ['clip'] or ['clip', 'video'].
+                      An array of objects containing the embeddings for each video segment and the associated information.
                     items:
-                      type: string
-                  duration:
-                    type: number
-                    format: float
-                    description: The total duration of the video in seconds. 
+                      type: object
+                      properties:
+                        start_offset_sec:
+                          type: number
+                          format: float
+                          description: |
+                            The start time of the video segment for this embedding. If the embedding scope is `video`, this field equals `0`.
+                        end_offset_sec:
+                          type: number
+                          format: float
+                          description: |
+                            The end time of the video segment for this embedding. If the embedding scope is `video`, this field equals the duration of the video.
+                        embedding_scope:
+                          type: string
+                          description: |
+                            Indicates the scope of this embedding. It can take the following values:
+                            - `video`: This embedding if for the entire video.
+                            - `clip`: This embedding is for a specific segment.
+                        float:
+                          type: array
+                          description: |
+                            An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                          items:
+                            type: number
+                            format: float
+                          minItems: 1024
+              # video_embeddings:
+              #   type: array
+              #   description: |
+              #     An array of objects containing your embeddings.
+              #   items:
+              #     type: object
+              #     description: |
+              #       Each object corresponds to an embedding and has the following fields:
+              #     properties:
+              #       start_offset_sec:
+              #         type: number
+              #         format: float
+              #         description: |
+              #           The start time of the video segment for this embedding. If the embedding scope is `video`, this field equals `0`.
+              #       end_offset_sec:
+              #         type: number
+              #         format: float
+              #         description: |
+              #           The end time of the video segment for this embedding. If the embedding scope is `video`, this field equals the duration of the video.
+              #       embedding_scope:
+              #         type: string
+              #         description: |
+              #           Indicates the scope of this embedding. It can take the following values:
+              #           - `video`: This embedding if for the entire video.
+              #           - `clip`: This embedding is for a specific segment.
+              #       float:
+              #         type: array
+              #         description: |
+              #           An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+              #         items:
+              #           type: number
+              #           format: float
+              #         minItems: 1024
+              # metadata:
+              #   type: object
+              #   description: |
+              #     An object containing metadata about the video.
+              #   properties:
+              #     input_filename:
+              #       type: string
+              #       description: |
+              #         The name of the video file. The platform returns this field when you upload a video from your local file system.
+              #     input_url:
+              #       type: string
+              #       description: |
+              #         The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
+              #     video_clip_length:
+              #       type: number
+              #       description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
+              #     video_embedding_scope:
+              #       type: array
+              #       description: |
+              #         The scope you've specified in the request. It can take one of the following values: ['clip'] or ['clip', 'video'].
+              #       items:
+              #         type: string
+              #     duration:
+              #       type: number
+              #       format: float
+              #       description: The total duration of the video in seconds. 
           example:
             _id: "663e16ac4d11aff765088b3a"
             engine_name: "Marengo-retrieval-2.6"
             status: "ready"
-            video_embeddings:
-              - start_offset_sec: 0
-                end_offset_sec: 6
-                embedding_scope: "clip"
-                embedding:
+            video_embedding:
+              metadata:
+                input_filename: 01.mp4
+                video_clip_length: 6
+                video_embedding_scope: [clip, video]
+                duration: 18
+              segments:
+                - start_offset_sec: 0
+                  end_offset_sec: 6
+                  embedding_scope: "clip"
                   float:
                     - -0.060086973
                     - 0.016479108
-            
-              - start_offset_sec: 6
-                end_offset_sec: 12
-                embedding_scope: "clip"
-                float:
-                  - -0.056660935
-                  - 0.012404642
-              - start_offset_sec: 12
-                end_offset_sec: 18
-                embedding_scope: "clip"
-                float:
-                  - -0.05971131
-                  - -0.00859428
-              - start_offset_sec: 0
-                end_offset_sec: 18
-                embedding_scope: "video"
-                float:
-                  - -0.05971131
-                  - -0.00859428
-            metadata:
-              input_filename: 01.mp4
-              video_clip_length: 6
-              video_embedding_scope: [clip, video]
-              duration: 18
+                - start_offset_sec: 6
+                  end_offset_sec: 12
+                  embedding_scope: "clip"
+                  float:
+                    - -0.056660935
+                    - 0.012404642
+                - start_offset_sec: 12
+                  end_offset_sec: 18
+                  embedding_scope: "clip"
+                  float:
+                    - -0.05971131
+                    - -0.00859428
+                - start_offset_sec: 0
+                  end_offset_sec: 18
+                  embedding_scope: "video"
+                  float:
+                    - -0.05971131
+                    - -0.00859428
 
     listVideoEmbeddingTasksResponse:
       description: |
