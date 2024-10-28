@@ -1568,7 +1568,6 @@ components:
           segments:
             - start_offset_sec: 0
               float: [-0.042632885, 0.014312328, 0.029209055]
-        is_success: true
         metadata:
           input_filename: "01.mp3"
 
@@ -1617,9 +1616,6 @@ components:
             An object that contains the embedding and its start time.
           items:
             $ref: '#/components/schemas/Segment'
-        is_success:
-          type: boolean
-          description: This field indicates whether the embedding generation was successful.
         error_message:
           type: string
           description: Error message if the embedding generation failed.
