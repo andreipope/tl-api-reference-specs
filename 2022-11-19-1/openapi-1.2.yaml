@@ -1593,7 +1593,7 @@ components:
 
     TextEmbeddingResult:
       type: object
-      description: An object containing the generated embedding vector or an error message.
+      description: An object containing the generated embedding vector.
       properties:
         error_message:
           type: string
@@ -1608,7 +1608,7 @@ components:
     AudioEmbeddingResult:
       type: object
       description: |
-        An object that contains, among other fields, an array named `segments`. Each item of the `segments` array corresponds to an embedding.
+        An object that contains the generated embedding vector and associated information.
       properties:
         segments:
           type: array
@@ -1644,7 +1644,7 @@ components:
         segments:
           type: array
           description: |
-            An object that contains the embedding and its start time.
+            An object that contains the embedding.
           items:
             $ref: '#/components/schemas/ImageSegment'
         metadata:
