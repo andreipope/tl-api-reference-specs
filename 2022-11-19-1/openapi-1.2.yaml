@@ -1566,7 +1566,7 @@ components:
       example:
         audio_embedding:
           segments:
-            - start_offset_sec: 0
+            - start_offset_sec: 2
               float: [-0.042632885, 0.014312328, 0.029209055]
         metadata:
           input_filename: "01.mp3"
@@ -1603,7 +1603,7 @@ components:
           description: |
             An object that contains the embedding.
           items:
-            $ref: '#/components/schemas/Segment'
+            $ref: '#/components/schemas/TextSegment'
     
     AudioEmbeddingResult:
       type: object
@@ -1615,7 +1615,7 @@ components:
           description: |
             An object that contains the embedding and its start time.
           items:
-            $ref: '#/components/schemas/Segment'
+            $ref: '#/components/schemas/AudioSegment'
         error_message:
           type: string
           description: Error message if the embedding generation failed.
@@ -1633,8 +1633,36 @@ components:
               description: |
                 The name of the audio file used to generate the embedding. Present if a file was provided in the request.
   
-    
-    Segment:
+                AudioSegment:
+                  type: object
+                  properties:
+                    float:
+                      type: array
+                      description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                      items:
+                        type: number
+                        format: float
+                      minItems: 1024
+                      maxItems: 1024
+                    start_offset_sec:
+                      type: number
+                      description: The start time of the audio segment for this embedding.
+
+    TextSegment:
+      type: object
+      properties:
+        float:
+          type: array
+          description: An array of 1024 floating point numbers representing the embedding. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+          items:
+            type: number
+            format: float
+          minItems: 1024
+          maxItems: 1024
+        start_offset_sec:
+          type: number
+          description: The start time of the audio segment for this embedding.
+    AudioSegment:
       type: object
       properties:
         float:
