@@ -1657,7 +1657,7 @@ components:
           maxItems: 1024
         start_offset_sec:
           type: number
-          description: The start time of the audio segment for this embedding.
+          description: The start time, in seconds, from which the platform generated the audio embedding.
 
     EmbeddingResult:
       type: object
