@@ -623,7 +623,14 @@ paths:
   '/indexes/{index-id}/videos/{video-id}':
     get:
       summary: Retrieve video information
-      description: This method retrieves information about the specified video.
+      description: |
+        This method retrieves information about the specified video.
+        
+        > 🚧 Important
+        > When retrieving video embeddings, the response includes breaking changes that require updates to your application code. Key differences:
+        > - The `video_embeddings` field has been renamed to `video_embedding` (plural to singular)
+        > - The response now includes a nested array named `segments`.
+
       operationId: retrieve-video-information
       tags:
         - Manage videos
