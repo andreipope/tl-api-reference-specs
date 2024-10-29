@@ -625,9 +625,9 @@ paths:
       summary: Retrieve video information
       description: |
         This method retrieves information about the specified video.
-        
+
         > 🚧 Important
-        > When retrieving video embeddings, the response includes breaking changes that require updates to your application code. Key differences:
+        > When retrieving video embeddings, the response includes breaking changes that might require updates to your application code. Key differences:
         > - The `video_embeddings` field has been renamed to `video_embedding` (plural to singular)
         > - The response now includes a nested array named `segments`.
 
@@ -1345,6 +1345,19 @@ paths:
         - You can create multiple types of embeddings in a single API call.
         - Audio embeddings combine generic sound and human speech in a single embedding. For videos with transcriptions, you can [retrieve transcriptions](/reference/retrieve-transcription) and then [create text embeddings](/reference/create-text-embedding) from these transcriptions.
 
+        > 🚧 Important
+        > The response includes breaking changes that might require updates to your application code.
+
+        > **Common changes**:
+        > - The `is_success` boolean flag has been removed.
+        
+        > **Media-specific changes**:
+        > | Media Type | Changes |
+        > |------------|---------|
+        > | Text | The response now includes a nested array named `segments`. |
+        > | Image | The response now includes a nested array named `segments`.|
+        > | Audio | No additional changes. |
+
       operationId: create-text-image-audio-embedding
       tags:
         - Create text, image, and audio embeddings
@@ -1473,6 +1486,13 @@ paths:
       summary: Retrieve video embeddings
       description: |
         This method retrieves embeddings for a specific video embedding task. Ensure the task status is `ready` before invoking this method. Refer to the [Retrieve a video embedding](/reference/retrieve-video-embeding-task) task page for instructions on checking the task status.
+
+        > 🚧 Important
+        > The response includes breaking changes that might require updates to your application code. Key differences:
+        > - The `video_embeddings` field has been renamed to `video_embedding` (plural to singular)
+        > - The response now includes a nested array named `segments`.
+        - The `metadata` field is now nested under `video_embedding`.
+
       operationId: retrieve-video-embeding
       parameters:
         - $ref: '#/components/parameters/x-api-key'
