@@ -1350,11 +1350,9 @@ paths:
         > **Common changes**:
         > - The `is_success` boolean flag has been removed.
         > **Media-specific changes**:
-        > | Media Type | Changes |
-        > |------------|---------|
-        > | Text | The response now includes a nested array named `segments`. |
-        > | Image | The response now includes a nested array named `segments`.|
-        > | Audio | No additional changes. |
+        > - **Text**:The response now includes a nested array named `segments`.
+        > - **Image**: The response now includes a nested array named `segments`.
+        > - **Audio**: No additional changes.
 
       operationId: create-text-image-audio-embedding
       tags:
