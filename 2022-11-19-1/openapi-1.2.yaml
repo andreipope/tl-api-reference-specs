@@ -1347,10 +1347,8 @@ paths:
 
         > 🚧 Important
         > The response includes breaking changes that might require updates to your application code.
-
         > **Common changes**:
         > - The `is_success` boolean flag has been removed.
-        
         > **Media-specific changes**:
         > | Media Type | Changes |
         > |------------|---------|
