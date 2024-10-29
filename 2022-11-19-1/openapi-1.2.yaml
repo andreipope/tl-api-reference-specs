@@ -3264,7 +3264,7 @@ components:
                     properties:
                       segments:
                         type: array
-                        description: An array of objects that contains the embeddings for each individual segment.
+                        description: An array of objects that contains the embeddings for each individual segment.   
                         items:
                           type: object
                           properties:
