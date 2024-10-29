@@ -3265,32 +3265,32 @@ components:
                       segments:
                         type: array
                         description: An array of objects that contains the embeddings for each individual segment.
-                      items:
-                        type: object
-                        properties:
-                          start_offset_sec:
-                            type: number
-                            format: float
-                            description: |
-                              The start time of the video segment for this embedding.
-                          end_offset_sec:
-                            type: number
-                            format: float
-                            description: |
-                              The end time of the video segment for this embedding.
-                          embedding_scope:
-                            type: string
-                            description: |
-                              Indicates the scope of this embedding.
-                          float: 
-                            type: array
-                            description: |
-                              An array of 1024 floating point numbers representing the embeddings for each individual segment. Each segment is between 2 and 10 seconds. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
-                            items:
+                        items:
+                          type: object
+                          properties:
+                            start_offset_sec:
                               type: number
                               format: float
-                            minItems: 1024
-                            maxItems: 1024
+                              description: |
+                                The start time of the video segment for this embedding.
+                            end_offset_sec:
+                              type: number
+                              format: float
+                              description: |
+                                The end time of the video segment for this embedding.
+                            embedding_scope:
+                              type: string
+                              description: |
+                                Indicates the scope of this embedding.
+                            float: 
+                              type: array
+                              description: |
+                                An array of 1024 floating point numbers representing the embeddings for each individual segment. Each segment is between 2 and 10 seconds. You can use this array with cosine similarity for various downstream tasks. Note that the example response was truncated for brevity.
+                              items:
+                                type: number
+                                format: float
+                              minItems: 1024
+                              maxItems: 1024
 
               # source:
               #   type: object
