@@ -1345,7 +1345,7 @@ paths:
         - You can create multiple types of embeddings in a single API call.
         - Audio embeddings combine generic sound and human speech in a single embedding. For videos with transcriptions, you can [retrieve transcriptions](/reference/retrieve-transcription) and then [create text embeddings](/reference/create-text-embedding) from these transcriptions.
 
-        > 🚧 Important
+        > 🚧 Important 
         > The response includes breaking changes that might require updates to your application code.
         > **Common changes**:
         > - The `is_success` boolean flag has been removed.
