@@ -1487,7 +1487,7 @@ paths:
         > The response includes breaking changes that might require updates to your application code. Key differences:
         > - The `video_embeddings` field has been renamed to `video_embedding` (plural to singular)
         > - The response now includes a nested array named `segments`.
-        - The `metadata` field is now nested under `video_embedding`.
+        > - The `metadata` field is now nested under `video_embedding`.
 
       operationId: retrieve-video-embeding
       parameters:
