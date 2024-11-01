@@ -1437,7 +1437,13 @@ paths:
         
         **NOTES**:
         - Video embeddings are stored for seven days
-        - When you invoke this method without specifying the `started_at` and `ended_at` parameters, the platform returns all the video embedding tasks created within the last seven days.  
+        - When you invoke this method without specifying the `started_at` and `ended_at` parameters, the platform returns all the video embedding tasks created within the last seven days.
+
+        > 🚧 Important
+        > The response includes breaking changes that might require updates to your application code. Key differences:
+        > - The response now includes an object named `video_embedding`.
+        > - The `metadata` object is now nested under `video_embedding`.
+
       operationId: list-video-embedding-tasks
       tags:
           - Create video embeddings
