@@ -629,7 +629,7 @@ paths:
         > 🚧 Important
         > When retrieving video embeddings, the response includes breaking changes that might require updates to your application code. Key differences:
         > - The `video_embeddings` field has been renamed to `video_embedding` (plural to singular)
-        > - The response now includes a nested array named `segments`.
+        > - The embedding vectors are now nested under an array named `segments`.
 
       operationId: retrieve-video-information
       tags:
@@ -1350,9 +1350,7 @@ paths:
         > **Common changes**:
         > - The `is_success` boolean flag has been removed.
         > **Media-specific changes**:
-        > - **Text**:The response now includes a nested array named `segments`.
-        > - **Image**: The response now includes a nested array named `segments`.
-        > - **Audio**: No additional changes.
+        > - **Text and audio**: The embedding vectors are now nested under an array named `segments`.
 
       operationId: create-text-image-audio-embedding
       tags:
@@ -1498,8 +1496,8 @@ paths:
 
         > 🚧 Important
         > The response includes breaking changes that might require updates to your application code. Key differences:
-        > - The `video_embeddings` field has been renamed to `video_embedding` (plural to singular)
-        > - The response now includes a nested array named `segments`.
+        > - The `video_embeddings` field has been renamed to `video_embedding` (plural to singular).
+        > - The embedding vectors are now nested under an array named `segments`.
         > - The `metadata` field is now nested under `video_embedding`.
 
       operationId: retrieve-video-embeding
