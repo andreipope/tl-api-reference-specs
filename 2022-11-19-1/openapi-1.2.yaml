@@ -1441,7 +1441,7 @@ paths:
 
         > 🚧 Important
         > The response includes breaking changes that might require updates to your application code. Key differences:
-        > - The response now includes an object named `video_embedding`.
+        > - Each object of the `data` array now includes an object named `video_embedding`.
         > - The `metadata` object is now nested under `video_embedding`.
 
       operationId: list-video-embedding-tasks
@@ -1470,6 +1470,13 @@ paths:
         - `processing`: The platform is creating the embeddings.
         - `ready`:  Processing is complete. Retrieve the embeddings by invoking the [`GET`](/reference/retrieve-video-embeding) method of the `/embed/tasks/{task_id} endpoint`.
         - `failed`: The task could not be completed, and the embeddings haven't been created.
+
+        > 🚧 Important
+        > The response includes breaking changes that might require updates to your application code. Key differences:
+        > - The response now includes an object named `video_embedding`.
+        > - The `metadata` object is now nested under `video_embedding`.
+
+
       operationId: retrieve-video-embeding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
@@ -4147,42 +4154,48 @@ components:
                 type: string
                 description: |
                   The name of the video understanding engine the platform used to create the embedding.
-              metadata:
+              video_embedding:
                 type: object
                 description: |
-                  An object containing metadata about the video.
+                  An object containing the metadata associated with the embedding.
                 properties:
-                  input_filename:
-                    type: string
+                  metadata:
+                    type: object
                     description: |
-                      The name of the video file. The platform returns this field when you upload a video from your local file system.
-                  input_url:
-                    type: string
-                    description: |
-                      The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
-                  video_clip_length:
-                    type: number
-                    description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
-                  video_embedding_scope:
-                    type: array
-                    description: |
-                      The scope of the video embedding. It can take one of the following values: ['clip'] or ['clip', 'video'].
-                    items:
-                      type: string
-                  duration:
-                    type: number
-                    format: float
-                    description: The total duration of the video in seconds.
+                      An object containing metadata about the video.
+                    properties:
+                      input_filename:
+                        type: string
+                        description: |
+                          The name of the video file. The platform returns this field when you upload a video from your local file system.
+                      input_url:
+                        type: string
+                        description: |
+                          The URL of the video. The platform returns this field when you upload a video  from a publicly accessible URL.
+                      video_clip_length:
+                        type: number
+                        description:  The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
+                      video_embedding_scope:
+                        type: array
+                        description: |
+                          The scope of the video embedding. It can take one of the following values: ['clip'] or ['clip', 'video'].
+                        items:
+                          type: string
+                      duration:
+                        type: number
+                        format: float
+                        description: The total duration of the video in seconds.
                   
           example:
             _id: 6641c0efc70bb578439bd909
             engine_name: Marengo-retrieval-2.6
             status: processing
-            metadata:
-              input_filename: 01.mp4
-              video_clip_length: 6
-              video_embedding_scope: [clip, video]
-              duration: 18
+            video_embedding:
+              metadata:
+                input_filename: 01.mp4
+                video_clip_length: 6
+                video_embedding_scope: [clip, video]
+                duration: 18
 
   
     createVideoEmbeddingTaskResponse:
