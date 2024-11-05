@@ -1349,6 +1349,7 @@ paths:
         > The response includes breaking changes that might require updates to your application code.
         > **Common changes**:
         > - The `is_success` boolean flag has been removed.
+        >
         > **Media-specific changes**:
         > - **Text and audio**: The embedding vectors are now nested under an array named `segments`.
 
