@@ -323,7 +323,7 @@ paths:
         - Videos that will be imported.
         - Videos that will not be imported, typically due to unmet [prerequisites](/docs/upload-single-videos#prerequisites).
         
-        The actual uploading and indexing of videos occur asynchronously after you invoke this method. To monitor the status of each upload after invoking this method, use the [`GET`](/reference/cloud-to-cloud-retrieve-status) method of the `/tasks/transfers/import/{integration-id}/status` endpoint.  
+        The actual uploading and indexing of videos occur asynchronously after you invoke this method. To monitor the status of each upload after invoking this method, use the [Retrieve import status](/reference/cloud-to-cloud-retrieve-status) method.  
 
         **NOTES**:
         - Before importing videos, you must set up an integration. For details, see the [Set up an integration](/docs/upload-cloud#set-up-an-integration) section. 
