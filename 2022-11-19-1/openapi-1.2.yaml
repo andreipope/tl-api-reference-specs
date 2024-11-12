@@ -329,7 +329,7 @@ paths:
         - The number of videos in each status
         - Detailed error information for failed uploads, including filenames and error messages.
 
-        Use this endpoint to track import progress and troubleshoot potential issues across multiple operations.
+        Use this endpoint to track import progress and troubleshoot potential issues across multiple operations.  
       parameters:
         - $ref: "#/components/parameters/x-api-key"
         - $ref: "#/components/parameters/Content-Type"
