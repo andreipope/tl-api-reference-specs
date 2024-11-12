@@ -261,7 +261,7 @@ paths:
         The actual uploading and indexing of videos occur asynchronously after you invoke this method. To monitor the status of each upload after invoking this method, use the [Retrieve import status](/reference/cloud-to-cloud-retrieve-status) method.  
 
         **NOTES**:
-        - Before importing videos, you must set up an integration. For details, see the [Set up an integration](/docs/upload-cloud#set-up-an-integration) section. 
+        - Before importing videos, you must set up an integration. For details, see the [Set up an integration](/docs/upload-cloud#set-up-an-integration) section.
         - The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
         - By default, the platform checks for duplicate files using hashes within the target index and will not upload the same video to the same index twice. However, the same video can exist in multiple indexes. To bypass duplicate checking entirely and import duplicate videos into the same index, set the value of the `incremental_import` parameter to `false`.
 
@@ -273,7 +273,7 @@ paths:
           required: true
           schema: 
             type: string
-            description: The unique identifier of the integration for which you want to import videos.
+            description: The unique identifier of the integration for which you want to import videos. You can retrieve it from the [Integrations](https://playground.twelvelabs.io/dashboard/integrations) page.
       operationId: cloud-to-cloud-import-videos
       requestBody: 
         $ref: "#/components/requestBodies/cloud-to-cloud-import-videos-request"
