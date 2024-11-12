@@ -2029,11 +2029,11 @@ components:
                   An array of strings that contains the [engine options](/docs/engine-options) enabled for this index.
                 items:
                   type: string
-              addons:
-                type: array
-                description: The list of the add-ons that are enabled for this index.
-                items:
-                  type: string
+        addons:
+          type: array
+          description: The list of the add-ons that are enabled for this index.
+          items:
+            type: string
 
     videoEmbeddingTask:
       title: Video Embedding Task
@@ -3198,11 +3198,11 @@ components:
                         An array of strings that contains the [engines options](/docs/engine-options) enabled for this index.
                       items:
                         type: string
-                    addons:
-                      type: array
-                      description: The list of add-ons that are enabled for this index.
-                      items:
-                        type: string
+              addons:
+                type: array
+                description: The list of add-ons that are enabled for this index.
+                items:
+                  type: string
           example:
             _id: 62d9bafa90077fc60af827a0
             index_name: myIndex
@@ -3218,13 +3218,12 @@ components:
                   - text_in_video
                   - conversation
                   - logo
-                addons:
-                  - thumbnail
               - engine_name: pegasus1.1
                 engine_options:
                   - visual
                   - conversation
-
+            addons:
+              - thumbnail
 
     getVideoIndexingTasksResponse:
       description: The video indexing tasks have successfully been retrieved.
@@ -3444,12 +3443,12 @@ components:
                         - text_in_video
                         - conversation
                         - logo
-                      addons:
-                        - thumbnail
                     - engine_name: pegasus1.1
                       engine_options:
                         - visual
                         - conversation
+                  addons:
+                    - thumbnail
                 - _id: 62d858ee340fa665f1fda5d8
                   index_name: index-02
                   created_at: '2024-01-09T11:11:20.463Z'
@@ -3462,12 +3461,12 @@ components:
                       engine_options:
                         - visual
                         - logo
-                      addons:
-                        - thumbnail
                     - engine_name: pegasus1.1
                       engine_options:
                         - visual
                         - conversation
+                  addons:
+                    - thumbnail
               page_info:
                 limit_per_page: 10
                 page: 1
@@ -5709,10 +5708,10 @@ components:
                     - conversation
                     - text_in_video
                     - logo
-                  addons:
-                    - thumbnail
                 - engine_name: pagasus1.0
                   engine_options:
                     - visual
                     - conversation
-                    
+              addons:
+                - thumbnail
+                
