@@ -338,7 +338,7 @@ paths:
           required: true
           schema:
             type: string
-            description: The unique identifier of the integration for which you want to retrieve the import logs. You can retrieve it from the [Integrations](https://playground.twelvelabs.io/dashboard/integrations) page.
+            description: The unique identifier of the integration for which you want to retrieve the import logs. You can retrieve it from the [Integrations](https://playground.twelvelabs.io/dashboard/integrations) page.  
       operationId: cloud-to-cloud-retrieve-import-logs
       tags:
         - Upload videos
