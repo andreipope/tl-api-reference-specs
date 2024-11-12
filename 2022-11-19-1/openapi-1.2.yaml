@@ -5953,7 +5953,7 @@ components:
                 description: |
                   Specifies whether incremental sync is enabled. If set to `false`, the platform will synchronize all the files in the bucket.
 
-                  **NOTE**: Setting this parameter to `false` will also bypass duplicate checking entirely and import duplicate videos into the same index.
+                  **NOTE**: Setting this parameter to `false` will also bypass duplicate checking entirely and import duplicate videos into the same index.  
                   
                   **Default**: `true`.
                 default: true
