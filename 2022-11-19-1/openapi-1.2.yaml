@@ -5951,9 +5951,7 @@ components:
               incremental_import:
                 type: boolean
                 description: |
-                  Specifies whether incremental sync is enabled. If set to `false`, the platform will synchronize all the files in the bucket.
-
-                  **NOTE**: Setting this parameter to `false` will also bypass duplicate checking entirely and import duplicate videos into the same index.  
+                  Specifies whether incremental sync is enabled. If set to `false`, the platform will synchronize all the files in the bucket, bypassing duplicate checking entirely and importing duplicate videos into the same index.  
                   
                   **Default**: `true`.
                 default: true
