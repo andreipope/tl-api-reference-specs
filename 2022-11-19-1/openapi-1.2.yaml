@@ -235,6 +235,11 @@ paths:
         **NOTE**: This endpoint will be deprecated. Twelve Labs recommends you use the [Import videos](/reference/cloud-to-cloud-import-videos) endpoint instead.  
 
         Use this endpoint to make cloud-to-cloud transfers. The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
+
+        **NOTE**: By default, the platform checks for duplicate files using hashes within the target index and will not upload the same video to the same index twice. However, the same video can exist in multiple indexes. For example, if video.mp4 exists in index1, you can still import it to index2 and index3.
+
+        To bypass duplicate checking entirely and import duplicate videos into the same index, set the value of the `incremental_import` parameter to false.
+
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
