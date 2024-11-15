@@ -3308,7 +3308,8 @@ components:
                 description: A string indicating the date and time, in the <a href="https://datatracker.ietf.org/doc/html/rfc3339" target="_blank">RFC 3339</a> format ("YYYY-MM-DDTHH:mm:ssZ"), that the video indexing task has been completed.
               metadata:
                 type: object
-                description: An object that contains the information about the video.
+                description: |
+                  An object that contains system-generated metadata about the video, such as duration, width, height, etc.
                 properties:
                   duration:
                     type: number
@@ -3320,6 +3321,10 @@ components:
                     type: integer
                   width:
                     type: integer
+              user_metadata:
+                type: object
+                description: |
+                  An object that contains user-defined metadata for categorizing and organizing videos. The platform returns this field only when the video has user-defined metadata that you've set using the `metadata` parameter of the [`PUT`](/reference/update-video-information) method.
               hls:
                 type: object
                 description: The platform returns this object only for the videos that you uploaded with the `disable_video_stream` parameter set to `false`.
@@ -3391,6 +3396,9 @@ components:
                 fps: 29.97002997002997
                 height: 360
                 width: 482
+              user_metadata:
+                category: tutorial
+                difficulty: beginner
               hls:
                 video_url: https://d2cp8xx7n5vxnu.cloudfront.net/6298aa0b535db125bf6e1d10/64902a28fb01304dd47be3cb/stream/c924f34a-144e-41df-bf2a-c693703fa134.m3u8
                 thumbnail_urls:
@@ -5578,11 +5586,19 @@ components:
               metadata:
                 type: object
                 description: |
-                  Metadata that helps you categorize your videos. You can specify a list of keys and values. Keys must be of type `string`, and values can be of the following types: `string`, `integer`, `float` or `boolean`.
+                  An object for storing custom metadata to help you categorize and organize your videos.
+                  You can specify key-value pairs where:
+                  - Keys must be strings
+                  - Values can be one of the following types:
+                    - `string`
+                    - `integer`
+                    - `float`
+                    - `boolean`
 
                   **NOTES:**
-                  -  If you want to store other types of data such as objects or arrays,  you must convert your data into string values.
-                  - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video.
+                  -  If you want to store other types of data, such as objects or arrays,  you must convert your data into string values.
+                  - You cannot override predefined metadata (example: duration, width, length, etc) associated with a video.
+                  - The metadata you set in this field is returned in the `user_metadata` field when you call the [`GET`](/reference/retrieve-video-information) method.
                 additionalProperties: {}
 
     any-to-video-search:
