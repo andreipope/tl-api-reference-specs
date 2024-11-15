@@ -634,7 +634,7 @@ paths:
         - name: metadata # Arbitrary name that won't be included in the request URL.
           in: query
           description: |
-            To enable filtering by custom fields, first add metadata to your video by calling the [`PUT](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint.
+            To enable filtering by custom fields, first add metadata to your video by calling the [`PUT``](/reference/update-video-information) method of the `/indexes/:index-id/videos/:video-id` endpoint.
 
             Examples:
             - To filter on a string: `?category=recentlyAdded`
@@ -2383,7 +2383,7 @@ components:
         metadata:
           type: object
           description: |
-            An object that contains information about the video.
+            An object that contains system-generated metadata about the video, such as duration, width, height, etc.
           properties:
             filename:
               type: string
@@ -2398,6 +2398,10 @@ components:
               type: integer
             size:
               type: number
+        user_metadata:
+          type: object
+          description: |
+            An object that contains user-defined metadata for categorizing and organizing videos. The platform returns this field only when the video has user-defined metadata that you've set using the `metadata` parameter of the [`PUT`](/reference/update-video-information) method.
       example:
         _id: 62bac61c154f59c87660cea3
         created_at: 2022-06-28T09:12:54
@@ -2410,6 +2414,9 @@ components:
           width: 640
           height: 360
           size: 65749715
+        user_metadata:
+          category: tutorial
+          difficulty: beginner
 
 
 ######################
