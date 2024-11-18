@@ -58,7 +58,6 @@ paths:
         - $ref: '#/components/parameters/page_limit'
         - $ref: '#/components/parameters/sort_by'
         - $ref: '#/components/parameters/sort_option'
-        - $ref: '#/components/parameters/_id'
         - $ref: '#/components/parameters/index_id'
         - $ref: '#/components/parameters/task_status'
         - $ref: '#/components/parameters/filename'
@@ -243,13 +242,6 @@ paths:
         - $ref: '#/components/parameters/page_limit'
         - $ref: '#/components/parameters/sort_by'
         - $ref: '#/components/parameters/sort_option'
-        - name: _id
-          in: query
-          description: Filter by the unique identifier of an index.
-          required: false
-          schema:
-            type: string
-          example: 6298d673f1090f1100476d4c
         - name: index_name
           in: query
           description: Filter by the name of an index.
@@ -386,14 +378,6 @@ paths:
           schema:
             type: string
           required: true
-          example: 6298d673f1090f1100476d4c
-        - name: _id
-          in: query
-          description: |
-            Filter by the unique identifier of a video index.
-          required: false
-          schema:
-            type: string
           example: 6298d673f1090f1100476d4c
         - name: filename
           in: query
@@ -859,7 +843,7 @@ paths:
         - The "Marengo-retrieval-2.7" video understanding model generates embeddings for all modalities in the same latent space. This shared space enables any-to-any searches across different types of content.
         - Video embeddings are stored for seven days.
         - The platform supports uploading video files that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
-      operationId: create-video-embeding-task
+      operationId: create-video-embedding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/multipart'
@@ -903,9 +887,9 @@ paths:
 
         A task can have one of the following statuses:
         - `processing`: The platform is creating the embeddings.
-        - `ready`:  Processing is complete. Retrieve the embeddings by invoking the [`GET`](/reference/retrieve-video-embeding) method of the `/embed/tasks/{task_id} endpoint`.
+        - `ready`:  Processing is complete. Retrieve the embeddings by invoking the [`GET`](/reference/retrieve-video-embedding) method of the `/embed/tasks/{task_id} endpoint`.
         - `failed`: The task could not be completed, and the embeddings haven't been created.
-      operationId: retrieve-video-embeding-task
+      operationId: retrieve-video-embedding-task
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -921,8 +905,8 @@ paths:
     get:
       summary: Retrieve video embeddings
       description: |
-        This method retrieves embeddings for a specific video embedding task. Ensure the task status is `ready` before invoking this method. Refer to the [Retrieve a video embedding](/reference/retrieve-video-embeding-task) task page for instructions on checking the task status.
-      operationId: retrieve-video-embeding
+        This method retrieves embeddings for a specific video embedding task. Ensure the task status is `ready` before invoking this method. Refer to the [Retrieve a video embedding](/reference/retrieve-video-embedding-task) task page for instructions on checking the task status.
+      operationId: retrieve-video-embedding
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -1434,7 +1418,7 @@ components:
           type:
             type: string
             description: |
-              The source of information for which the video clip matched your search terms. It can take one of the following values: `audio`, `visual`,  `text_in_video`, and `logo`.
+              The source of information for which the video clip matched your search terms. It can take one of the following values: `audio`, `visual`
             example: visual
           confidence:
             type: string
@@ -1520,25 +1504,6 @@ components:
                 type: string
                 description: A string representing the unique identifier of the video. Once the platform indexes a video, it assigns a unique identifier. Note that this is different from the identifier of the video indexing task.
                 example: 639963a1ce36463e0199c8c7
-              metadata:
-                type: array
-                description: |
-                  An array of objects where each object contains details about a specific type of match and has the following fields:
-                items:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      description: A string that indicates the type of match (`visual`, `audio`, `text_in_video`, or `logo`).
-                      example: visual
-                    text:
-                      type: string
-                      description: For `text_in_video`, the API returns a transcription of the spoken words or the text that matches your search query.
-                      example: Hello, how are you?
-                  example:
-                    type: visual
-                example:
-                  - type: visual
               confidence:
                 $ref: '#/components/schemas/confidence'
               thumbnail_url:
@@ -1608,6 +1573,7 @@ components:
             thumbnail_url: https://example.com/thumbnail.jpg
             modules:
               - type: visual
+                confidence: high
     search_pool:
       type: object
       description: An object that contains details about the index you queried.
@@ -1739,7 +1705,7 @@ components:
           properties:
             video_clip_length:
               type: number
-              description: The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embeding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
+              description: The duration for each clip in seconds, as specified by the `video_clip_length` parameter of the [`POST`](/reference/create-video-embedding-task) method of the `/embed/task` endpoint. Note that the platform automatically truncates video segments shorter than 2 seconds. For a 31-second video divided into 6-second segments, the final 1-second segment will be truncated. This truncation only applies to the last segment if it does not meet the minimum length requirement of 2 seconds.
               example: 6
             video_embedding_scope:
               type: array
@@ -2088,15 +2054,6 @@ components:
         default: desc
         example: desc
       required: false
-    _id:
-      name: _id
-      in: query
-      description: |
-        Filter by the unique identifier of a video indexing task. 
-      schema:
-        type: string
-        example: 663da73b31cdd0c1f638a8e6
-      required: false
     index_id:
       name: index_id
       in: query
@@ -2119,7 +2076,10 @@ components:
         - `indexing`: The video is being indexed.
         - `failed`: The video indexing task failed.
 
-        To filter by multiple statuses, provide them as a comma-separated list (e.g., `ready,failed`).
+        To filter by multiple statuses, specify the `status` parameter for each value:
+        ```
+        status=ready&status=validating
+        ```
       schema:
         type: array
         items:
@@ -2354,8 +2314,6 @@ components:
                 - score: '85.08'
                   start: 238.75
                   end: 259.62109375
-                  metadata:
-                    - type: visual
                   video_id: 639963a1ce36463e0199c8c7
                   confidence: high
                   thumbnail_url: https://example.com/thumbnail.jpg
@@ -2393,6 +2351,7 @@ components:
                 thumbnail_url: https://example.com/thumbnail.jpg
                 modules:
                   - type: visual
+                    confidence: high
     retrieveThumbnailResponse:
       description: A thumbnail has successfully been retrieved.
       content:
@@ -2632,9 +2591,7 @@ components:
               - model_name: marengo2.7
                 model_options:
                   - visual
-                  - text_in_video
                   - audio
-                  - logo
                 addons:
                   - thumbnail
               - model_name: pegasus1.1
@@ -2765,9 +2722,7 @@ components:
                       - model_name: marengo2.7
                         model_options:
                           - visual
-                          - text_in_video
                           - audio
-                          - logo
               page_info:
                 $ref: '#/components/schemas/page_info'
             example:
@@ -2783,9 +2738,7 @@ components:
                     - model_name: marengo2.7
                       model_options:
                         - visual
-                        - text_in_video
                         - audio
-                        - logo
                       addons:
                         - thumbnail
                     - model_name: pegasus1.1
@@ -2803,7 +2756,6 @@ components:
                     - model_name: marengo2.7
                       model_options:
                         - visual
-                        - logo
                       addons:
                         - thumbnail
                     - model_name: pegasus1.1
@@ -3210,8 +3162,8 @@ components:
                 type: string
                 description: |
                   The unique identifier of the video embedding task. You can use the identifier to:
-                  - Retrieve the status of your task by invoking the [`GET`](/reference/retrieve-video-embeding-task) method of the `/embed/tasks/{task_id}/status` endpoint.
-                  - Retrieve the embedding by invoking the  [`GET`](/reference/retrieve-video-embeding) method of the `/embed/tasks/{task_id}` endpoint.
+                  - Retrieve the status of your task by invoking the [`GET`](/reference/retrieve-video-embedding-task) method of the `/embed/tasks/{task_id}/status` endpoint.
+                  - Retrieve the embedding by invoking the  [`GET`](/reference/retrieve-video-embedding) method of the `/embed/tasks/{task_id}` endpoint.
                 example: 66419a20c70bb578439bd8f4
           example:
             _id: 66419a20c70bb578439bd8f4
@@ -3933,8 +3885,6 @@ components:
                   enum:
                     - visual
                     - audio
-                    - text_in_video
-                    - logo
                   example: visual
                 description: |
                   Specifies the [sources of information](/docs/search-options) the platform uses when performing a search. You must include the `search_options` parameter separately for each desired source of information.
@@ -4229,15 +4179,12 @@ components:
                       type: array
                       description: |
                         An array that specifies how the platform will process the videos uploaded to this index. For more details, see the [model options](/docs/model-options) page.
-
-                        **NOTES:**
-                        - When using the Marengo family of video understanding models, specify any combination of the available model options - `visual`, `audio`, `text_in_video`, and `logo`.
-                        - When using the Pegasus family of video understanding models, specify one or both of the following model options: `visual` and `audio`.
+                        For the Marengo and Pegasus models, you should specify one or both of the following model options: `visual` and `audio`.
                       items:
                         type: string
                         example: visual
                       minItems: 1
-                      maxItems: 4
+                      maxItems: 2
                       example:
                         - visual
                         - audio
@@ -4276,8 +4223,6 @@ components:
                 model_options:
                   - visual
                   - audio
-                  - text_in_video
-                  - logo
               - model_name: pegasus1.1
                 model_options:
                   - visual
