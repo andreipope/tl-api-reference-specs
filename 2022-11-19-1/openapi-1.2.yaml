@@ -299,18 +299,14 @@ paths:
           schema:
             type: string
             description: The unique identifier of the integration for which you want to retrieve the status of your imported videos. You can retrieve it from the [Integrations](https://playground.twelvelabs.io/dashboard/integrations) page.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                index_id:
-                  type: string
-                  description: The unique identifier of the index for which you want to retrieve the status of your imported videos.
-              required:
-                - index_id 
+        - name: index_id
+          in: query
+          description: |
+            The unique identifier of the index for which you want to retrieve the status of your imported videos.
+          required: true
+          schema:
+            type: string
+          example: 6298d673f1090f1100476d4c
 
       operationId: cloud-to-cloud-retrieve-status
       tags:
@@ -5994,26 +5990,6 @@ components:
                   - You cannot override any of the predefined metadata (example: duration, width, length, etc) associated with a video.
                 additionalProperties: {}
                   
-
-    upload-external-provider:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - index_id
-              - url
-            properties:
-              index_id:
-                type: string
-                description: |
-                  The unique identifier of the index to which the video is being uploaded.
-              url:
-                type: string
-                description: |
-                  The URL of the video that you wish to upload.
-              
     createVideoIndexingTask:
       required: true
       content:
