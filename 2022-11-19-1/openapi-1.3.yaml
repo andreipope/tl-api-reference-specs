@@ -27,7 +27,7 @@ paths:
 
         Upload options:
         - **Local file**: Use the `video_file` parameter.
-        - **Publicly accessible URL**: Use the `video_url` parameter.   
+        - **Publicly accessible URL**: Use the `video_url` parameter.
 
         **NOTES**:
         - The platform supports video URLs that can play without additional user interaction or custom video players. Ensure your URL points to the raw video file, not a web page containing the video. Links to third-party hosting sites, cloud storage services, or videos requiring extra steps to play are not supported.
@@ -128,16 +128,17 @@ paths:
         - Videos that will be imported.
         - Videos that will not be imported, typically due to unmet [prerequisites](/docs/upload-single-videos#prerequisites).
 
-        The actual uploading and indexing of videos occur asynchronously after you invoke this method. To monitor the status of each upload after invoking this method, use the [`GET`](/reference/cloud-to-cloud-retrieve-status) method of the `/tasks/transfers/import/{integration-id}/status` endpoint.  
+        The actual uploading and indexing of videos occur asynchronously after you invoke this method. To monitor the status of each upload after invoking this method, use the [Retrieve import status](/reference/cloud-to-cloud-retrieve-status) method.
 
         **NOTES**:
-        - Before importing videos, you must set up an integration. For details, see the [Set up an integration](/docs/upload-cloud#set-up-an-integration) section. 
+        - Before importing videos, you must set up an integration. For details, see the [Set up an integration](/docs/upload-cloud#set-up-an-integration) section.
         - The videos you wish to upload must meet the requirements in the [Prerequisites](/docs/upload-single-videos#prerequisites) section of the **Upload single videos** page.
+        - By default, the platform checks for duplicate files using hashes within the target index and will not upload the same video to the same index twice. However, the same video can exist in multiple indexes. To bypass duplicate checking entirely and import duplicate videos into the same index, set the value of the `incremental_import` parameter to `false`.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
         - name: integration-id
-          description: The unique identifier of the integration for which you want to import videos.
+          description: The unique identifier of the integration for which you want to import videos. You can retrieve it from the [Integrations](https://playground.twelvelabs.io/dashboard/integrations) page.
           in: path
           required: true
           schema:
@@ -149,7 +150,7 @@ paths:
       tags:
         - Upload videos
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/cloud-to-cloud-import-videos-response'
         '400':
           $ref: '#/components/responses/genericError'
@@ -161,7 +162,7 @@ paths:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
         - name: integration-id
-          description: The unique identifier of the integration for which you want to retrieve the status of your imported videos.
+          description: The unique identifier of the integration for which you want to retrieve the status of your imported videos. You can retrieve it from the [Integrations](https://playground.twelvelabs.io/dashboard/integrations) page.
           in: path
           required: true
           schema:
@@ -201,7 +202,7 @@ paths:
           schema:
             type: string
           example: 6298d673f1090f1100476d4c
-          description: The unique identifier of the integration for which you want to retrieve the import logs.
+          description: The unique identifier of the integration for which you want to retrieve the import logs. You can retrieve it from the [Integrations](https://playground.twelvelabs.io/dashboard/integrations) page.
       operationId: cloud-to-cloud-retrieve-import-logs
       tags:
         - Upload videos
@@ -437,7 +438,7 @@ paths:
         - name: updated_at
           in: query
           description: |
-            This filter applies only to videos updated using the [`PUT`](/reference/update-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. It filters videos by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the video indexing tasks that were last updated on the specified date at or after the given time. 
+            This filter applies only to videos updated using the [`PUT`](/reference/update-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint. It filters videos by the last update date and time, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the video indexing tasks that were last updated on the specified date at or after the given time.
           required: false
           schema:
             type: string
@@ -445,7 +446,7 @@ paths:
         - name: indexed_at
           in: query
           description: |
-            Filter videos by the completion time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the videos whose indexing tasks were completed on the specified date at or after the given time. 
+            Filter videos by the completion time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the videos whose indexing tasks were completed on the specified date at or after the given time.
           required: false
           schema:
             type: string
@@ -593,7 +594,7 @@ paths:
       description: |
         This endpoint generates summaries, chapters, or highlights for your videos. Optionally, you can provide a prompt to customize the output.
 
-        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page. 
+        **NOTE**: This endpoint is rate-limited. For details, see the [Rate limits](/docs/rate-limits) page.
       parameters:
         - $ref: '#/components/parameters/x-api-key'
         - $ref: '#/components/parameters/Content-Type'
@@ -789,7 +790,7 @@ paths:
       description: |
         This method creates embeddings for text, image, and audio content.
 
-        Before you create an embedding, ensure that the following prerequisites are met: 
+        Before you create an embedding, ensure that the following prerequisites are met:
         - [Text embeddings](/docs/create-text-embeddings#prerequisites)
         - [Image embeddings](/docs/create-image-embeddings#prerequisites)
         - [Audio embeddings](/docs/create-audio-embeddings#prerequisites)
@@ -833,7 +834,7 @@ paths:
 
         Ensure your video meets the requirements in the [Prerequisites](/docs/create-video-embeddings#prerequisites) section of the **Create video embeddings** page.
 
-        Upload options: 
+        Upload options:
         - **Local file**: Use the `video_file` parameter
         - **Publicly accessible URL**: Use the `video_url` parameter.
 
@@ -859,7 +860,7 @@ paths:
     get:
       summary: List video embedding tasks
       description: |
-        This method returns a list of the video embedding tasks in your account. The platform returns your video embedding tasks sorted by creation date, with the newest at the top of the list.   
+        This method returns a list of the video embedding tasks in your account. The platform returns your video embedding tasks sorted by creation date, with the newest at the top of the list.
 
         **NOTES**:
         - Video embeddings are stored for seven days
@@ -1385,7 +1386,7 @@ components:
     EndTime:
       type: number
       description: |
-        The end time of the matching video clip, expressed in seconds.  
+        The end time of the matching video clip, expressed in seconds.
       example: 60
     StartTime:
       type: number
@@ -1406,31 +1407,6 @@ components:
         - `low`
         - `extremely low`
       example: high
-    modules:
-      type: array
-      description: |
-        When the request specifies multiple sources of information, this array indicates the confidence level that the result is accurate for each matching source of information.
-      items:
-        description: |
-          Each element is a dictionary.
-        type: object
-        properties:
-          type:
-            type: string
-            description: |
-              The source of information for which the video clip matched your search terms. It can take one of the following values: `audio`, `visual`
-            example: visual
-          confidence:
-            type: string
-            description: |
-              The confidence level that the result is accurate.
-            example: high
-        example:
-          type: visual
-          confidence: high
-      example:
-        - type: visual
-          confidence: high
     thumbnail_url:
       type: string
       description: |
@@ -1508,8 +1484,6 @@ components:
                 $ref: '#/components/schemas/confidence'
               thumbnail_url:
                 $ref: '#/components/schemas/thumbnail_url'
-              modules:
-                $ref: '#/components/schemas/modules'
             example:
               score: '85.08'
               start: 515.4375
@@ -1517,9 +1491,6 @@ components:
               video_id: 639963a1ce36463e0199c8c7
               confidence: high
               thumbnail_url: https://example.com/thumbnail.jpg
-              modules:
-                - type: visual
-                  confidence: high
           example:
             - score: '85.08'
               start: 515.4375
@@ -1527,9 +1498,6 @@ components:
               video_id: 639963a1ce36463e0199c8c7
               confidence: high
               thumbnail_url: https://example.com/thumbnail.jpg
-              modules:
-                - type: visual
-                  confidence: high
         page_info:
           type: object
           description: An object that provides information about pagination.
@@ -1546,7 +1514,7 @@ components:
             total_results:
               type: integer
               description: |
-                The total number of results. When grouping by video, this field represents the total number of video clips matching your query. Otherwise , this field represents the total number of videos. 
+                The total number of results. When grouping by video, this field represents the total number of video clips matching your query. Otherwise , this field represents the total number of videos.
               example: 100
             total_inner_matches:
               $ref: '#/components/schemas/total_inner_matches'
@@ -1571,9 +1539,6 @@ components:
             video_id: 639963a1ce36463e0199c8c7
             confidence: high
             thumbnail_url: https://example.com/thumbnail.jpg
-            modules:
-              - type: visual
-                confidence: high
     search_pool:
       type: object
       description: An object that contains details about the index you queried.
@@ -1698,7 +1663,7 @@ components:
           - thumbnail
     VideoEmbeddingMetadata:
       description: |
-        An object containing metadata about the video embedding.
+        An object containing metadata associated with the embedding.
       allOf:
         - $ref: '#/components/schemas/BaseEmbeddingMetadata'
         - type: object
@@ -1992,6 +1957,15 @@ components:
       schema:
         type: string
         example: tlk_1234567890
+    bearer-token:
+      name: Authorization
+      in: header
+      description: |
+        Your bearer token.
+      required: true
+      schema:
+        type: string
+        example: Bearer 1234567890
     multipart:
       name: Content-Type
       in: header
@@ -2045,7 +2019,7 @@ components:
       in: query
       description: |
         The sorting direction. The following options are available:
-        - `asc` 
+        - `asc`
         - `desc`
 
         **Default**: `desc`.
@@ -2156,7 +2130,7 @@ components:
     ended_at:
       name: ended_at
       description: |
-        Retrieve the video embedding tasks that were created before the given date and time, expressed in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). 
+        Retrieve the video embedding tasks that were created before the given date and time, expressed in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ").
       in: query
       schema:
         type: string
@@ -2274,7 +2248,7 @@ components:
                       limit_per_page:
                         type: integer
                         description: |
-                          The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video clips per page. 
+                          The maximum number of items on each page. When grouping by video, this field represents the maximum number of videos per page. Otherwise, it represents the maximum number of video clips per page.
                         example: 10
                       page_expires_at:
                         type: string
@@ -2317,9 +2291,6 @@ components:
                   video_id: 639963a1ce36463e0199c8c7
                   confidence: high
                   thumbnail_url: https://example.com/thumbnail.jpg
-                  modules:
-                    - type: visual
-                      confidence: high
     noContentResponse:
       description: If successful, this method returns a `204 No Content` response code. It does not return anything in the response body.
     searchResultsResponse:
@@ -2349,9 +2320,6 @@ components:
                 video_id: 639963a1ce36463e0199c8c7
                 confidence: high
                 thumbnail_url: https://example.com/thumbnail.jpg
-                modules:
-                  - type: visual
-                    confidence: high
     retrieveThumbnailResponse:
       description: A thumbnail has successfully been retrieved.
       content:
@@ -2841,6 +2809,32 @@ components:
             code: insufficient_funds
             message: Not enough free credit. Please register a payment method or contact sales@twelvelabs.io.
             docs_url: https://docs.twelvelabs.io/reference/error-codes
+    unauthorizedRequest:
+      description: Unauthorized request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: |
+                  A string representing the code associated with the error. See the [Error codes](/reference/error-codes) page for details.
+                example: unauthorized_request
+              message:
+                type: string
+                description: |
+                  A human-readable string describing the error, intended to be suitable for display in a user interface.
+                example: You are not authorized to access this resource.
+              docs_url:
+                type: string
+                description: |
+                  The URL of the relevant documentation page.
+                example: https://docs.twelvelabs.io/reference/error-codes
+          example:
+            code: unauthorized_request
+            message: You are not authorized to access this resource.
+            docs_url: https://docs.twelvelabs.io/reference/error-codes
     genericError:
       description: The request has failed.
       content:
@@ -2888,7 +2882,7 @@ components:
               message: The specified resource does not exist.
     createSyncEmbeddingResponse:
       description: |
-        A text embedding has successfully been created. 
+        A text embedding has successfully been created.
       content:
         application/json:
           schema:
@@ -3117,7 +3111,7 @@ components:
               status:
                 type: string
                 description: |
-                  A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`. 
+                  A string indicating the status of the video indexing task. It can take one of the following values: `processing`, `ready` or `failed`.
                 example: processing
               model_name:
                 type: string
@@ -3396,7 +3390,7 @@ components:
                         - It identifies the associated video indexing task.
 
                         For example, due to this dual functionality, you can use this identifier to:
-                        - Retrieve details about the video itself by invoking the [`GET`](/reference/retrieve-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint.  
+                        - Retrieve details about the video itself by invoking the [`GET`](/reference/retrieve-video-information) method of the `/indexes/{index-id}/videos/{video-id}` endpoint.
                         - Retrieve the status of the video indexing task by invoking the [`GET`](/reference/retrieve-video-indexing-task) method of the `/tasks/{task_id}` endpoint.
                       example: 66fcee250f9f7bcce21915a2
                     filename:
@@ -3557,13 +3551,13 @@ components:
                 type: string
                 format: binary
                 description: |
-                  The image file for which you wish to create an embedding as a local file. This parameter is required for image embeddings if `image_url` is not provided. 
+                  The image file for which you wish to create an embedding as a local file. This parameter is required for image embeddings if `image_url` is not provided.
                 example: /Users/john/Documents/image.jpg
               audio_url:
                 type: string
                 format: uri
                 description: |
-                  The publicly accessible URL of the audio file for which you wish to creae an emebdding. This parameter is required for audio embeddings if `audio_file` is not provided.   
+                  The publicly accessible URL of the audio file for which you wish to creae an emebdding. This parameter is required for audio embeddings if `audio_file` is not provided.
                 example: https://example.com/audio.mp3
               audio_file:
                 type: string
@@ -3723,11 +3717,11 @@ components:
 
                   **NOTES**:
                     - Even though the model behind this endpoint is trained to a high degree of accuracy, the preciseness of the generated text may vary based on the nature and quality of the video and the clarity of the prompt.
-                    - Your prompts can be instructive or descriptive, or you can also phrase them as questions. 
+                    - Your prompts can be instructive or descriptive, or you can also phrase them as questions.
                     - The maximum length of a prompt is 1500 characters.
 
                   **Examples**:
-                    
+
                     - Based on this video, I want to generate five keywords for SEO (Search Engine Optimization).
                     - I want to generate a description for my video with the following format: Title of the video, followed by a summary in 2-3 sentences, highlighting the main topic, key events, and concluding remarks.
                 example: I want to generate a description for my video with the following format- Title of the video, followed by a summary in 2-3 sentences, highlighting the main topic, key events, and concluding remarks.
@@ -3747,7 +3741,7 @@ components:
               stream:
                 type: boolean
                 description: |
-                  Set this parameter to `true` to enable streaming responses in the <a href="https://github.com/ndjson/ndjson-spec" target="_blank">NDJSON</a> format. 
+                  Set this parameter to `true` to enable streaming responses in the <a href="https://github.com/ndjson/ndjson-spec" target="_blank">NDJSON</a> format.
 
                   **Default:** `true`
                 default: true
@@ -3864,7 +3858,7 @@ components:
                 example: https://example.com/image.jpg
               query_media_file:
                 description: |
-                  The media you wish to use as a local file. This parameter is required for media queries if `query_media_url` is not provided. 
+                  The media you wish to use as a local file. This parameter is required for media queries if `query_media_url` is not provided.
                 type: string
                 format: binary
                 example: /Users/john/Documents/image.jpg
@@ -3889,7 +3883,7 @@ components:
                 description: |
                   Specifies the [sources of information](/docs/search-options) the platform uses when performing a search. You must include the `search_options` parameter separately for each desired source of information.
 
-                  **NOTES:** 
+                  **NOTES:**
                   - The search options you specify must be a subset of the [model options](/docs/model-options) used when you created the index.
                   - You can specify multiple search options in conjunction with the `operator` parameter described below to broaden or narrow your search.
 
@@ -3906,7 +3900,7 @@ components:
                 type: number
                 format: float
                 description: |
-                  This parameter specifies the strictness of the thresholds for assigning the high, medium, or low confidence levels to search results. If you use a lower value, the thresholds become more relaxed, and more search results will be classified as having high, medium, or low confidence levels. You can use this parameter to include a broader range of potentially relevant video clips, even if some results might be less precise. 
+                  This parameter specifies the strictness of the thresholds for assigning the high, medium, or low confidence levels to search results. If you use a lower value, the thresholds become more relaxed, and more search results will be classified as having high, medium, or low confidence levels. You can use this parameter to include a broader range of potentially relevant video clips, even if some results might be less precise.
 
                   **Min**: 0
                   **Max**: 1
@@ -3933,11 +3927,11 @@ components:
                 description: |
                   Use this parameter to specify the sort order for the response.
 
-                  When performing a search, the platform determines the level of confidence that each video clip matches your search terms. By default, the search results are sorted on the level of confidence in descending order. 
+                  When performing a search, the platform determines the level of confidence that each video clip matches your search terms. By default, the search results are sorted on the level of confidence in descending order.
 
                   If you set this parameter to `score` and `group_by` is set to `video`, the platform will determine the maximum value of the `score` field for each video and sort the videos in the response by the maximum value of this field. For each video, the matching video clips will be sorted by the level of confidence.
 
-                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video clips will be sorted by the level of confidence. You can use `clip_count` only when the matching video clips are sorted by video.
+                  If you set this parameter to `clip_count` and `group_by` is set to `video`, the platform will sort the videos in the response by the number of clips. For each video, the matching video clips will be sorted by the level of confidence. You can use `clip_count` only when the matching video clips are grouped by video.
 
 
                   **Default:** `score`
@@ -3950,16 +3944,16 @@ components:
                 type: string
                 description: |
                   When you perform a search specifying multiple [sources of information](/docs/search-options), you can use the this parameter to broaden or narrow your search.
-                    
+
                     The following logical operators are supported:
-                    
+
                     - `or`
-                    
+
                     - `and`
-                    
+
                     For details and examples, see the [Using multiple sources of information](/docs/search-single-queries#using-multiple-sources-of-information) section.
 
-                    
+
                     **Default**: `or`.
                 enum:
                   - or
@@ -3969,7 +3963,7 @@ components:
               page_limit:
                 type: integer
                 description: |
-                  The number of items to return on each page. When grouping by video, this parameter represents the number of videos per page. Otherwise, it represents the maximum number of video clips per page. 
+                  The number of items to return on each page. When grouping by video, this parameter represents the number of videos per page. Otherwise, it represents the maximum number of video clips per page.
 
                   **Max**: `50`.
                 default: 10
@@ -4162,7 +4156,7 @@ components:
                       type: string
                       description: |
                         The name of the model. The following models are available:
-                          
+
                           - **Embedding**: These models are proficient at performing tasks such as search and classification, enabling enhanced video understanding.
 
                             - `marengo2.7`
