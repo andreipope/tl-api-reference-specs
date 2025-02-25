@@ -621,13 +621,6 @@ paths:
           required: false
           schema:
             type: string
-        - name: indexed_at
-          in: query
-          description: |
-            Filter videos by the completion time of their associated indexing tasks, in the [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format ("YYYY-MM-DDTHH:mm:ssZ"). The platform returns the videos whose indexing tasks were completed on the specified date at or after the given time. 
-          required: false
-          schema:
-            type: string
         - name: metadata # Arbitrary name that won't be included in the request URL.
           in: query
           description: |
@@ -6009,10 +6002,6 @@ components:
                 description: |
                   A boolean value specifying whether or not you provide a transcription for this video.
                 default: false
-              language:
-                type: string
-                description: Must be set to `en`.
-                default: en
               video_file:
                 type: string
                 format: binary
